@@ -10,7 +10,7 @@ create_clock -period 3.3 -name default
 config_export -format ip_catalog -rtl verilog
 
 csim_design -clean
-csynth_design
+#csynth_design
 #cosim_design -trace_level port
 #export_design -flow impl -rtl verilog -format ip_catalog
 
