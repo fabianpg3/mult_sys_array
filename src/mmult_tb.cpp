@@ -31,16 +31,16 @@ Description:
 extern "C" {
 void mmult(ap_int<DATA_BIT_SIZE> a[MAX_SIZE * MAX_SIZE], // Read-Only Matrix A
            ap_int<DATA_BIT_SIZE> b[MAX_SIZE * MAX_SIZE], // Read-Only Matrix B
-           ap_int<DATA_BIT_SIZE> c[MAX_SIZE * MAX_SIZE],       // Output Result
+           ap_int<2*DATA_BIT_SIZE> c[MAX_SIZE * MAX_SIZE],       // Output Result
            int a_row,    // Matrix A Row Size
            int a_col,    // Matrix A Col Size
            int b_col     // Matrix B Col Size
            ); }
 
-void mmult_sw(ap_int<DATA_BIT_SIZE> a[MAX_SIZE * MAX_SIZE], ap_int<DATA_BIT_SIZE> b[MAX_SIZE * MAX_SIZE], ap_int<DATA_BIT_SIZE> c[MAX_SIZE * MAX_SIZE], int a_row, int a_col, int b_col) {
+void mmult_sw(ap_int<DATA_BIT_SIZE> a[MAX_SIZE * MAX_SIZE], ap_int<DATA_BIT_SIZE> b[MAX_SIZE * MAX_SIZE], ap_int<2*DATA_BIT_SIZE> c[MAX_SIZE * MAX_SIZE], int a_row, int a_col, int b_col) {
     for (int i = 0; i < a_row; i++) {
         for (int j = 0; j < b_col; j++) {
-            int sum = 0;
+            ap_int<2*DATA_BIT_SIZE> sum = 0;
             for (int k = 0; k < a_col; k++) {
                 sum += a[i * a_col + k] * b[k * b_col + j];
             }
@@ -49,7 +49,17 @@ void mmult_sw(ap_int<DATA_BIT_SIZE> a[MAX_SIZE * MAX_SIZE], ap_int<DATA_BIT_SIZE
     }
 }
 
-void print_matrix(const char* name, ap_int<DATA_BIT_SIZE> mat[], int rows, int cols) {
+void print_ab_matrix(const char* name, ap_int<DATA_BIT_SIZE> mat[], int rows, int cols) {
+    std::printf("%s (%d x %d):\n", name, rows, cols);
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            std::printf("%d ", (int)mat[i * cols + j]);
+        }
+        std::printf("\n");
+    }
+    std::printf("\n");
+}
+void print_c_matrix(const char* name, ap_int<2*DATA_BIT_SIZE> mat[], int rows, int cols) {
     std::printf("%s (%d x %d):\n", name, rows, cols);
     for (int i = 0; i < rows; i++) {
         for (int j = 0; j < cols; j++) {
@@ -68,8 +78,8 @@ int main() {
 
     ap_int<DATA_BIT_SIZE> a[MAX_SIZE * MAX_SIZE];
     ap_int<DATA_BIT_SIZE> b[MAX_SIZE * MAX_SIZE];
-    ap_int<DATA_BIT_SIZE> c_hw[MAX_SIZE * MAX_SIZE];
-    ap_int<DATA_BIT_SIZE> c_sw[MAX_SIZE * MAX_SIZE];
+    ap_int<2*DATA_BIT_SIZE> c_hw[MAX_SIZE * MAX_SIZE];
+    ap_int<2*DATA_BIT_SIZE> c_sw[MAX_SIZE * MAX_SIZE];
 
     for (int i = 0; i < MAX_SIZE * MAX_SIZE; i++) {
         a[i] = 0;
@@ -94,9 +104,9 @@ int main() {
     mmult_sw(a, b, c_sw, a_row, a_col, b_col);
 
     // Print matrices
-    print_matrix("Input Matrix A", a, a_row, a_col);
-    print_matrix("Input Matrix B", b, a_col, b_col);
-    print_matrix("Output Matrix C (Hardware)", c_hw, a_row, b_col);
+    print_ab_matrix("Input Matrix A", a, a_row, a_col);
+    print_ab_matrix("Input Matrix B", b, a_col, b_col);
+    print_c_matrix("Output Matrix C (Hardware)", c_hw, a_row, b_col);
 
     bool match = true;
     for (int i = 0; i < a_row * b_col; i++) {

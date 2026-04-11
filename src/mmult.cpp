@@ -61,82 +61,83 @@ extern "C" {
 
 void tile_process( ap_int<DATA_BIT_SIZE> a_row_major[MAX_SIZE ][MAX_SIZE ], // Read-Only Matrix A
            ap_int<DATA_BIT_SIZE> b_row_major[MAX_SIZE ][MAX_SIZE ], // Read-Only Matrix B
-           ap_int<DATA_BIT_SIZE> c_row_major[MAX_SIZE ][MAX_SIZE ],       // Output Result
+           ap_int<2*DATA_BIT_SIZE> c_row_major[MAX_SIZE ][MAX_SIZE ],       // Output Result
            int start_k,
            int finish_k,
            int a_row,    // Matrix A Row Size
            int a_col,    // Matrix A Col Size
            int b_col,     // Matrix B Col Size
            int b_row     // Matrix B Row Size
-           ) {
-            // Default value in boundary conditions
-                ap_int<DATA_BIT_SIZE> boundary_value = 0;
+           ) 
+{
+    // Default value in boundary conditions
+    ap_int<DATA_BIT_SIZE> boundary_value = 0;
 
     // Perform systolic matrix multiply
-// local matrices localA and localB have been partitioned in dimensions
-// 1 and 2 respectively. local matrix C has been partitioned completely
+    // local matrices localA and localB have been partitioned in dimensions
+    // 1 and 2 respectively. local matrix C has been partitioned completely
 
-// This partitioning enables to access MAX_SIZE elements in parallel in
-// the local matrices. Because of the mode of access of array elements,
-// we are able to perform MAX_SIZE*MAX_SIZE operations in parallel.
+    // This partitioning enables to access MAX_SIZE elements in parallel in
+    // the local matrices. Because of the mode of access of array elements,
+    // we are able to perform MAX_SIZE*MAX_SIZE operations in parallel.
 
-// Note : i, j and k loops are interchanged.
+    // Note : i, j and k loops are interchanged.
 
-// The top loop systolic1 runs only for a_col iterations instead of
-// MAX_SIZE like the inner loops. The inner loops have fixed loop
-// iteration counts to enable complete unroll
+    // The top loop systolic1 runs only for a_col iterations instead of
+    // MAX_SIZE like the inner loops. The inner loops have fixed loop
+    // iteration counts to enable complete unroll
 
-// The following diagram explains how the matrix multiply happens
-//
-//        B_0        B_1        B_2        B_3
-//         |          |          |          |
-//         v          v          v          v
-//        ___        ___        ___        ___
-//       |   |      |   |      |   |      |   |
-//  A0_->|C00| ---- |C01| ---- |C02| ---- |C03|
-//       |___|      |___|      |___|      |___|
-//         |          |          |          |
-//        ___        ___        ___        ___
-//       |   |      |   |      |   |      |   |
-//  A1_->|C10| ---- |C11| ---- |C12| ---- |C13|
-//       |___|      |___|      |___|      |___|
-//         |          |          |          |
-//        ___        ___        ___        ___
-//       |   |      |   |      |   |      |   |
-//  A2_->|C20| ---- |C21| ---- |C21| ---- |C21|
-//       |___|      |___|      |___|      |___|
-//         |          |          |          |
-//        ___        ___        ___        ___
-//       |   |      |   |      |   |      |   |
-//  A3_->|C30| ---- |C31| ---- |C32| ---- |C33|
-//       |___|      |___|      |___|      |___|
+    // The following diagram explains how the matrix multiply happens
+    //
+    //        B_0        B_1        B_2        B_3
+    //         |          |          |          |
+    //         v          v          v          v
+    //        ___        ___        ___        ___
+    //       |   |      |   |      |   |      |   |
+    //  A0_->|C00| ---- |C01| ---- |C02| ---- |C03|
+    //       |___|      |___|      |___|      |___|
+    //         |          |          |          |
+    //        ___        ___        ___        ___
+    //       |   |      |   |      |   |      |   |
+    //  A1_->|C10| ---- |C11| ---- |C12| ---- |C13|
+    //       |___|      |___|      |___|      |___|
+    //         |          |          |          |
+    //        ___        ___        ___        ___
+    //       |   |      |   |      |   |      |   |
+    //  A2_->|C20| ---- |C21| ---- |C21| ---- |C21|
+    //       |___|      |___|      |___|      |___|
+    //         |          |          |          |
+    //        ___        ___        ___        ___
+    //       |   |      |   |      |   |      |   |
+    //  A3_->|C30| ---- |C31| ---- |C32| ---- |C33|
+    //       |___|      |___|      |___|      |___|
 
-systolic1:
-    for (int k = start_k; k < finish_k; k++) {
-#pragma HLS LOOP_TRIPCOUNT min = c_size max = c_size
-    systolic2:
-        for (int i = 0; i < MAX_SIZE; i++) {
-        systolic3:
-            for (int j = 0; j < MAX_SIZE; j++) {
-                // Get previous sum
-                ap_int<DATA_BIT_SIZE> last = c_row_major[i][j];
+    systolic1:
+        for (int k = start_k; k < finish_k; k++) {
+    #pragma HLS LOOP_TRIPCOUNT min = c_size max = c_size
+        systolic2:
+            for (int i = 0; i < MAX_SIZE; i++) {
+            systolic3:
+                for (int j = 0; j < MAX_SIZE; j++) {
+                    // Get previous sum
+                    ap_int<2*DATA_BIT_SIZE> last = c_row_major[i][j];
 
-                // Update current sum
-                // Handle boundary conditions
-                ap_int<DATA_BIT_SIZE> a_val = (i < a_row && k < a_col) ? a_row_major[i][k] : boundary_value;
-                ap_int<DATA_BIT_SIZE> b_val = (k < b_row && j < b_col) ? b_row_major[k][j] : boundary_value;
-                ap_int<DATA_BIT_SIZE> result = last + a_val * b_val;
+                    // Update current sum
+                    // Handle boundary conditions
+                    ap_int<DATA_BIT_SIZE> a_val = (i < a_row && k < a_col) ? a_row_major[i][k] : boundary_value;
+                    ap_int<DATA_BIT_SIZE> b_val = (k < b_row && j < b_col) ? b_row_major[k][j] : boundary_value;
+                    ap_int<2*DATA_BIT_SIZE> result = last + a_val * b_val;
 
-                // Write back results
-                c_row_major[i][j] = result;
+                    // Write back results
+                    c_row_major[i][j] = result;
+                }
             }
         }
-    }
 }
 
 void mmult(ap_int<DATA_BIT_SIZE> a[MAX_SIZE * MAX_SIZE], // Read-Only Matrix A
            ap_int<DATA_BIT_SIZE> b[MAX_SIZE * MAX_SIZE], // Read-Only Matrix B
-           ap_int<DATA_BIT_SIZE> c[MAX_SIZE * MAX_SIZE],       // Output Result
+           ap_int<2*DATA_BIT_SIZE> c[MAX_SIZE * MAX_SIZE],       // Output Result
            int a_row,    // Matrix A Row Size
            int a_col,    // Matrix A Col Size
            int b_col     // Matrix B Col Size
@@ -152,7 +153,7 @@ void mmult(ap_int<DATA_BIT_SIZE> a[MAX_SIZE * MAX_SIZE], // Read-Only Matrix A
     ap_int<DATA_BIT_SIZE> localB[MAX_SIZE][MAX_SIZE];
 #pragma HLS ARRAY_PARTITION variable = localB dim = 2 complete
 
-    ap_int<DATA_BIT_SIZE> localC[MAX_SIZE][MAX_SIZE];
+    ap_int<2*DATA_BIT_SIZE> localC[MAX_SIZE][MAX_SIZE];
 #pragma HLS ARRAY_PARTITION variable = localC dim = 0 complete
 
 // Burst reads on input matrices from global memory
