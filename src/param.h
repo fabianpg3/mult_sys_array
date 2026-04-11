@@ -1,5 +1,5 @@
 // Maximum Array Size
-#define MAX_SIZE 16
+#define MAX_SIZE 32
 
 #define DATA_BIT_SIZE 8
 

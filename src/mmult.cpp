@@ -59,9 +59,9 @@ const unsigned int c_size = MAX_SIZE;
 
 extern "C" {
 
-void tile_process( ap_int<DATA_BIT_SIZE> a_row_major[MAX_SIZE ][MAX_SIZE ], // Read-Only Matrix A
-           ap_int<DATA_BIT_SIZE> b_row_major[MAX_SIZE ][MAX_SIZE ], // Read-Only Matrix B
-           ap_int<DATA_BIT_SIZE> c_row_major[MAX_SIZE ][MAX_SIZE ],       // Output Result
+void tile_process( ap_int<DATA_BIT_SIZE> a_row_major[MAX_SIZE / TILE_FACTOR ][MAX_SIZE / TILE_FACTOR], // Read-Only Matrix A
+           ap_int<DATA_BIT_SIZE> b_row_major[MAX_SIZE / TILE_FACTOR][MAX_SIZE  / TILE_FACTOR], // Read-Only Matrix B
+           ap_int<DATA_BIT_SIZE> c_row_major[MAX_SIZE  / TILE_FACTOR][MAX_SIZE  / TILE_FACTOR],       // Output Result
            int start_index,
            int finish_index,
            int a_row,    // Matrix A Row Size
@@ -181,7 +181,7 @@ readB:
         localB[i][j] = b[loc];
     }
 // Tile process the input matrices and produce output matrix in local memory
-/*tile_processing:
+tile_processing:
     for (int q = 0; q < TILE_FACTOR; q++) {
         int row_start = q * (MAX_SIZE / TILE_FACTOR);
         int col_start = q * (MAX_SIZE / TILE_FACTOR);
@@ -194,7 +194,7 @@ readB:
             for(int j = 0; j < (MAX_SIZE / TILE_FACTOR); j++) {
                 #pragma HLS UNROLL
                 sub_localA[i][j] = localA[row_start + i][col_start + j];
-                sub_localB[i][j] = localB[col_start + j][row_start + i];
+                sub_localB[i][j] = localB[row_start + i][col_start + j];
             }
         }
         //Execute tile matrix multiply
@@ -206,11 +206,7 @@ readB:
                 localC[i][j] = sub_localC[w][h];
             }
         }
-    }*/
-tile_process(localA, localB, localC, 0, 4, a_row, a_col, b_col, b_row);
-tile_process(localA, localB, localC, 4, 8, a_row, a_col, b_col, b_row);
-tile_process(localA, localB, localC, 8, 12, a_row, a_col, b_col, b_row);
-tile_process(localA, localB, localC, 12, 16, a_row, a_col, b_col, b_row);
+    }
 
 // Burst write from output matrices to global memory
 // Burst write from matrix C
