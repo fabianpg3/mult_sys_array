@@ -70,6 +70,7 @@ void tile_process( ap_int<DATA_BIT_SIZE> a_row_major[MAX_SIZE ][MAX_SIZE ], // R
            int b_row     // Matrix B Row Size
            ) 
 {
+    #pragma HLS_PIPELINE II=1
     // Default value in boundary conditions
     ap_int<DATA_BIT_SIZE> boundary_value = 0;
 
@@ -117,8 +118,10 @@ void tile_process( ap_int<DATA_BIT_SIZE> a_row_major[MAX_SIZE ][MAX_SIZE ], // R
     #pragma HLS LOOP_TRIPCOUNT min = c_size max = c_size
         systolic2:
             for (int i = 0; i < MAX_SIZE; i++) {
+            #pragma HLS UNROLL factor = PARALLELISM_FACTOR
             systolic3:
                 for (int j = 0; j < MAX_SIZE; j++) {
+                #pragma HLS UNROLL factor = PARALLELISM_FACTOR
                     // Get previous sum
                     ap_int<2*DATA_BIT_SIZE> last = c_row_major[i][j];
 
@@ -148,13 +151,14 @@ void mmult(ap_int<DATA_BIT_SIZE> a[MAX_SIZE * MAX_SIZE], // Read-Only Matrix A
 
     // Local memory to store input and output matrices
     ap_int<DATA_BIT_SIZE> localA[MAX_SIZE][MAX_SIZE];
-#pragma HLS ARRAY_PARTITION variable = localA dim = 1 complete
+#pragma HLS ARRAY_PARTITION variable = localA dim = 1 factor = PARALLELISM_FACTOR cyclic
 
     ap_int<DATA_BIT_SIZE> localB[MAX_SIZE][MAX_SIZE];
-#pragma HLS ARRAY_PARTITION variable = localB dim = 2 complete
+#pragma HLS ARRAY_PARTITION variable = localB dim = 2 factor = PARALLELISM_FACTOR cyclic
 
     ap_int<2*DATA_BIT_SIZE> localC[MAX_SIZE][MAX_SIZE];
-#pragma HLS ARRAY_PARTITION variable = localC dim = 0 complete
+#pragma HLS ARRAY_PARTITION variable = localC dim = 1 factor = PARALLELISM_FACTOR cyclic
+#pragma HLS ARRAY_PARTITION variable = localC dim = 2 factor = PARALLELISM_FACTOR cyclic
 
 // Burst reads on input matrices from global memory
 // Read Input A
@@ -182,7 +186,7 @@ readB:
 // Initialize localC to 0
 for (int i = 0; i < MAX_SIZE; i++) {
     for (int j = 0; j < MAX_SIZE; j++) {
-#pragma HLS UNROLL
+#pragma HLS UNROLL factor = PARALLELISM_FACTOR
         localC[i][j] = 0;
     }
 }
