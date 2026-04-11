@@ -59,11 +59,11 @@ const unsigned int c_size = MAX_SIZE;
 
 extern "C" {
 
-void tile_process( ap_int<DATA_BIT_SIZE> a_row_major[MAX_SIZE / TILE_FACTOR ][MAX_SIZE / TILE_FACTOR], // Read-Only Matrix A
-           ap_int<DATA_BIT_SIZE> b_row_major[MAX_SIZE / TILE_FACTOR][MAX_SIZE  / TILE_FACTOR], // Read-Only Matrix B
-           ap_int<DATA_BIT_SIZE> c_row_major[MAX_SIZE  / TILE_FACTOR][MAX_SIZE  / TILE_FACTOR],       // Output Result
-           int start_index,
-           int finish_index,
+void tile_process( ap_int<DATA_BIT_SIZE> a_row_major[MAX_SIZE ][MAX_SIZE ], // Read-Only Matrix A
+           ap_int<DATA_BIT_SIZE> b_row_major[MAX_SIZE ][MAX_SIZE ], // Read-Only Matrix B
+           ap_int<DATA_BIT_SIZE> c_row_major[MAX_SIZE ][MAX_SIZE ],       // Output Result
+           int start_k,
+           int finish_k,
            int a_row,    // Matrix A Row Size
            int a_col,    // Matrix A Col Size
            int b_col,     // Matrix B Col Size
@@ -112,16 +112,14 @@ void tile_process( ap_int<DATA_BIT_SIZE> a_row_major[MAX_SIZE / TILE_FACTOR ][MA
 //       |___|      |___|      |___|      |___|
 
 systolic1:
-    for (int k = start_index; k < finish_index; k++) {
+    for (int k = start_k; k < finish_k; k++) {
 #pragma HLS LOOP_TRIPCOUNT min = c_size max = c_size
     systolic2:
-        for (int i = start_index; i < finish_index; i++) {
-#pragma HLS UNROLL
+        for (int i = 0; i < MAX_SIZE; i++) {
         systolic3:
-            for (int j = start_index; j < finish_index; j++) {
-#pragma HLS UNROLL
+            for (int j = 0; j < MAX_SIZE; j++) {
                 // Get previous sum
-                ap_int<DATA_BIT_SIZE> last = (k == 0) ? boundary_value : c_row_major[i][j];
+                ap_int<DATA_BIT_SIZE> last = c_row_major[i][j];
 
                 // Update current sum
                 // Handle boundary conditions
@@ -180,32 +178,19 @@ readB:
         }
         localB[i][j] = b[loc];
     }
+// Initialize localC to 0
+for (int i = 0; i < MAX_SIZE; i++) {
+    for (int j = 0; j < MAX_SIZE; j++) {
+#pragma HLS UNROLL
+        localC[i][j] = 0;
+    }
+}
 // Tile process the input matrices and produce output matrix in local memory
 tile_processing:
     for (int q = 0; q < TILE_FACTOR; q++) {
-        int row_start = q * (MAX_SIZE / TILE_FACTOR);
-        int col_start = q * (MAX_SIZE / TILE_FACTOR);
-        int start_index = q * (TILE_FACTOR);
-        int finish_index = (q + 1) * (TILE_FACTOR);
-        ap_int<DATA_BIT_SIZE> sub_localA[MAX_SIZE / TILE_FACTOR][MAX_SIZE / TILE_FACTOR];
-        ap_int<DATA_BIT_SIZE> sub_localB[MAX_SIZE / TILE_FACTOR][MAX_SIZE / TILE_FACTOR];
-        ap_int<DATA_BIT_SIZE> sub_localC[MAX_SIZE / TILE_FACTOR][MAX_SIZE / TILE_FACTOR];
-        for(int i = 0; i < (MAX_SIZE / TILE_FACTOR); i++) {
-            for(int j = 0; j < (MAX_SIZE / TILE_FACTOR); j++) {
-                #pragma HLS UNROLL
-                sub_localA[i][j] = localA[row_start + i][col_start + j];
-                sub_localB[i][j] = localB[row_start + i][col_start + j];
-            }
-        }
-        //Execute tile matrix multiply
-        tile_process(sub_localA, sub_localB, sub_localC, (q*TILE_FACTOR), ((q+1)*TILE_FACTOR), TILE_FACTOR, TILE_FACTOR, TILE_FACTOR, TILE_FACTOR);
-        // Store results back to localC
-        for(int i = start_index, w = 0; i < finish_index; i++, w++) {
-            for(int j = start_index, h = 0; j < finish_index; j++, h++) {
-                #pragma HLS UNROLL
-                localC[i][j] = sub_localC[w][h];
-            }
-        }
+        int start_k = q * TILE_SIZE;
+        int finish_k = (q + 1) * TILE_SIZE;
+        tile_process(localA, localB, localC, start_k, finish_k, a_row, a_col, b_col, b_row);
     }
 
 // Burst write from output matrices to global memory
