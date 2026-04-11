@@ -24,6 +24,7 @@ Description:
 #include <cstdio>
 #include <cstdlib>
 #include <ap_int.h>
+#include <ctime>
 #include "param.h"
 
 
@@ -48,7 +49,19 @@ void mmult_sw(ap_int<DATA_BIT_SIZE> a[MAX_SIZE * MAX_SIZE], ap_int<DATA_BIT_SIZE
     }
 }
 
+void print_matrix(const char* name, ap_int<DATA_BIT_SIZE> mat[], int rows, int cols) {
+    std::printf("%s (%d x %d):\n", name, rows, cols);
+    for (int i = 0; i < rows; i++) {
+        for (int j = 0; j < cols; j++) {
+            std::printf("%d ", (int)mat[i * cols + j]);
+        }
+        std::printf("\n");
+    }
+    std::printf("\n");
+}
+
 int main() {
+    srand(time(NULL));
     const int a_row = (rand() % (MAX_SIZE - 1)) + 1;
     const int a_col = (rand() % (MAX_SIZE - 1)) + 1;
     const int b_col = (rand() % (MAX_SIZE - 1)) + 1;
@@ -67,18 +80,23 @@ int main() {
 
     for (int i = 0; i < a_row; i++) {
         for (int j = 0; j < a_col; j++) {
-            a[i * a_col + j] = rand() % 4; // Initialize the input values array with random numbers
+            a[i * a_col + j] = (rand() % (1 << DATA_BIT_SIZE)) - (1 << (DATA_BIT_SIZE - 1)); // Initialize with random values based on DATA_BIT_SIZE
         }
     }
 
     for (int i = 0; i < a_col; i++) {
         for (int j = 0; j < b_col; j++) {
-            b[i * b_col + j] = rand() % 4; // Initialize the input values array with random numbers
+            b[i * b_col + j] = (rand() % (1 << DATA_BIT_SIZE)) - (1 << (DATA_BIT_SIZE - 1)); // Initialize with random values based on DATA_BIT_SIZE
         }
     }
 
     mmult(a, b, c_hw, a_row, a_col, b_col);
     mmult_sw(a, b, c_sw, a_row, a_col, b_col);
+
+    // Print matrices
+    print_matrix("Input Matrix A", a, a_row, a_col);
+    print_matrix("Input Matrix B", b, a_col, b_col);
+    print_matrix("Output Matrix C (Hardware)", c_hw, a_row, b_col);
 
     bool match = true;
     for (int i = 0; i < a_row * b_col; i++) {
