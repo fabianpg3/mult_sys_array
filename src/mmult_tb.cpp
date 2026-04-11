@@ -49,9 +49,9 @@ void mmult_sw(ap_int<DATA_BIT_SIZE> a[MAX_SIZE * MAX_SIZE], ap_int<DATA_BIT_SIZE
 }
 
 int main() {
-    const int a_row = 4;
-    const int a_col = 4;
-    const int b_col = 4;
+    const int a_row = (rand() % (MAX_SIZE - 1)) + 1;
+    const int a_col = (rand() % (MAX_SIZE - 1)) + 1;
+    const int b_col = (rand() % (MAX_SIZE - 1)) + 1;
 
     ap_int<DATA_BIT_SIZE> a[MAX_SIZE * MAX_SIZE];
     ap_int<DATA_BIT_SIZE> b[MAX_SIZE * MAX_SIZE];
