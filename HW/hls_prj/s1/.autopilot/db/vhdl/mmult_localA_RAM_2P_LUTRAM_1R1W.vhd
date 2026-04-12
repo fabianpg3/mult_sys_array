@@ -9,8 +9,8 @@ use ieee.numeric_std.all;
 entity mmult_localA_RAM_2P_LUTRAM_1R1W  is
     generic (
         DataWidth    : integer := 8;
-        AddressRange : integer := 32;
-        AddressWidth : integer := 5;
+        AddressRange : integer := 256;
+        AddressWidth : integer := 8;
         BufferCount  : integer := 2;
         MemLatency   : integer := 1;
         IndexWidth   : integer := 1

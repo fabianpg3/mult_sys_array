@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'Loop_readA_proc'" level="0">
-<item name = "Date">Sun Apr 12 15:51:34 2026
+<item name = "Date">Sun Apr 12 17:22:36 2026
 </item>
 <item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
 <item name = "Project">hls_prj</item>
@@ -31,7 +31,7 @@
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="0">
 <keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
-<column name="grp_Loop_readA_proc_Pipeline_readA_fu_130">Loop_readA_proc_Pipeline_readA, 2050, 2050, 6.765 us, 6.765 us, 2050, 2050, no</column>
+<column name="grp_Loop_readA_proc_Pipeline_readA_fu_76">Loop_readA_proc_Pipeline_readA, 2050, 2050, 6.765 us, 6.765 us, 2050, 2050, no</column>
 </table>
 </item>
 <item name = "Loop"><table name="" hasTotal="0">
@@ -50,10 +50,10 @@
 <column name="DSP">-, -, -, -, -</column>
 <column name="Expression">-, -, 0, 72, -</column>
 <column name="FIFO">-, -, -, -, -</column>
-<column name="Instance">-, 3, 439, 390, -</column>
+<column name="Instance">-, 3, 347, 423, -</column>
 <column name="Memory">-, -, -, -, -</column>
-<column name="Multiplexer">-, -, -, 224, -</column>
-<column name="Register">-, -, 141, -, -</column>
+<column name="Multiplexer">-, -, -, 233, -</column>
+<column name="Register">-, -, 173, -, -</column>
 <specialColumn name="Available">288, 1248, 234240, 117120, 64</specialColumn>
 <specialColumn name="Utilization (%)">0, ~0, ~0, ~0, 0</specialColumn>
 </table>
@@ -62,8 +62,8 @@
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="1">
 <keys size="7">Instance, Module, BRAM_18K, DSP, FF, LUT, URAM</keys>
-<column name="grp_Loop_readA_proc_Pipeline_readA_fu_130">Loop_readA_proc_Pipeline_readA, 0, 0, 274, 341, 0</column>
-<column name="mul_32s_32s_32_2_1_U39">mul_32s_32s_32_2_1, 0, 3, 165, 49, 0</column>
+<column name="grp_Loop_readA_proc_Pipeline_readA_fu_76">Loop_readA_proc_Pipeline_readA, 0, 0, 182, 374, 0</column>
+<column name="mul_32s_32s_32_2_1_U11">mul_32s_32s_32_2_1, 0, 3, 165, 49, 0</column>
 </table>
 </item>
 <item name = "DSP"><table name="" hasTotal="0">
@@ -80,16 +80,17 @@
 </item>
 <item name = "Expression"><table name="" hasTotal="1">
 <keys size="7">Variable Name, Operation, DSP, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
-<column name="icmp_ln175_fu_213_p2">icmp, 0, 0, 39, 32, 1</column>
+<column name="icmp_ln215_fu_103_p2">icmp, 0, 0, 39, 32, 1</column>
 <column name="ap_block_state1">or, 0, 0, 2, 1, 1</column>
-<column name="select_ln175_fu_218_p3">select, 0, 0, 31, 1, 31</column>
+<column name="select_ln215_fu_108_p3">select, 0, 0, 31, 1, 31</column>
 </table>
 </item>
 <item name = "Multiplexer"><table name="" hasTotal="1">
 <keys size="5">Name, LUT, Input Size, Bits, Total Bits</keys>
 <column name="ap_NS_fsm">65, 14, 1, 14</column>
 <column name="ap_done">9, 2, 1, 2</column>
-<column name="ap_return">9, 2, 32, 64</column>
+<column name="ap_return_0">9, 2, 32, 64</column>
+<column name="ap_return_1">9, 2, 32, 64</column>
 <column name="gmem0_blk_n_AR">9, 2, 1, 2</column>
 <column name="m_axi_gmem0_ARADDR">14, 3, 64, 192</column>
 <column name="m_axi_gmem0_ARBURST">9, 2, 2, 4</column>
@@ -110,11 +111,12 @@
 <keys size="5">Name, FF, LUT, Bits, Const Bits</keys>
 <column name="ap_CS_fsm">13, 0, 13, 0</column>
 <column name="ap_done_reg">1, 0, 1, 0</column>
-<column name="ap_return_preg">32, 0, 32, 0</column>
-<column name="grp_Loop_readA_proc_Pipeline_readA_fu_130_ap_start_reg">1, 0, 1, 0</column>
-<column name="mul_reg_247">32, 0, 32, 0</column>
-<column name="select_ln175_reg_258">31, 0, 31, 0</column>
-<column name="trunc_ln175_reg_253">31, 0, 31, 0</column>
+<column name="ap_return_0_preg">32, 0, 32, 0</column>
+<column name="ap_return_1_preg">32, 0, 32, 0</column>
+<column name="grp_Loop_readA_proc_Pipeline_readA_fu_76_ap_start_reg">1, 0, 1, 0</column>
+<column name="mul_reg_149">32, 0, 32, 0</column>
+<column name="select_ln215_reg_160">31, 0, 31, 0</column>
+<column name="trunc_ln215_reg_155">31, 0, 31, 0</column>
 </table>
 </item>
 </section>
@@ -131,7 +133,8 @@
 <column name="ap_continue">in, 1, ap_ctrl_hs, Loop_readA_proc, return value</column>
 <column name="ap_idle">out, 1, ap_ctrl_hs, Loop_readA_proc, return value</column>
 <column name="ap_ready">out, 1, ap_ctrl_hs, Loop_readA_proc, return value</column>
-<column name="ap_return">out, 32, ap_ctrl_hs, Loop_readA_proc, return value</column>
+<column name="ap_return_0">out, 32, ap_ctrl_hs, Loop_readA_proc, return value</column>
+<column name="ap_return_1">out, 32, ap_ctrl_hs, Loop_readA_proc, return value</column>
 <column name="a_col">in, 32, ap_none, a_col, scalar</column>
 <column name="a_row">in, 32, ap_none, a_row, scalar</column>
 <column name="m_axi_gmem0_AWVALID">out, 1, m_axi, gmem0, pointer</column>
@@ -181,131 +184,19 @@
 <column name="m_axi_gmem0_BID">in, 1, m_axi, gmem0, pointer</column>
 <column name="m_axi_gmem0_BUSER">in, 1, m_axi, gmem0, pointer</column>
 <column name="a">in, 64, ap_none, a, scalar</column>
-<column name="localA_62_address1">out, 5, ap_memory, localA_62, array</column>
-<column name="localA_62_ce1">out, 1, ap_memory, localA_62, array</column>
-<column name="localA_62_we1">out, 1, ap_memory, localA_62, array</column>
-<column name="localA_62_d1">out, 8, ap_memory, localA_62, array</column>
-<column name="localA_61_address1">out, 5, ap_memory, localA_61, array</column>
-<column name="localA_61_ce1">out, 1, ap_memory, localA_61, array</column>
-<column name="localA_61_we1">out, 1, ap_memory, localA_61, array</column>
-<column name="localA_61_d1">out, 8, ap_memory, localA_61, array</column>
-<column name="localA_60_address1">out, 5, ap_memory, localA_60, array</column>
-<column name="localA_60_ce1">out, 1, ap_memory, localA_60, array</column>
-<column name="localA_60_we1">out, 1, ap_memory, localA_60, array</column>
-<column name="localA_60_d1">out, 8, ap_memory, localA_60, array</column>
-<column name="localA_59_address1">out, 5, ap_memory, localA_59, array</column>
-<column name="localA_59_ce1">out, 1, ap_memory, localA_59, array</column>
-<column name="localA_59_we1">out, 1, ap_memory, localA_59, array</column>
-<column name="localA_59_d1">out, 8, ap_memory, localA_59, array</column>
-<column name="localA_58_address1">out, 5, ap_memory, localA_58, array</column>
-<column name="localA_58_ce1">out, 1, ap_memory, localA_58, array</column>
-<column name="localA_58_we1">out, 1, ap_memory, localA_58, array</column>
-<column name="localA_58_d1">out, 8, ap_memory, localA_58, array</column>
-<column name="localA_57_address1">out, 5, ap_memory, localA_57, array</column>
-<column name="localA_57_ce1">out, 1, ap_memory, localA_57, array</column>
-<column name="localA_57_we1">out, 1, ap_memory, localA_57, array</column>
-<column name="localA_57_d1">out, 8, ap_memory, localA_57, array</column>
-<column name="localA_56_address1">out, 5, ap_memory, localA_56, array</column>
-<column name="localA_56_ce1">out, 1, ap_memory, localA_56, array</column>
-<column name="localA_56_we1">out, 1, ap_memory, localA_56, array</column>
-<column name="localA_56_d1">out, 8, ap_memory, localA_56, array</column>
-<column name="localA_55_address1">out, 5, ap_memory, localA_55, array</column>
-<column name="localA_55_ce1">out, 1, ap_memory, localA_55, array</column>
-<column name="localA_55_we1">out, 1, ap_memory, localA_55, array</column>
-<column name="localA_55_d1">out, 8, ap_memory, localA_55, array</column>
-<column name="localA_54_address1">out, 5, ap_memory, localA_54, array</column>
-<column name="localA_54_ce1">out, 1, ap_memory, localA_54, array</column>
-<column name="localA_54_we1">out, 1, ap_memory, localA_54, array</column>
-<column name="localA_54_d1">out, 8, ap_memory, localA_54, array</column>
-<column name="localA_53_address1">out, 5, ap_memory, localA_53, array</column>
-<column name="localA_53_ce1">out, 1, ap_memory, localA_53, array</column>
-<column name="localA_53_we1">out, 1, ap_memory, localA_53, array</column>
-<column name="localA_53_d1">out, 8, ap_memory, localA_53, array</column>
-<column name="localA_52_address1">out, 5, ap_memory, localA_52, array</column>
-<column name="localA_52_ce1">out, 1, ap_memory, localA_52, array</column>
-<column name="localA_52_we1">out, 1, ap_memory, localA_52, array</column>
-<column name="localA_52_d1">out, 8, ap_memory, localA_52, array</column>
-<column name="localA_51_address1">out, 5, ap_memory, localA_51, array</column>
-<column name="localA_51_ce1">out, 1, ap_memory, localA_51, array</column>
-<column name="localA_51_we1">out, 1, ap_memory, localA_51, array</column>
-<column name="localA_51_d1">out, 8, ap_memory, localA_51, array</column>
-<column name="localA_50_address1">out, 5, ap_memory, localA_50, array</column>
-<column name="localA_50_ce1">out, 1, ap_memory, localA_50, array</column>
-<column name="localA_50_we1">out, 1, ap_memory, localA_50, array</column>
-<column name="localA_50_d1">out, 8, ap_memory, localA_50, array</column>
-<column name="localA_49_address1">out, 5, ap_memory, localA_49, array</column>
-<column name="localA_49_ce1">out, 1, ap_memory, localA_49, array</column>
-<column name="localA_49_we1">out, 1, ap_memory, localA_49, array</column>
-<column name="localA_49_d1">out, 8, ap_memory, localA_49, array</column>
-<column name="localA_48_address1">out, 5, ap_memory, localA_48, array</column>
-<column name="localA_48_ce1">out, 1, ap_memory, localA_48, array</column>
-<column name="localA_48_we1">out, 1, ap_memory, localA_48, array</column>
-<column name="localA_48_d1">out, 8, ap_memory, localA_48, array</column>
-<column name="localA_47_address1">out, 5, ap_memory, localA_47, array</column>
-<column name="localA_47_ce1">out, 1, ap_memory, localA_47, array</column>
-<column name="localA_47_we1">out, 1, ap_memory, localA_47, array</column>
-<column name="localA_47_d1">out, 8, ap_memory, localA_47, array</column>
-<column name="localA_46_address1">out, 5, ap_memory, localA_46, array</column>
-<column name="localA_46_ce1">out, 1, ap_memory, localA_46, array</column>
-<column name="localA_46_we1">out, 1, ap_memory, localA_46, array</column>
-<column name="localA_46_d1">out, 8, ap_memory, localA_46, array</column>
-<column name="localA_45_address1">out, 5, ap_memory, localA_45, array</column>
-<column name="localA_45_ce1">out, 1, ap_memory, localA_45, array</column>
-<column name="localA_45_we1">out, 1, ap_memory, localA_45, array</column>
-<column name="localA_45_d1">out, 8, ap_memory, localA_45, array</column>
-<column name="localA_44_address1">out, 5, ap_memory, localA_44, array</column>
-<column name="localA_44_ce1">out, 1, ap_memory, localA_44, array</column>
-<column name="localA_44_we1">out, 1, ap_memory, localA_44, array</column>
-<column name="localA_44_d1">out, 8, ap_memory, localA_44, array</column>
-<column name="localA_43_address1">out, 5, ap_memory, localA_43, array</column>
-<column name="localA_43_ce1">out, 1, ap_memory, localA_43, array</column>
-<column name="localA_43_we1">out, 1, ap_memory, localA_43, array</column>
-<column name="localA_43_d1">out, 8, ap_memory, localA_43, array</column>
-<column name="localA_42_address1">out, 5, ap_memory, localA_42, array</column>
-<column name="localA_42_ce1">out, 1, ap_memory, localA_42, array</column>
-<column name="localA_42_we1">out, 1, ap_memory, localA_42, array</column>
-<column name="localA_42_d1">out, 8, ap_memory, localA_42, array</column>
-<column name="localA_41_address1">out, 5, ap_memory, localA_41, array</column>
-<column name="localA_41_ce1">out, 1, ap_memory, localA_41, array</column>
-<column name="localA_41_we1">out, 1, ap_memory, localA_41, array</column>
-<column name="localA_41_d1">out, 8, ap_memory, localA_41, array</column>
-<column name="localA_40_address1">out, 5, ap_memory, localA_40, array</column>
-<column name="localA_40_ce1">out, 1, ap_memory, localA_40, array</column>
-<column name="localA_40_we1">out, 1, ap_memory, localA_40, array</column>
-<column name="localA_40_d1">out, 8, ap_memory, localA_40, array</column>
-<column name="localA_39_address1">out, 5, ap_memory, localA_39, array</column>
-<column name="localA_39_ce1">out, 1, ap_memory, localA_39, array</column>
-<column name="localA_39_we1">out, 1, ap_memory, localA_39, array</column>
-<column name="localA_39_d1">out, 8, ap_memory, localA_39, array</column>
-<column name="localA_38_address1">out, 5, ap_memory, localA_38, array</column>
-<column name="localA_38_ce1">out, 1, ap_memory, localA_38, array</column>
-<column name="localA_38_we1">out, 1, ap_memory, localA_38, array</column>
-<column name="localA_38_d1">out, 8, ap_memory, localA_38, array</column>
-<column name="localA_37_address1">out, 5, ap_memory, localA_37, array</column>
-<column name="localA_37_ce1">out, 1, ap_memory, localA_37, array</column>
-<column name="localA_37_we1">out, 1, ap_memory, localA_37, array</column>
-<column name="localA_37_d1">out, 8, ap_memory, localA_37, array</column>
-<column name="localA_36_address1">out, 5, ap_memory, localA_36, array</column>
-<column name="localA_36_ce1">out, 1, ap_memory, localA_36, array</column>
-<column name="localA_36_we1">out, 1, ap_memory, localA_36, array</column>
-<column name="localA_36_d1">out, 8, ap_memory, localA_36, array</column>
-<column name="localA_35_address1">out, 5, ap_memory, localA_35, array</column>
-<column name="localA_35_ce1">out, 1, ap_memory, localA_35, array</column>
-<column name="localA_35_we1">out, 1, ap_memory, localA_35, array</column>
-<column name="localA_35_d1">out, 8, ap_memory, localA_35, array</column>
-<column name="localA_34_address1">out, 5, ap_memory, localA_34, array</column>
-<column name="localA_34_ce1">out, 1, ap_memory, localA_34, array</column>
-<column name="localA_34_we1">out, 1, ap_memory, localA_34, array</column>
-<column name="localA_34_d1">out, 8, ap_memory, localA_34, array</column>
-<column name="localA_33_address1">out, 5, ap_memory, localA_33, array</column>
-<column name="localA_33_ce1">out, 1, ap_memory, localA_33, array</column>
-<column name="localA_33_we1">out, 1, ap_memory, localA_33, array</column>
-<column name="localA_33_d1">out, 8, ap_memory, localA_33, array</column>
-<column name="localA_32_address1">out, 5, ap_memory, localA_32, array</column>
-<column name="localA_32_ce1">out, 1, ap_memory, localA_32, array</column>
-<column name="localA_32_we1">out, 1, ap_memory, localA_32, array</column>
-<column name="localA_32_d1">out, 8, ap_memory, localA_32, array</column>
-<column name="localA_address1">out, 5, ap_memory, localA, array</column>
+<column name="localA_3_address1">out, 8, ap_memory, localA_3, array</column>
+<column name="localA_3_ce1">out, 1, ap_memory, localA_3, array</column>
+<column name="localA_3_we1">out, 1, ap_memory, localA_3, array</column>
+<column name="localA_3_d1">out, 8, ap_memory, localA_3, array</column>
+<column name="localA_2_address1">out, 8, ap_memory, localA_2, array</column>
+<column name="localA_2_ce1">out, 1, ap_memory, localA_2, array</column>
+<column name="localA_2_we1">out, 1, ap_memory, localA_2, array</column>
+<column name="localA_2_d1">out, 8, ap_memory, localA_2, array</column>
+<column name="localA_1_address1">out, 8, ap_memory, localA_1, array</column>
+<column name="localA_1_ce1">out, 1, ap_memory, localA_1, array</column>
+<column name="localA_1_we1">out, 1, ap_memory, localA_1, array</column>
+<column name="localA_1_d1">out, 8, ap_memory, localA_1, array</column>
+<column name="localA_address1">out, 8, ap_memory, localA, array</column>
 <column name="localA_ce1">out, 1, ap_memory, localA, array</column>
 <column name="localA_we1">out, 1, ap_memory, localA, array</column>
 <column name="localA_d1">out, 8, ap_memory, localA, array</column>

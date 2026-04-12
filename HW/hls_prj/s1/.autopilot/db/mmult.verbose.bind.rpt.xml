@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'mmult'" level="0">
-<item name = "Date">Sun Apr 12 15:51:34 2026
+<item name = "Date">Sun Apr 12 17:22:35 2026
 </item>
 <item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
 <item name = "Project">hls_prj</item>
@@ -15,7 +15,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="4">Clock, Target, Estimated, Uncertainty</keys>
-<column name="ap_clk">3.30 ns, 2.409 ns, 0.89 ns</column>
+<column name="ap_clk">3.30 ns, 2.829 ns, 0.89 ns</column>
 </table>
 </item>
 </section>
@@ -24,18 +24,18 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="8">, min, max, min, max, min, max, Type</keys>
-<column name="">8258, 8258, 27.251 us, 27.251 us, 4134, 4134, dataflow</column>
+<column name="">68146, 68146, 0.225 ms, 0.225 ms, 64021, 64021, dataflow</column>
 </table>
 </item>
 <item name = "Detail">
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="0">
 <keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
-<column name="call_ln169_entry_proc_fu_414">entry_proc, 0, 0, 0 ns, 0 ns, 0, 0, no</column>
-<column name="grp_Loop_readA_proc_fu_421">Loop_readA_proc, 2062, 2062, 6.805 us, 6.805 us, 2062, 2062, no</column>
-<column name="grp_Loop_readB_proc_fu_462">Loop_readB_proc, 2062, 2062, 6.805 us, 6.805 us, 2062, 2062, no</column>
-<column name="grp_Loop_tile_processing_proc_fu_503">Loop_tile_processing_proc, 4133, 4133, 13.639 us, 13.639 us, 4133, 4133, no</column>
-<column name="grp_Loop_writeC_proc_fu_576">Loop_writeC_proc, 2061, 2061, 6.801 us, 6.801 us, 2061, 2061, no</column>
+<column name="call_ln209_entry_proc_fu_244">entry_proc, 0, 0, 0 ns, 0 ns, 0, 0, no</column>
+<column name="grp_Loop_readA_proc_fu_251">Loop_readA_proc, 2062, 2062, 6.805 us, 6.805 us, 2062, 2062, no</column>
+<column name="grp_Loop_readB_proc_fu_264">Loop_readB_proc, 2062, 2062, 6.805 us, 6.805 us, 2062, 2062, no</column>
+<column name="grp_compute_wrapper_fu_277">compute_wrapper, 64020, 64020, 0.211 ms, 0.211 ms, 64020, 64020, no</column>
+<column name="grp_Loop_writeC_proc_fu_308">Loop_writeC_proc, 2062, 2062, 6.805 us, 6.805 us, 2062, 2062, no</column>
 </table>
 </item>
 <item name = "Loop"><table name="" hasTotal="0">

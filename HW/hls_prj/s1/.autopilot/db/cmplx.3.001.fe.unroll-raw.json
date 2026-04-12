@@ -1,35 +1,50 @@
 {
   "0": {
-    "basicblocks": 33,
-    "calls": "1",
+    "basicblocks": 22,
+    "calls": "2",
     "file": "mmult.cpp",
-    "fileloc": 138,
-    "instructions": 203,
+    "fileloc": 177,
+    "instructions": 117,
     "loads": {
       "L": 1,
       "T": 2
     },
     "name": "mmult",
     "stores": {
-      "L": 34,
+      "L": 2,
       "T": 1
     },
-    "total_instructions": 271
+    "total_instructions": 855
   },
   "1": {
-    "basicblocks": 19,
+    "basicblocks": 145,
     "calls": "",
     "file": "mmult.cpp",
     "fileloc": 62,
-    "instructions": 68,
+    "instructions": 653,
     "loads": {
-      "G": 2,
-      "L": 1
+      "G": 32,
+      "L": 16
     },
     "name": "tile_process",
     "stores": {
-      "L": 1
+      "L": 16
     },
-    "total_instructions": 68
+    "total_instructions": 653
+  },
+  "2": {
+    "basicblocks": 17,
+    "calls": "1",
+    "file": "mmult.cpp",
+    "fileloc": 142,
+    "instructions": 85,
+    "loads": {
+      "L": 4
+    },
+    "name": "compute_wrapper",
+    "stores": {
+      "L": 8
+    },
+    "total_instructions": 738
   }
 }

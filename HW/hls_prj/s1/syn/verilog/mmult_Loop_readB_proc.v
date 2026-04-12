@@ -63,136 +63,23 @@ module mmult_Loop_readB_proc (
         m_axi_gmem1_BID,
         m_axi_gmem1_BUSER,
         b,
-        localB_62_address1,
-        localB_62_ce1,
-        localB_62_we1,
-        localB_62_d1,
-        localB_61_address1,
-        localB_61_ce1,
-        localB_61_we1,
-        localB_61_d1,
-        localB_60_address1,
-        localB_60_ce1,
-        localB_60_we1,
-        localB_60_d1,
-        localB_59_address1,
-        localB_59_ce1,
-        localB_59_we1,
-        localB_59_d1,
-        localB_58_address1,
-        localB_58_ce1,
-        localB_58_we1,
-        localB_58_d1,
-        localB_57_address1,
-        localB_57_ce1,
-        localB_57_we1,
-        localB_57_d1,
-        localB_56_address1,
-        localB_56_ce1,
-        localB_56_we1,
-        localB_56_d1,
-        localB_55_address1,
-        localB_55_ce1,
-        localB_55_we1,
-        localB_55_d1,
-        localB_54_address1,
-        localB_54_ce1,
-        localB_54_we1,
-        localB_54_d1,
-        localB_53_address1,
-        localB_53_ce1,
-        localB_53_we1,
-        localB_53_d1,
-        localB_52_address1,
-        localB_52_ce1,
-        localB_52_we1,
-        localB_52_d1,
-        localB_51_address1,
-        localB_51_ce1,
-        localB_51_we1,
-        localB_51_d1,
-        localB_50_address1,
-        localB_50_ce1,
-        localB_50_we1,
-        localB_50_d1,
-        localB_49_address1,
-        localB_49_ce1,
-        localB_49_we1,
-        localB_49_d1,
-        localB_48_address1,
-        localB_48_ce1,
-        localB_48_we1,
-        localB_48_d1,
-        localB_47_address1,
-        localB_47_ce1,
-        localB_47_we1,
-        localB_47_d1,
-        localB_46_address1,
-        localB_46_ce1,
-        localB_46_we1,
-        localB_46_d1,
-        localB_45_address1,
-        localB_45_ce1,
-        localB_45_we1,
-        localB_45_d1,
-        localB_44_address1,
-        localB_44_ce1,
-        localB_44_we1,
-        localB_44_d1,
-        localB_43_address1,
-        localB_43_ce1,
-        localB_43_we1,
-        localB_43_d1,
-        localB_42_address1,
-        localB_42_ce1,
-        localB_42_we1,
-        localB_42_d1,
-        localB_41_address1,
-        localB_41_ce1,
-        localB_41_we1,
-        localB_41_d1,
-        localB_40_address1,
-        localB_40_ce1,
-        localB_40_we1,
-        localB_40_d1,
-        localB_39_address1,
-        localB_39_ce1,
-        localB_39_we1,
-        localB_39_d1,
-        localB_38_address1,
-        localB_38_ce1,
-        localB_38_we1,
-        localB_38_d1,
-        localB_37_address1,
-        localB_37_ce1,
-        localB_37_we1,
-        localB_37_d1,
-        localB_36_address1,
-        localB_36_ce1,
-        localB_36_we1,
-        localB_36_d1,
-        localB_35_address1,
-        localB_35_ce1,
-        localB_35_we1,
-        localB_35_d1,
-        localB_34_address1,
-        localB_34_ce1,
-        localB_34_we1,
-        localB_34_d1,
-        localB_33_address1,
-        localB_33_ce1,
-        localB_33_we1,
-        localB_33_d1,
-        localB_32_address1,
-        localB_32_ce1,
-        localB_32_we1,
-        localB_32_d1,
+        localB_3_address1,
+        localB_3_ce1,
+        localB_3_we1,
+        localB_3_d1,
+        localB_2_address1,
+        localB_2_ce1,
+        localB_2_we1,
+        localB_2_d1,
+        localB_1_address1,
+        localB_1_ce1,
+        localB_1_we1,
+        localB_1_d1,
         localB_address1,
         localB_ce1,
         localB_we1,
         localB_d1,
-        ap_return_0,
-        ap_return_1
+        ap_return
 );
 
 parameter    ap_ST_fsm_state1 = 13'd1;
@@ -265,136 +152,23 @@ input  [1:0] m_axi_gmem1_BRESP;
 input  [0:0] m_axi_gmem1_BID;
 input  [0:0] m_axi_gmem1_BUSER;
 input  [63:0] b;
-output  [4:0] localB_62_address1;
-output   localB_62_ce1;
-output   localB_62_we1;
-output  [7:0] localB_62_d1;
-output  [4:0] localB_61_address1;
-output   localB_61_ce1;
-output   localB_61_we1;
-output  [7:0] localB_61_d1;
-output  [4:0] localB_60_address1;
-output   localB_60_ce1;
-output   localB_60_we1;
-output  [7:0] localB_60_d1;
-output  [4:0] localB_59_address1;
-output   localB_59_ce1;
-output   localB_59_we1;
-output  [7:0] localB_59_d1;
-output  [4:0] localB_58_address1;
-output   localB_58_ce1;
-output   localB_58_we1;
-output  [7:0] localB_58_d1;
-output  [4:0] localB_57_address1;
-output   localB_57_ce1;
-output   localB_57_we1;
-output  [7:0] localB_57_d1;
-output  [4:0] localB_56_address1;
-output   localB_56_ce1;
-output   localB_56_we1;
-output  [7:0] localB_56_d1;
-output  [4:0] localB_55_address1;
-output   localB_55_ce1;
-output   localB_55_we1;
-output  [7:0] localB_55_d1;
-output  [4:0] localB_54_address1;
-output   localB_54_ce1;
-output   localB_54_we1;
-output  [7:0] localB_54_d1;
-output  [4:0] localB_53_address1;
-output   localB_53_ce1;
-output   localB_53_we1;
-output  [7:0] localB_53_d1;
-output  [4:0] localB_52_address1;
-output   localB_52_ce1;
-output   localB_52_we1;
-output  [7:0] localB_52_d1;
-output  [4:0] localB_51_address1;
-output   localB_51_ce1;
-output   localB_51_we1;
-output  [7:0] localB_51_d1;
-output  [4:0] localB_50_address1;
-output   localB_50_ce1;
-output   localB_50_we1;
-output  [7:0] localB_50_d1;
-output  [4:0] localB_49_address1;
-output   localB_49_ce1;
-output   localB_49_we1;
-output  [7:0] localB_49_d1;
-output  [4:0] localB_48_address1;
-output   localB_48_ce1;
-output   localB_48_we1;
-output  [7:0] localB_48_d1;
-output  [4:0] localB_47_address1;
-output   localB_47_ce1;
-output   localB_47_we1;
-output  [7:0] localB_47_d1;
-output  [4:0] localB_46_address1;
-output   localB_46_ce1;
-output   localB_46_we1;
-output  [7:0] localB_46_d1;
-output  [4:0] localB_45_address1;
-output   localB_45_ce1;
-output   localB_45_we1;
-output  [7:0] localB_45_d1;
-output  [4:0] localB_44_address1;
-output   localB_44_ce1;
-output   localB_44_we1;
-output  [7:0] localB_44_d1;
-output  [4:0] localB_43_address1;
-output   localB_43_ce1;
-output   localB_43_we1;
-output  [7:0] localB_43_d1;
-output  [4:0] localB_42_address1;
-output   localB_42_ce1;
-output   localB_42_we1;
-output  [7:0] localB_42_d1;
-output  [4:0] localB_41_address1;
-output   localB_41_ce1;
-output   localB_41_we1;
-output  [7:0] localB_41_d1;
-output  [4:0] localB_40_address1;
-output   localB_40_ce1;
-output   localB_40_we1;
-output  [7:0] localB_40_d1;
-output  [4:0] localB_39_address1;
-output   localB_39_ce1;
-output   localB_39_we1;
-output  [7:0] localB_39_d1;
-output  [4:0] localB_38_address1;
-output   localB_38_ce1;
-output   localB_38_we1;
-output  [7:0] localB_38_d1;
-output  [4:0] localB_37_address1;
-output   localB_37_ce1;
-output   localB_37_we1;
-output  [7:0] localB_37_d1;
-output  [4:0] localB_36_address1;
-output   localB_36_ce1;
-output   localB_36_we1;
-output  [7:0] localB_36_d1;
-output  [4:0] localB_35_address1;
-output   localB_35_ce1;
-output   localB_35_we1;
-output  [7:0] localB_35_d1;
-output  [4:0] localB_34_address1;
-output   localB_34_ce1;
-output   localB_34_we1;
-output  [7:0] localB_34_d1;
-output  [4:0] localB_33_address1;
-output   localB_33_ce1;
-output   localB_33_we1;
-output  [7:0] localB_33_d1;
-output  [4:0] localB_32_address1;
-output   localB_32_ce1;
-output   localB_32_we1;
-output  [7:0] localB_32_d1;
-output  [4:0] localB_address1;
+output  [7:0] localB_3_address1;
+output   localB_3_ce1;
+output   localB_3_we1;
+output  [7:0] localB_3_d1;
+output  [7:0] localB_2_address1;
+output   localB_2_ce1;
+output   localB_2_we1;
+output  [7:0] localB_2_d1;
+output  [7:0] localB_1_address1;
+output   localB_1_ce1;
+output   localB_1_we1;
+output  [7:0] localB_1_d1;
+output  [7:0] localB_address1;
 output   localB_ce1;
 output   localB_we1;
 output  [7:0] localB_d1;
-output  [31:0] ap_return_0;
-output  [31:0] ap_return_1;
+output  [31:0] ap_return;
 
 reg ap_done;
 reg ap_idle;
@@ -412,8 +186,7 @@ reg[3:0] m_axi_gmem1_ARQOS;
 reg[3:0] m_axi_gmem1_ARREGION;
 reg[0:0] m_axi_gmem1_ARUSER;
 reg m_axi_gmem1_RREADY;
-reg[31:0] ap_return_0;
-reg[31:0] ap_return_1;
+reg[31:0] ap_return;
 
 reg    ap_done_reg;
 (* fsm_encoding = "none" *) reg   [12:0] ap_CS_fsm;
@@ -421,189 +194,74 @@ wire    ap_CS_fsm_state1;
 reg    gmem1_blk_n_AR;
 wire    ap_CS_fsm_state4;
 reg    ap_block_state1;
-wire   [31:0] grp_fu_205_p2;
-reg   [31:0] mul12_reg_261;
+wire   [31:0] grp_fu_91_p2;
+reg   [31:0] mul12_reg_135;
 wire    ap_CS_fsm_state2;
-wire   [30:0] trunc_ln186_fu_211_p1;
-reg   [30:0] trunc_ln186_reg_267;
-wire   [30:0] select_ln186_fu_220_p3;
-reg   [30:0] select_ln186_reg_272;
+wire   [30:0] trunc_ln226_fu_97_p1;
+reg   [30:0] trunc_ln226_reg_141;
+wire   [30:0] select_ln226_fu_106_p3;
+reg   [30:0] select_ln226_reg_146;
 wire    ap_CS_fsm_state3;
-wire   [31:0] zext_ln186_fu_234_p1;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_ap_start;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_ap_done;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_ap_idle;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_ap_ready;
-wire   [4:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_62_address1;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_62_ce1;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_62_we1;
-wire   [7:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_62_d1;
-wire   [4:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_61_address1;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_61_ce1;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_61_we1;
-wire   [7:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_61_d1;
-wire   [4:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_60_address1;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_60_ce1;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_60_we1;
-wire   [7:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_60_d1;
-wire   [4:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_59_address1;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_59_ce1;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_59_we1;
-wire   [7:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_59_d1;
-wire   [4:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_58_address1;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_58_ce1;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_58_we1;
-wire   [7:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_58_d1;
-wire   [4:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_57_address1;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_57_ce1;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_57_we1;
-wire   [7:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_57_d1;
-wire   [4:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_56_address1;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_56_ce1;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_56_we1;
-wire   [7:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_56_d1;
-wire   [4:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_55_address1;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_55_ce1;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_55_we1;
-wire   [7:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_55_d1;
-wire   [4:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_54_address1;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_54_ce1;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_54_we1;
-wire   [7:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_54_d1;
-wire   [4:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_53_address1;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_53_ce1;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_53_we1;
-wire   [7:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_53_d1;
-wire   [4:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_52_address1;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_52_ce1;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_52_we1;
-wire   [7:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_52_d1;
-wire   [4:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_51_address1;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_51_ce1;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_51_we1;
-wire   [7:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_51_d1;
-wire   [4:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_50_address1;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_50_ce1;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_50_we1;
-wire   [7:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_50_d1;
-wire   [4:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_49_address1;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_49_ce1;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_49_we1;
-wire   [7:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_49_d1;
-wire   [4:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_48_address1;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_48_ce1;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_48_we1;
-wire   [7:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_48_d1;
-wire   [4:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_47_address1;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_47_ce1;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_47_we1;
-wire   [7:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_47_d1;
-wire   [4:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_46_address1;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_46_ce1;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_46_we1;
-wire   [7:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_46_d1;
-wire   [4:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_45_address1;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_45_ce1;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_45_we1;
-wire   [7:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_45_d1;
-wire   [4:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_44_address1;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_44_ce1;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_44_we1;
-wire   [7:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_44_d1;
-wire   [4:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_43_address1;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_43_ce1;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_43_we1;
-wire   [7:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_43_d1;
-wire   [4:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_42_address1;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_42_ce1;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_42_we1;
-wire   [7:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_42_d1;
-wire   [4:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_41_address1;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_41_ce1;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_41_we1;
-wire   [7:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_41_d1;
-wire   [4:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_40_address1;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_40_ce1;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_40_we1;
-wire   [7:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_40_d1;
-wire   [4:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_39_address1;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_39_ce1;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_39_we1;
-wire   [7:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_39_d1;
-wire   [4:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_38_address1;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_38_ce1;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_38_we1;
-wire   [7:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_38_d1;
-wire   [4:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_37_address1;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_37_ce1;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_37_we1;
-wire   [7:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_37_d1;
-wire   [4:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_36_address1;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_36_ce1;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_36_we1;
-wire   [7:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_36_d1;
-wire   [4:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_35_address1;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_35_ce1;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_35_we1;
-wire   [7:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_35_d1;
-wire   [4:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_34_address1;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_34_ce1;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_34_we1;
-wire   [7:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_34_d1;
-wire   [4:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_33_address1;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_33_ce1;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_33_we1;
-wire   [7:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_33_d1;
-wire   [4:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_32_address1;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_32_ce1;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_32_we1;
-wire   [7:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_32_d1;
-wire   [4:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_address1;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_ce1;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_we1;
-wire   [7:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_d1;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_AWVALID;
-wire   [63:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_AWADDR;
-wire   [0:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_AWID;
-wire   [31:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_AWLEN;
-wire   [2:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_AWSIZE;
-wire   [1:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_AWBURST;
-wire   [1:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_AWLOCK;
-wire   [3:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_AWCACHE;
-wire   [2:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_AWPROT;
-wire   [3:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_AWQOS;
-wire   [3:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_AWREGION;
-wire   [0:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_AWUSER;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_WVALID;
-wire   [7:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_WDATA;
-wire   [0:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_WSTRB;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_WLAST;
-wire   [0:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_WID;
-wire   [0:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_WUSER;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_ARVALID;
-wire   [63:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_ARADDR;
-wire   [0:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_ARID;
-wire   [31:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_ARLEN;
-wire   [2:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_ARSIZE;
-wire   [1:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_ARBURST;
-wire   [1:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_ARLOCK;
-wire   [3:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_ARCACHE;
-wire   [2:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_ARPROT;
-wire   [3:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_ARQOS;
-wire   [3:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_ARREGION;
-wire   [0:0] grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_ARUSER;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_RREADY;
-wire    grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_BREADY;
-reg    grp_Loop_readB_proc_Pipeline_readB_fu_132_ap_start_reg;
-wire    ap_CS_fsm_state11;
-reg   [12:0] ap_NS_fsm;
-wire    ap_NS_fsm_state12;
-wire    ap_CS_fsm_state13;
+wire   [31:0] zext_ln226_fu_120_p1;
+wire    grp_Loop_readB_proc_Pipeline_readB_fu_74_ap_start;
+wire    grp_Loop_readB_proc_Pipeline_readB_fu_74_ap_done;
+wire    grp_Loop_readB_proc_Pipeline_readB_fu_74_ap_idle;
+wire    grp_Loop_readB_proc_Pipeline_readB_fu_74_ap_ready;
+wire    grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_AWVALID;
+wire   [63:0] grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_AWADDR;
+wire   [0:0] grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_AWID;
+wire   [31:0] grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_AWLEN;
+wire   [2:0] grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_AWSIZE;
+wire   [1:0] grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_AWBURST;
+wire   [1:0] grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_AWLOCK;
+wire   [3:0] grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_AWCACHE;
+wire   [2:0] grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_AWPROT;
+wire   [3:0] grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_AWQOS;
+wire   [3:0] grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_AWREGION;
+wire   [0:0] grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_AWUSER;
+wire    grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_WVALID;
+wire   [7:0] grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_WDATA;
+wire   [0:0] grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_WSTRB;
+wire    grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_WLAST;
+wire   [0:0] grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_WID;
+wire   [0:0] grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_WUSER;
+wire    grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_ARVALID;
+wire   [63:0] grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_ARADDR;
+wire   [0:0] grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_ARID;
+wire   [31:0] grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_ARLEN;
+wire   [2:0] grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_ARSIZE;
+wire   [1:0] grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_ARBURST;
+wire   [1:0] grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_ARLOCK;
+wire   [3:0] grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_ARCACHE;
+wire   [2:0] grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_ARPROT;
+wire   [3:0] grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_ARQOS;
+wire   [3:0] grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_ARREGION;
+wire   [0:0] grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_ARUSER;
+wire    grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_RREADY;
+wire    grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_BREADY;
+wire   [7:0] grp_Loop_readB_proc_Pipeline_readB_fu_74_localB_3_address1;
+wire    grp_Loop_readB_proc_Pipeline_readB_fu_74_localB_3_ce1;
+wire    grp_Loop_readB_proc_Pipeline_readB_fu_74_localB_3_we1;
+wire   [7:0] grp_Loop_readB_proc_Pipeline_readB_fu_74_localB_3_d1;
+wire   [7:0] grp_Loop_readB_proc_Pipeline_readB_fu_74_localB_2_address1;
+wire    grp_Loop_readB_proc_Pipeline_readB_fu_74_localB_2_ce1;
+wire    grp_Loop_readB_proc_Pipeline_readB_fu_74_localB_2_we1;
+wire   [7:0] grp_Loop_readB_proc_Pipeline_readB_fu_74_localB_2_d1;
+wire   [7:0] grp_Loop_readB_proc_Pipeline_readB_fu_74_localB_1_address1;
+wire    grp_Loop_readB_proc_Pipeline_readB_fu_74_localB_1_ce1;
+wire    grp_Loop_readB_proc_Pipeline_readB_fu_74_localB_1_we1;
+wire   [7:0] grp_Loop_readB_proc_Pipeline_readB_fu_74_localB_1_d1;
+wire   [7:0] grp_Loop_readB_proc_Pipeline_readB_fu_74_localB_address1;
+wire    grp_Loop_readB_proc_Pipeline_readB_fu_74_localB_ce1;
+wire    grp_Loop_readB_proc_Pipeline_readB_fu_74_localB_we1;
+wire   [7:0] grp_Loop_readB_proc_Pipeline_readB_fu_74_localB_d1;
+reg    grp_Loop_readB_proc_Pipeline_readB_fu_74_ap_start_reg;
 wire    ap_CS_fsm_state12;
-wire   [0:0] icmp_ln186_fu_215_p2;
-reg    grp_fu_205_ce;
-reg   [31:0] ap_return_0_preg;
-reg   [31:0] ap_return_1_preg;
+wire    ap_CS_fsm_state13;
+wire   [0:0] icmp_ln226_fu_101_p2;
+reg    grp_fu_91_ce;
+reg   [31:0] ap_return_preg;
+reg   [12:0] ap_NS_fsm;
 reg    ap_ST_fsm_state1_blk;
 wire    ap_ST_fsm_state2_blk;
 wire    ap_ST_fsm_state3_blk;
@@ -623,182 +281,52 @@ wire    ap_ce_reg;
 initial begin
 #0 ap_done_reg = 1'b0;
 #0 ap_CS_fsm = 13'd1;
-#0 grp_Loop_readB_proc_Pipeline_readB_fu_132_ap_start_reg = 1'b0;
-#0 ap_return_0_preg = 32'd0;
-#0 ap_return_1_preg = 32'd0;
+#0 grp_Loop_readB_proc_Pipeline_readB_fu_74_ap_start_reg = 1'b0;
+#0 ap_return_preg = 32'd0;
 end
 
-mmult_Loop_readB_proc_Pipeline_readB grp_Loop_readB_proc_Pipeline_readB_fu_132(
+mmult_Loop_readB_proc_Pipeline_readB grp_Loop_readB_proc_Pipeline_readB_fu_74(
     .ap_clk(ap_clk),
     .ap_rst(ap_rst),
-    .ap_start(grp_Loop_readB_proc_Pipeline_readB_fu_132_ap_start),
-    .ap_done(grp_Loop_readB_proc_Pipeline_readB_fu_132_ap_done),
-    .ap_idle(grp_Loop_readB_proc_Pipeline_readB_fu_132_ap_idle),
-    .ap_ready(grp_Loop_readB_proc_Pipeline_readB_fu_132_ap_ready),
-    .localB_62_address1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_62_address1),
-    .localB_62_ce1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_62_ce1),
-    .localB_62_we1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_62_we1),
-    .localB_62_d1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_62_d1),
-    .localB_61_address1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_61_address1),
-    .localB_61_ce1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_61_ce1),
-    .localB_61_we1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_61_we1),
-    .localB_61_d1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_61_d1),
-    .localB_60_address1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_60_address1),
-    .localB_60_ce1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_60_ce1),
-    .localB_60_we1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_60_we1),
-    .localB_60_d1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_60_d1),
-    .localB_59_address1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_59_address1),
-    .localB_59_ce1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_59_ce1),
-    .localB_59_we1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_59_we1),
-    .localB_59_d1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_59_d1),
-    .localB_58_address1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_58_address1),
-    .localB_58_ce1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_58_ce1),
-    .localB_58_we1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_58_we1),
-    .localB_58_d1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_58_d1),
-    .localB_57_address1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_57_address1),
-    .localB_57_ce1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_57_ce1),
-    .localB_57_we1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_57_we1),
-    .localB_57_d1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_57_d1),
-    .localB_56_address1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_56_address1),
-    .localB_56_ce1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_56_ce1),
-    .localB_56_we1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_56_we1),
-    .localB_56_d1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_56_d1),
-    .localB_55_address1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_55_address1),
-    .localB_55_ce1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_55_ce1),
-    .localB_55_we1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_55_we1),
-    .localB_55_d1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_55_d1),
-    .localB_54_address1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_54_address1),
-    .localB_54_ce1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_54_ce1),
-    .localB_54_we1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_54_we1),
-    .localB_54_d1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_54_d1),
-    .localB_53_address1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_53_address1),
-    .localB_53_ce1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_53_ce1),
-    .localB_53_we1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_53_we1),
-    .localB_53_d1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_53_d1),
-    .localB_52_address1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_52_address1),
-    .localB_52_ce1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_52_ce1),
-    .localB_52_we1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_52_we1),
-    .localB_52_d1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_52_d1),
-    .localB_51_address1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_51_address1),
-    .localB_51_ce1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_51_ce1),
-    .localB_51_we1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_51_we1),
-    .localB_51_d1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_51_d1),
-    .localB_50_address1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_50_address1),
-    .localB_50_ce1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_50_ce1),
-    .localB_50_we1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_50_we1),
-    .localB_50_d1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_50_d1),
-    .localB_49_address1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_49_address1),
-    .localB_49_ce1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_49_ce1),
-    .localB_49_we1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_49_we1),
-    .localB_49_d1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_49_d1),
-    .localB_48_address1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_48_address1),
-    .localB_48_ce1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_48_ce1),
-    .localB_48_we1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_48_we1),
-    .localB_48_d1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_48_d1),
-    .localB_47_address1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_47_address1),
-    .localB_47_ce1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_47_ce1),
-    .localB_47_we1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_47_we1),
-    .localB_47_d1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_47_d1),
-    .localB_46_address1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_46_address1),
-    .localB_46_ce1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_46_ce1),
-    .localB_46_we1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_46_we1),
-    .localB_46_d1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_46_d1),
-    .localB_45_address1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_45_address1),
-    .localB_45_ce1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_45_ce1),
-    .localB_45_we1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_45_we1),
-    .localB_45_d1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_45_d1),
-    .localB_44_address1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_44_address1),
-    .localB_44_ce1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_44_ce1),
-    .localB_44_we1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_44_we1),
-    .localB_44_d1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_44_d1),
-    .localB_43_address1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_43_address1),
-    .localB_43_ce1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_43_ce1),
-    .localB_43_we1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_43_we1),
-    .localB_43_d1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_43_d1),
-    .localB_42_address1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_42_address1),
-    .localB_42_ce1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_42_ce1),
-    .localB_42_we1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_42_we1),
-    .localB_42_d1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_42_d1),
-    .localB_41_address1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_41_address1),
-    .localB_41_ce1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_41_ce1),
-    .localB_41_we1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_41_we1),
-    .localB_41_d1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_41_d1),
-    .localB_40_address1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_40_address1),
-    .localB_40_ce1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_40_ce1),
-    .localB_40_we1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_40_we1),
-    .localB_40_d1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_40_d1),
-    .localB_39_address1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_39_address1),
-    .localB_39_ce1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_39_ce1),
-    .localB_39_we1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_39_we1),
-    .localB_39_d1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_39_d1),
-    .localB_38_address1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_38_address1),
-    .localB_38_ce1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_38_ce1),
-    .localB_38_we1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_38_we1),
-    .localB_38_d1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_38_d1),
-    .localB_37_address1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_37_address1),
-    .localB_37_ce1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_37_ce1),
-    .localB_37_we1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_37_we1),
-    .localB_37_d1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_37_d1),
-    .localB_36_address1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_36_address1),
-    .localB_36_ce1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_36_ce1),
-    .localB_36_we1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_36_we1),
-    .localB_36_d1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_36_d1),
-    .localB_35_address1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_35_address1),
-    .localB_35_ce1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_35_ce1),
-    .localB_35_we1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_35_we1),
-    .localB_35_d1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_35_d1),
-    .localB_34_address1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_34_address1),
-    .localB_34_ce1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_34_ce1),
-    .localB_34_we1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_34_we1),
-    .localB_34_d1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_34_d1),
-    .localB_33_address1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_33_address1),
-    .localB_33_ce1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_33_ce1),
-    .localB_33_we1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_33_we1),
-    .localB_33_d1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_33_d1),
-    .localB_32_address1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_32_address1),
-    .localB_32_ce1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_32_ce1),
-    .localB_32_we1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_32_we1),
-    .localB_32_d1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_32_d1),
-    .localB_address1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_address1),
-    .localB_ce1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_ce1),
-    .localB_we1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_we1),
-    .localB_d1(grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_d1),
-    .mul12(mul12_reg_261),
-    .m_axi_gmem1_AWVALID(grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_AWVALID),
+    .ap_start(grp_Loop_readB_proc_Pipeline_readB_fu_74_ap_start),
+    .ap_done(grp_Loop_readB_proc_Pipeline_readB_fu_74_ap_done),
+    .ap_idle(grp_Loop_readB_proc_Pipeline_readB_fu_74_ap_idle),
+    .ap_ready(grp_Loop_readB_proc_Pipeline_readB_fu_74_ap_ready),
+    .m_axi_gmem1_AWVALID(grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_AWVALID),
     .m_axi_gmem1_AWREADY(1'b0),
-    .m_axi_gmem1_AWADDR(grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_AWADDR),
-    .m_axi_gmem1_AWID(grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_AWID),
-    .m_axi_gmem1_AWLEN(grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_AWLEN),
-    .m_axi_gmem1_AWSIZE(grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_AWSIZE),
-    .m_axi_gmem1_AWBURST(grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_AWBURST),
-    .m_axi_gmem1_AWLOCK(grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_AWLOCK),
-    .m_axi_gmem1_AWCACHE(grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_AWCACHE),
-    .m_axi_gmem1_AWPROT(grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_AWPROT),
-    .m_axi_gmem1_AWQOS(grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_AWQOS),
-    .m_axi_gmem1_AWREGION(grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_AWREGION),
-    .m_axi_gmem1_AWUSER(grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_AWUSER),
-    .m_axi_gmem1_WVALID(grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_WVALID),
+    .m_axi_gmem1_AWADDR(grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_AWADDR),
+    .m_axi_gmem1_AWID(grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_AWID),
+    .m_axi_gmem1_AWLEN(grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_AWLEN),
+    .m_axi_gmem1_AWSIZE(grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_AWSIZE),
+    .m_axi_gmem1_AWBURST(grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_AWBURST),
+    .m_axi_gmem1_AWLOCK(grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_AWLOCK),
+    .m_axi_gmem1_AWCACHE(grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_AWCACHE),
+    .m_axi_gmem1_AWPROT(grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_AWPROT),
+    .m_axi_gmem1_AWQOS(grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_AWQOS),
+    .m_axi_gmem1_AWREGION(grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_AWREGION),
+    .m_axi_gmem1_AWUSER(grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_AWUSER),
+    .m_axi_gmem1_WVALID(grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_WVALID),
     .m_axi_gmem1_WREADY(1'b0),
-    .m_axi_gmem1_WDATA(grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_WDATA),
-    .m_axi_gmem1_WSTRB(grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_WSTRB),
-    .m_axi_gmem1_WLAST(grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_WLAST),
-    .m_axi_gmem1_WID(grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_WID),
-    .m_axi_gmem1_WUSER(grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_WUSER),
-    .m_axi_gmem1_ARVALID(grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_ARVALID),
+    .m_axi_gmem1_WDATA(grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_WDATA),
+    .m_axi_gmem1_WSTRB(grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_WSTRB),
+    .m_axi_gmem1_WLAST(grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_WLAST),
+    .m_axi_gmem1_WID(grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_WID),
+    .m_axi_gmem1_WUSER(grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_WUSER),
+    .m_axi_gmem1_ARVALID(grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_ARVALID),
     .m_axi_gmem1_ARREADY(m_axi_gmem1_ARREADY),
-    .m_axi_gmem1_ARADDR(grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_ARADDR),
-    .m_axi_gmem1_ARID(grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_ARID),
-    .m_axi_gmem1_ARLEN(grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_ARLEN),
-    .m_axi_gmem1_ARSIZE(grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_ARSIZE),
-    .m_axi_gmem1_ARBURST(grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_ARBURST),
-    .m_axi_gmem1_ARLOCK(grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_ARLOCK),
-    .m_axi_gmem1_ARCACHE(grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_ARCACHE),
-    .m_axi_gmem1_ARPROT(grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_ARPROT),
-    .m_axi_gmem1_ARQOS(grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_ARQOS),
-    .m_axi_gmem1_ARREGION(grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_ARREGION),
-    .m_axi_gmem1_ARUSER(grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_ARUSER),
+    .m_axi_gmem1_ARADDR(grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_ARADDR),
+    .m_axi_gmem1_ARID(grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_ARID),
+    .m_axi_gmem1_ARLEN(grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_ARLEN),
+    .m_axi_gmem1_ARSIZE(grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_ARSIZE),
+    .m_axi_gmem1_ARBURST(grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_ARBURST),
+    .m_axi_gmem1_ARLOCK(grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_ARLOCK),
+    .m_axi_gmem1_ARCACHE(grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_ARCACHE),
+    .m_axi_gmem1_ARPROT(grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_ARPROT),
+    .m_axi_gmem1_ARQOS(grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_ARQOS),
+    .m_axi_gmem1_ARREGION(grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_ARREGION),
+    .m_axi_gmem1_ARUSER(grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_ARUSER),
     .m_axi_gmem1_RVALID(m_axi_gmem1_RVALID),
-    .m_axi_gmem1_RREADY(grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_RREADY),
+    .m_axi_gmem1_RREADY(grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_RREADY),
     .m_axi_gmem1_RDATA(m_axi_gmem1_RDATA),
     .m_axi_gmem1_RLAST(m_axi_gmem1_RLAST),
     .m_axi_gmem1_RID(m_axi_gmem1_RID),
@@ -806,10 +334,27 @@ mmult_Loop_readB_proc_Pipeline_readB grp_Loop_readB_proc_Pipeline_readB_fu_132(
     .m_axi_gmem1_RUSER(m_axi_gmem1_RUSER),
     .m_axi_gmem1_RRESP(m_axi_gmem1_RRESP),
     .m_axi_gmem1_BVALID(1'b0),
-    .m_axi_gmem1_BREADY(grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_BREADY),
+    .m_axi_gmem1_BREADY(grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_BREADY),
     .m_axi_gmem1_BRESP(2'd0),
     .m_axi_gmem1_BID(1'd0),
     .m_axi_gmem1_BUSER(1'd0),
+    .localB_3_address1(grp_Loop_readB_proc_Pipeline_readB_fu_74_localB_3_address1),
+    .localB_3_ce1(grp_Loop_readB_proc_Pipeline_readB_fu_74_localB_3_ce1),
+    .localB_3_we1(grp_Loop_readB_proc_Pipeline_readB_fu_74_localB_3_we1),
+    .localB_3_d1(grp_Loop_readB_proc_Pipeline_readB_fu_74_localB_3_d1),
+    .localB_2_address1(grp_Loop_readB_proc_Pipeline_readB_fu_74_localB_2_address1),
+    .localB_2_ce1(grp_Loop_readB_proc_Pipeline_readB_fu_74_localB_2_ce1),
+    .localB_2_we1(grp_Loop_readB_proc_Pipeline_readB_fu_74_localB_2_we1),
+    .localB_2_d1(grp_Loop_readB_proc_Pipeline_readB_fu_74_localB_2_d1),
+    .localB_1_address1(grp_Loop_readB_proc_Pipeline_readB_fu_74_localB_1_address1),
+    .localB_1_ce1(grp_Loop_readB_proc_Pipeline_readB_fu_74_localB_1_ce1),
+    .localB_1_we1(grp_Loop_readB_proc_Pipeline_readB_fu_74_localB_1_we1),
+    .localB_1_d1(grp_Loop_readB_proc_Pipeline_readB_fu_74_localB_1_d1),
+    .localB_address1(grp_Loop_readB_proc_Pipeline_readB_fu_74_localB_address1),
+    .localB_ce1(grp_Loop_readB_proc_Pipeline_readB_fu_74_localB_ce1),
+    .localB_we1(grp_Loop_readB_proc_Pipeline_readB_fu_74_localB_we1),
+    .localB_d1(grp_Loop_readB_proc_Pipeline_readB_fu_74_localB_d1),
+    .mul12(mul12_reg_135),
     .b(b),
     .b_col(b_col)
 );
@@ -820,13 +365,13 @@ mmult_mul_32s_32s_32_2_1 #(
     .din0_WIDTH( 32 ),
     .din1_WIDTH( 32 ),
     .dout_WIDTH( 32 ))
-mul_32s_32s_32_2_1_U113(
+mul_32s_32s_32_2_1_U29(
     .clk(ap_clk),
     .reset(ap_rst),
     .din0(b_col),
     .din1(a_col),
-    .ce(grp_fu_205_ce),
-    .dout(grp_fu_205_p2)
+    .ce(grp_fu_91_ce),
+    .dout(grp_fu_91_p2)
 );
 
 always @ (posedge ap_clk) begin
@@ -843,7 +388,7 @@ always @ (posedge ap_clk) begin
     end else begin
         if ((ap_continue == 1'b1)) begin
             ap_done_reg <= 1'b0;
-        end else if (((grp_Loop_readB_proc_Pipeline_readB_fu_132_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state13))) begin
+        end else if (((1'b1 == ap_CS_fsm_state13) & (grp_Loop_readB_proc_Pipeline_readB_fu_74_ap_done == 1'b1))) begin
             ap_done_reg <= 1'b1;
         end
     end
@@ -851,46 +396,36 @@ end
 
 always @ (posedge ap_clk) begin
     if (ap_rst == 1'b1) begin
-        ap_return_0_preg <= 32'd0;
+        ap_return_preg <= 32'd0;
     end else begin
-        if (((grp_Loop_readB_proc_Pipeline_readB_fu_132_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state13))) begin
-            ap_return_0_preg <= a_col;
+        if (((1'b1 == ap_CS_fsm_state13) & (grp_Loop_readB_proc_Pipeline_readB_fu_74_ap_done == 1'b1))) begin
+            ap_return_preg <= b_col;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
     if (ap_rst == 1'b1) begin
-        ap_return_1_preg <= 32'd0;
+        grp_Loop_readB_proc_Pipeline_readB_fu_74_ap_start_reg <= 1'b0;
     end else begin
-        if (((grp_Loop_readB_proc_Pipeline_readB_fu_132_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state13))) begin
-            ap_return_1_preg <= b_col;
-        end
-    end
-end
-
-always @ (posedge ap_clk) begin
-    if (ap_rst == 1'b1) begin
-        grp_Loop_readB_proc_Pipeline_readB_fu_132_ap_start_reg <= 1'b0;
-    end else begin
-        if (((1'b1 == ap_NS_fsm_state12) & (1'b1 == ap_CS_fsm_state11))) begin
-            grp_Loop_readB_proc_Pipeline_readB_fu_132_ap_start_reg <= 1'b1;
-        end else if ((grp_Loop_readB_proc_Pipeline_readB_fu_132_ap_ready == 1'b1)) begin
-            grp_Loop_readB_proc_Pipeline_readB_fu_132_ap_start_reg <= 1'b0;
+        if ((1'b1 == ap_CS_fsm_state12)) begin
+            grp_Loop_readB_proc_Pipeline_readB_fu_74_ap_start_reg <= 1'b1;
+        end else if ((grp_Loop_readB_proc_Pipeline_readB_fu_74_ap_ready == 1'b1)) begin
+            grp_Loop_readB_proc_Pipeline_readB_fu_74_ap_start_reg <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
     if ((1'b1 == ap_CS_fsm_state2)) begin
-        mul12_reg_261 <= grp_fu_205_p2;
-        trunc_ln186_reg_267 <= trunc_ln186_fu_211_p1;
+        mul12_reg_135 <= grp_fu_91_p2;
+        trunc_ln226_reg_141 <= trunc_ln226_fu_97_p1;
     end
 end
 
 always @ (posedge ap_clk) begin
     if ((1'b1 == ap_CS_fsm_state3)) begin
-        select_ln186_reg_272 <= select_ln186_fu_220_p3;
+        select_ln226_reg_146 <= select_ln226_fu_106_p3;
     end
 end
 
@@ -901,7 +436,7 @@ assign ap_ST_fsm_state11_blk = 1'b0;
 assign ap_ST_fsm_state12_blk = 1'b0;
 
 always @ (*) begin
-    if ((grp_Loop_readB_proc_Pipeline_readB_fu_132_ap_done == 1'b0)) begin
+    if ((grp_Loop_readB_proc_Pipeline_readB_fu_74_ap_done == 1'b0)) begin
         ap_ST_fsm_state13_blk = 1'b1;
     end else begin
         ap_ST_fsm_state13_blk = 1'b0;
@@ -939,7 +474,7 @@ assign ap_ST_fsm_state8_blk = 1'b0;
 assign ap_ST_fsm_state9_blk = 1'b0;
 
 always @ (*) begin
-    if (((grp_Loop_readB_proc_Pipeline_readB_fu_132_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state13))) begin
+    if (((1'b1 == ap_CS_fsm_state13) & (grp_Loop_readB_proc_Pipeline_readB_fu_74_ap_done == 1'b1))) begin
         ap_done = 1'b1;
     end else begin
         ap_done = ap_done_reg;
@@ -955,7 +490,7 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (((grp_Loop_readB_proc_Pipeline_readB_fu_132_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state13))) begin
+    if (((1'b1 == ap_CS_fsm_state13) & (grp_Loop_readB_proc_Pipeline_readB_fu_74_ap_done == 1'b1))) begin
         ap_ready = 1'b1;
     end else begin
         ap_ready = 1'b0;
@@ -963,18 +498,10 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (((grp_Loop_readB_proc_Pipeline_readB_fu_132_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state13))) begin
-        ap_return_0 = a_col;
+    if (((1'b1 == ap_CS_fsm_state13) & (grp_Loop_readB_proc_Pipeline_readB_fu_74_ap_done == 1'b1))) begin
+        ap_return = b_col;
     end else begin
-        ap_return_0 = ap_return_0_preg;
-    end
-end
-
-always @ (*) begin
-    if (((grp_Loop_readB_proc_Pipeline_readB_fu_132_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state13))) begin
-        ap_return_1 = b_col;
-    end else begin
-        ap_return_1 = ap_return_1_preg;
+        ap_return = ap_return_preg;
     end
 end
 
@@ -987,42 +514,42 @@ always @ (*) begin
 end
 
 always @ (*) begin
-    if (((1'b1 == ap_CS_fsm_state2) | ((1'b0 == ap_block_state1) & (1'b1 == ap_CS_fsm_state1)))) begin
-        grp_fu_205_ce = 1'b1;
+    if (((1'b1 == ap_CS_fsm_state2) | ((1'b1 == ap_CS_fsm_state1) & (1'b0 == ap_block_state1)))) begin
+        grp_fu_91_ce = 1'b1;
     end else begin
-        grp_fu_205_ce = 1'b0;
+        grp_fu_91_ce = 1'b0;
     end
 end
 
 always @ (*) begin
     if (((m_axi_gmem1_ARREADY == 1'b1) & (1'b1 == ap_CS_fsm_state4))) begin
         m_axi_gmem1_ARADDR = b;
-    end else if (((1'b1 == ap_CS_fsm_state12) | (1'b1 == ap_CS_fsm_state13))) begin
-        m_axi_gmem1_ARADDR = grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_ARADDR;
+    end else if (((1'b1 == ap_CS_fsm_state13) | (1'b1 == ap_CS_fsm_state12))) begin
+        m_axi_gmem1_ARADDR = grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_ARADDR;
     end else begin
         m_axi_gmem1_ARADDR = 'bx;
     end
 end
 
 always @ (*) begin
-    if (((1'b1 == ap_CS_fsm_state12) | (1'b1 == ap_CS_fsm_state13))) begin
-        m_axi_gmem1_ARBURST = grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_ARBURST;
+    if (((1'b1 == ap_CS_fsm_state13) | (1'b1 == ap_CS_fsm_state12))) begin
+        m_axi_gmem1_ARBURST = grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_ARBURST;
     end else begin
         m_axi_gmem1_ARBURST = 2'd0;
     end
 end
 
 always @ (*) begin
-    if (((1'b1 == ap_CS_fsm_state12) | (1'b1 == ap_CS_fsm_state13))) begin
-        m_axi_gmem1_ARCACHE = grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_ARCACHE;
+    if (((1'b1 == ap_CS_fsm_state13) | (1'b1 == ap_CS_fsm_state12))) begin
+        m_axi_gmem1_ARCACHE = grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_ARCACHE;
     end else begin
         m_axi_gmem1_ARCACHE = 4'd0;
     end
 end
 
 always @ (*) begin
-    if (((1'b1 == ap_CS_fsm_state12) | (1'b1 == ap_CS_fsm_state13))) begin
-        m_axi_gmem1_ARID = grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_ARID;
+    if (((1'b1 == ap_CS_fsm_state13) | (1'b1 == ap_CS_fsm_state12))) begin
+        m_axi_gmem1_ARID = grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_ARID;
     end else begin
         m_axi_gmem1_ARID = 1'd0;
     end
@@ -1030,57 +557,57 @@ end
 
 always @ (*) begin
     if (((m_axi_gmem1_ARREADY == 1'b1) & (1'b1 == ap_CS_fsm_state4))) begin
-        m_axi_gmem1_ARLEN = zext_ln186_fu_234_p1;
-    end else if (((1'b1 == ap_CS_fsm_state12) | (1'b1 == ap_CS_fsm_state13))) begin
-        m_axi_gmem1_ARLEN = grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_ARLEN;
+        m_axi_gmem1_ARLEN = zext_ln226_fu_120_p1;
+    end else if (((1'b1 == ap_CS_fsm_state13) | (1'b1 == ap_CS_fsm_state12))) begin
+        m_axi_gmem1_ARLEN = grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_ARLEN;
     end else begin
         m_axi_gmem1_ARLEN = 'bx;
     end
 end
 
 always @ (*) begin
-    if (((1'b1 == ap_CS_fsm_state12) | (1'b1 == ap_CS_fsm_state13))) begin
-        m_axi_gmem1_ARLOCK = grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_ARLOCK;
+    if (((1'b1 == ap_CS_fsm_state13) | (1'b1 == ap_CS_fsm_state12))) begin
+        m_axi_gmem1_ARLOCK = grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_ARLOCK;
     end else begin
         m_axi_gmem1_ARLOCK = 2'd0;
     end
 end
 
 always @ (*) begin
-    if (((1'b1 == ap_CS_fsm_state12) | (1'b1 == ap_CS_fsm_state13))) begin
-        m_axi_gmem1_ARPROT = grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_ARPROT;
+    if (((1'b1 == ap_CS_fsm_state13) | (1'b1 == ap_CS_fsm_state12))) begin
+        m_axi_gmem1_ARPROT = grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_ARPROT;
     end else begin
         m_axi_gmem1_ARPROT = 3'd0;
     end
 end
 
 always @ (*) begin
-    if (((1'b1 == ap_CS_fsm_state12) | (1'b1 == ap_CS_fsm_state13))) begin
-        m_axi_gmem1_ARQOS = grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_ARQOS;
+    if (((1'b1 == ap_CS_fsm_state13) | (1'b1 == ap_CS_fsm_state12))) begin
+        m_axi_gmem1_ARQOS = grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_ARQOS;
     end else begin
         m_axi_gmem1_ARQOS = 4'd0;
     end
 end
 
 always @ (*) begin
-    if (((1'b1 == ap_CS_fsm_state12) | (1'b1 == ap_CS_fsm_state13))) begin
-        m_axi_gmem1_ARREGION = grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_ARREGION;
+    if (((1'b1 == ap_CS_fsm_state13) | (1'b1 == ap_CS_fsm_state12))) begin
+        m_axi_gmem1_ARREGION = grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_ARREGION;
     end else begin
         m_axi_gmem1_ARREGION = 4'd0;
     end
 end
 
 always @ (*) begin
-    if (((1'b1 == ap_CS_fsm_state12) | (1'b1 == ap_CS_fsm_state13))) begin
-        m_axi_gmem1_ARSIZE = grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_ARSIZE;
+    if (((1'b1 == ap_CS_fsm_state13) | (1'b1 == ap_CS_fsm_state12))) begin
+        m_axi_gmem1_ARSIZE = grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_ARSIZE;
     end else begin
         m_axi_gmem1_ARSIZE = 3'd0;
     end
 end
 
 always @ (*) begin
-    if (((1'b1 == ap_CS_fsm_state12) | (1'b1 == ap_CS_fsm_state13))) begin
-        m_axi_gmem1_ARUSER = grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_ARUSER;
+    if (((1'b1 == ap_CS_fsm_state13) | (1'b1 == ap_CS_fsm_state12))) begin
+        m_axi_gmem1_ARUSER = grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_ARUSER;
     end else begin
         m_axi_gmem1_ARUSER = 1'd0;
     end
@@ -1089,16 +616,16 @@ end
 always @ (*) begin
     if (((m_axi_gmem1_ARREADY == 1'b1) & (1'b1 == ap_CS_fsm_state4))) begin
         m_axi_gmem1_ARVALID = 1'b1;
-    end else if (((1'b1 == ap_CS_fsm_state12) | (1'b1 == ap_CS_fsm_state13))) begin
-        m_axi_gmem1_ARVALID = grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_ARVALID;
+    end else if (((1'b1 == ap_CS_fsm_state13) | (1'b1 == ap_CS_fsm_state12))) begin
+        m_axi_gmem1_ARVALID = grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_ARVALID;
     end else begin
         m_axi_gmem1_ARVALID = 1'b0;
     end
 end
 
 always @ (*) begin
-    if (((1'b1 == ap_CS_fsm_state12) | (1'b1 == ap_CS_fsm_state13))) begin
-        m_axi_gmem1_RREADY = grp_Loop_readB_proc_Pipeline_readB_fu_132_m_axi_gmem1_RREADY;
+    if (((1'b1 == ap_CS_fsm_state13) | (1'b1 == ap_CS_fsm_state12))) begin
+        m_axi_gmem1_RREADY = grp_Loop_readB_proc_Pipeline_readB_fu_74_m_axi_gmem1_RREADY;
     end else begin
         m_axi_gmem1_RREADY = 1'b0;
     end
@@ -1107,7 +634,7 @@ end
 always @ (*) begin
     case (ap_CS_fsm)
         ap_ST_fsm_state1 : begin
-            if (((1'b0 == ap_block_state1) & (1'b1 == ap_CS_fsm_state1))) begin
+            if (((1'b1 == ap_CS_fsm_state1) & (1'b0 == ap_block_state1))) begin
                 ap_NS_fsm = ap_ST_fsm_state2;
             end else begin
                 ap_NS_fsm = ap_ST_fsm_state1;
@@ -1151,7 +678,7 @@ always @ (*) begin
             ap_NS_fsm = ap_ST_fsm_state13;
         end
         ap_ST_fsm_state13 : begin
-            if (((grp_Loop_readB_proc_Pipeline_readB_fu_132_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state13))) begin
+            if (((1'b1 == ap_CS_fsm_state13) & (grp_Loop_readB_proc_Pipeline_readB_fu_74_ap_done == 1'b1))) begin
                 ap_NS_fsm = ap_ST_fsm_state1;
             end else begin
                 ap_NS_fsm = ap_ST_fsm_state13;
@@ -1165,8 +692,6 @@ end
 
 assign ap_CS_fsm_state1 = ap_CS_fsm[32'd0];
 
-assign ap_CS_fsm_state11 = ap_CS_fsm[32'd10];
-
 assign ap_CS_fsm_state12 = ap_CS_fsm[32'd11];
 
 assign ap_CS_fsm_state13 = ap_CS_fsm[32'd12];
@@ -1177,271 +702,45 @@ assign ap_CS_fsm_state3 = ap_CS_fsm[32'd2];
 
 assign ap_CS_fsm_state4 = ap_CS_fsm[32'd3];
 
-assign ap_NS_fsm_state12 = ap_NS_fsm[32'd11];
-
 always @ (*) begin
     ap_block_state1 = ((ap_done_reg == 1'b1) | (ap_start == 1'b0));
 end
 
-assign grp_Loop_readB_proc_Pipeline_readB_fu_132_ap_start = grp_Loop_readB_proc_Pipeline_readB_fu_132_ap_start_reg;
+assign grp_Loop_readB_proc_Pipeline_readB_fu_74_ap_start = grp_Loop_readB_proc_Pipeline_readB_fu_74_ap_start_reg;
 
-assign icmp_ln186_fu_215_p2 = (($signed(mul12_reg_261) > $signed(32'd0)) ? 1'b1 : 1'b0);
+assign icmp_ln226_fu_101_p2 = (($signed(mul12_reg_135) > $signed(32'd0)) ? 1'b1 : 1'b0);
 
-assign localB_32_address1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_32_address1;
+assign localB_1_address1 = grp_Loop_readB_proc_Pipeline_readB_fu_74_localB_1_address1;
 
-assign localB_32_ce1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_32_ce1;
+assign localB_1_ce1 = grp_Loop_readB_proc_Pipeline_readB_fu_74_localB_1_ce1;
 
-assign localB_32_d1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_32_d1;
+assign localB_1_d1 = grp_Loop_readB_proc_Pipeline_readB_fu_74_localB_1_d1;
 
-assign localB_32_we1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_32_we1;
+assign localB_1_we1 = grp_Loop_readB_proc_Pipeline_readB_fu_74_localB_1_we1;
 
-assign localB_33_address1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_33_address1;
+assign localB_2_address1 = grp_Loop_readB_proc_Pipeline_readB_fu_74_localB_2_address1;
 
-assign localB_33_ce1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_33_ce1;
+assign localB_2_ce1 = grp_Loop_readB_proc_Pipeline_readB_fu_74_localB_2_ce1;
 
-assign localB_33_d1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_33_d1;
+assign localB_2_d1 = grp_Loop_readB_proc_Pipeline_readB_fu_74_localB_2_d1;
 
-assign localB_33_we1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_33_we1;
+assign localB_2_we1 = grp_Loop_readB_proc_Pipeline_readB_fu_74_localB_2_we1;
 
-assign localB_34_address1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_34_address1;
+assign localB_3_address1 = grp_Loop_readB_proc_Pipeline_readB_fu_74_localB_3_address1;
 
-assign localB_34_ce1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_34_ce1;
+assign localB_3_ce1 = grp_Loop_readB_proc_Pipeline_readB_fu_74_localB_3_ce1;
 
-assign localB_34_d1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_34_d1;
+assign localB_3_d1 = grp_Loop_readB_proc_Pipeline_readB_fu_74_localB_3_d1;
 
-assign localB_34_we1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_34_we1;
+assign localB_3_we1 = grp_Loop_readB_proc_Pipeline_readB_fu_74_localB_3_we1;
 
-assign localB_35_address1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_35_address1;
+assign localB_address1 = grp_Loop_readB_proc_Pipeline_readB_fu_74_localB_address1;
 
-assign localB_35_ce1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_35_ce1;
+assign localB_ce1 = grp_Loop_readB_proc_Pipeline_readB_fu_74_localB_ce1;
 
-assign localB_35_d1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_35_d1;
+assign localB_d1 = grp_Loop_readB_proc_Pipeline_readB_fu_74_localB_d1;
 
-assign localB_35_we1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_35_we1;
-
-assign localB_36_address1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_36_address1;
-
-assign localB_36_ce1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_36_ce1;
-
-assign localB_36_d1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_36_d1;
-
-assign localB_36_we1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_36_we1;
-
-assign localB_37_address1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_37_address1;
-
-assign localB_37_ce1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_37_ce1;
-
-assign localB_37_d1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_37_d1;
-
-assign localB_37_we1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_37_we1;
-
-assign localB_38_address1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_38_address1;
-
-assign localB_38_ce1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_38_ce1;
-
-assign localB_38_d1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_38_d1;
-
-assign localB_38_we1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_38_we1;
-
-assign localB_39_address1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_39_address1;
-
-assign localB_39_ce1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_39_ce1;
-
-assign localB_39_d1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_39_d1;
-
-assign localB_39_we1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_39_we1;
-
-assign localB_40_address1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_40_address1;
-
-assign localB_40_ce1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_40_ce1;
-
-assign localB_40_d1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_40_d1;
-
-assign localB_40_we1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_40_we1;
-
-assign localB_41_address1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_41_address1;
-
-assign localB_41_ce1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_41_ce1;
-
-assign localB_41_d1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_41_d1;
-
-assign localB_41_we1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_41_we1;
-
-assign localB_42_address1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_42_address1;
-
-assign localB_42_ce1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_42_ce1;
-
-assign localB_42_d1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_42_d1;
-
-assign localB_42_we1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_42_we1;
-
-assign localB_43_address1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_43_address1;
-
-assign localB_43_ce1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_43_ce1;
-
-assign localB_43_d1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_43_d1;
-
-assign localB_43_we1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_43_we1;
-
-assign localB_44_address1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_44_address1;
-
-assign localB_44_ce1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_44_ce1;
-
-assign localB_44_d1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_44_d1;
-
-assign localB_44_we1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_44_we1;
-
-assign localB_45_address1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_45_address1;
-
-assign localB_45_ce1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_45_ce1;
-
-assign localB_45_d1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_45_d1;
-
-assign localB_45_we1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_45_we1;
-
-assign localB_46_address1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_46_address1;
-
-assign localB_46_ce1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_46_ce1;
-
-assign localB_46_d1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_46_d1;
-
-assign localB_46_we1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_46_we1;
-
-assign localB_47_address1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_47_address1;
-
-assign localB_47_ce1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_47_ce1;
-
-assign localB_47_d1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_47_d1;
-
-assign localB_47_we1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_47_we1;
-
-assign localB_48_address1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_48_address1;
-
-assign localB_48_ce1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_48_ce1;
-
-assign localB_48_d1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_48_d1;
-
-assign localB_48_we1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_48_we1;
-
-assign localB_49_address1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_49_address1;
-
-assign localB_49_ce1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_49_ce1;
-
-assign localB_49_d1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_49_d1;
-
-assign localB_49_we1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_49_we1;
-
-assign localB_50_address1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_50_address1;
-
-assign localB_50_ce1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_50_ce1;
-
-assign localB_50_d1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_50_d1;
-
-assign localB_50_we1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_50_we1;
-
-assign localB_51_address1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_51_address1;
-
-assign localB_51_ce1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_51_ce1;
-
-assign localB_51_d1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_51_d1;
-
-assign localB_51_we1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_51_we1;
-
-assign localB_52_address1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_52_address1;
-
-assign localB_52_ce1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_52_ce1;
-
-assign localB_52_d1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_52_d1;
-
-assign localB_52_we1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_52_we1;
-
-assign localB_53_address1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_53_address1;
-
-assign localB_53_ce1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_53_ce1;
-
-assign localB_53_d1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_53_d1;
-
-assign localB_53_we1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_53_we1;
-
-assign localB_54_address1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_54_address1;
-
-assign localB_54_ce1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_54_ce1;
-
-assign localB_54_d1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_54_d1;
-
-assign localB_54_we1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_54_we1;
-
-assign localB_55_address1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_55_address1;
-
-assign localB_55_ce1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_55_ce1;
-
-assign localB_55_d1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_55_d1;
-
-assign localB_55_we1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_55_we1;
-
-assign localB_56_address1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_56_address1;
-
-assign localB_56_ce1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_56_ce1;
-
-assign localB_56_d1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_56_d1;
-
-assign localB_56_we1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_56_we1;
-
-assign localB_57_address1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_57_address1;
-
-assign localB_57_ce1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_57_ce1;
-
-assign localB_57_d1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_57_d1;
-
-assign localB_57_we1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_57_we1;
-
-assign localB_58_address1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_58_address1;
-
-assign localB_58_ce1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_58_ce1;
-
-assign localB_58_d1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_58_d1;
-
-assign localB_58_we1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_58_we1;
-
-assign localB_59_address1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_59_address1;
-
-assign localB_59_ce1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_59_ce1;
-
-assign localB_59_d1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_59_d1;
-
-assign localB_59_we1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_59_we1;
-
-assign localB_60_address1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_60_address1;
-
-assign localB_60_ce1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_60_ce1;
-
-assign localB_60_d1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_60_d1;
-
-assign localB_60_we1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_60_we1;
-
-assign localB_61_address1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_61_address1;
-
-assign localB_61_ce1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_61_ce1;
-
-assign localB_61_d1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_61_d1;
-
-assign localB_61_we1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_61_we1;
-
-assign localB_62_address1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_62_address1;
-
-assign localB_62_ce1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_62_ce1;
-
-assign localB_62_d1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_62_d1;
-
-assign localB_62_we1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_62_we1;
-
-assign localB_address1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_address1;
-
-assign localB_ce1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_ce1;
-
-assign localB_d1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_d1;
-
-assign localB_we1 = grp_Loop_readB_proc_Pipeline_readB_fu_132_localB_we1;
+assign localB_we1 = grp_Loop_readB_proc_Pipeline_readB_fu_74_localB_we1;
 
 assign m_axi_gmem1_AWADDR = 64'd0;
 
@@ -1481,10 +780,10 @@ assign m_axi_gmem1_WUSER = 1'd0;
 
 assign m_axi_gmem1_WVALID = 1'b0;
 
-assign select_ln186_fu_220_p3 = ((icmp_ln186_fu_215_p2[0:0] == 1'b1) ? trunc_ln186_reg_267 : 31'd0);
+assign select_ln226_fu_106_p3 = ((icmp_ln226_fu_101_p2[0:0] == 1'b1) ? trunc_ln226_reg_141 : 31'd0);
 
-assign trunc_ln186_fu_211_p1 = grp_fu_205_p2[30:0];
+assign trunc_ln226_fu_97_p1 = grp_fu_91_p2[30:0];
 
-assign zext_ln186_fu_234_p1 = select_ln186_reg_272;
+assign zext_ln226_fu_120_p1 = select_ln226_reg_146;
 
 endmodule //mmult_Loop_readB_proc

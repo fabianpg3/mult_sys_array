@@ -1,4 +1,4 @@
-obj/mmult.o: ../../../../mmult.cpp \
+obj/mmult.o: ../../../../mmult.cpp ../../../../param.h \
  /tools/Xilinx-2023.2/Vitis_HLS/2023.2/include/ap_int.h \
  /tools/Xilinx-2023.2/Vitis_HLS/2023.2/include/etc/ap_common.h \
  /tools/Xilinx-2023.2/Vitis_HLS/2023.2/include/etc/ap_decl.h \
@@ -18,5 +18,4 @@ obj/mmult.o: ../../../../mmult.cpp \
  /tools/Xilinx-2023.2/Vitis_HLS/2023.2/include/ap_fixed.h \
  /tools/Xilinx-2023.2/Vitis_HLS/2023.2/include/etc/ap_fixed_base.h \
  /tools/Xilinx-2023.2/Vitis_HLS/2023.2/include/etc/ap_fixed_ref.h \
- /tools/Xilinx-2023.2/Vitis_HLS/2023.2/include/etc/ap_fixed_special.h \
- ../../../../param.h
+ /tools/Xilinx-2023.2/Vitis_HLS/2023.2/include/etc/ap_fixed_special.h

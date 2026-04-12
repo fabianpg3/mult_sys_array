@@ -1,22 +1,37 @@
 {
   "0": {
-    "basicblocks": 43,
+    "basicblocks": 25,
     "calls": "1",
     "file": "mmult.cpp",
-    "fileloc": 138,
-    "instructions": 178,
+    "fileloc": 177,
+    "instructions": 135,
     "loads": {
-      "L": 2,
+      "L": 1,
       "T": 2
     },
     "name": "mmult",
     "stores": {
-      "L": 3,
+      "L": 2,
       "T": 1
     },
-    "total_instructions": 524
+    "total_instructions": 561
   },
   "1": {
+    "basicblocks": 31,
+    "calls": "2",
+    "file": "mmult.cpp",
+    "fileloc": 142,
+    "instructions": 80,
+    "loads": {
+      "L": 2
+    },
+    "name": "compute_wrapper",
+    "stores": {
+      "L": 2
+    },
+    "total_instructions": 426
+  },
+  "2": {
     "basicblocks": 27,
     "calls": "",
     "file": "mmult.cpp",

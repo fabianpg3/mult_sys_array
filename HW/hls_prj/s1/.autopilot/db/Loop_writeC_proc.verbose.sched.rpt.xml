@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'Loop_writeC_proc'" level="0">
-<item name = "Date">Sun Apr 12 15:51:33 2026
+<item name = "Date">Sun Apr 12 17:22:35 2026
 </item>
 <item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
 <item name = "Project">hls_prj</item>
@@ -24,7 +24,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="8">, min, max, min, max, min, max, Type</keys>
-<column name="">2061, 2061, 6.801 us, 6.801 us, 2061, 2061, no</column>
+<column name="">2062, 2062, 6.805 us, 6.805 us, 2062, 2062, no</column>
 </table>
 </item>
 <item name = "Detail">

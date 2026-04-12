@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'Loop_readB_proc'" level="0">
-<item name = "Date">Sun Apr 12 15:51:17 2026
+<item name = "Date">Sun Apr 12 17:22:34 2026
 </item>
 <item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
 <item name = "Project">hls_prj</item>
@@ -31,7 +31,7 @@
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="0">
 <keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
-<column name="grp_Loop_readB_proc_Pipeline_readB_fu_132">Loop_readB_proc_Pipeline_readB, 2050, 2050, 6.765 us, 6.765 us, 2050, 2050, no</column>
+<column name="grp_Loop_readB_proc_Pipeline_readB_fu_74">Loop_readB_proc_Pipeline_readB, 2050, 2050, 6.765 us, 6.765 us, 2050, 2050, no</column>
 </table>
 </item>
 <item name = "Loop"><table name="" hasTotal="0">

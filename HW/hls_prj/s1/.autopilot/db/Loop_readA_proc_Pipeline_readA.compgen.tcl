@@ -12,16 +12,16 @@ if {${::AESL::PGuard_autoexp_gen}} {
 if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
 eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
     id 3 \
-    name localA_62 \
+    name localA_3 \
     reset_level 1 \
     sync_rst true \
     dir O \
-    corename localA_62 \
+    corename localA_3 \
     op interface \
-    ports { localA_62_address1 { O 5 vector } localA_62_ce1 { O 1 bit } localA_62_we1 { O 1 bit } localA_62_d1 { O 8 vector } } \
+    ports { localA_3_address1 { O 8 vector } localA_3_ce1 { O 1 bit } localA_3_we1 { O 1 bit } localA_3_d1 { O 8 vector } } \
 } "
 } else {
-puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'localA_62'"
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'localA_3'"
 }
 }
 
@@ -31,16 +31,16 @@ if {${::AESL::PGuard_autoexp_gen}} {
 if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
 eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
     id 4 \
-    name localA_61 \
+    name localA_2 \
     reset_level 1 \
     sync_rst true \
     dir O \
-    corename localA_61 \
+    corename localA_2 \
     op interface \
-    ports { localA_61_address1 { O 5 vector } localA_61_ce1 { O 1 bit } localA_61_we1 { O 1 bit } localA_61_d1 { O 8 vector } } \
+    ports { localA_2_address1 { O 8 vector } localA_2_ce1 { O 1 bit } localA_2_we1 { O 1 bit } localA_2_d1 { O 8 vector } } \
 } "
 } else {
-puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'localA_61'"
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'localA_2'"
 }
 }
 
@@ -50,16 +50,16 @@ if {${::AESL::PGuard_autoexp_gen}} {
 if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
 eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
     id 5 \
-    name localA_60 \
+    name localA_1 \
     reset_level 1 \
     sync_rst true \
     dir O \
-    corename localA_60 \
+    corename localA_1 \
     op interface \
-    ports { localA_60_address1 { O 5 vector } localA_60_ce1 { O 1 bit } localA_60_we1 { O 1 bit } localA_60_d1 { O 8 vector } } \
+    ports { localA_1_address1 { O 8 vector } localA_1_ce1 { O 1 bit } localA_1_we1 { O 1 bit } localA_1_d1 { O 8 vector } } \
 } "
 } else {
-puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'localA_60'"
+puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'localA_1'"
 }
 }
 
@@ -69,545 +69,13 @@ if {${::AESL::PGuard_autoexp_gen}} {
 if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
 eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
     id 6 \
-    name localA_59 \
-    reset_level 1 \
-    sync_rst true \
-    dir O \
-    corename localA_59 \
-    op interface \
-    ports { localA_59_address1 { O 5 vector } localA_59_ce1 { O 1 bit } localA_59_we1 { O 1 bit } localA_59_d1 { O 8 vector } } \
-} "
-} else {
-puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'localA_59'"
-}
-}
-
-
-# XIL_BRAM:
-if {${::AESL::PGuard_autoexp_gen}} {
-if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
-eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 7 \
-    name localA_58 \
-    reset_level 1 \
-    sync_rst true \
-    dir O \
-    corename localA_58 \
-    op interface \
-    ports { localA_58_address1 { O 5 vector } localA_58_ce1 { O 1 bit } localA_58_we1 { O 1 bit } localA_58_d1 { O 8 vector } } \
-} "
-} else {
-puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'localA_58'"
-}
-}
-
-
-# XIL_BRAM:
-if {${::AESL::PGuard_autoexp_gen}} {
-if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
-eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 8 \
-    name localA_57 \
-    reset_level 1 \
-    sync_rst true \
-    dir O \
-    corename localA_57 \
-    op interface \
-    ports { localA_57_address1 { O 5 vector } localA_57_ce1 { O 1 bit } localA_57_we1 { O 1 bit } localA_57_d1 { O 8 vector } } \
-} "
-} else {
-puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'localA_57'"
-}
-}
-
-
-# XIL_BRAM:
-if {${::AESL::PGuard_autoexp_gen}} {
-if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
-eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 9 \
-    name localA_56 \
-    reset_level 1 \
-    sync_rst true \
-    dir O \
-    corename localA_56 \
-    op interface \
-    ports { localA_56_address1 { O 5 vector } localA_56_ce1 { O 1 bit } localA_56_we1 { O 1 bit } localA_56_d1 { O 8 vector } } \
-} "
-} else {
-puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'localA_56'"
-}
-}
-
-
-# XIL_BRAM:
-if {${::AESL::PGuard_autoexp_gen}} {
-if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
-eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 10 \
-    name localA_55 \
-    reset_level 1 \
-    sync_rst true \
-    dir O \
-    corename localA_55 \
-    op interface \
-    ports { localA_55_address1 { O 5 vector } localA_55_ce1 { O 1 bit } localA_55_we1 { O 1 bit } localA_55_d1 { O 8 vector } } \
-} "
-} else {
-puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'localA_55'"
-}
-}
-
-
-# XIL_BRAM:
-if {${::AESL::PGuard_autoexp_gen}} {
-if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
-eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 11 \
-    name localA_54 \
-    reset_level 1 \
-    sync_rst true \
-    dir O \
-    corename localA_54 \
-    op interface \
-    ports { localA_54_address1 { O 5 vector } localA_54_ce1 { O 1 bit } localA_54_we1 { O 1 bit } localA_54_d1 { O 8 vector } } \
-} "
-} else {
-puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'localA_54'"
-}
-}
-
-
-# XIL_BRAM:
-if {${::AESL::PGuard_autoexp_gen}} {
-if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
-eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 12 \
-    name localA_53 \
-    reset_level 1 \
-    sync_rst true \
-    dir O \
-    corename localA_53 \
-    op interface \
-    ports { localA_53_address1 { O 5 vector } localA_53_ce1 { O 1 bit } localA_53_we1 { O 1 bit } localA_53_d1 { O 8 vector } } \
-} "
-} else {
-puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'localA_53'"
-}
-}
-
-
-# XIL_BRAM:
-if {${::AESL::PGuard_autoexp_gen}} {
-if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
-eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 13 \
-    name localA_52 \
-    reset_level 1 \
-    sync_rst true \
-    dir O \
-    corename localA_52 \
-    op interface \
-    ports { localA_52_address1 { O 5 vector } localA_52_ce1 { O 1 bit } localA_52_we1 { O 1 bit } localA_52_d1 { O 8 vector } } \
-} "
-} else {
-puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'localA_52'"
-}
-}
-
-
-# XIL_BRAM:
-if {${::AESL::PGuard_autoexp_gen}} {
-if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
-eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 14 \
-    name localA_51 \
-    reset_level 1 \
-    sync_rst true \
-    dir O \
-    corename localA_51 \
-    op interface \
-    ports { localA_51_address1 { O 5 vector } localA_51_ce1 { O 1 bit } localA_51_we1 { O 1 bit } localA_51_d1 { O 8 vector } } \
-} "
-} else {
-puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'localA_51'"
-}
-}
-
-
-# XIL_BRAM:
-if {${::AESL::PGuard_autoexp_gen}} {
-if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
-eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 15 \
-    name localA_50 \
-    reset_level 1 \
-    sync_rst true \
-    dir O \
-    corename localA_50 \
-    op interface \
-    ports { localA_50_address1 { O 5 vector } localA_50_ce1 { O 1 bit } localA_50_we1 { O 1 bit } localA_50_d1 { O 8 vector } } \
-} "
-} else {
-puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'localA_50'"
-}
-}
-
-
-# XIL_BRAM:
-if {${::AESL::PGuard_autoexp_gen}} {
-if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
-eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 16 \
-    name localA_49 \
-    reset_level 1 \
-    sync_rst true \
-    dir O \
-    corename localA_49 \
-    op interface \
-    ports { localA_49_address1 { O 5 vector } localA_49_ce1 { O 1 bit } localA_49_we1 { O 1 bit } localA_49_d1 { O 8 vector } } \
-} "
-} else {
-puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'localA_49'"
-}
-}
-
-
-# XIL_BRAM:
-if {${::AESL::PGuard_autoexp_gen}} {
-if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
-eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 17 \
-    name localA_48 \
-    reset_level 1 \
-    sync_rst true \
-    dir O \
-    corename localA_48 \
-    op interface \
-    ports { localA_48_address1 { O 5 vector } localA_48_ce1 { O 1 bit } localA_48_we1 { O 1 bit } localA_48_d1 { O 8 vector } } \
-} "
-} else {
-puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'localA_48'"
-}
-}
-
-
-# XIL_BRAM:
-if {${::AESL::PGuard_autoexp_gen}} {
-if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
-eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 18 \
-    name localA_47 \
-    reset_level 1 \
-    sync_rst true \
-    dir O \
-    corename localA_47 \
-    op interface \
-    ports { localA_47_address1 { O 5 vector } localA_47_ce1 { O 1 bit } localA_47_we1 { O 1 bit } localA_47_d1 { O 8 vector } } \
-} "
-} else {
-puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'localA_47'"
-}
-}
-
-
-# XIL_BRAM:
-if {${::AESL::PGuard_autoexp_gen}} {
-if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
-eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 19 \
-    name localA_46 \
-    reset_level 1 \
-    sync_rst true \
-    dir O \
-    corename localA_46 \
-    op interface \
-    ports { localA_46_address1 { O 5 vector } localA_46_ce1 { O 1 bit } localA_46_we1 { O 1 bit } localA_46_d1 { O 8 vector } } \
-} "
-} else {
-puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'localA_46'"
-}
-}
-
-
-# XIL_BRAM:
-if {${::AESL::PGuard_autoexp_gen}} {
-if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
-eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 20 \
-    name localA_45 \
-    reset_level 1 \
-    sync_rst true \
-    dir O \
-    corename localA_45 \
-    op interface \
-    ports { localA_45_address1 { O 5 vector } localA_45_ce1 { O 1 bit } localA_45_we1 { O 1 bit } localA_45_d1 { O 8 vector } } \
-} "
-} else {
-puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'localA_45'"
-}
-}
-
-
-# XIL_BRAM:
-if {${::AESL::PGuard_autoexp_gen}} {
-if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
-eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 21 \
-    name localA_44 \
-    reset_level 1 \
-    sync_rst true \
-    dir O \
-    corename localA_44 \
-    op interface \
-    ports { localA_44_address1 { O 5 vector } localA_44_ce1 { O 1 bit } localA_44_we1 { O 1 bit } localA_44_d1 { O 8 vector } } \
-} "
-} else {
-puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'localA_44'"
-}
-}
-
-
-# XIL_BRAM:
-if {${::AESL::PGuard_autoexp_gen}} {
-if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
-eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 22 \
-    name localA_43 \
-    reset_level 1 \
-    sync_rst true \
-    dir O \
-    corename localA_43 \
-    op interface \
-    ports { localA_43_address1 { O 5 vector } localA_43_ce1 { O 1 bit } localA_43_we1 { O 1 bit } localA_43_d1 { O 8 vector } } \
-} "
-} else {
-puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'localA_43'"
-}
-}
-
-
-# XIL_BRAM:
-if {${::AESL::PGuard_autoexp_gen}} {
-if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
-eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 23 \
-    name localA_42 \
-    reset_level 1 \
-    sync_rst true \
-    dir O \
-    corename localA_42 \
-    op interface \
-    ports { localA_42_address1 { O 5 vector } localA_42_ce1 { O 1 bit } localA_42_we1 { O 1 bit } localA_42_d1 { O 8 vector } } \
-} "
-} else {
-puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'localA_42'"
-}
-}
-
-
-# XIL_BRAM:
-if {${::AESL::PGuard_autoexp_gen}} {
-if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
-eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 24 \
-    name localA_41 \
-    reset_level 1 \
-    sync_rst true \
-    dir O \
-    corename localA_41 \
-    op interface \
-    ports { localA_41_address1 { O 5 vector } localA_41_ce1 { O 1 bit } localA_41_we1 { O 1 bit } localA_41_d1 { O 8 vector } } \
-} "
-} else {
-puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'localA_41'"
-}
-}
-
-
-# XIL_BRAM:
-if {${::AESL::PGuard_autoexp_gen}} {
-if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
-eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 25 \
-    name localA_40 \
-    reset_level 1 \
-    sync_rst true \
-    dir O \
-    corename localA_40 \
-    op interface \
-    ports { localA_40_address1 { O 5 vector } localA_40_ce1 { O 1 bit } localA_40_we1 { O 1 bit } localA_40_d1 { O 8 vector } } \
-} "
-} else {
-puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'localA_40'"
-}
-}
-
-
-# XIL_BRAM:
-if {${::AESL::PGuard_autoexp_gen}} {
-if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
-eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 26 \
-    name localA_39 \
-    reset_level 1 \
-    sync_rst true \
-    dir O \
-    corename localA_39 \
-    op interface \
-    ports { localA_39_address1 { O 5 vector } localA_39_ce1 { O 1 bit } localA_39_we1 { O 1 bit } localA_39_d1 { O 8 vector } } \
-} "
-} else {
-puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'localA_39'"
-}
-}
-
-
-# XIL_BRAM:
-if {${::AESL::PGuard_autoexp_gen}} {
-if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
-eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 27 \
-    name localA_38 \
-    reset_level 1 \
-    sync_rst true \
-    dir O \
-    corename localA_38 \
-    op interface \
-    ports { localA_38_address1 { O 5 vector } localA_38_ce1 { O 1 bit } localA_38_we1 { O 1 bit } localA_38_d1 { O 8 vector } } \
-} "
-} else {
-puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'localA_38'"
-}
-}
-
-
-# XIL_BRAM:
-if {${::AESL::PGuard_autoexp_gen}} {
-if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
-eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 28 \
-    name localA_37 \
-    reset_level 1 \
-    sync_rst true \
-    dir O \
-    corename localA_37 \
-    op interface \
-    ports { localA_37_address1 { O 5 vector } localA_37_ce1 { O 1 bit } localA_37_we1 { O 1 bit } localA_37_d1 { O 8 vector } } \
-} "
-} else {
-puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'localA_37'"
-}
-}
-
-
-# XIL_BRAM:
-if {${::AESL::PGuard_autoexp_gen}} {
-if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
-eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 29 \
-    name localA_36 \
-    reset_level 1 \
-    sync_rst true \
-    dir O \
-    corename localA_36 \
-    op interface \
-    ports { localA_36_address1 { O 5 vector } localA_36_ce1 { O 1 bit } localA_36_we1 { O 1 bit } localA_36_d1 { O 8 vector } } \
-} "
-} else {
-puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'localA_36'"
-}
-}
-
-
-# XIL_BRAM:
-if {${::AESL::PGuard_autoexp_gen}} {
-if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
-eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 30 \
-    name localA_35 \
-    reset_level 1 \
-    sync_rst true \
-    dir O \
-    corename localA_35 \
-    op interface \
-    ports { localA_35_address1 { O 5 vector } localA_35_ce1 { O 1 bit } localA_35_we1 { O 1 bit } localA_35_d1 { O 8 vector } } \
-} "
-} else {
-puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'localA_35'"
-}
-}
-
-
-# XIL_BRAM:
-if {${::AESL::PGuard_autoexp_gen}} {
-if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
-eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 31 \
-    name localA_34 \
-    reset_level 1 \
-    sync_rst true \
-    dir O \
-    corename localA_34 \
-    op interface \
-    ports { localA_34_address1 { O 5 vector } localA_34_ce1 { O 1 bit } localA_34_we1 { O 1 bit } localA_34_d1 { O 8 vector } } \
-} "
-} else {
-puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'localA_34'"
-}
-}
-
-
-# XIL_BRAM:
-if {${::AESL::PGuard_autoexp_gen}} {
-if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
-eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 32 \
-    name localA_33 \
-    reset_level 1 \
-    sync_rst true \
-    dir O \
-    corename localA_33 \
-    op interface \
-    ports { localA_33_address1 { O 5 vector } localA_33_ce1 { O 1 bit } localA_33_we1 { O 1 bit } localA_33_d1 { O 8 vector } } \
-} "
-} else {
-puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'localA_33'"
-}
-}
-
-
-# XIL_BRAM:
-if {${::AESL::PGuard_autoexp_gen}} {
-if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
-eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 33 \
-    name localA_32 \
-    reset_level 1 \
-    sync_rst true \
-    dir O \
-    corename localA_32 \
-    op interface \
-    ports { localA_32_address1 { O 5 vector } localA_32_ce1 { O 1 bit } localA_32_we1 { O 1 bit } localA_32_d1 { O 8 vector } } \
-} "
-} else {
-puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'localA_32'"
-}
-}
-
-
-# XIL_BRAM:
-if {${::AESL::PGuard_autoexp_gen}} {
-if {[info proc ::AESL_LIB_XILADAPTER::xil_bram_gen] == "::AESL_LIB_XILADAPTER::xil_bram_gen"} {
-eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
-    id 34 \
     name localA \
     reset_level 1 \
     sync_rst true \
     dir O \
     corename localA \
     op interface \
-    ports { localA_address1 { O 5 vector } localA_ce1 { O 1 bit } localA_we1 { O 1 bit } localA_d1 { O 8 vector } } \
+    ports { localA_address1 { O 8 vector } localA_ce1 { O 1 bit } localA_we1 { O 1 bit } localA_d1 { O 8 vector } } \
 } "
 } else {
 puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'localA'"
@@ -618,7 +86,7 @@ puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored ge
 # Direct connection:
 if {${::AESL::PGuard_autoexp_gen}} {
 eval "cg_default_interface_gen_dc { \
-    id 35 \
+    id 7 \
     name mul \
     type other \
     dir I \
@@ -633,7 +101,7 @@ eval "cg_default_interface_gen_dc { \
 # Direct connection:
 if {${::AESL::PGuard_autoexp_gen}} {
 eval "cg_default_interface_gen_dc { \
-    id 36 \
+    id 8 \
     name gmem0 \
     type other \
     dir I \
@@ -648,7 +116,7 @@ eval "cg_default_interface_gen_dc { \
 # Direct connection:
 if {${::AESL::PGuard_autoexp_gen}} {
 eval "cg_default_interface_gen_dc { \
-    id 37 \
+    id 9 \
     name a \
     type other \
     dir I \
@@ -663,7 +131,7 @@ eval "cg_default_interface_gen_dc { \
 # Direct connection:
 if {${::AESL::PGuard_autoexp_gen}} {
 eval "cg_default_interface_gen_dc { \
-    id 38 \
+    id 10 \
     name a_col \
     type other \
     dir I \

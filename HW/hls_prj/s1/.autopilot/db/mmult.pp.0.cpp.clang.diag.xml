@@ -9,11 +9,123 @@
       <key>filename</key>
       <string>mmult.cpp</string>
       <key>line</key>
+      <integer>72</integer>
+      <key>column</key>
+      <integer>9</integer>
+      <key>message</key>
+      <string>unknown pragma ignored</string>
+      <key>ID</key>
+      <integer>1017</integer>
+      <key>WarningOption</key>
+      <string>invalid-hls-pragmas</string>
+    </dict>
+    <dict>
+      <key>level</key>
+      <string>warning</string>
+      <key>filename</key>
+      <string>mmult.cpp</string>
+      <key>line</key>
       <integer>117</integer>
       <key>column</key>
       <integer>9</integer>
       <key>message</key>
       <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_tripcount_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=tile_process_XLX_SEP_ PragmaOptions=min = c_size max = c_size_XLX_SEP_</string>
+      <key>ID</key>
+      <integer>5471</integer>
+      <key>WarningOption</key>
+      <string>dump-hls-pragmas</string>
+    </dict>
+    <dict>
+      <key>level</key>
+      <string>warning</string>
+      <key>filename</key>
+      <string>mmult.cpp</string>
+      <key>line</key>
+      <integer>120</integer>
+      <key>column</key>
+      <integer>9</integer>
+      <key>message</key>
+      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=unroll_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=tile_process_XLX_SEP_ PragmaOptions=factor = 4_XLX_SEP_</string>
+      <key>ID</key>
+      <integer>5471</integer>
+      <key>WarningOption</key>
+      <string>dump-hls-pragmas</string>
+    </dict>
+    <dict>
+      <key>level</key>
+      <string>warning</string>
+      <key>filename</key>
+      <string>mmult.cpp</string>
+      <key>line</key>
+      <integer>123</integer>
+      <key>column</key>
+      <integer>9</integer>
+      <key>message</key>
+      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=unroll_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=tile_process_XLX_SEP_ PragmaOptions=factor = 4_XLX_SEP_</string>
+      <key>ID</key>
+      <integer>5471</integer>
+      <key>WarningOption</key>
+      <string>dump-hls-pragmas</string>
+    </dict>
+    <dict>
+      <key>level</key>
+      <string>warning</string>
+      <key>filename</key>
+      <string>mmult.cpp</string>
+      <key>line</key>
+      <integer>150</integer>
+      <key>column</key>
+      <integer>9</integer>
+      <key>message</key>
+      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=array_partition_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=compute_wrapper_XLX_SEP_ PragmaOptions=variable = tempC dim = 1 factor = 4 cyclic_XLX_SEP_</string>
+      <key>ID</key>
+      <integer>5471</integer>
+      <key>WarningOption</key>
+      <string>dump-hls-pragmas</string>
+    </dict>
+    <dict>
+      <key>level</key>
+      <string>warning</string>
+      <key>filename</key>
+      <string>mmult.cpp</string>
+      <key>line</key>
+      <integer>151</integer>
+      <key>column</key>
+      <integer>9</integer>
+      <key>message</key>
+      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=array_partition_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=compute_wrapper_XLX_SEP_ PragmaOptions=variable = tempC dim = 2 factor = 4 cyclic_XLX_SEP_</string>
+      <key>ID</key>
+      <integer>5471</integer>
+      <key>WarningOption</key>
+      <string>dump-hls-pragmas</string>
+    </dict>
+    <dict>
+      <key>level</key>
+      <string>warning</string>
+      <key>filename</key>
+      <string>mmult.cpp</string>
+      <key>line</key>
+      <integer>156</integer>
+      <key>column</key>
+      <integer>9</integer>
+      <key>message</key>
+      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=unroll_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=compute_wrapper_XLX_SEP_ PragmaOptions=factor = 4_XLX_SEP_</string>
+      <key>ID</key>
+      <integer>5471</integer>
+      <key>WarningOption</key>
+      <string>dump-hls-pragmas</string>
+    </dict>
+    <dict>
+      <key>level</key>
+      <string>warning</string>
+      <key>filename</key>
+      <string>mmult.cpp</string>
+      <key>line</key>
+      <integer>171</integer>
+      <key>column</key>
+      <integer>9</integer>
+      <key>message</key>
+      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=unroll_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=compute_wrapper_XLX_SEP_ PragmaOptions=factor = 4_XLX_SEP_</string>
       <key>ID</key>
       <integer>5471</integer>
       <key>WarningOption</key>
@@ -41,7 +153,7 @@
       <key>filename</key>
       <string>mmult.cpp</string>
       <key>line</key>
-      <integer>145</integer>
+      <integer>184</integer>
       <key>column</key>
       <integer>9</integer>
       <key>message</key>
@@ -57,7 +169,7 @@
       <key>filename</key>
       <string>mmult.cpp</string>
       <key>line</key>
-      <integer>146</integer>
+      <integer>185</integer>
       <key>column</key>
       <integer>9</integer>
       <key>message</key>
@@ -73,7 +185,7 @@
       <key>filename</key>
       <string>mmult.cpp</string>
       <key>line</key>
-      <integer>147</integer>
+      <integer>186</integer>
       <key>column</key>
       <integer>9</integer>
       <key>message</key>
@@ -89,7 +201,7 @@
       <key>filename</key>
       <string>mmult.cpp</string>
       <key>line</key>
-      <integer>148</integer>
+      <integer>187</integer>
       <key>column</key>
       <integer>9</integer>
       <key>message</key>
@@ -105,7 +217,7 @@
       <key>filename</key>
       <string>mmult.cpp</string>
       <key>line</key>
-      <integer>149</integer>
+      <integer>188</integer>
       <key>column</key>
       <integer>9</integer>
       <key>message</key>
@@ -121,7 +233,7 @@
       <key>filename</key>
       <string>mmult.cpp</string>
       <key>line</key>
-      <integer>150</integer>
+      <integer>189</integer>
       <key>column</key>
       <integer>9</integer>
       <key>message</key>
@@ -137,7 +249,7 @@
       <key>filename</key>
       <string>mmult.cpp</string>
       <key>line</key>
-      <integer>151</integer>
+      <integer>190</integer>
       <key>column</key>
       <integer>9</integer>
       <key>message</key>
@@ -153,11 +265,11 @@
       <key>filename</key>
       <string>mmult.cpp</string>
       <key>line</key>
-      <integer>158</integer>
+      <integer>197</integer>
       <key>column</key>
       <integer>9</integer>
       <key>message</key>
-      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=array_partition_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=mmult_XLX_SEP_ PragmaOptions=variable = localA dim = 1 complete_XLX_SEP_</string>
+      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=array_partition_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=mmult_XLX_SEP_ PragmaOptions=variable = localA dim = 1 factor = 4 cyclic_XLX_SEP_</string>
       <key>ID</key>
       <integer>5471</integer>
       <key>WarningOption</key>
@@ -169,7 +281,7 @@
       <key>filename</key>
       <string>mmult.cpp</string>
       <key>line</key>
-      <integer>159</integer>
+      <integer>198</integer>
       <key>column</key>
       <integer>9</integer>
       <key>message</key>
@@ -185,11 +297,11 @@
       <key>filename</key>
       <string>mmult.cpp</string>
       <key>line</key>
-      <integer>162</integer>
+      <integer>201</integer>
       <key>column</key>
       <integer>9</integer>
       <key>message</key>
-      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=array_partition_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=mmult_XLX_SEP_ PragmaOptions=variable = localB dim = 2 complete_XLX_SEP_</string>
+      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=array_partition_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=mmult_XLX_SEP_ PragmaOptions=variable = localB dim = 2 factor = 4 cyclic_XLX_SEP_</string>
       <key>ID</key>
       <integer>5471</integer>
       <key>WarningOption</key>
@@ -201,7 +313,7 @@
       <key>filename</key>
       <string>mmult.cpp</string>
       <key>line</key>
-      <integer>163</integer>
+      <integer>202</integer>
       <key>column</key>
       <integer>9</integer>
       <key>message</key>
@@ -217,11 +329,11 @@
       <key>filename</key>
       <string>mmult.cpp</string>
       <key>line</key>
-      <integer>166</integer>
+      <integer>205</integer>
       <key>column</key>
       <integer>9</integer>
       <key>message</key>
-      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=array_partition_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=mmult_XLX_SEP_ PragmaOptions=variable = localC dim = 0 complete_XLX_SEP_</string>
+      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=array_partition_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=mmult_XLX_SEP_ PragmaOptions=variable = localC dim = 1 factor = 4 cyclic_XLX_SEP_</string>
       <key>ID</key>
       <integer>5471</integer>
       <key>WarningOption</key>
@@ -233,7 +345,23 @@
       <key>filename</key>
       <string>mmult.cpp</string>
       <key>line</key>
-      <integer>167</integer>
+      <integer>206</integer>
+      <key>column</key>
+      <integer>9</integer>
+      <key>message</key>
+      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=array_partition_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=mmult_XLX_SEP_ PragmaOptions=variable = localC dim = 2 factor = 4 cyclic_XLX_SEP_</string>
+      <key>ID</key>
+      <integer>5471</integer>
+      <key>WarningOption</key>
+      <string>dump-hls-pragmas</string>
+    </dict>
+    <dict>
+      <key>level</key>
+      <string>warning</string>
+      <key>filename</key>
+      <string>mmult.cpp</string>
+      <key>line</key>
+      <integer>207</integer>
       <key>column</key>
       <integer>9</integer>
       <key>message</key>
@@ -249,7 +377,7 @@
       <key>filename</key>
       <string>mmult.cpp</string>
       <key>line</key>
-      <integer>169</integer>
+      <integer>209</integer>
       <key>column</key>
       <integer>9</integer>
       <key>message</key>
@@ -265,7 +393,7 @@
       <key>filename</key>
       <string>mmult.cpp</string>
       <key>line</key>
-      <integer>176</integer>
+      <integer>216</integer>
       <key>column</key>
       <integer>9</integer>
       <key>message</key>
@@ -281,11 +409,11 @@
       <key>filename</key>
       <string>mmult.cpp</string>
       <key>line</key>
-      <integer>187</integer>
+      <integer>227</integer>
       <key>column</key>
       <integer>9</integer>
       <key>message</key>
-      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_tripcount_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=mmult_XLX_SEP_ PragmaOptions=min = c_size* c_size max = c_size * c_size_XLX_SEP_</string>
+      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_tripcount_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=mmult_XLX_SEP_ PragmaOptions=min = c_size *c_size max = c_size * c_size_XLX_SEP_</string>
       <key>ID</key>
       <integer>5471</integer>
       <key>WarningOption</key>
@@ -297,27 +425,11 @@
       <key>filename</key>
       <string>mmult.cpp</string>
       <key>line</key>
-      <integer>197</integer>
+      <integer>241</integer>
       <key>column</key>
       <integer>9</integer>
       <key>message</key>
-      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=unroll_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=mmult_XLX_SEP_ PragmaOptions=_XLX_SEP_</string>
-      <key>ID</key>
-      <integer>5471</integer>
-      <key>WarningOption</key>
-      <string>dump-hls-pragmas</string>
-    </dict>
-    <dict>
-      <key>level</key>
-      <string>warning</string>
-      <key>filename</key>
-      <string>mmult.cpp</string>
-      <key>line</key>
-      <integer>213</integer>
-      <key>column</key>
-      <integer>9</integer>
-      <key>message</key>
-      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_tripcount_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=mmult_XLX_SEP_ PragmaOptions=min = c_size* c_size max = c_size * c_size_XLX_SEP_</string>
+      <string>HLS pragma dump _XLX_SEP_ PragmaIsValid=1_XLX_SEP_ PragmaType=loop_tripcount_XLX_SEP_ PragmaContext=_XLX_SEP_ PragmaFunction=mmult_XLX_SEP_ PragmaOptions=min = c_size *c_size max = c_size * c_size_XLX_SEP_</string>
       <key>ID</key>
       <integer>5471</integer>
       <key>WarningOption</key>

@@ -8,8 +8,8 @@
 module mmult_localA_RAM_2P_LUTRAM_1R1W
 #(parameter
     DataWidth    = 8,
-    AddressRange = 32,
-    AddressWidth = 5,
+    AddressRange = 256,
+    AddressWidth = 8,
     BufferCount  = 2,
     MemLatency   = 1,
     IndexWidth   = 1

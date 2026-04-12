@@ -17,8 +17,8 @@ module mmult_localA_RAM_2P_LUTRAM_1R1W_memcore (
     reset, clk);
 
 parameter DataWidth = 8;
-parameter AddressWidth = 5;
-parameter AddressRange = 32;
+parameter AddressWidth = 8;
+parameter AddressRange = 256;
  
 input[AddressWidth-1:0] address0;
 input ce0;

@@ -24,7 +24,7 @@
 						"AP_START": { "actual": "ap_start"}
 					}
 				},
-				"Loop_readA_proc_U0/grp_Loop_readA_proc_Pipeline_readA_fu_130/grp_Loop_readA_proc_Pipeline_readA_fu_130_activity": {
+				"Loop_readA_proc_U0/grp_Loop_readA_proc_Pipeline_readA_fu_76/grp_Loop_readA_proc_Pipeline_readA_fu_76_activity": {
 					"interface": "xilinx.com:interface:internal_hls_dataflow:1.0",
 					"ports": {
 						"AP_CLK": { "actual": "ap_clk"},
@@ -45,28 +45,7 @@
 						"AP_START": { "actual": "ap_start"}
 					}
 				},
-				"Loop_readB_proc_U0/grp_Loop_readB_proc_Pipeline_readB_fu_132/grp_Loop_readB_proc_Pipeline_readB_fu_132_activity": {
-					"interface": "xilinx.com:interface:internal_hls_dataflow:1.0",
-					"ports": {
-						"AP_CLK": { "actual": "ap_clk"},
-						"AP_DONE": { "actual": "ap_done"},
-						"AP_READY": { "actual": "ap_ready"},
-						"AP_RESET": { "actual": "ap_rst"},
-						"AP_START": { "actual": "ap_start"}
-					}
-				},
-				"Loop_tile_processing_proc_U0/Loop_tile_processing_proc_U0_activity": {
-					"interface": "xilinx.com:interface:internal_hls_dataflow:1.0",
-					"ports": {
-						"AP_CLK": { "actual": "ap_clk"},
-						"AP_CONTINUE": { "actual": "ap_continue"},
-						"AP_DONE": { "actual": "ap_done"},
-						"AP_READY": { "actual": "ap_ready"},
-						"AP_RESET": { "actual": "ap_rst"},
-						"AP_START": { "actual": "ap_start"}
-					}
-				},
-				"Loop_tile_processing_proc_U0/grp_Loop_tile_processing_proc_Pipeline_systolic1_systolic2_fu_4336/grp_Loop_tile_processing_proc_Pipeline_systolic1_systolic2_fu_4336_activity": {
+				"Loop_readB_proc_U0/grp_Loop_readB_proc_Pipeline_readB_fu_74/grp_Loop_readB_proc_Pipeline_readB_fu_74_activity": {
 					"interface": "xilinx.com:interface:internal_hls_dataflow:1.0",
 					"ports": {
 						"AP_CLK": { "actual": "ap_clk"},
@@ -87,7 +66,88 @@
 						"AP_START": { "actual": "ap_start"}
 					}
 				},
-				"Loop_writeC_proc_U0/grp_Loop_writeC_proc_Pipeline_writeC_fu_8269/grp_Loop_writeC_proc_Pipeline_writeC_fu_8269_activity": {
+				"Loop_writeC_proc_U0/grp_Loop_writeC_proc_Pipeline_writeC_fu_115/grp_Loop_writeC_proc_Pipeline_writeC_fu_115_activity": {
+					"interface": "xilinx.com:interface:internal_hls_dataflow:1.0",
+					"ports": {
+						"AP_CLK": { "actual": "ap_clk"},
+						"AP_DONE": { "actual": "ap_done"},
+						"AP_READY": { "actual": "ap_ready"},
+						"AP_RESET": { "actual": "ap_rst"},
+						"AP_START": { "actual": "ap_start"}
+					}
+				},
+				"compute_wrapper_U0/compute_wrapper_U0_activity": {
+					"interface": "xilinx.com:interface:internal_hls_dataflow:1.0",
+					"ports": {
+						"AP_CLK": { "actual": "ap_clk"},
+						"AP_CONTINUE": { "actual": "ap_continue"},
+						"AP_DONE": { "actual": "ap_done"},
+						"AP_READY": { "actual": "ap_ready"},
+						"AP_RESET": { "actual": "ap_rst"},
+						"AP_START": { "actual": "ap_start"}
+					}
+				},
+				"compute_wrapper_U0/grp_compute_wrapper_Pipeline_VITIS_LOOP_154_1_VITIS_LOOP_155_2_fu_182/grp_compute_wrapper_Pipeline_VITIS_LOOP_154_1_VITIS_LOOP_155_2_fu_182_activity": {
+					"interface": "xilinx.com:interface:internal_hls_dataflow:1.0",
+					"ports": {
+						"AP_CLK": { "actual": "ap_clk"},
+						"AP_DONE": { "actual": "ap_done"},
+						"AP_READY": { "actual": "ap_ready"},
+						"AP_RESET": { "actual": "ap_rst"},
+						"AP_START": { "actual": "ap_start"}
+					}
+				},
+				"compute_wrapper_U0/grp_compute_wrapper_Pipeline_VITIS_LOOP_169_4_VITIS_LOOP_170_5_fu_260/grp_compute_wrapper_Pipeline_VITIS_LOOP_169_4_VITIS_LOOP_170_5_fu_260_activity": {
+					"interface": "xilinx.com:interface:internal_hls_dataflow:1.0",
+					"ports": {
+						"AP_CLK": { "actual": "ap_clk"},
+						"AP_DONE": { "actual": "ap_done"},
+						"AP_READY": { "actual": "ap_ready"},
+						"AP_RESET": { "actual": "ap_rst"},
+						"AP_START": { "actual": "ap_start"}
+					}
+				},
+				"compute_wrapper_U0/grp_tile_process_39_405_fu_218/grp_tile_process_39_405_Pipeline_systolic37_fu_257/grp_tile_process_39_405_Pipeline_systolic37_fu_257_activity": {
+					"interface": "xilinx.com:interface:internal_hls_dataflow:1.0",
+					"ports": {
+						"AP_CLK": { "actual": "ap_clk"},
+						"AP_DONE": { "actual": "ap_done"},
+						"AP_READY": { "actual": "ap_ready"},
+						"AP_RESET": { "actual": "ap_rst"},
+						"AP_START": { "actual": "ap_start"}
+					}
+				},
+				"compute_wrapper_U0/grp_tile_process_39_405_fu_218/grp_tile_process_39_405_Pipeline_systolic38_fu_282/grp_tile_process_39_405_Pipeline_systolic38_fu_282_activity": {
+					"interface": "xilinx.com:interface:internal_hls_dataflow:1.0",
+					"ports": {
+						"AP_CLK": { "actual": "ap_clk"},
+						"AP_DONE": { "actual": "ap_done"},
+						"AP_READY": { "actual": "ap_ready"},
+						"AP_RESET": { "actual": "ap_rst"},
+						"AP_START": { "actual": "ap_start"}
+					}
+				},
+				"compute_wrapper_U0/grp_tile_process_39_405_fu_218/grp_tile_process_39_405_Pipeline_systolic39_fu_307/grp_tile_process_39_405_Pipeline_systolic39_fu_307_activity": {
+					"interface": "xilinx.com:interface:internal_hls_dataflow:1.0",
+					"ports": {
+						"AP_CLK": { "actual": "ap_clk"},
+						"AP_DONE": { "actual": "ap_done"},
+						"AP_READY": { "actual": "ap_ready"},
+						"AP_RESET": { "actual": "ap_rst"},
+						"AP_START": { "actual": "ap_start"}
+					}
+				},
+				"compute_wrapper_U0/grp_tile_process_39_405_fu_218/grp_tile_process_39_405_Pipeline_systolic3_fu_232/grp_tile_process_39_405_Pipeline_systolic3_fu_232_activity": {
+					"interface": "xilinx.com:interface:internal_hls_dataflow:1.0",
+					"ports": {
+						"AP_CLK": { "actual": "ap_clk"},
+						"AP_DONE": { "actual": "ap_done"},
+						"AP_READY": { "actual": "ap_ready"},
+						"AP_RESET": { "actual": "ap_rst"},
+						"AP_START": { "actual": "ap_start"}
+					}
+				},
+				"compute_wrapper_U0/grp_tile_process_39_405_fu_218/grp_tile_process_39_405_fu_218_activity": {
 					"interface": "xilinx.com:interface:internal_hls_dataflow:1.0",
 					"ports": {
 						"AP_CLK": { "actual": "ap_clk"},
