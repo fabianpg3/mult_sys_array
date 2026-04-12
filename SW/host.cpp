@@ -1,47 +1,24 @@
-/**
-* Copyright (C) 2020 Xilinx, Inc
-*
-* Licensed under the Apache License, Version 2.0 (the "License"). You may
-* not use this file except in compliance with the License. A copy of the
-* License is located at
-*
-*     http://www.apache.org/licenses/LICENSE-2.0
-*
-* Unless required by applicable law or agreed to in writing, software
-* distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
-* WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
-* License for the specific language governing permissions and limitations
-* under the License.
-*/
-
-/*******************************************************************************
-
-Description:
-
-    This is a matrix multiplication which showcases the "Systolic Array" based
-    algorithm design. Systolic array type of implementation is well suited for
-    FPGAs. It is a good coding practice to convert base algorithm into Systolic
-    Array implementation if it is feasible to do so.
-
-*******************************************************************************/
-#include "xcl2.hpp"
+#include <stdint.h>
+#include <string>
+#include <iostream>
 #include <vector>
+
+#include "experimental/xrt_bo.h"
+#include "experimental/xrt_device.h"
+#include "experimental/xrt_kernel.h"
 
 // Array Size to access
 #define DATA_SIZE 16
 
-// Maximum Array Size
-#define MAX_SIZE 16
-
 // Software implementation of Matrix Multiplication
 // The inputs are of the size (DATA_SIZE x DATA_SIZE)
-void m_softwareGold(std::vector<int, aligned_allocator<int> >& in1, // Input Matrix 1
-                    std::vector<int, aligned_allocator<int> >& in2, // Input Matrix 2
-                    std::vector<int, aligned_allocator<int> >& out  // Output Matrix
-                    ) {
+void m_softwareGold(const std::vector<int32_t>& in1, 
+                    const std::vector<int32_t>& in2, 
+                    std::vector<int32_t>& out) {
     // Perform Matrix multiply Out = In1 x In2
     for (int i = 0; i < DATA_SIZE; i++) {
         for (int j = 0; j < DATA_SIZE; j++) {
+            out[i * DATA_SIZE + j] = 0; // Initialize out to zero
             for (int k = 0; k < DATA_SIZE; k++) {
                 out[i * DATA_SIZE + j] += in1[i * DATA_SIZE + k] * in2[k * DATA_SIZE + j];
             }
@@ -49,113 +26,76 @@ void m_softwareGold(std::vector<int, aligned_allocator<int> >& in1, // Input Mat
     }
 }
 
-int main(int argc, char** argv) {
-    if (argc != 2) {
-        std::cout << "Usage: " << argv[0] << " <XCLBIN File>" << std::endl;
-        return EXIT_FAILURE;
+int main(int argc, char **argv) {
+    // Indico donde esta mi archivo de FPGA
+    static std::string binaryFile = "../HW/package.hw/mmult.xclbin";
+    
+    // Opcional: permitir indicarlo por consola si lo deseas
+    if (argc == 2) {
+        binaryFile = argv[1];
     }
-
-    std::string binaryFile = argv[1];
-
-    // Allocate Memory in Host Memory
-    if (DATA_SIZE > MAX_SIZE) {
-        std::cout << "Size is bigger than internal buffer size, please use a "
-                     "size smaller than "
-                  << MAX_SIZE << "!" << std::endl;
-        return EXIT_FAILURE;
-    }
-
+    
     size_t matrix_size = DATA_SIZE * DATA_SIZE;
-    size_t matrix_size_bytes = sizeof(int) * matrix_size;
-    cl_int err;
-    cl::CommandQueue q;
-    cl::Context context;
-    cl::Kernel krnl_systolic_array;
 
-    std::vector<int, aligned_allocator<int> > source_in1(matrix_size);
-    std::vector<int, aligned_allocator<int> > source_in2(matrix_size);
-    std::vector<int, aligned_allocator<int> > source_hw_results(matrix_size);
-    std::vector<int, aligned_allocator<int> > source_sw_results(matrix_size);
+    // Cargo la configuracion de la FPGA
+    auto device = xrt::device(0);
+    auto uuid = device.load_xclbin(binaryFile);
+    auto mmult = xrt::kernel(device, uuid, "mmult");
 
-    // Create the test data and Software Result
-    for (size_t i = 0; i < matrix_size; i++) {
-        source_in1[i] = i % 10;
-        source_in2[i] = i % 10;
-        source_sw_results[i] = 0;
-        source_hw_results[i] = 0;
+    // Reservo la memoria (Buffers mapping to the group ids defined in the HLS core)
+    auto bo_a = xrt::bo(device, matrix_size * sizeof(int32_t), mmult.group_id(0));
+    auto bo_b = xrt::bo(device, matrix_size * sizeof(int32_t), mmult.group_id(1));
+    auto bo_c = xrt::bo(device, matrix_size * sizeof(int32_t), mmult.group_id(2));
+
+    // Para usarlos en el SW map a un puntero del entorno C++ tradicional
+    int32_t * bo_a_map = bo_a.map<int32_t*>();
+    int32_t * bo_b_map = bo_b.map<int32_t*>();
+    int32_t * bo_c_map = bo_c.map<int32_t*>();
+
+    // Inicializo arreglos en software para luego comparar
+    std::vector<int32_t> sw_in1(matrix_size);
+    std::vector<int32_t> sw_in2(matrix_size);
+    std::vector<int32_t> sw_out(matrix_size);
+
+    // Lleno la memoria de la FPGA localmente y configuro mis arreglos de verificacion
+    for (size_t i = 0; i < matrix_size; ++i) {
+        // Datos de entrada siguiendo los valores del test original de OpenCL
+        bo_a_map[i] = i % 10;
+        bo_b_map[i] = i % 10;
+        bo_c_map[i] = 0;
+        
+        sw_in1[i] = i % 10;
+        sw_in2[i] = i % 10;
     }
 
-    // OPENCL HOST CODE AREA START
-    auto devices = xcl::get_xil_devices();
+    // Copio la informacion (los buffers de entrada) de la PC a la FPGA (esencial en la Kria)
+    bo_a.sync(XCL_BO_SYNC_BO_TO_DEVICE);
+    bo_b.sync(XCL_BO_SYNC_BO_TO_DEVICE);
 
-    // read_binary_file() is a utility API which will load the binaryFile
-    // and will return the pointer to file buffer.
-    auto fileBuf = xcl::read_binary_file(binaryFile);
-    cl::Program::Binaries bins{{fileBuf.data(), fileBuf.size()}};
-    bool valid_device = false;
-    for (unsigned int i = 0; i < devices.size(); i++) {
-        auto device = devices[i];
-        // Creating Context and Command Queue for selected Device
-        OCL_CHECK(err, context = cl::Context(device, nullptr, nullptr, nullptr, &err));
-        OCL_CHECK(err, q = cl::CommandQueue(context, device, CL_QUEUE_PROFILING_ENABLE, &err));
-
-        std::cout << "Trying to program device[" << i << "]: " << device.getInfo<CL_DEVICE_NAME>() << std::endl;
-        cl::Program program(context, {device}, bins, nullptr, &err);
-        if (err != CL_SUCCESS) {
-            std::cout << "Failed to program device[" << i << "] with xclbin file!\n";
-        } else {
-            std::cout << "Device[" << i << "]: program successful!\n";
-            OCL_CHECK(err, krnl_systolic_array = cl::Kernel(program, "mmult", &err));
-            valid_device = true;
-            break; // we break because we found a valid device
-        }
-    }
-    if (!valid_device) {
-        std::cout << "Failed to program any device found, exit!\n";
-        exit(EXIT_FAILURE);
-    }
-
-    // Allocate Buffer in Global Memory
-    OCL_CHECK(err, cl::Buffer buffer_in1(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_ONLY, matrix_size_bytes,
-                                         source_in1.data(), &err));
-    OCL_CHECK(err, cl::Buffer buffer_in2(context, CL_MEM_USE_HOST_PTR | CL_MEM_READ_ONLY, matrix_size_bytes,
-                                         source_in2.data(), &err));
-    OCL_CHECK(err, cl::Buffer buffer_output(context, CL_MEM_USE_HOST_PTR | CL_MEM_WRITE_ONLY, matrix_size_bytes,
-                                            source_hw_results.data(), &err));
-
+    // Dimensiones requeridas por las variables escalares axilite (argumentos 3 a 5)
     int a_row = DATA_SIZE;
     int a_col = DATA_SIZE;
     int b_col = DATA_SIZE;
 
-    OCL_CHECK(err, err = krnl_systolic_array.setArg(0, buffer_in1));
-    OCL_CHECK(err, err = krnl_systolic_array.setArg(1, buffer_in2));
-    OCL_CHECK(err, err = krnl_systolic_array.setArg(2, buffer_output));
-    OCL_CHECK(err, err = krnl_systolic_array.setArg(3, a_row));
-    OCL_CHECK(err, err = krnl_systolic_array.setArg(4, a_col));
-    OCL_CHECK(err, err = krnl_systolic_array.setArg(5, b_col));
+    // Ejecuto el kernel (Asíncrono)
+    auto run = mmult(bo_a, bo_b, bo_c, a_row, a_col, b_col);
+    
+    // Espero a que el kernel termine
+    run.wait();
 
-    // Copy input data to device global memory
-    OCL_CHECK(err, err = q.enqueueMigrateMemObjects({buffer_in1, buffer_in2}, 0 /* 0 means from host*/));
+    // Copio los resultados (buffer de salida) de vuelta desde la memoria acelerada a la PC
+    bo_c.sync(XCL_BO_SYNC_BO_FROM_DEVICE);
 
-    // Launch the Kernel
-    OCL_CHECK(err, err = q.enqueueTask(krnl_systolic_array));
-    q.finish();
+    // Genero el resultado Dorado en software puramente para validar
+    m_softwareGold(sw_in1, sw_in2, sw_out);
 
-    // Copy Result from Device Global Memory to Host Local Memory
-    OCL_CHECK(err, err = q.enqueueMigrateMemObjects({buffer_output}, CL_MIGRATE_MEM_OBJECT_HOST));
-    q.finish();
-    // OPENCL HOST CODE AREA END
-
-    // Compute Software Results
-    m_softwareGold(source_in1, source_in2, source_sw_results);
-
-    // Compare the results of the Device to the simulation
+    // Compruebo las discrepancias
     int match = 0;
-    for (int i = 0; i < DATA_SIZE * DATA_SIZE; i++) {
-        if (source_hw_results[i] != source_sw_results[i]) {
+    for (size_t i = 0; i < matrix_size; i++) {
+        if (bo_c_map[i] != sw_out[i]) {
             std::cout << "Error: Result mismatch" << std::endl;
-            std::cout << "i = " << i << " CPU result = " << source_sw_results[i]
-                      << " Device result = " << source_hw_results[i] << std::endl;
+            std::cout << "i = " << i << " CPU result = " << sw_out[i]
+                      << " Device result = " << bo_c_map[i] << std::endl;
             match = 1;
             break;
         }

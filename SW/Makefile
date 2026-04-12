@@ -4,7 +4,7 @@ EXECUTABLES := host
 
 # In mult_sys_array, OpenCL bindings are needed
 CFLAGS := -I/usr/include -I/opt/xilinx/xrt/include -Wall -std=c++17 -O0 -g -I. -I../HW
-LDFLAGS := -L/opt/xilinx/xrt/lib -pthread -lOpenCL -lxrt_coreutil
+LDFLAGS := -L/opt/xilinx/xrt/lib -pthread -lxrt_core -lxrt_coreutil
 
 .PHONY: all clean
 
