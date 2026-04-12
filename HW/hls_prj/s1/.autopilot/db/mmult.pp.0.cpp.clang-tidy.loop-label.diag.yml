@@ -46,64 +46,32 @@ Diagnostics:
         Offset:          567817
         Length:          0
         ReplacementText: 'VITIS_LOOP_1247_1: '
-  - DiagnosticName:  xilinx-label-all-loops
-    Message:         'Added loop label VITIS_LOOP_154_1:  '
-    FileOffset:      154
-    FilePath:        mmult.cpp
-    Replacements:    
-      - FilePath:        /home/jgaitan/Documents/mult_sys_array/HW/hls_prj/s1/.autopilot/db/mmult.pp.0.cpp
-        Offset:          955374
-        Length:          0
-        ReplacementText: 'VITIS_LOOP_154_1: '
-  - DiagnosticName:  xilinx-label-all-loops
-    Message:         'Added loop label VITIS_LOOP_155_2:  '
-    FileOffset:      155
-    FilePath:        mmult.cpp
-    Replacements:    
-      - FilePath:        /home/jgaitan/Documents/mult_sys_array/HW/hls_prj/s1/.autopilot/db/mmult.pp.0.cpp
-        Offset:          955409
-        Length:          0
-        ReplacementText: 'VITIS_LOOP_155_2: '
-  - DiagnosticName:  xilinx-label-all-loops
-    Message:         'Added loop label VITIS_LOOP_162_3:  '
-    FileOffset:      162
-    FilePath:        mmult.cpp
-    Replacements:    
-      - FilePath:        /home/jgaitan/Documents/mult_sys_array/HW/hls_prj/s1/.autopilot/db/mmult.pp.0.cpp
-        Offset:          955502
-        Length:          0
-        ReplacementText: 'VITIS_LOOP_162_3: '
-  - DiagnosticName:  xilinx-label-all-loops
-    Message:         'Added loop label VITIS_LOOP_169_4:  '
-    FileOffset:      169
-    FilePath:        mmult.cpp
-    Replacements:    
-      - FilePath:        /home/jgaitan/Documents/mult_sys_array/HW/hls_prj/s1/.autopilot/db/mmult.pp.0.cpp
-        Offset:          955699
-        Length:          0
-        ReplacementText: 'VITIS_LOOP_169_4: '
-  - DiagnosticName:  xilinx-label-all-loops
-    Message:         'Added loop label VITIS_LOOP_170_5:  '
-    FileOffset:      170
-    FilePath:        mmult.cpp
-    Replacements:    
-      - FilePath:        /home/jgaitan/Documents/mult_sys_array/HW/hls_prj/s1/.autopilot/db/mmult.pp.0.cpp
-        Offset:          955734
-        Length:          0
-        ReplacementText: 'VITIS_LOOP_170_5: '
   - DiagnosticName:  clang-diagnostic-error
     Message:         'Invalid Directive: for current device, ram_2p + lutram is invalid combination for BIND_STORAGE''s option ''type + impl'''
-    FileOffset:      198
+    FileOffset:      158
     FilePath:        mmult.cpp
     Replacements:    
   - DiagnosticName:  clang-diagnostic-error
     Message:         'Invalid Directive: for current device, ram_2p + lutram is invalid combination for BIND_STORAGE''s option ''type + impl'''
-    FileOffset:      202
+    FileOffset:      163
     FilePath:        mmult.cpp
     Replacements:    
-  - DiagnosticName:  clang-diagnostic-error
-    Message:         'Invalid Directive: for current device, ram_s2p + lutram is invalid combination for BIND_STORAGE''s option ''type + impl'''
-    FileOffset:      207
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_195_1:  '
+    FileOffset:      195
     FilePath:        mmult.cpp
     Replacements:    
+      - FilePath:        /home/jgaitan/Documents/mult_sys_array/HW/hls_prj/s1/.autopilot/db/mmult.pp.0.cpp
+        Offset:          956397
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_195_1: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_196_2:  '
+    FileOffset:      196
+    FilePath:        mmult.cpp
+    Replacements:    
+      - FilePath:        /home/jgaitan/Documents/mult_sys_array/HW/hls_prj/s1/.autopilot/db/mmult.pp.0.cpp
+        Offset:          956432
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_196_2: '
 ...

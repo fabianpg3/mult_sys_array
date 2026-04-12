@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'mmult'" level="0">
-<item name = "Date">Sun Apr 12 17:22:35 2026
+<item name = "Date">Sun Apr 12 17:39:47 2026
 </item>
 <item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
 <item name = "Project">hls_prj</item>
@@ -15,7 +15,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="4">Clock, Target, Estimated, Uncertainty</keys>
-<column name="ap_clk">3.30 ns, 2.829 ns, 0.89 ns</column>
+<column name="ap_clk">3.30 ns, 2.365 ns, 0.89 ns</column>
 </table>
 </item>
 </section>
@@ -24,22 +24,23 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="8">, min, max, min, max, min, max, Type</keys>
-<column name="">68146, 68146, 0.225 ms, 0.225 ms, 64021, 64021, dataflow</column>
+<column name="">67606, 67606, 0.223 ms, 0.223 ms, 67607, 67607, no</column>
 </table>
 </item>
 <item name = "Detail">
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="0">
 <keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
-<column name="call_ln209_entry_proc_fu_244">entry_proc, 0, 0, 0 ns, 0 ns, 0, 0, no</column>
-<column name="grp_Loop_readA_proc_fu_251">Loop_readA_proc, 2062, 2062, 6.805 us, 6.805 us, 2062, 2062, no</column>
-<column name="grp_Loop_readB_proc_fu_264">Loop_readB_proc, 2062, 2062, 6.805 us, 6.805 us, 2062, 2062, no</column>
-<column name="grp_compute_wrapper_fu_277">compute_wrapper, 64020, 64020, 0.211 ms, 0.211 ms, 64020, 64020, no</column>
-<column name="grp_Loop_writeC_proc_fu_308">Loop_writeC_proc, 2062, 2062, 6.805 us, 6.805 us, 2062, 2062, no</column>
+<column name="grp_mmult_Pipeline_readA_fu_190">mmult_Pipeline_readA, 2050, 2050, 6.765 us, 6.765 us, 2050, 2050, no</column>
+<column name="grp_mmult_Pipeline_readB_fu_202">mmult_Pipeline_readB, 2050, 2050, 6.765 us, 6.765 us, 2050, 2050, no</column>
+<column name="grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214">mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2, 258, 258, 0.851 us, 0.851 us, 258, 258, no</column>
+<column name="grp_tile_process_fu_234">tile_process, 15873, 15873, 52.381 us, 52.381 us, 15873, 15873, no</column>
+<column name="grp_mmult_Pipeline_writeC_fu_267">mmult_Pipeline_writeC, 2051, 2051, 6.768 us, 6.768 us, 2051, 2051, no</column>
 </table>
 </item>
 <item name = "Loop"><table name="" hasTotal="0">
 <keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
+<column name="- tile_processing">63500, 63500, 15875, -, -, 4, no</column>
 </table>
 </item>
 </section>

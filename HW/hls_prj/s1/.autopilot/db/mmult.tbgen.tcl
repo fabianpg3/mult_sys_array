@@ -37767,3 +37767,696 @@ set busWriteResLatencyList {
 # RTL array port load latency information:
 set memoryLoadLatencyList { 
 }
+set moduleName mmult
+set isTopModule 1
+set isCombinational 0
+set isDatapathOnly 0
+set isPipelined 0
+set pipeline_type none
+set FunctionProtocol ap_ctrl_hs
+set isOneStateSeq 0
+set ProfileFlag 0
+set StallSigGenFlag 0
+set isEnableWaveformDebug 1
+set hasInterrupt 0
+set DLRegFirstOffset 0
+set DLRegItemOffset 0
+set C_modelName {mmult}
+set C_modelType { void 0 }
+set C_modelArgList {
+	{ a int 8 regular {array 1024 { 1 3 } 1 1 }  }
+	{ b int 8 regular {array 1024 { 1 3 } 1 1 }  }
+	{ c int 16 regular {array 1024 { 0 3 } 0 1 }  }
+	{ a_row int 32 regular  }
+	{ a_col int 32 regular  }
+	{ b_col int 32 regular  }
+}
+set hasAXIMCache 0
+set AXIMCacheInstList { }
+set C_modelArgMapList {[ 
+	{ "Name" : "a", "interface" : "memory", "bitwidth" : 8, "direction" : "READONLY"} , 
+ 	{ "Name" : "b", "interface" : "memory", "bitwidth" : 8, "direction" : "READONLY"} , 
+ 	{ "Name" : "c", "interface" : "memory", "bitwidth" : 16, "direction" : "WRITEONLY"} , 
+ 	{ "Name" : "a_row", "interface" : "wire", "bitwidth" : 32, "direction" : "READONLY"} , 
+ 	{ "Name" : "a_col", "interface" : "wire", "bitwidth" : 32, "direction" : "READONLY"} , 
+ 	{ "Name" : "b_col", "interface" : "wire", "bitwidth" : 32, "direction" : "READONLY"} ]}
+# RTL Port declarations: 
+set portNum 19
+set portList { 
+	{ ap_clk sc_in sc_logic 1 clock -1 } 
+	{ ap_rst sc_in sc_logic 1 reset -1 active_high_sync } 
+	{ ap_start sc_in sc_logic 1 start -1 } 
+	{ ap_done sc_out sc_logic 1 predone -1 } 
+	{ ap_idle sc_out sc_logic 1 done -1 } 
+	{ ap_ready sc_out sc_logic 1 ready -1 } 
+	{ a_address0 sc_out sc_lv 10 signal 0 } 
+	{ a_ce0 sc_out sc_logic 1 signal 0 } 
+	{ a_q0 sc_in sc_lv 8 signal 0 } 
+	{ b_address0 sc_out sc_lv 10 signal 1 } 
+	{ b_ce0 sc_out sc_logic 1 signal 1 } 
+	{ b_q0 sc_in sc_lv 8 signal 1 } 
+	{ c_address0 sc_out sc_lv 10 signal 2 } 
+	{ c_ce0 sc_out sc_logic 1 signal 2 } 
+	{ c_we0 sc_out sc_logic 1 signal 2 } 
+	{ c_d0 sc_out sc_lv 16 signal 2 } 
+	{ a_row sc_in sc_lv 32 signal 3 } 
+	{ a_col sc_in sc_lv 32 signal 4 } 
+	{ b_col sc_in sc_lv 32 signal 5 } 
+}
+set NewPortList {[ 
+	{ "name": "ap_clk", "direction": "in", "datatype": "sc_logic", "bitwidth":1, "type": "clock", "bundle":{"name": "ap_clk", "role": "default" }} , 
+ 	{ "name": "ap_rst", "direction": "in", "datatype": "sc_logic", "bitwidth":1, "type": "reset", "bundle":{"name": "ap_rst", "role": "default" }} , 
+ 	{ "name": "ap_start", "direction": "in", "datatype": "sc_logic", "bitwidth":1, "type": "start", "bundle":{"name": "ap_start", "role": "default" }} , 
+ 	{ "name": "ap_done", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "predone", "bundle":{"name": "ap_done", "role": "default" }} , 
+ 	{ "name": "ap_idle", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "done", "bundle":{"name": "ap_idle", "role": "default" }} , 
+ 	{ "name": "ap_ready", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "ready", "bundle":{"name": "ap_ready", "role": "default" }} , 
+ 	{ "name": "a_address0", "direction": "out", "datatype": "sc_lv", "bitwidth":10, "type": "signal", "bundle":{"name": "a", "role": "address0" }} , 
+ 	{ "name": "a_ce0", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "a", "role": "ce0" }} , 
+ 	{ "name": "a_q0", "direction": "in", "datatype": "sc_lv", "bitwidth":8, "type": "signal", "bundle":{"name": "a", "role": "q0" }} , 
+ 	{ "name": "b_address0", "direction": "out", "datatype": "sc_lv", "bitwidth":10, "type": "signal", "bundle":{"name": "b", "role": "address0" }} , 
+ 	{ "name": "b_ce0", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "b", "role": "ce0" }} , 
+ 	{ "name": "b_q0", "direction": "in", "datatype": "sc_lv", "bitwidth":8, "type": "signal", "bundle":{"name": "b", "role": "q0" }} , 
+ 	{ "name": "c_address0", "direction": "out", "datatype": "sc_lv", "bitwidth":10, "type": "signal", "bundle":{"name": "c", "role": "address0" }} , 
+ 	{ "name": "c_ce0", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "c", "role": "ce0" }} , 
+ 	{ "name": "c_we0", "direction": "out", "datatype": "sc_logic", "bitwidth":1, "type": "signal", "bundle":{"name": "c", "role": "we0" }} , 
+ 	{ "name": "c_d0", "direction": "out", "datatype": "sc_lv", "bitwidth":16, "type": "signal", "bundle":{"name": "c", "role": "d0" }} , 
+ 	{ "name": "a_row", "direction": "in", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "a_row", "role": "default" }} , 
+ 	{ "name": "a_col", "direction": "in", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "a_col", "role": "default" }} , 
+ 	{ "name": "b_col", "direction": "in", "datatype": "sc_lv", "bitwidth":32, "type": "signal", "bundle":{"name": "b_col", "role": "default" }}  ]}
+
+set RtlHierarchyInfo {[
+	{"ID" : "0", "Level" : "0", "Path" : "`AUTOTB_DUT_INST", "Parent" : "", "Child" : ["1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "27", "29", "31", "56", "63", "64"],
+		"CDFG" : "mmult",
+		"Protocol" : "ap_ctrl_hs",
+		"ControlExist" : "1", "ap_start" : "1", "ap_ready" : "1", "ap_done" : "1", "ap_continue" : "0", "ap_idle" : "1", "real_start" : "0",
+		"Pipeline" : "None", "UnalignedPipeline" : "0", "RewindPipeline" : "0", "ProcessNetwork" : "0",
+		"II" : "0",
+		"VariableLatency" : "1", "ExactLatency" : "-1", "EstimateLatencyMin" : "67606", "EstimateLatencyMax" : "67606",
+		"Combinational" : "0",
+		"Datapath" : "0",
+		"ClockEnable" : "0",
+		"HasSubDataflow" : "0",
+		"InDataflowNetwork" : "0",
+		"HasNonBlockingOperation" : "0",
+		"IsBlackBox" : "0",
+		"Port" : [
+			{"Name" : "a", "Type" : "Memory", "Direction" : "I",
+				"SubConnect" : [
+					{"ID" : "25", "SubInstance" : "grp_mmult_Pipeline_readA_fu_190", "Port" : "a", "Inst_start_state" : "2", "Inst_end_state" : "3"}]},
+			{"Name" : "b", "Type" : "Memory", "Direction" : "I",
+				"SubConnect" : [
+					{"ID" : "27", "SubInstance" : "grp_mmult_Pipeline_readB_fu_202", "Port" : "b", "Inst_start_state" : "2", "Inst_end_state" : "3"}]},
+			{"Name" : "c", "Type" : "Memory", "Direction" : "O",
+				"SubConnect" : [
+					{"ID" : "56", "SubInstance" : "grp_mmult_Pipeline_writeC_fu_267", "Port" : "c", "Inst_start_state" : "6", "Inst_end_state" : "7"}]},
+			{"Name" : "a_row", "Type" : "None", "Direction" : "I"},
+			{"Name" : "a_col", "Type" : "None", "Direction" : "I"},
+			{"Name" : "b_col", "Type" : "None", "Direction" : "I"}],
+		"Loop" : [
+			{"Name" : "tile_processing", "PipelineType" : "no",
+				"LoopDec" : {"FSMBitwidth" : "7", "FirstState" : "ap_ST_fsm_state4", "LastState" : ["ap_ST_fsm_state5"], "QuitState" : ["ap_ST_fsm_state4"], "PreState" : ["ap_ST_fsm_state3"], "PostState" : ["ap_ST_fsm_state6"], "OneDepthLoop" : "0", "OneStateBlock": ""}}]},
+	{"ID" : "1", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.localA_U", "Parent" : "0"},
+	{"ID" : "2", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.localA_1_U", "Parent" : "0"},
+	{"ID" : "3", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.localA_2_U", "Parent" : "0"},
+	{"ID" : "4", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.localA_3_U", "Parent" : "0"},
+	{"ID" : "5", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.localB_U", "Parent" : "0"},
+	{"ID" : "6", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.localB_1_U", "Parent" : "0"},
+	{"ID" : "7", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.localB_2_U", "Parent" : "0"},
+	{"ID" : "8", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.localB_3_U", "Parent" : "0"},
+	{"ID" : "9", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.localC_U", "Parent" : "0"},
+	{"ID" : "10", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.localC_1_U", "Parent" : "0"},
+	{"ID" : "11", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.localC_2_U", "Parent" : "0"},
+	{"ID" : "12", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.localC_3_U", "Parent" : "0"},
+	{"ID" : "13", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.localC_4_U", "Parent" : "0"},
+	{"ID" : "14", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.localC_5_U", "Parent" : "0"},
+	{"ID" : "15", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.localC_6_U", "Parent" : "0"},
+	{"ID" : "16", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.localC_7_U", "Parent" : "0"},
+	{"ID" : "17", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.localC_8_U", "Parent" : "0"},
+	{"ID" : "18", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.localC_9_U", "Parent" : "0"},
+	{"ID" : "19", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.localC_10_U", "Parent" : "0"},
+	{"ID" : "20", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.localC_11_U", "Parent" : "0"},
+	{"ID" : "21", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.localC_12_U", "Parent" : "0"},
+	{"ID" : "22", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.localC_13_U", "Parent" : "0"},
+	{"ID" : "23", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.localC_14_U", "Parent" : "0"},
+	{"ID" : "24", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.localC_15_U", "Parent" : "0"},
+	{"ID" : "25", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.grp_mmult_Pipeline_readA_fu_190", "Parent" : "0", "Child" : ["26"],
+		"CDFG" : "mmult_Pipeline_readA",
+		"Protocol" : "ap_ctrl_hs",
+		"ControlExist" : "1", "ap_start" : "1", "ap_ready" : "1", "ap_done" : "1", "ap_continue" : "0", "ap_idle" : "1", "real_start" : "0",
+		"Pipeline" : "None", "UnalignedPipeline" : "0", "RewindPipeline" : "0", "ProcessNetwork" : "0",
+		"II" : "0",
+		"VariableLatency" : "1", "ExactLatency" : "-1", "EstimateLatencyMin" : "2050", "EstimateLatencyMax" : "2050",
+		"Combinational" : "0",
+		"Datapath" : "0",
+		"ClockEnable" : "0",
+		"HasSubDataflow" : "0",
+		"InDataflowNetwork" : "0",
+		"HasNonBlockingOperation" : "0",
+		"IsBlackBox" : "0",
+		"Port" : [
+			{"Name" : "mul", "Type" : "None", "Direction" : "I"},
+			{"Name" : "localA_3", "Type" : "Memory", "Direction" : "O"},
+			{"Name" : "localA_2", "Type" : "Memory", "Direction" : "O"},
+			{"Name" : "localA_1", "Type" : "Memory", "Direction" : "O"},
+			{"Name" : "localA", "Type" : "Memory", "Direction" : "O"},
+			{"Name" : "a_col", "Type" : "None", "Direction" : "I"},
+			{"Name" : "a", "Type" : "Memory", "Direction" : "I"}],
+		"Loop" : [
+			{"Name" : "readA", "PipelineType" : "UPC",
+				"LoopDec" : {"FSMBitwidth" : "2", "FirstState" : "ap_ST_fsm_pp0_stage0", "FirstStateIter" : "ap_enable_reg_pp0_iter0", "FirstStateBlock" : "ap_block_pp0_stage0_subdone", "LastState" : "ap_ST_fsm_pp0_stage0", "LastStateIter" : "ap_enable_reg_pp0_iter1", "LastStateBlock" : "ap_block_pp0_stage0_subdone", "QuitState" : "ap_ST_fsm_pp0_stage1", "QuitStateIter" : "ap_enable_reg_pp0_iter0", "QuitStateBlock" : "ap_block_pp0_stage1_subdone", "OneDepthLoop" : "0", "has_ap_ctrl" : "1", "has_continue" : "0"}}]},
+	{"ID" : "26", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_mmult_Pipeline_readA_fu_190.flow_control_loop_pipe_sequential_init_U", "Parent" : "25"},
+	{"ID" : "27", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.grp_mmult_Pipeline_readB_fu_202", "Parent" : "0", "Child" : ["28"],
+		"CDFG" : "mmult_Pipeline_readB",
+		"Protocol" : "ap_ctrl_hs",
+		"ControlExist" : "1", "ap_start" : "1", "ap_ready" : "1", "ap_done" : "1", "ap_continue" : "0", "ap_idle" : "1", "real_start" : "0",
+		"Pipeline" : "None", "UnalignedPipeline" : "0", "RewindPipeline" : "0", "ProcessNetwork" : "0",
+		"II" : "0",
+		"VariableLatency" : "1", "ExactLatency" : "-1", "EstimateLatencyMin" : "2050", "EstimateLatencyMax" : "2050",
+		"Combinational" : "0",
+		"Datapath" : "0",
+		"ClockEnable" : "0",
+		"HasSubDataflow" : "0",
+		"InDataflowNetwork" : "0",
+		"HasNonBlockingOperation" : "0",
+		"IsBlackBox" : "0",
+		"Port" : [
+			{"Name" : "mul12", "Type" : "None", "Direction" : "I"},
+			{"Name" : "localB_3", "Type" : "Memory", "Direction" : "O"},
+			{"Name" : "localB_2", "Type" : "Memory", "Direction" : "O"},
+			{"Name" : "localB_1", "Type" : "Memory", "Direction" : "O"},
+			{"Name" : "localB", "Type" : "Memory", "Direction" : "O"},
+			{"Name" : "b_col", "Type" : "None", "Direction" : "I"},
+			{"Name" : "b", "Type" : "Memory", "Direction" : "I"}],
+		"Loop" : [
+			{"Name" : "readB", "PipelineType" : "UPC",
+				"LoopDec" : {"FSMBitwidth" : "2", "FirstState" : "ap_ST_fsm_pp0_stage0", "FirstStateIter" : "ap_enable_reg_pp0_iter0", "FirstStateBlock" : "ap_block_pp0_stage0_subdone", "LastState" : "ap_ST_fsm_pp0_stage0", "LastStateIter" : "ap_enable_reg_pp0_iter1", "LastStateBlock" : "ap_block_pp0_stage0_subdone", "QuitState" : "ap_ST_fsm_pp0_stage1", "QuitStateIter" : "ap_enable_reg_pp0_iter0", "QuitStateBlock" : "ap_block_pp0_stage1_subdone", "OneDepthLoop" : "0", "has_ap_ctrl" : "1", "has_continue" : "0"}}]},
+	{"ID" : "28", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_mmult_Pipeline_readB_fu_202.flow_control_loop_pipe_sequential_init_U", "Parent" : "27"},
+	{"ID" : "29", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214", "Parent" : "0", "Child" : ["30"],
+		"CDFG" : "mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2",
+		"Protocol" : "ap_ctrl_hs",
+		"ControlExist" : "1", "ap_start" : "1", "ap_ready" : "1", "ap_done" : "1", "ap_continue" : "0", "ap_idle" : "1", "real_start" : "0",
+		"Pipeline" : "None", "UnalignedPipeline" : "0", "RewindPipeline" : "0", "ProcessNetwork" : "0",
+		"II" : "0",
+		"VariableLatency" : "1", "ExactLatency" : "-1", "EstimateLatencyMin" : "258", "EstimateLatencyMax" : "258",
+		"Combinational" : "0",
+		"Datapath" : "0",
+		"ClockEnable" : "0",
+		"HasSubDataflow" : "0",
+		"InDataflowNetwork" : "0",
+		"HasNonBlockingOperation" : "0",
+		"IsBlackBox" : "0",
+		"Port" : [
+			{"Name" : "localC", "Type" : "Memory", "Direction" : "O"},
+			{"Name" : "localC_1", "Type" : "Memory", "Direction" : "O"},
+			{"Name" : "localC_2", "Type" : "Memory", "Direction" : "O"},
+			{"Name" : "localC_3", "Type" : "Memory", "Direction" : "O"},
+			{"Name" : "localC_4", "Type" : "Memory", "Direction" : "O"},
+			{"Name" : "localC_5", "Type" : "Memory", "Direction" : "O"},
+			{"Name" : "localC_6", "Type" : "Memory", "Direction" : "O"},
+			{"Name" : "localC_7", "Type" : "Memory", "Direction" : "O"},
+			{"Name" : "localC_8", "Type" : "Memory", "Direction" : "O"},
+			{"Name" : "localC_9", "Type" : "Memory", "Direction" : "O"},
+			{"Name" : "localC_10", "Type" : "Memory", "Direction" : "O"},
+			{"Name" : "localC_11", "Type" : "Memory", "Direction" : "O"},
+			{"Name" : "localC_12", "Type" : "Memory", "Direction" : "O"},
+			{"Name" : "localC_13", "Type" : "Memory", "Direction" : "O"},
+			{"Name" : "localC_14", "Type" : "Memory", "Direction" : "O"},
+			{"Name" : "localC_15", "Type" : "Memory", "Direction" : "O"}],
+		"Loop" : [
+			{"Name" : "VITIS_LOOP_195_1_VITIS_LOOP_196_2", "PipelineType" : "UPC",
+				"LoopDec" : {"FSMBitwidth" : "1", "FirstState" : "ap_ST_fsm_pp0_stage0", "FirstStateIter" : "ap_enable_reg_pp0_iter0", "FirstStateBlock" : "ap_block_pp0_stage0_subdone", "LastState" : "ap_ST_fsm_pp0_stage0", "LastStateIter" : "ap_enable_reg_pp0_iter1", "LastStateBlock" : "ap_block_pp0_stage0_subdone", "QuitState" : "ap_ST_fsm_pp0_stage0", "QuitStateIter" : "ap_enable_reg_pp0_iter1", "QuitStateBlock" : "ap_block_pp0_stage0_subdone", "OneDepthLoop" : "0", "has_ap_ctrl" : "1", "has_continue" : "0"}}]},
+	{"ID" : "30", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214.flow_control_loop_pipe_sequential_init_U", "Parent" : "29"},
+	{"ID" : "31", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.grp_tile_process_fu_234", "Parent" : "0", "Child" : ["32", "38", "44", "50"],
+		"CDFG" : "tile_process",
+		"Protocol" : "ap_ctrl_hs",
+		"ControlExist" : "1", "ap_start" : "1", "ap_ready" : "1", "ap_done" : "1", "ap_continue" : "0", "ap_idle" : "1", "real_start" : "0",
+		"Pipeline" : "None", "UnalignedPipeline" : "0", "RewindPipeline" : "0", "ProcessNetwork" : "0",
+		"II" : "0",
+		"VariableLatency" : "1", "ExactLatency" : "-1", "EstimateLatencyMin" : "15873", "EstimateLatencyMax" : "15873",
+		"Combinational" : "0",
+		"Datapath" : "0",
+		"ClockEnable" : "0",
+		"HasSubDataflow" : "0",
+		"InDataflowNetwork" : "0",
+		"HasNonBlockingOperation" : "0",
+		"IsBlackBox" : "0",
+		"Port" : [
+			{"Name" : "a_row_major_0", "Type" : "Memory", "Direction" : "I"},
+			{"Name" : "a_row_major_1", "Type" : "Memory", "Direction" : "I"},
+			{"Name" : "a_row_major_2", "Type" : "Memory", "Direction" : "I"},
+			{"Name" : "a_row_major_3", "Type" : "Memory", "Direction" : "I"},
+			{"Name" : "b_row_major_0", "Type" : "Memory", "Direction" : "I",
+				"SubConnect" : [
+					{"ID" : "44", "SubInstance" : "grp_tile_process_Pipeline_systolic33_fu_274", "Port" : "b_row_major_0", "Inst_start_state" : "8", "Inst_end_state" : "9"},
+					{"ID" : "50", "SubInstance" : "grp_tile_process_Pipeline_systolic34_fu_299", "Port" : "b_row_major_0", "Inst_start_state" : "10", "Inst_end_state" : "11"},
+					{"ID" : "32", "SubInstance" : "grp_tile_process_Pipeline_systolic3_fu_224", "Port" : "b_row_major_0", "Inst_start_state" : "4", "Inst_end_state" : "5"},
+					{"ID" : "38", "SubInstance" : "grp_tile_process_Pipeline_systolic32_fu_249", "Port" : "b_row_major_0", "Inst_start_state" : "6", "Inst_end_state" : "7"}]},
+			{"Name" : "b_row_major_1", "Type" : "Memory", "Direction" : "I",
+				"SubConnect" : [
+					{"ID" : "44", "SubInstance" : "grp_tile_process_Pipeline_systolic33_fu_274", "Port" : "b_row_major_1", "Inst_start_state" : "8", "Inst_end_state" : "9"},
+					{"ID" : "50", "SubInstance" : "grp_tile_process_Pipeline_systolic34_fu_299", "Port" : "b_row_major_1", "Inst_start_state" : "10", "Inst_end_state" : "11"},
+					{"ID" : "32", "SubInstance" : "grp_tile_process_Pipeline_systolic3_fu_224", "Port" : "b_row_major_1", "Inst_start_state" : "4", "Inst_end_state" : "5"},
+					{"ID" : "38", "SubInstance" : "grp_tile_process_Pipeline_systolic32_fu_249", "Port" : "b_row_major_1", "Inst_start_state" : "6", "Inst_end_state" : "7"}]},
+			{"Name" : "b_row_major_2", "Type" : "Memory", "Direction" : "I",
+				"SubConnect" : [
+					{"ID" : "44", "SubInstance" : "grp_tile_process_Pipeline_systolic33_fu_274", "Port" : "b_row_major_2", "Inst_start_state" : "8", "Inst_end_state" : "9"},
+					{"ID" : "50", "SubInstance" : "grp_tile_process_Pipeline_systolic34_fu_299", "Port" : "b_row_major_2", "Inst_start_state" : "10", "Inst_end_state" : "11"},
+					{"ID" : "32", "SubInstance" : "grp_tile_process_Pipeline_systolic3_fu_224", "Port" : "b_row_major_2", "Inst_start_state" : "4", "Inst_end_state" : "5"},
+					{"ID" : "38", "SubInstance" : "grp_tile_process_Pipeline_systolic32_fu_249", "Port" : "b_row_major_2", "Inst_start_state" : "6", "Inst_end_state" : "7"}]},
+			{"Name" : "b_row_major_3", "Type" : "Memory", "Direction" : "I",
+				"SubConnect" : [
+					{"ID" : "44", "SubInstance" : "grp_tile_process_Pipeline_systolic33_fu_274", "Port" : "b_row_major_3", "Inst_start_state" : "8", "Inst_end_state" : "9"},
+					{"ID" : "50", "SubInstance" : "grp_tile_process_Pipeline_systolic34_fu_299", "Port" : "b_row_major_3", "Inst_start_state" : "10", "Inst_end_state" : "11"},
+					{"ID" : "32", "SubInstance" : "grp_tile_process_Pipeline_systolic3_fu_224", "Port" : "b_row_major_3", "Inst_start_state" : "4", "Inst_end_state" : "5"},
+					{"ID" : "38", "SubInstance" : "grp_tile_process_Pipeline_systolic32_fu_249", "Port" : "b_row_major_3", "Inst_start_state" : "6", "Inst_end_state" : "7"}]},
+			{"Name" : "c_row_major_0_0", "Type" : "Memory", "Direction" : "IO",
+				"SubConnect" : [
+					{"ID" : "32", "SubInstance" : "grp_tile_process_Pipeline_systolic3_fu_224", "Port" : "c_row_major_0_0", "Inst_start_state" : "4", "Inst_end_state" : "5"}]},
+			{"Name" : "c_row_major_0_1", "Type" : "Memory", "Direction" : "IO",
+				"SubConnect" : [
+					{"ID" : "32", "SubInstance" : "grp_tile_process_Pipeline_systolic3_fu_224", "Port" : "c_row_major_0_1", "Inst_start_state" : "4", "Inst_end_state" : "5"}]},
+			{"Name" : "c_row_major_0_2", "Type" : "Memory", "Direction" : "IO",
+				"SubConnect" : [
+					{"ID" : "32", "SubInstance" : "grp_tile_process_Pipeline_systolic3_fu_224", "Port" : "c_row_major_0_2", "Inst_start_state" : "4", "Inst_end_state" : "5"}]},
+			{"Name" : "c_row_major_0_3", "Type" : "Memory", "Direction" : "IO",
+				"SubConnect" : [
+					{"ID" : "32", "SubInstance" : "grp_tile_process_Pipeline_systolic3_fu_224", "Port" : "c_row_major_0_3", "Inst_start_state" : "4", "Inst_end_state" : "5"}]},
+			{"Name" : "c_row_major_1_0", "Type" : "Memory", "Direction" : "IO",
+				"SubConnect" : [
+					{"ID" : "38", "SubInstance" : "grp_tile_process_Pipeline_systolic32_fu_249", "Port" : "c_row_major_1_0", "Inst_start_state" : "6", "Inst_end_state" : "7"}]},
+			{"Name" : "c_row_major_1_1", "Type" : "Memory", "Direction" : "IO",
+				"SubConnect" : [
+					{"ID" : "38", "SubInstance" : "grp_tile_process_Pipeline_systolic32_fu_249", "Port" : "c_row_major_1_1", "Inst_start_state" : "6", "Inst_end_state" : "7"}]},
+			{"Name" : "c_row_major_1_2", "Type" : "Memory", "Direction" : "IO",
+				"SubConnect" : [
+					{"ID" : "38", "SubInstance" : "grp_tile_process_Pipeline_systolic32_fu_249", "Port" : "c_row_major_1_2", "Inst_start_state" : "6", "Inst_end_state" : "7"}]},
+			{"Name" : "c_row_major_1_3", "Type" : "Memory", "Direction" : "IO",
+				"SubConnect" : [
+					{"ID" : "38", "SubInstance" : "grp_tile_process_Pipeline_systolic32_fu_249", "Port" : "c_row_major_1_3", "Inst_start_state" : "6", "Inst_end_state" : "7"}]},
+			{"Name" : "c_row_major_2_0", "Type" : "Memory", "Direction" : "IO",
+				"SubConnect" : [
+					{"ID" : "44", "SubInstance" : "grp_tile_process_Pipeline_systolic33_fu_274", "Port" : "c_row_major_2_0", "Inst_start_state" : "8", "Inst_end_state" : "9"}]},
+			{"Name" : "c_row_major_2_1", "Type" : "Memory", "Direction" : "IO",
+				"SubConnect" : [
+					{"ID" : "44", "SubInstance" : "grp_tile_process_Pipeline_systolic33_fu_274", "Port" : "c_row_major_2_1", "Inst_start_state" : "8", "Inst_end_state" : "9"}]},
+			{"Name" : "c_row_major_2_2", "Type" : "Memory", "Direction" : "IO",
+				"SubConnect" : [
+					{"ID" : "44", "SubInstance" : "grp_tile_process_Pipeline_systolic33_fu_274", "Port" : "c_row_major_2_2", "Inst_start_state" : "8", "Inst_end_state" : "9"}]},
+			{"Name" : "c_row_major_2_3", "Type" : "Memory", "Direction" : "IO",
+				"SubConnect" : [
+					{"ID" : "44", "SubInstance" : "grp_tile_process_Pipeline_systolic33_fu_274", "Port" : "c_row_major_2_3", "Inst_start_state" : "8", "Inst_end_state" : "9"}]},
+			{"Name" : "c_row_major_3_0", "Type" : "Memory", "Direction" : "IO",
+				"SubConnect" : [
+					{"ID" : "50", "SubInstance" : "grp_tile_process_Pipeline_systolic34_fu_299", "Port" : "c_row_major_3_0", "Inst_start_state" : "10", "Inst_end_state" : "11"}]},
+			{"Name" : "c_row_major_3_1", "Type" : "Memory", "Direction" : "IO",
+				"SubConnect" : [
+					{"ID" : "50", "SubInstance" : "grp_tile_process_Pipeline_systolic34_fu_299", "Port" : "c_row_major_3_1", "Inst_start_state" : "10", "Inst_end_state" : "11"}]},
+			{"Name" : "c_row_major_3_2", "Type" : "Memory", "Direction" : "IO",
+				"SubConnect" : [
+					{"ID" : "50", "SubInstance" : "grp_tile_process_Pipeline_systolic34_fu_299", "Port" : "c_row_major_3_2", "Inst_start_state" : "10", "Inst_end_state" : "11"}]},
+			{"Name" : "c_row_major_3_3", "Type" : "Memory", "Direction" : "IO",
+				"SubConnect" : [
+					{"ID" : "50", "SubInstance" : "grp_tile_process_Pipeline_systolic34_fu_299", "Port" : "c_row_major_3_3", "Inst_start_state" : "10", "Inst_end_state" : "11"}]},
+			{"Name" : "start_k", "Type" : "None", "Direction" : "I"},
+			{"Name" : "finish_k", "Type" : "None", "Direction" : "I"},
+			{"Name" : "a_row", "Type" : "None", "Direction" : "I"},
+			{"Name" : "a_col", "Type" : "None", "Direction" : "I"},
+			{"Name" : "b_col", "Type" : "None", "Direction" : "I"}],
+		"Loop" : [
+			{"Name" : "systolic1_systolic2", "PipelineType" : "no",
+				"LoopDec" : {"FSMBitwidth" : "11", "FirstState" : "ap_ST_fsm_state2", "LastState" : ["ap_ST_fsm_state11"], "QuitState" : ["ap_ST_fsm_state2"], "PreState" : ["ap_ST_fsm_state1"], "PostState" : ["ap_ST_fsm_state1"], "OneDepthLoop" : "0", "OneStateBlock": ""}}]},
+	{"ID" : "32", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_tile_process_fu_234.grp_tile_process_Pipeline_systolic3_fu_224", "Parent" : "31", "Child" : ["33", "34", "35", "36", "37"],
+		"CDFG" : "tile_process_Pipeline_systolic3",
+		"Protocol" : "ap_ctrl_hs",
+		"ControlExist" : "1", "ap_start" : "1", "ap_ready" : "1", "ap_done" : "1", "ap_continue" : "0", "ap_idle" : "1", "real_start" : "0",
+		"Pipeline" : "None", "UnalignedPipeline" : "0", "RewindPipeline" : "0", "ProcessNetwork" : "0",
+		"II" : "0",
+		"VariableLatency" : "1", "ExactLatency" : "-1", "EstimateLatencyMin" : "13", "EstimateLatencyMax" : "13",
+		"Combinational" : "0",
+		"Datapath" : "0",
+		"ClockEnable" : "0",
+		"HasSubDataflow" : "0",
+		"InDataflowNetwork" : "0",
+		"HasNonBlockingOperation" : "0",
+		"IsBlackBox" : "0",
+		"Port" : [
+			{"Name" : "select_ln117_3", "Type" : "None", "Direction" : "I"},
+			{"Name" : "b_row_major_0", "Type" : "Memory", "Direction" : "I"},
+			{"Name" : "b_row_major_1", "Type" : "Memory", "Direction" : "I"},
+			{"Name" : "b_row_major_2", "Type" : "Memory", "Direction" : "I"},
+			{"Name" : "b_row_major_3", "Type" : "Memory", "Direction" : "I"},
+			{"Name" : "select_ln117", "Type" : "None", "Direction" : "I"},
+			{"Name" : "c_row_major_0_0", "Type" : "Memory", "Direction" : "IO"},
+			{"Name" : "c_row_major_0_1", "Type" : "Memory", "Direction" : "IO"},
+			{"Name" : "c_row_major_0_2", "Type" : "Memory", "Direction" : "IO"},
+			{"Name" : "c_row_major_0_3", "Type" : "Memory", "Direction" : "IO"},
+			{"Name" : "b_col", "Type" : "None", "Direction" : "I"},
+			{"Name" : "select_ln117_1", "Type" : "None", "Direction" : "I"},
+			{"Name" : "sext_ln134", "Type" : "None", "Direction" : "I"}],
+		"Loop" : [
+			{"Name" : "systolic3", "PipelineType" : "UPC",
+				"LoopDec" : {"FSMBitwidth" : "1", "FirstState" : "ap_ST_fsm_pp0_stage0", "FirstStateIter" : "ap_enable_reg_pp0_iter0", "FirstStateBlock" : "ap_block_pp0_stage0_subdone", "LastState" : "ap_ST_fsm_pp0_stage0", "LastStateIter" : "ap_enable_reg_pp0_iter4", "LastStateBlock" : "ap_block_pp0_stage0_subdone", "QuitState" : "ap_ST_fsm_pp0_stage0", "QuitStateIter" : "ap_enable_reg_pp0_iter4", "QuitStateBlock" : "ap_block_pp0_stage0_subdone", "OneDepthLoop" : "0", "has_ap_ctrl" : "1", "has_continue" : "0"}}]},
+	{"ID" : "33", "Level" : "3", "Path" : "`AUTOTB_DUT_INST.grp_tile_process_fu_234.grp_tile_process_Pipeline_systolic3_fu_224.mac_muladd_8s_8s_16ns_16_4_1_U31", "Parent" : "32"},
+	{"ID" : "34", "Level" : "3", "Path" : "`AUTOTB_DUT_INST.grp_tile_process_fu_234.grp_tile_process_Pipeline_systolic3_fu_224.mac_muladd_8s_8s_16ns_16_4_1_U32", "Parent" : "32"},
+	{"ID" : "35", "Level" : "3", "Path" : "`AUTOTB_DUT_INST.grp_tile_process_fu_234.grp_tile_process_Pipeline_systolic3_fu_224.mac_muladd_8s_8s_16ns_16_4_1_U33", "Parent" : "32"},
+	{"ID" : "36", "Level" : "3", "Path" : "`AUTOTB_DUT_INST.grp_tile_process_fu_234.grp_tile_process_Pipeline_systolic3_fu_224.mac_muladd_8s_8s_16ns_16_4_1_U34", "Parent" : "32"},
+	{"ID" : "37", "Level" : "3", "Path" : "`AUTOTB_DUT_INST.grp_tile_process_fu_234.grp_tile_process_Pipeline_systolic3_fu_224.flow_control_loop_pipe_sequential_init_U", "Parent" : "32"},
+	{"ID" : "38", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_tile_process_fu_234.grp_tile_process_Pipeline_systolic32_fu_249", "Parent" : "31", "Child" : ["39", "40", "41", "42", "43"],
+		"CDFG" : "tile_process_Pipeline_systolic32",
+		"Protocol" : "ap_ctrl_hs",
+		"ControlExist" : "1", "ap_start" : "1", "ap_ready" : "1", "ap_done" : "1", "ap_continue" : "0", "ap_idle" : "1", "real_start" : "0",
+		"Pipeline" : "None", "UnalignedPipeline" : "0", "RewindPipeline" : "0", "ProcessNetwork" : "0",
+		"II" : "0",
+		"VariableLatency" : "1", "ExactLatency" : "-1", "EstimateLatencyMin" : "13", "EstimateLatencyMax" : "13",
+		"Combinational" : "0",
+		"Datapath" : "0",
+		"ClockEnable" : "0",
+		"HasSubDataflow" : "0",
+		"InDataflowNetwork" : "0",
+		"HasNonBlockingOperation" : "0",
+		"IsBlackBox" : "0",
+		"Port" : [
+			{"Name" : "select_ln117_3", "Type" : "None", "Direction" : "I"},
+			{"Name" : "b_row_major_0", "Type" : "Memory", "Direction" : "I"},
+			{"Name" : "b_row_major_1", "Type" : "Memory", "Direction" : "I"},
+			{"Name" : "b_row_major_2", "Type" : "Memory", "Direction" : "I"},
+			{"Name" : "b_row_major_3", "Type" : "Memory", "Direction" : "I"},
+			{"Name" : "select_ln117", "Type" : "None", "Direction" : "I"},
+			{"Name" : "c_row_major_1_0", "Type" : "Memory", "Direction" : "IO"},
+			{"Name" : "c_row_major_1_1", "Type" : "Memory", "Direction" : "IO"},
+			{"Name" : "c_row_major_1_2", "Type" : "Memory", "Direction" : "IO"},
+			{"Name" : "c_row_major_1_3", "Type" : "Memory", "Direction" : "IO"},
+			{"Name" : "b_col", "Type" : "None", "Direction" : "I"},
+			{"Name" : "select_ln117_1", "Type" : "None", "Direction" : "I"},
+			{"Name" : "sext_ln134_3", "Type" : "None", "Direction" : "I"}],
+		"Loop" : [
+			{"Name" : "systolic3", "PipelineType" : "UPC",
+				"LoopDec" : {"FSMBitwidth" : "1", "FirstState" : "ap_ST_fsm_pp0_stage0", "FirstStateIter" : "ap_enable_reg_pp0_iter0", "FirstStateBlock" : "ap_block_pp0_stage0_subdone", "LastState" : "ap_ST_fsm_pp0_stage0", "LastStateIter" : "ap_enable_reg_pp0_iter4", "LastStateBlock" : "ap_block_pp0_stage0_subdone", "QuitState" : "ap_ST_fsm_pp0_stage0", "QuitStateIter" : "ap_enable_reg_pp0_iter4", "QuitStateBlock" : "ap_block_pp0_stage0_subdone", "OneDepthLoop" : "0", "has_ap_ctrl" : "1", "has_continue" : "0"}}]},
+	{"ID" : "39", "Level" : "3", "Path" : "`AUTOTB_DUT_INST.grp_tile_process_fu_234.grp_tile_process_Pipeline_systolic32_fu_249.mac_muladd_8s_8s_16ns_16_4_1_U49", "Parent" : "38"},
+	{"ID" : "40", "Level" : "3", "Path" : "`AUTOTB_DUT_INST.grp_tile_process_fu_234.grp_tile_process_Pipeline_systolic32_fu_249.mac_muladd_8s_8s_16ns_16_4_1_U50", "Parent" : "38"},
+	{"ID" : "41", "Level" : "3", "Path" : "`AUTOTB_DUT_INST.grp_tile_process_fu_234.grp_tile_process_Pipeline_systolic32_fu_249.mac_muladd_8s_8s_16ns_16_4_1_U51", "Parent" : "38"},
+	{"ID" : "42", "Level" : "3", "Path" : "`AUTOTB_DUT_INST.grp_tile_process_fu_234.grp_tile_process_Pipeline_systolic32_fu_249.mac_muladd_8s_8s_16ns_16_4_1_U52", "Parent" : "38"},
+	{"ID" : "43", "Level" : "3", "Path" : "`AUTOTB_DUT_INST.grp_tile_process_fu_234.grp_tile_process_Pipeline_systolic32_fu_249.flow_control_loop_pipe_sequential_init_U", "Parent" : "38"},
+	{"ID" : "44", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_tile_process_fu_234.grp_tile_process_Pipeline_systolic33_fu_274", "Parent" : "31", "Child" : ["45", "46", "47", "48", "49"],
+		"CDFG" : "tile_process_Pipeline_systolic33",
+		"Protocol" : "ap_ctrl_hs",
+		"ControlExist" : "1", "ap_start" : "1", "ap_ready" : "1", "ap_done" : "1", "ap_continue" : "0", "ap_idle" : "1", "real_start" : "0",
+		"Pipeline" : "None", "UnalignedPipeline" : "0", "RewindPipeline" : "0", "ProcessNetwork" : "0",
+		"II" : "0",
+		"VariableLatency" : "1", "ExactLatency" : "-1", "EstimateLatencyMin" : "13", "EstimateLatencyMax" : "13",
+		"Combinational" : "0",
+		"Datapath" : "0",
+		"ClockEnable" : "0",
+		"HasSubDataflow" : "0",
+		"InDataflowNetwork" : "0",
+		"HasNonBlockingOperation" : "0",
+		"IsBlackBox" : "0",
+		"Port" : [
+			{"Name" : "select_ln117_3", "Type" : "None", "Direction" : "I"},
+			{"Name" : "b_row_major_0", "Type" : "Memory", "Direction" : "I"},
+			{"Name" : "b_row_major_1", "Type" : "Memory", "Direction" : "I"},
+			{"Name" : "b_row_major_2", "Type" : "Memory", "Direction" : "I"},
+			{"Name" : "b_row_major_3", "Type" : "Memory", "Direction" : "I"},
+			{"Name" : "select_ln117", "Type" : "None", "Direction" : "I"},
+			{"Name" : "c_row_major_2_0", "Type" : "Memory", "Direction" : "IO"},
+			{"Name" : "c_row_major_2_1", "Type" : "Memory", "Direction" : "IO"},
+			{"Name" : "c_row_major_2_2", "Type" : "Memory", "Direction" : "IO"},
+			{"Name" : "c_row_major_2_3", "Type" : "Memory", "Direction" : "IO"},
+			{"Name" : "b_col", "Type" : "None", "Direction" : "I"},
+			{"Name" : "select_ln117_1", "Type" : "None", "Direction" : "I"},
+			{"Name" : "sext_ln134_8", "Type" : "None", "Direction" : "I"}],
+		"Loop" : [
+			{"Name" : "systolic3", "PipelineType" : "UPC",
+				"LoopDec" : {"FSMBitwidth" : "1", "FirstState" : "ap_ST_fsm_pp0_stage0", "FirstStateIter" : "ap_enable_reg_pp0_iter0", "FirstStateBlock" : "ap_block_pp0_stage0_subdone", "LastState" : "ap_ST_fsm_pp0_stage0", "LastStateIter" : "ap_enable_reg_pp0_iter4", "LastStateBlock" : "ap_block_pp0_stage0_subdone", "QuitState" : "ap_ST_fsm_pp0_stage0", "QuitStateIter" : "ap_enable_reg_pp0_iter4", "QuitStateBlock" : "ap_block_pp0_stage0_subdone", "OneDepthLoop" : "0", "has_ap_ctrl" : "1", "has_continue" : "0"}}]},
+	{"ID" : "45", "Level" : "3", "Path" : "`AUTOTB_DUT_INST.grp_tile_process_fu_234.grp_tile_process_Pipeline_systolic33_fu_274.mac_muladd_8s_8s_16ns_16_4_1_U66", "Parent" : "44"},
+	{"ID" : "46", "Level" : "3", "Path" : "`AUTOTB_DUT_INST.grp_tile_process_fu_234.grp_tile_process_Pipeline_systolic33_fu_274.mac_muladd_8s_8s_16ns_16_4_1_U67", "Parent" : "44"},
+	{"ID" : "47", "Level" : "3", "Path" : "`AUTOTB_DUT_INST.grp_tile_process_fu_234.grp_tile_process_Pipeline_systolic33_fu_274.mac_muladd_8s_8s_16ns_16_4_1_U68", "Parent" : "44"},
+	{"ID" : "48", "Level" : "3", "Path" : "`AUTOTB_DUT_INST.grp_tile_process_fu_234.grp_tile_process_Pipeline_systolic33_fu_274.mac_muladd_8s_8s_16ns_16_4_1_U69", "Parent" : "44"},
+	{"ID" : "49", "Level" : "3", "Path" : "`AUTOTB_DUT_INST.grp_tile_process_fu_234.grp_tile_process_Pipeline_systolic33_fu_274.flow_control_loop_pipe_sequential_init_U", "Parent" : "44"},
+	{"ID" : "50", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_tile_process_fu_234.grp_tile_process_Pipeline_systolic34_fu_299", "Parent" : "31", "Child" : ["51", "52", "53", "54", "55"],
+		"CDFG" : "tile_process_Pipeline_systolic34",
+		"Protocol" : "ap_ctrl_hs",
+		"ControlExist" : "1", "ap_start" : "1", "ap_ready" : "1", "ap_done" : "1", "ap_continue" : "0", "ap_idle" : "1", "real_start" : "0",
+		"Pipeline" : "None", "UnalignedPipeline" : "0", "RewindPipeline" : "0", "ProcessNetwork" : "0",
+		"II" : "0",
+		"VariableLatency" : "1", "ExactLatency" : "-1", "EstimateLatencyMin" : "13", "EstimateLatencyMax" : "13",
+		"Combinational" : "0",
+		"Datapath" : "0",
+		"ClockEnable" : "0",
+		"HasSubDataflow" : "0",
+		"InDataflowNetwork" : "0",
+		"HasNonBlockingOperation" : "0",
+		"IsBlackBox" : "0",
+		"Port" : [
+			{"Name" : "select_ln117_3", "Type" : "None", "Direction" : "I"},
+			{"Name" : "b_row_major_0", "Type" : "Memory", "Direction" : "I"},
+			{"Name" : "b_row_major_1", "Type" : "Memory", "Direction" : "I"},
+			{"Name" : "b_row_major_2", "Type" : "Memory", "Direction" : "I"},
+			{"Name" : "b_row_major_3", "Type" : "Memory", "Direction" : "I"},
+			{"Name" : "select_ln117", "Type" : "None", "Direction" : "I"},
+			{"Name" : "c_row_major_3_0", "Type" : "Memory", "Direction" : "IO"},
+			{"Name" : "c_row_major_3_1", "Type" : "Memory", "Direction" : "IO"},
+			{"Name" : "c_row_major_3_2", "Type" : "Memory", "Direction" : "IO"},
+			{"Name" : "c_row_major_3_3", "Type" : "Memory", "Direction" : "IO"},
+			{"Name" : "b_col", "Type" : "None", "Direction" : "I"},
+			{"Name" : "select_ln117_1", "Type" : "None", "Direction" : "I"},
+			{"Name" : "sext_ln134_13", "Type" : "None", "Direction" : "I"}],
+		"Loop" : [
+			{"Name" : "systolic3", "PipelineType" : "UPC",
+				"LoopDec" : {"FSMBitwidth" : "1", "FirstState" : "ap_ST_fsm_pp0_stage0", "FirstStateIter" : "ap_enable_reg_pp0_iter0", "FirstStateBlock" : "ap_block_pp0_stage0_subdone", "LastState" : "ap_ST_fsm_pp0_stage0", "LastStateIter" : "ap_enable_reg_pp0_iter4", "LastStateBlock" : "ap_block_pp0_stage0_subdone", "QuitState" : "ap_ST_fsm_pp0_stage0", "QuitStateIter" : "ap_enable_reg_pp0_iter4", "QuitStateBlock" : "ap_block_pp0_stage0_subdone", "OneDepthLoop" : "0", "has_ap_ctrl" : "1", "has_continue" : "0"}}]},
+	{"ID" : "51", "Level" : "3", "Path" : "`AUTOTB_DUT_INST.grp_tile_process_fu_234.grp_tile_process_Pipeline_systolic34_fu_299.mac_muladd_8s_8s_16ns_16_4_1_U83", "Parent" : "50"},
+	{"ID" : "52", "Level" : "3", "Path" : "`AUTOTB_DUT_INST.grp_tile_process_fu_234.grp_tile_process_Pipeline_systolic34_fu_299.mac_muladd_8s_8s_16ns_16_4_1_U84", "Parent" : "50"},
+	{"ID" : "53", "Level" : "3", "Path" : "`AUTOTB_DUT_INST.grp_tile_process_fu_234.grp_tile_process_Pipeline_systolic34_fu_299.mac_muladd_8s_8s_16ns_16_4_1_U85", "Parent" : "50"},
+	{"ID" : "54", "Level" : "3", "Path" : "`AUTOTB_DUT_INST.grp_tile_process_fu_234.grp_tile_process_Pipeline_systolic34_fu_299.mac_muladd_8s_8s_16ns_16_4_1_U86", "Parent" : "50"},
+	{"ID" : "55", "Level" : "3", "Path" : "`AUTOTB_DUT_INST.grp_tile_process_fu_234.grp_tile_process_Pipeline_systolic34_fu_299.flow_control_loop_pipe_sequential_init_U", "Parent" : "50"},
+	{"ID" : "56", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.grp_mmult_Pipeline_writeC_fu_267", "Parent" : "0", "Child" : ["57", "58", "59", "60", "61", "62"],
+		"CDFG" : "mmult_Pipeline_writeC",
+		"Protocol" : "ap_ctrl_hs",
+		"ControlExist" : "1", "ap_start" : "1", "ap_ready" : "1", "ap_done" : "1", "ap_continue" : "0", "ap_idle" : "1", "real_start" : "0",
+		"Pipeline" : "None", "UnalignedPipeline" : "0", "RewindPipeline" : "0", "ProcessNetwork" : "0",
+		"II" : "0",
+		"VariableLatency" : "1", "ExactLatency" : "-1", "EstimateLatencyMin" : "2051", "EstimateLatencyMax" : "2051",
+		"Combinational" : "0",
+		"Datapath" : "0",
+		"ClockEnable" : "0",
+		"HasSubDataflow" : "0",
+		"InDataflowNetwork" : "0",
+		"HasNonBlockingOperation" : "0",
+		"IsBlackBox" : "0",
+		"Port" : [
+			{"Name" : "mul65", "Type" : "None", "Direction" : "I"},
+			{"Name" : "b_col", "Type" : "None", "Direction" : "I"},
+			{"Name" : "localC", "Type" : "Memory", "Direction" : "I"},
+			{"Name" : "localC_1", "Type" : "Memory", "Direction" : "I"},
+			{"Name" : "localC_2", "Type" : "Memory", "Direction" : "I"},
+			{"Name" : "localC_3", "Type" : "Memory", "Direction" : "I"},
+			{"Name" : "localC_4", "Type" : "Memory", "Direction" : "I"},
+			{"Name" : "localC_5", "Type" : "Memory", "Direction" : "I"},
+			{"Name" : "localC_6", "Type" : "Memory", "Direction" : "I"},
+			{"Name" : "localC_7", "Type" : "Memory", "Direction" : "I"},
+			{"Name" : "localC_8", "Type" : "Memory", "Direction" : "I"},
+			{"Name" : "localC_9", "Type" : "Memory", "Direction" : "I"},
+			{"Name" : "localC_10", "Type" : "Memory", "Direction" : "I"},
+			{"Name" : "localC_11", "Type" : "Memory", "Direction" : "I"},
+			{"Name" : "localC_12", "Type" : "Memory", "Direction" : "I"},
+			{"Name" : "localC_13", "Type" : "Memory", "Direction" : "I"},
+			{"Name" : "localC_14", "Type" : "Memory", "Direction" : "I"},
+			{"Name" : "localC_15", "Type" : "Memory", "Direction" : "I"},
+			{"Name" : "c", "Type" : "Memory", "Direction" : "O"}],
+		"Loop" : [
+			{"Name" : "writeC", "PipelineType" : "UPC",
+				"LoopDec" : {"FSMBitwidth" : "2", "FirstState" : "ap_ST_fsm_pp0_stage0", "FirstStateIter" : "ap_enable_reg_pp0_iter0", "FirstStateBlock" : "ap_block_pp0_stage0_subdone", "LastState" : "ap_ST_fsm_pp0_stage0", "LastStateIter" : "ap_enable_reg_pp0_iter2", "LastStateBlock" : "ap_block_pp0_stage0_subdone", "QuitState" : "ap_ST_fsm_pp0_stage0", "QuitStateIter" : "ap_enable_reg_pp0_iter2", "QuitStateBlock" : "ap_block_pp0_stage0_subdone", "OneDepthLoop" : "0", "has_ap_ctrl" : "1", "has_continue" : "0"}}]},
+	{"ID" : "57", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_mmult_Pipeline_writeC_fu_267.sparsemux_9_2_16_1_1_U129", "Parent" : "56"},
+	{"ID" : "58", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_mmult_Pipeline_writeC_fu_267.sparsemux_9_2_16_1_1_U130", "Parent" : "56"},
+	{"ID" : "59", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_mmult_Pipeline_writeC_fu_267.sparsemux_9_2_16_1_1_U131", "Parent" : "56"},
+	{"ID" : "60", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_mmult_Pipeline_writeC_fu_267.sparsemux_9_2_16_1_1_U132", "Parent" : "56"},
+	{"ID" : "61", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_mmult_Pipeline_writeC_fu_267.sparsemux_9_2_16_1_1_U133", "Parent" : "56"},
+	{"ID" : "62", "Level" : "2", "Path" : "`AUTOTB_DUT_INST.grp_mmult_Pipeline_writeC_fu_267.flow_control_loop_pipe_sequential_init_U", "Parent" : "56"},
+	{"ID" : "63", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.mul_32s_32s_32_2_1_U154", "Parent" : "0"},
+	{"ID" : "64", "Level" : "1", "Path" : "`AUTOTB_DUT_INST.mul_32s_32s_32_2_1_U155", "Parent" : "0"}]}
+
+
+set ArgLastReadFirstWriteLatency {
+	mmult {
+		a {Type I LastRead 1 FirstWrite -1}
+		b {Type I LastRead 1 FirstWrite -1}
+		c {Type O LastRead -1 FirstWrite 4}
+		a_row {Type I LastRead 0 FirstWrite -1}
+		a_col {Type I LastRead 0 FirstWrite -1}
+		b_col {Type I LastRead 0 FirstWrite -1}}
+	mmult_Pipeline_readA {
+		mul {Type I LastRead 0 FirstWrite -1}
+		localA_3 {Type O LastRead -1 FirstWrite 2}
+		localA_2 {Type O LastRead -1 FirstWrite 2}
+		localA_1 {Type O LastRead -1 FirstWrite 2}
+		localA {Type O LastRead -1 FirstWrite 2}
+		a_col {Type I LastRead 0 FirstWrite -1}
+		a {Type I LastRead 1 FirstWrite -1}}
+	mmult_Pipeline_readB {
+		mul12 {Type I LastRead 0 FirstWrite -1}
+		localB_3 {Type O LastRead -1 FirstWrite 2}
+		localB_2 {Type O LastRead -1 FirstWrite 2}
+		localB_1 {Type O LastRead -1 FirstWrite 2}
+		localB {Type O LastRead -1 FirstWrite 2}
+		b_col {Type I LastRead 0 FirstWrite -1}
+		b {Type I LastRead 1 FirstWrite -1}}
+	mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2 {
+		localC {Type O LastRead -1 FirstWrite 1}
+		localC_1 {Type O LastRead -1 FirstWrite 1}
+		localC_2 {Type O LastRead -1 FirstWrite 1}
+		localC_3 {Type O LastRead -1 FirstWrite 1}
+		localC_4 {Type O LastRead -1 FirstWrite 1}
+		localC_5 {Type O LastRead -1 FirstWrite 1}
+		localC_6 {Type O LastRead -1 FirstWrite 1}
+		localC_7 {Type O LastRead -1 FirstWrite 1}
+		localC_8 {Type O LastRead -1 FirstWrite 1}
+		localC_9 {Type O LastRead -1 FirstWrite 1}
+		localC_10 {Type O LastRead -1 FirstWrite 1}
+		localC_11 {Type O LastRead -1 FirstWrite 1}
+		localC_12 {Type O LastRead -1 FirstWrite 1}
+		localC_13 {Type O LastRead -1 FirstWrite 1}
+		localC_14 {Type O LastRead -1 FirstWrite 1}
+		localC_15 {Type O LastRead -1 FirstWrite 1}}
+	tile_process {
+		a_row_major_0 {Type I LastRead 2 FirstWrite -1}
+		a_row_major_1 {Type I LastRead 2 FirstWrite -1}
+		a_row_major_2 {Type I LastRead 2 FirstWrite -1}
+		a_row_major_3 {Type I LastRead 2 FirstWrite -1}
+		b_row_major_0 {Type I LastRead 0 FirstWrite -1}
+		b_row_major_1 {Type I LastRead 0 FirstWrite -1}
+		b_row_major_2 {Type I LastRead 0 FirstWrite -1}
+		b_row_major_3 {Type I LastRead 0 FirstWrite -1}
+		c_row_major_0_0 {Type IO LastRead 2 FirstWrite 4}
+		c_row_major_0_1 {Type IO LastRead 2 FirstWrite 4}
+		c_row_major_0_2 {Type IO LastRead 2 FirstWrite 4}
+		c_row_major_0_3 {Type IO LastRead 2 FirstWrite 4}
+		c_row_major_1_0 {Type IO LastRead 2 FirstWrite 4}
+		c_row_major_1_1 {Type IO LastRead 2 FirstWrite 4}
+		c_row_major_1_2 {Type IO LastRead 2 FirstWrite 4}
+		c_row_major_1_3 {Type IO LastRead 2 FirstWrite 4}
+		c_row_major_2_0 {Type IO LastRead 2 FirstWrite 4}
+		c_row_major_2_1 {Type IO LastRead 2 FirstWrite 4}
+		c_row_major_2_2 {Type IO LastRead 2 FirstWrite 4}
+		c_row_major_2_3 {Type IO LastRead 2 FirstWrite 4}
+		c_row_major_3_0 {Type IO LastRead 2 FirstWrite 4}
+		c_row_major_3_1 {Type IO LastRead 2 FirstWrite 4}
+		c_row_major_3_2 {Type IO LastRead 2 FirstWrite 4}
+		c_row_major_3_3 {Type IO LastRead 2 FirstWrite 4}
+		start_k {Type I LastRead 0 FirstWrite -1}
+		finish_k {Type I LastRead 0 FirstWrite -1}
+		a_row {Type I LastRead 0 FirstWrite -1}
+		a_col {Type I LastRead 0 FirstWrite -1}
+		b_col {Type I LastRead 0 FirstWrite -1}}
+	tile_process_Pipeline_systolic3 {
+		select_ln117_3 {Type I LastRead 0 FirstWrite -1}
+		b_row_major_0 {Type I LastRead 0 FirstWrite -1}
+		b_row_major_1 {Type I LastRead 0 FirstWrite -1}
+		b_row_major_2 {Type I LastRead 0 FirstWrite -1}
+		b_row_major_3 {Type I LastRead 0 FirstWrite -1}
+		select_ln117 {Type I LastRead 0 FirstWrite -1}
+		c_row_major_0_0 {Type IO LastRead 2 FirstWrite 4}
+		c_row_major_0_1 {Type IO LastRead 2 FirstWrite 4}
+		c_row_major_0_2 {Type IO LastRead 2 FirstWrite 4}
+		c_row_major_0_3 {Type IO LastRead 2 FirstWrite 4}
+		b_col {Type I LastRead 0 FirstWrite -1}
+		select_ln117_1 {Type I LastRead 0 FirstWrite -1}
+		sext_ln134 {Type I LastRead 0 FirstWrite -1}}
+	tile_process_Pipeline_systolic32 {
+		select_ln117_3 {Type I LastRead 0 FirstWrite -1}
+		b_row_major_0 {Type I LastRead 0 FirstWrite -1}
+		b_row_major_1 {Type I LastRead 0 FirstWrite -1}
+		b_row_major_2 {Type I LastRead 0 FirstWrite -1}
+		b_row_major_3 {Type I LastRead 0 FirstWrite -1}
+		select_ln117 {Type I LastRead 0 FirstWrite -1}
+		c_row_major_1_0 {Type IO LastRead 2 FirstWrite 4}
+		c_row_major_1_1 {Type IO LastRead 2 FirstWrite 4}
+		c_row_major_1_2 {Type IO LastRead 2 FirstWrite 4}
+		c_row_major_1_3 {Type IO LastRead 2 FirstWrite 4}
+		b_col {Type I LastRead 0 FirstWrite -1}
+		select_ln117_1 {Type I LastRead 0 FirstWrite -1}
+		sext_ln134_3 {Type I LastRead 0 FirstWrite -1}}
+	tile_process_Pipeline_systolic33 {
+		select_ln117_3 {Type I LastRead 0 FirstWrite -1}
+		b_row_major_0 {Type I LastRead 0 FirstWrite -1}
+		b_row_major_1 {Type I LastRead 0 FirstWrite -1}
+		b_row_major_2 {Type I LastRead 0 FirstWrite -1}
+		b_row_major_3 {Type I LastRead 0 FirstWrite -1}
+		select_ln117 {Type I LastRead 0 FirstWrite -1}
+		c_row_major_2_0 {Type IO LastRead 2 FirstWrite 4}
+		c_row_major_2_1 {Type IO LastRead 2 FirstWrite 4}
+		c_row_major_2_2 {Type IO LastRead 2 FirstWrite 4}
+		c_row_major_2_3 {Type IO LastRead 2 FirstWrite 4}
+		b_col {Type I LastRead 0 FirstWrite -1}
+		select_ln117_1 {Type I LastRead 0 FirstWrite -1}
+		sext_ln134_8 {Type I LastRead 0 FirstWrite -1}}
+	tile_process_Pipeline_systolic34 {
+		select_ln117_3 {Type I LastRead 0 FirstWrite -1}
+		b_row_major_0 {Type I LastRead 0 FirstWrite -1}
+		b_row_major_1 {Type I LastRead 0 FirstWrite -1}
+		b_row_major_2 {Type I LastRead 0 FirstWrite -1}
+		b_row_major_3 {Type I LastRead 0 FirstWrite -1}
+		select_ln117 {Type I LastRead 0 FirstWrite -1}
+		c_row_major_3_0 {Type IO LastRead 2 FirstWrite 4}
+		c_row_major_3_1 {Type IO LastRead 2 FirstWrite 4}
+		c_row_major_3_2 {Type IO LastRead 2 FirstWrite 4}
+		c_row_major_3_3 {Type IO LastRead 2 FirstWrite 4}
+		b_col {Type I LastRead 0 FirstWrite -1}
+		select_ln117_1 {Type I LastRead 0 FirstWrite -1}
+		sext_ln134_13 {Type I LastRead 0 FirstWrite -1}}
+	mmult_Pipeline_writeC {
+		mul65 {Type I LastRead 0 FirstWrite -1}
+		b_col {Type I LastRead 0 FirstWrite -1}
+		localC {Type I LastRead 2 FirstWrite -1}
+		localC_1 {Type I LastRead 2 FirstWrite -1}
+		localC_2 {Type I LastRead 2 FirstWrite -1}
+		localC_3 {Type I LastRead 2 FirstWrite -1}
+		localC_4 {Type I LastRead 2 FirstWrite -1}
+		localC_5 {Type I LastRead 2 FirstWrite -1}
+		localC_6 {Type I LastRead 2 FirstWrite -1}
+		localC_7 {Type I LastRead 2 FirstWrite -1}
+		localC_8 {Type I LastRead 2 FirstWrite -1}
+		localC_9 {Type I LastRead 2 FirstWrite -1}
+		localC_10 {Type I LastRead 2 FirstWrite -1}
+		localC_11 {Type I LastRead 2 FirstWrite -1}
+		localC_12 {Type I LastRead 2 FirstWrite -1}
+		localC_13 {Type I LastRead 2 FirstWrite -1}
+		localC_14 {Type I LastRead 2 FirstWrite -1}
+		localC_15 {Type I LastRead 2 FirstWrite -1}
+		c {Type O LastRead -1 FirstWrite 4}}}
+
+set hasDtUnsupportedChannel 0
+
+set PerformanceInfo {[
+	{"Name" : "Latency", "Min" : "67606", "Max" : "67606"}
+	, {"Name" : "Interval", "Min" : "67607", "Max" : "67607"}
+]}
+
+set PipelineEnableSignalInfo {[
+]}
+
+set Spec2ImplPortList { 
+	a { ap_memory {  { a_address0 mem_address 1 10 }  { a_ce0 mem_ce 1 1 }  { a_q0 mem_dout 0 8 } } }
+	b { ap_memory {  { b_address0 mem_address 1 10 }  { b_ce0 mem_ce 1 1 }  { b_q0 mem_dout 0 8 } } }
+	c { ap_memory {  { c_address0 mem_address 1 10 }  { c_ce0 mem_ce 1 1 }  { c_we0 mem_we 1 1 }  { c_d0 mem_din 1 16 } } }
+	a_row { ap_none {  { a_row in_data 0 32 } } }
+	a_col { ap_none {  { a_col in_data 0 32 } } }
+	b_col { ap_none {  { b_col in_data 0 32 } } }
+}
+
+set maxi_interface_dict [dict create]
+
+# RTL port scheduling information:
+set fifoSchedulingInfoList { 
+}
+
+# RTL bus port read request latency information:
+set busReadReqLatencyList { 
+}
+
+# RTL bus port write response latency information:
+set busWriteResLatencyList { 
+}
+
+# RTL array port load latency information:
+set memoryLoadLatencyList { 
+}

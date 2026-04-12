@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'mmult_Pipeline_writeC'" level="0">
-<item name = "Date">Sun Apr 12 07:56:42 2026
+<item name = "Date">Sun Apr 12 17:39:47 2026
 </item>
 <item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
 <item name = "Project">hls_prj</item>
@@ -15,7 +15,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="4">Clock, Target, Estimated, Uncertainty</keys>
-<column name="ap_clk">3.30 ns, 2.409 ns, 0.89 ns</column>
+<column name="ap_clk">3.30 ns, 2.287 ns, 0.89 ns</column>
 </table>
 </item>
 </section>
@@ -24,7 +24,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="8">, min, max, min, max, min, max, Type</keys>
-<column name="">2050, 2050, 6.765 us, 6.765 us, 2050, 2050, no</column>
+<column name="">2051, 2051, 6.768 us, 6.768 us, 2051, 2051, no</column>
 </table>
 </item>
 <item name = "Detail">
@@ -35,7 +35,7 @@
 </item>
 <item name = "Loop"><table name="" hasTotal="0">
 <keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
-<column name="- writeC">2048, 2048, 3, 2, 1, 1024, yes</column>
+<column name="- writeC">2049, 2049, 4, 2, 1, 1024, yes</column>
 </table>
 </item>
 </section>

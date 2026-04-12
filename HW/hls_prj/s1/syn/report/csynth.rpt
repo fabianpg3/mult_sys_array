@@ -4,7 +4,7 @@
 == Synthesis Summary Report of 'mmult'
 ================================================================
 + General Information: 
-    * Date:           Sun Apr 12 17:22:37 2026
+    * Date:           Sun Apr 12 17:39:48 2026
     * Version:        2023.2 (Build 4023990 on Oct 11 2023)
     * Project:        hls_prj
     * Solution:       s1 (Vivado IP Flow Target)
@@ -15,88 +15,65 @@
 + Performance & Resource Estimates: 
     
     PS: '+' for module; 'o' for loop; '*' for dataflow
-    +----------------------------------------------------------------+--------+-------+---------+-----------+----------+---------+------+----------+---------+---------+-----------+------------+-----+
-    |                             Modules                            |  Issue |       | Latency |  Latency  | Iteration|         | Trip |          |         |         |           |            |     |
-    |                             & Loops                            |  Type  | Slack | (cycles)|    (ns)   |  Latency | Interval| Count| Pipelined|  BRAM   |   DSP   |     FF    |     LUT    | URAM|
-    +----------------------------------------------------------------+--------+-------+---------+-----------+----------+---------+------+----------+---------+---------+-----------+------------+-----+
-    |+ mmult*                                                        |  Timing|  -0.42|    68146|  2.249e+05|         -|    64021|     -|  dataflow|  22 (7%)|  25 (2%)|  7336 (3%)|  11111 (9%)|    -|
-    | + entry_proc                                                   |       -|   1.21|        0|      0.000|         -|        0|     -|        no|        -|        -|    2 (~0%)|    20 (~0%)|    -|
-    | + Loop_readA_proc                                              |       -|   0.00|     2062|  6.805e+03|         -|     2062|     -|        no|        -|  3 (~0%)|  520 (~0%)|   728 (~0%)|    -|
-    |  + Loop_readA_proc_Pipeline_readA                              |       -|   0.00|     2050|  6.765e+03|         -|     2050|     -|        no|        -|        -|  182 (~0%)|   374 (~0%)|    -|
-    |   o readA                                                      |      II|   2.41|     2048|  6.758e+03|         3|        2|  1024|       yes|        -|        -|          -|           -|    -|
-    | + Loop_readB_proc                                              |       -|   0.00|     2062|  6.805e+03|         -|     2062|     -|        no|        -|  3 (~0%)|  488 (~0%)|   719 (~0%)|    -|
-    |  + Loop_readB_proc_Pipeline_readB                              |       -|   0.00|     2050|  6.765e+03|         -|     2050|     -|        no|        -|        -|  182 (~0%)|   374 (~0%)|    -|
-    |   o readB                                                      |      II|   2.41|     2048|  6.758e+03|         3|        2|  1024|       yes|        -|        -|          -|           -|    -|
-    | + compute_wrapper                                              |  Timing|  -0.42|    64020|  2.113e+05|         -|    64020|     -|        no|  16 (5%)|  16 (1%)|  978 (~0%)|   3915 (3%)|    -|
-    |  + compute_wrapper_Pipeline_VITIS_LOOP_154_1_VITIS_LOOP_155_2  |       -|   0.08|      258|    851.400|         -|      258|     -|        no|        -|        -|   32 (~0%)|   145 (~0%)|    -|
-    |   o VITIS_LOOP_154_1_VITIS_LOOP_155_2                          |       -|   2.41|      256|    844.800|         2|        1|   256|       yes|        -|        -|          -|           -|    -|
-    |  + compute_wrapper_Pipeline_VITIS_LOOP_169_4_VITIS_LOOP_170_5  |  Timing|  -0.42|      259|    854.700|         -|      259|     -|        no|        -|        -|  106 (~0%)|   225 (~0%)|    -|
-    |   o VITIS_LOOP_169_4_VITIS_LOOP_170_5                          |       -|   2.41|      257|    848.100|         3|        1|   256|       yes|        -|        -|          -|           -|    -|
-    |  o VITIS_LOOP_162_3                                            |       -|   2.41|    63500|  2.095e+05|     15875|        -|     4|        no|        -|        -|          -|           -|    -|
-    |   + tile_process_39_405                                        |       -|   0.06|    15873|  5.238e+04|         -|    15873|     -|        no|        -|  16 (1%)|  759 (~0%)|   2209 (1%)|    -|
-    |    o systolic1_systolic2                                       |       -|   2.41|    15872|  5.238e+04|        62|        -|   256|        no|        -|        -|          -|           -|    -|
-    |     + tile_process_39_405_Pipeline_systolic3                   |       -|   0.34|       13|     42.900|         -|       13|     -|        no|        -|  4 (~0%)|   89 (~0%)|   262 (~0%)|    -|
-    |      o systolic3                                               |       -|   2.41|       11|     36.300|         5|        1|     8|       yes|        -|        -|          -|           -|    -|
-    |     + tile_process_39_405_Pipeline_systolic37                  |       -|   0.34|       13|     42.900|         -|       13|     -|        no|        -|  4 (~0%)|   89 (~0%)|   262 (~0%)|    -|
-    |      o systolic3                                               |       -|   2.41|       11|     36.300|         5|        1|     8|       yes|        -|        -|          -|           -|    -|
-    |     + tile_process_39_405_Pipeline_systolic38                  |       -|   0.34|       13|     42.900|         -|       13|     -|        no|        -|  4 (~0%)|   89 (~0%)|   262 (~0%)|    -|
-    |      o systolic3                                               |       -|   2.41|       11|     36.300|         5|        1|     8|       yes|        -|        -|          -|           -|    -|
-    |     + tile_process_39_405_Pipeline_systolic39                  |       -|   0.34|       13|     42.900|         -|       13|     -|        no|        -|  4 (~0%)|   89 (~0%)|   262 (~0%)|    -|
-    |      o systolic3                                               |       -|   2.41|       11|     36.300|         5|        1|     8|       yes|        -|        -|          -|           -|    -|
-    | + Loop_writeC_proc                                             |       -|   0.00|     2062|  6.805e+03|         -|     2062|     -|        no|        -|  3 (~0%)|  495 (~0%)|   838 (~0%)|    -|
-    |  + Loop_writeC_proc_Pipeline_writeC                            |       -|   0.00|     2051|  6.768e+03|         -|     2051|     -|        no|        -|        -|  159 (~0%)|   470 (~0%)|    -|
-    |   o writeC                                                     |      II|   2.41|     2049|  6.762e+03|         4|        2|  1024|       yes|        -|        -|          -|           -|    -|
-    +----------------------------------------------------------------+--------+-------+---------+-----------+----------+---------+------+----------+---------+---------+-----------+------------+-----+
+    +-----------------------------------------------------+------+------+---------+-----------+----------+---------+------+----------+---------+---------+------------+-----------+-----+
+    |                       Modules                       | Issue|      | Latency |  Latency  | Iteration|         | Trip |          |         |         |            |           |     |
+    |                       & Loops                       | Type | Slack| (cycles)|    (ns)   |  Latency | Interval| Count| Pipelined|  BRAM   |   DSP   |     FF     |    LUT    | URAM|
+    +-----------------------------------------------------+------+------+---------+-----------+----------+---------+------+----------+---------+---------+------------+-----------+-----+
+    |+ mmult                                              |     -|  0.04|    67606|  2.231e+05|         -|    67607|     -|        no|  16 (5%)|  22 (1%)|  1888 (~0%)|  5384 (4%)|    -|
+    | + mmult_Pipeline_readA                              |     -|  0.50|     2050|  6.765e+03|         -|     2050|     -|        no|        -|        -|   228 (~0%)|  343 (~0%)|    -|
+    |  o readA                                            |    II|  2.41|     2048|  6.758e+03|         2|        2|  1024|       yes|        -|        -|           -|          -|    -|
+    | + mmult_Pipeline_readB                              |     -|  0.50|     2050|  6.765e+03|         -|     2050|     -|        no|        -|        -|   228 (~0%)|  343 (~0%)|    -|
+    |  o readB                                            |    II|  2.41|     2048|  6.758e+03|         2|        2|  1024|       yes|        -|        -|           -|          -|    -|
+    | + mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2  |     -|  0.08|      258|    851.400|         -|      258|     -|        no|        -|        -|    32 (~0%)|  145 (~0%)|    -|
+    |  o VITIS_LOOP_195_1_VITIS_LOOP_196_2                |     -|  2.41|      256|    844.800|         2|        1|   256|       yes|        -|        -|           -|          -|    -|
+    | + mmult_Pipeline_writeC                             |     -|  0.12|     2051|  6.768e+03|         -|     2051|     -|        no|        -|        -|   163 (~0%)|  439 (~0%)|    -|
+    |  o writeC                                           |    II|  2.41|     2049|  6.762e+03|         4|        2|  1024|       yes|        -|        -|           -|          -|    -|
+    | o tile_processing                                   |     -|  2.41|    63500|  2.095e+05|     15875|        -|     4|        no|        -|        -|           -|          -|    -|
+    |  + tile_process                                     |     -|  0.06|    15873|  5.238e+04|         -|    15873|     -|        no|        -|  16 (1%)|   695 (~0%)|  2209 (1%)|    -|
+    |   o systolic1_systolic2                             |     -|  2.41|    15872|  5.238e+04|        62|        -|   256|        no|        -|        -|           -|          -|    -|
+    |    + tile_process_Pipeline_systolic3                |     -|  0.34|       13|     42.900|         -|       13|     -|        no|        -|  4 (~0%)|    89 (~0%)|  262 (~0%)|    -|
+    |     o systolic3                                     |     -|  2.41|       11|     36.300|         5|        1|     8|       yes|        -|        -|           -|          -|    -|
+    |    + tile_process_Pipeline_systolic32               |     -|  0.34|       13|     42.900|         -|       13|     -|        no|        -|  4 (~0%)|    89 (~0%)|  262 (~0%)|    -|
+    |     o systolic3                                     |     -|  2.41|       11|     36.300|         5|        1|     8|       yes|        -|        -|           -|          -|    -|
+    |    + tile_process_Pipeline_systolic33               |     -|  0.34|       13|     42.900|         -|       13|     -|        no|        -|  4 (~0%)|    89 (~0%)|  262 (~0%)|    -|
+    |     o systolic3                                     |     -|  2.41|       11|     36.300|         5|        1|     8|       yes|        -|        -|           -|          -|    -|
+    |    + tile_process_Pipeline_systolic34               |     -|  0.34|       13|     42.900|         -|       13|     -|        no|        -|  4 (~0%)|    89 (~0%)|  262 (~0%)|    -|
+    |     o systolic3                                     |     -|  2.41|       11|     36.300|         5|        1|     8|       yes|        -|        -|           -|          -|    -|
+    +-----------------------------------------------------+------+------+---------+-----------+----------+---------+------+----------+---------+---------+------------+-----------+-----+
 
 
 ================================================================
 == HW Interfaces
 ================================================================
-* M_AXI
-+-------------+------------+---------------+---------+--------+----------+-----------+--------------+--------------+-------------+-------------+-------------------+
-| Interface   | Data Width | Address Width | Latency | Offset | Register | Max Widen | Max Read     | Max Write    | Num Read    | Num Write   | Resource Estimate |
-|             | (SW->HW)   |               |         |        |          | Bitwidth  | Burst Length | Burst Length | Outstanding | Outstanding |                   |
-+-------------+------------+---------------+---------+--------+----------+-----------+--------------+--------------+-------------+-------------+-------------------+
-| m_axi_gmem0 | 8 -> 8     | 64            | 0       | slave  | 0        | 0         | 16           | 16           | 16          | 16          | BRAM=2            |
-| m_axi_gmem1 | 8 -> 8     | 64            | 0       | slave  | 0        | 0         | 16           | 16           | 16          | 16          | BRAM=2            |
-| m_axi_gmem2 | 16 -> 16   | 64            | 0       | slave  | 0        | 0         | 16           | 16           | 16          | 16          | BRAM=2            |
-+-------------+------------+---------------+---------+--------+----------+-----------+--------------+--------------+-------------+-------------+-------------------+
+* AP_MEMORY
++------------+-----------+----------+
+| Port       | Direction | Bitwidth |
++------------+-----------+----------+
+| a_address0 | out       | 10       |
+| a_q0       | in        | 8        |
+| b_address0 | out       | 10       |
+| b_q0       | in        | 8        |
+| c_address0 | out       | 10       |
+| c_d0       | out       | 16       |
++------------+-----------+----------+
 
-* S_AXILITE Interfaces
-+---------------+------------+---------------+--------+----------+
-| Interface     | Data Width | Address Width | Offset | Register |
-+---------------+------------+---------------+--------+----------+
-| s_axi_control | 32         | 7             | 16     | 0        |
-+---------------+------------+---------------+--------+----------+
-
-* S_AXILITE Registers
-+---------------+----------+--------+-------+--------+----------------------------------+----------------------------------------------------------------------+
-| Interface     | Register | Offset | Width | Access | Description                      | Bit Fields                                                           |
-+---------------+----------+--------+-------+--------+----------------------------------+----------------------------------------------------------------------+
-| s_axi_control | CTRL     | 0x00   | 32    | RW     | Control signals                  | 0=AP_START 1=AP_DONE 2=AP_IDLE 3=AP_READY 7=AUTO_RESTART 9=INTERRUPT |
-| s_axi_control | GIER     | 0x04   | 32    | RW     | Global Interrupt Enable Register | 0=Enable                                                             |
-| s_axi_control | IP_IER   | 0x08   | 32    | RW     | IP Interrupt Enable Register     | 0=CHAN0_INT_EN 1=CHAN1_INT_EN                                        |
-| s_axi_control | IP_ISR   | 0x0c   | 32    | RW     | IP Interrupt Status Register     | 0=CHAN0_INT_ST 1=CHAN1_INT_ST                                        |
-| s_axi_control | a_1      | 0x10   | 32    | W      | Data signal of a                 |                                                                      |
-| s_axi_control | a_2      | 0x14   | 32    | W      | Data signal of a                 |                                                                      |
-| s_axi_control | b_1      | 0x1c   | 32    | W      | Data signal of b                 |                                                                      |
-| s_axi_control | b_2      | 0x20   | 32    | W      | Data signal of b                 |                                                                      |
-| s_axi_control | c_1      | 0x28   | 32    | W      | Data signal of c                 |                                                                      |
-| s_axi_control | c_2      | 0x2c   | 32    | W      | Data signal of c                 |                                                                      |
-| s_axi_control | a_row    | 0x34   | 32    | W      | Data signal of a_row             |                                                                      |
-| s_axi_control | a_col    | 0x3c   | 32    | W      | Data signal of a_col             |                                                                      |
-| s_axi_control | b_col    | 0x44   | 32    | W      | Data signal of b_col             |                                                                      |
-+---------------+----------+--------+-------+--------+----------------------------------+----------------------------------------------------------------------+
+* Other Ports
++-------+---------+-----------+----------+
+| Port  | Mode    | Direction | Bitwidth |
++-------+---------+-----------+----------+
+| a_col | ap_none | in        | 32       |
+| a_row | ap_none | in        | 32       |
+| b_col | ap_none | in        | 32       |
++-------+---------+-----------+----------+
 
 * TOP LEVEL CONTROL
-+-----------+------------+-----------+
-| Interface | Type       | Ports     |
-+-----------+------------+-----------+
-| ap_clk    | clock      | ap_clk    |
-| ap_rst_n  | reset      | ap_rst_n  |
-| interrupt | interrupt  | interrupt |
-| ap_ctrl   | ap_ctrl_hs |           |
-+-----------+------------+-----------+
++-----------+------------+-----------------------------------+
+| Interface | Type       | Ports                             |
++-----------+------------+-----------------------------------+
+| ap_clk    | clock      | ap_clk                            |
+| ap_rst    | reset      | ap_rst                            |
+| ap_ctrl   | ap_ctrl_hs | ap_done ap_idle ap_ready ap_start |
++-----------+------------+-----------------------------------+
 
 
 ================================================================
@@ -115,236 +92,160 @@
 +----------+-----------+-------------+
 
 * SW-to-HW Mapping
-+----------+---------------+-----------+----------+---------------------------------+
-| Argument | HW Interface  | HW Type   | HW Usage | HW Info                         |
-+----------+---------------+-----------+----------+---------------------------------+
-| a        | m_axi_gmem0   | interface |          |                                 |
-| a        | s_axi_control | register  | offset   | name=a_1 offset=0x10 range=32   |
-| a        | s_axi_control | register  | offset   | name=a_2 offset=0x14 range=32   |
-| b        | m_axi_gmem1   | interface |          |                                 |
-| b        | s_axi_control | register  | offset   | name=b_1 offset=0x1c range=32   |
-| b        | s_axi_control | register  | offset   | name=b_2 offset=0x20 range=32   |
-| c        | m_axi_gmem2   | interface |          |                                 |
-| c        | s_axi_control | register  | offset   | name=c_1 offset=0x28 range=32   |
-| c        | s_axi_control | register  | offset   | name=c_2 offset=0x2c range=32   |
-| a_row    | s_axi_control | register  |          | name=a_row offset=0x34 range=32 |
-| a_col    | s_axi_control | register  |          | name=a_col offset=0x3c range=32 |
-| b_col    | s_axi_control | register  |          | name=b_col offset=0x44 range=32 |
-+----------+---------------+-----------+----------+---------------------------------+
-
-
-================================================================
-== M_AXI Burst Information
-================================================================
- Note: All burst requests might be further partitioned into multiple requests during RTL generation based on max_read_burst_length or max_write_burst_length settings.
-
-* Inferred Burst Summary
-+--------------+-----------+----------+-------+--------+-----------------+
-| HW Interface | Direction | Length   | Width | Loop   | Loop Location   |
-+--------------+-----------+----------+-------+--------+-----------------+
-| m_axi_gmem0  | read      | variable | 8     | readA  | mmult.cpp:215:5 |
-| m_axi_gmem1  | read      | variable | 8     | readB  | mmult.cpp:226:3 |
-| m_axi_gmem2  | write     | variable | 16    | writeC | mmult.cpp:240:3 |
-+--------------+-----------+----------+-------+--------+-----------------+
-
-* All M_AXI Variable Accesses
-+--------------+----------+------------------+-----------+--------------+----------+--------+-----------------+
-| HW Interface | Variable | Access Location  | Direction | Burst Status | Length   | Loop   | Loop Location   |
-+--------------+----------+------------------+-----------+--------------+----------+--------+-----------------+
-| m_axi_gmem0  | a        | mmult.cpp:221:22 | read      | Inferred     | variable | readA  | mmult.cpp:215:5 |
-| m_axi_gmem1  | b        | mmult.cpp:232:18 | read      | Inferred     | variable | readB  | mmult.cpp:226:3 |
-| m_axi_gmem2  | c        | mmult.cpp:246:12 | write     | Inferred     | variable | writeC | mmult.cpp:240:3 |
-+--------------+----------+------------------+-----------+--------------+----------+--------+-----------------+
++----------+--------------+---------+----------+
+| Argument | HW Interface | HW Type | HW Usage |
++----------+--------------+---------+----------+
+| a        | a_address0   | port    | offset   |
+| a        | a_ce0        | port    |          |
+| a        | a_q0         | port    |          |
+| b        | b_address0   | port    | offset   |
+| b        | b_ce0        | port    |          |
+| b        | b_q0         | port    |          |
+| c        | c_address0   | port    | offset   |
+| c        | c_ce0        | port    |          |
+| c        | c_we0        | port    |          |
+| c        | c_d0         | port    |          |
+| a_row    | a_row        | port    |          |
+| a_col    | a_col        | port    |          |
+| b_col    | b_col        | port    |          |
++----------+--------------+---------+----------+
 
 
 ================================================================
 == Bind Op Report
 ================================================================
-+----------------------------------------------------------------+-----+--------+-------------+-----+-----------+---------+
-| Name                                                           | DSP | Pragma | Variable    | Op  | Impl      | Latency |
-+----------------------------------------------------------------+-----+--------+-------------+-----+-----------+---------+
-| + mmult                                                        | 25  |        |             |     |           |         |
-|  + Loop_readA_proc                                             | 3   |        |             |     |           |         |
-|    mul_32s_32s_32_2_1_U11                                      | 3   |        | mul         | mul | auto      | 1       |
-|   + Loop_readA_proc_Pipeline_readA                             | 0   |        |             |     |           |         |
-|     add_ln215_fu_211_p2                                        |     |        | add_ln215   | add | fabric    | 0       |
-|     add_ln218_fu_234_p2                                        |     |        | add_ln218   | add | fabric    | 0       |
-|     add_ln221_fu_282_p2                                        |     |        | add_ln221   | add | fabric    | 0       |
-|     j_8_fu_304_p2                                              |     |        | j_8         | add | fabric    | 0       |
-|  + Loop_readB_proc                                             | 3   |        |             |     |           |         |
-|    mul_32s_32s_32_2_1_U29                                      | 3   |        | mul12       | mul | auto      | 1       |
-|   + Loop_readB_proc_Pipeline_readB                             | 0   |        |             |     |           |         |
-|     add_ln226_fu_211_p2                                        |     |        | add_ln226   | add | fabric    | 0       |
-|     add_ln229_fu_234_p2                                        |     |        | add_ln229   | add | fabric    | 0       |
-|     add_ln232_fu_282_p2                                        |     |        | add_ln232   | add | fabric    | 0       |
-|     j_6_fu_304_p2                                              |     |        | j_6         | add | fabric    | 0       |
-|  + compute_wrapper                                             | 16  |        |             |     |           |         |
-|    q_2_fu_326_p2                                               |     |        | q_2         | add | fabric    | 0       |
-|    finish_k_fu_349_p2                                          |     |        | finish_k    | add | fabric    | 0       |
-|   + compute_wrapper_Pipeline_VITIS_LOOP_154_1_VITIS_LOOP_155_2 | 0   |        |             |     |           |         |
-|     add_ln154_1_fu_344_p2                                      |     |        | add_ln154_1 | add | fabric    | 0       |
-|     add_ln154_fu_356_p2                                        |     |        | add_ln154   | add | fabric    | 0       |
-|     add_ln155_fu_410_p2                                        |     |        | add_ln155   | add | fabric    | 0       |
-|   + tile_process_39_405                                        | 16  |        |             |     |           |         |
-|     sub_ln116_fu_370_p2                                        |     |        | sub_ln116   | sub | fabric    | 0       |
-|     add_ln116_1_fu_411_p2                                      |     |        | add_ln116_1 | add | fabric    | 0       |
-|     add_ln116_fu_423_p2                                        |     |        | add_ln116   | add | fabric    | 0       |
-|     empty_35_fu_525_p2                                         |     |        | empty_35    | add | fabric    | 0       |
-|     add_ln119_fu_571_p2                                        |     |        | add_ln119   | add | fabric    | 0       |
-|    + tile_process_39_405_Pipeline_systolic3                    | 4   |        |             |     |           |         |
-|      mac_muladd_8s_8s_16ns_16_4_1_U54                          | 1   |        | mul_ln133   | mul | dsp_slice | 3       |
-|      mac_muladd_8s_8s_16ns_16_4_1_U54                          | 1   |        | result      | add | dsp_slice | 3       |
-|      mac_muladd_8s_8s_16ns_16_4_1_U55                          | 1   |        | mul_ln133_1 | mul | dsp_slice | 3       |
-|      mac_muladd_8s_8s_16ns_16_4_1_U55                          | 1   |        | result_11   | add | dsp_slice | 3       |
-|      mac_muladd_8s_8s_16ns_16_4_1_U56                          | 1   |        | mul_ln133_2 | mul | dsp_slice | 3       |
-|      mac_muladd_8s_8s_16ns_16_4_1_U56                          | 1   |        | result_12   | add | dsp_slice | 3       |
-|      mac_muladd_8s_8s_16ns_16_4_1_U57                          | 1   |        | mul_ln133_3 | mul | dsp_slice | 3       |
-|      mac_muladd_8s_8s_16ns_16_4_1_U57                          | 1   |        | result_13   | add | dsp_slice | 3       |
-|      add_ln122_fu_352_p2                                       |     |        | add_ln122   | add | fabric    | 0       |
-|    + tile_process_39_405_Pipeline_systolic37                   | 4   |        |             |     |           |         |
-|      mac_muladd_8s_8s_16ns_16_4_1_U72                          | 1   |        | mul_ln133_4 | mul | dsp_slice | 3       |
-|      mac_muladd_8s_8s_16ns_16_4_1_U72                          | 1   |        | result      | add | dsp_slice | 3       |
-|      mac_muladd_8s_8s_16ns_16_4_1_U73                          | 1   |        | mul_ln133_5 | mul | dsp_slice | 3       |
-|      mac_muladd_8s_8s_16ns_16_4_1_U73                          | 1   |        | result_8    | add | dsp_slice | 3       |
-|      mac_muladd_8s_8s_16ns_16_4_1_U74                          | 1   |        | mul_ln133_6 | mul | dsp_slice | 3       |
-|      mac_muladd_8s_8s_16ns_16_4_1_U74                          | 1   |        | result_9    | add | dsp_slice | 3       |
-|      mac_muladd_8s_8s_16ns_16_4_1_U75                          | 1   |        | mul_ln133   | mul | dsp_slice | 3       |
-|      mac_muladd_8s_8s_16ns_16_4_1_U75                          | 1   |        | result_10   | add | dsp_slice | 3       |
-|      add_ln122_fu_352_p2                                       |     |        | add_ln122   | add | fabric    | 0       |
-|    + tile_process_39_405_Pipeline_systolic38                   | 4   |        |             |     |           |         |
-|      mac_muladd_8s_8s_16ns_16_4_1_U89                          | 1   |        | mul_ln133   | mul | dsp_slice | 3       |
-|      mac_muladd_8s_8s_16ns_16_4_1_U89                          | 1   |        | result      | add | dsp_slice | 3       |
-|      mac_muladd_8s_8s_16ns_16_4_1_U90                          | 1   |        | mul_ln133_4 | mul | dsp_slice | 3       |
-|      mac_muladd_8s_8s_16ns_16_4_1_U90                          | 1   |        | result_4    | add | dsp_slice | 3       |
-|      mac_muladd_8s_8s_16ns_16_4_1_U91                          | 1   |        | mul_ln133_5 | mul | dsp_slice | 3       |
-|      mac_muladd_8s_8s_16ns_16_4_1_U91                          | 1   |        | result_5    | add | dsp_slice | 3       |
-|      mac_muladd_8s_8s_16ns_16_4_1_U92                          | 1   |        | mul_ln133_6 | mul | dsp_slice | 3       |
-|      mac_muladd_8s_8s_16ns_16_4_1_U92                          | 1   |        | result_6    | add | dsp_slice | 3       |
-|      add_ln122_fu_352_p2                                       |     |        | add_ln122   | add | fabric    | 0       |
-|    + tile_process_39_405_Pipeline_systolic39                   | 4   |        |             |     |           |         |
-|      mac_muladd_8s_8s_16ns_16_4_1_U106                         | 1   |        | mul_ln133   | mul | dsp_slice | 3       |
-|      mac_muladd_8s_8s_16ns_16_4_1_U106                         | 1   |        | result      | add | dsp_slice | 3       |
-|      mac_muladd_8s_8s_16ns_16_4_1_U107                         | 1   |        | mul_ln133_1 | mul | dsp_slice | 3       |
-|      mac_muladd_8s_8s_16ns_16_4_1_U107                         | 1   |        | result_1    | add | dsp_slice | 3       |
-|      mac_muladd_8s_8s_16ns_16_4_1_U108                         | 1   |        | mul_ln133_2 | mul | dsp_slice | 3       |
-|      mac_muladd_8s_8s_16ns_16_4_1_U108                         | 1   |        | result_2    | add | dsp_slice | 3       |
-|      mac_muladd_8s_8s_16ns_16_4_1_U109                         | 1   |        | mul_ln133_3 | mul | dsp_slice | 3       |
-|      mac_muladd_8s_8s_16ns_16_4_1_U109                         | 1   |        | result_3    | add | dsp_slice | 3       |
-|      add_ln122_fu_352_p2                                       |     |        | add_ln122   | add | fabric    | 0       |
-|   + compute_wrapper_Pipeline_VITIS_LOOP_169_4_VITIS_LOOP_170_5 | 0   |        |             |     |           |         |
-|     add_ln169_1_fu_644_p2                                      |     |        | add_ln169_1 | add | fabric    | 0       |
-|     add_ln169_fu_656_p2                                        |     |        | add_ln169   | add | fabric    | 0       |
-|     add_ln170_fu_738_p2                                        |     |        | add_ln170   | add | fabric    | 0       |
-|  + Loop_writeC_proc                                            | 3   |        |             |     |           |         |
-|    mul_32s_32s_32_2_1_U243                                     | 3   |        | mul36       | mul | auto      | 1       |
-|   + Loop_writeC_proc_Pipeline_writeC                           | 0   |        |             |     |           |         |
-|     add_ln240_fu_391_p2                                        |     |        | add_ln240   | add | fabric    | 0       |
-|     add_ln243_fu_413_p2                                        |     |        | add_ln243   | add | fabric    | 0       |
-|     add_ln246_fu_478_p2                                        |     |        | add_ln246   | add | fabric    | 0       |
-|     j_5_fu_504_p2                                              |     |        | j_5         | add | fabric    | 0       |
-+----------------------------------------------------------------+-----+--------+-------------+-----+-----------+---------+
++-----------------------------------------------------+-----+--------+-------------+-----+-----------+---------+
+| Name                                                | DSP | Pragma | Variable    | Op  | Impl      | Latency |
++-----------------------------------------------------+-----+--------+-------------+-----+-----------+---------+
+| + mmult                                             | 22  |        |             |     |           |         |
+|   mul_32s_32s_32_2_1_U154                           | 3   |        | mul         | mul | auto      | 1       |
+|   mul_32s_32s_32_2_1_U155                           | 3   |        | mul12       | mul | auto      | 1       |
+|   q_2_fu_326_p2                                     |     |        | q_2         | add | fabric    | 0       |
+|   finish_k_fu_349_p2                                |     |        | finish_k    | add | fabric    | 0       |
+|   mul_32s_32s_32_2_1_U154                           | 3   |        | mul65       | mul | auto      | 1       |
+|  + mmult_Pipeline_readA                             | 0   |        |             |     |           |         |
+|    add_ln175_fu_204_p2                              |     |        | add_ln175   | add | fabric    | 0       |
+|    add_ln178_fu_226_p2                              |     |        | add_ln178   | add | fabric    | 0       |
+|    add_ln181_fu_269_p2                              |     |        | add_ln181   | add | fabric    | 0       |
+|    j_9_fu_283_p2                                    |     |        | j_9         | add | fabric    | 0       |
+|  + mmult_Pipeline_readB                             | 0   |        |             |     |           |         |
+|    add_ln186_fu_204_p2                              |     |        | add_ln186   | add | fabric    | 0       |
+|    add_ln189_fu_226_p2                              |     |        | add_ln189   | add | fabric    | 0       |
+|    add_ln192_fu_269_p2                              |     |        | add_ln192   | add | fabric    | 0       |
+|    j_7_fu_283_p2                                    |     |        | j_7         | add | fabric    | 0       |
+|  + mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2 | 0   |        |             |     |           |         |
+|    add_ln195_1_fu_344_p2                            |     |        | add_ln195_1 | add | fabric    | 0       |
+|    add_ln195_fu_356_p2                              |     |        | add_ln195   | add | fabric    | 0       |
+|    add_ln196_fu_410_p2                              |     |        | add_ln196   | add | fabric    | 0       |
+|  + tile_process                                     | 16  |        |             |     |           |         |
+|    sub_ln117_fu_358_p2                              |     |        | sub_ln117   | sub | fabric    | 0       |
+|    add_ln117_1_fu_399_p2                            |     |        | add_ln117_1 | add | fabric    | 0       |
+|    add_ln117_fu_411_p2                              |     |        | add_ln117   | add | fabric    | 0       |
+|    empty_18_fu_513_p2                               |     |        | empty_18    | add | fabric    | 0       |
+|    add_ln120_fu_559_p2                              |     |        | add_ln120   | add | fabric    | 0       |
+|   + tile_process_Pipeline_systolic3                 | 4   |        |             |     |           |         |
+|     mac_muladd_8s_8s_16ns_16_4_1_U31                | 1   |        | mul_ln134   | mul | dsp_slice | 3       |
+|     mac_muladd_8s_8s_16ns_16_4_1_U31                | 1   |        | result      | add | dsp_slice | 3       |
+|     mac_muladd_8s_8s_16ns_16_4_1_U32                | 1   |        | mul_ln134_1 | mul | dsp_slice | 3       |
+|     mac_muladd_8s_8s_16ns_16_4_1_U32                | 1   |        | result_11   | add | dsp_slice | 3       |
+|     mac_muladd_8s_8s_16ns_16_4_1_U33                | 1   |        | mul_ln134_2 | mul | dsp_slice | 3       |
+|     mac_muladd_8s_8s_16ns_16_4_1_U33                | 1   |        | result_12   | add | dsp_slice | 3       |
+|     mac_muladd_8s_8s_16ns_16_4_1_U34                | 1   |        | mul_ln134_3 | mul | dsp_slice | 3       |
+|     mac_muladd_8s_8s_16ns_16_4_1_U34                | 1   |        | result_13   | add | dsp_slice | 3       |
+|     add_ln123_fu_352_p2                             |     |        | add_ln123   | add | fabric    | 0       |
+|   + tile_process_Pipeline_systolic32                | 4   |        |             |     |           |         |
+|     mac_muladd_8s_8s_16ns_16_4_1_U49                | 1   |        | mul_ln134_4 | mul | dsp_slice | 3       |
+|     mac_muladd_8s_8s_16ns_16_4_1_U49                | 1   |        | result      | add | dsp_slice | 3       |
+|     mac_muladd_8s_8s_16ns_16_4_1_U50                | 1   |        | mul_ln134_5 | mul | dsp_slice | 3       |
+|     mac_muladd_8s_8s_16ns_16_4_1_U50                | 1   |        | result_8    | add | dsp_slice | 3       |
+|     mac_muladd_8s_8s_16ns_16_4_1_U51                | 1   |        | mul_ln134_6 | mul | dsp_slice | 3       |
+|     mac_muladd_8s_8s_16ns_16_4_1_U51                | 1   |        | result_9    | add | dsp_slice | 3       |
+|     mac_muladd_8s_8s_16ns_16_4_1_U52                | 1   |        | mul_ln134   | mul | dsp_slice | 3       |
+|     mac_muladd_8s_8s_16ns_16_4_1_U52                | 1   |        | result_10   | add | dsp_slice | 3       |
+|     add_ln123_fu_352_p2                             |     |        | add_ln123   | add | fabric    | 0       |
+|   + tile_process_Pipeline_systolic33                | 4   |        |             |     |           |         |
+|     mac_muladd_8s_8s_16ns_16_4_1_U66                | 1   |        | mul_ln134   | mul | dsp_slice | 3       |
+|     mac_muladd_8s_8s_16ns_16_4_1_U66                | 1   |        | result      | add | dsp_slice | 3       |
+|     mac_muladd_8s_8s_16ns_16_4_1_U67                | 1   |        | mul_ln134_4 | mul | dsp_slice | 3       |
+|     mac_muladd_8s_8s_16ns_16_4_1_U67                | 1   |        | result_4    | add | dsp_slice | 3       |
+|     mac_muladd_8s_8s_16ns_16_4_1_U68                | 1   |        | mul_ln134_5 | mul | dsp_slice | 3       |
+|     mac_muladd_8s_8s_16ns_16_4_1_U68                | 1   |        | result_5    | add | dsp_slice | 3       |
+|     mac_muladd_8s_8s_16ns_16_4_1_U69                | 1   |        | mul_ln134_6 | mul | dsp_slice | 3       |
+|     mac_muladd_8s_8s_16ns_16_4_1_U69                | 1   |        | result_6    | add | dsp_slice | 3       |
+|     add_ln123_fu_352_p2                             |     |        | add_ln123   | add | fabric    | 0       |
+|   + tile_process_Pipeline_systolic34                | 4   |        |             |     |           |         |
+|     mac_muladd_8s_8s_16ns_16_4_1_U83                | 1   |        | mul_ln134   | mul | dsp_slice | 3       |
+|     mac_muladd_8s_8s_16ns_16_4_1_U83                | 1   |        | result      | add | dsp_slice | 3       |
+|     mac_muladd_8s_8s_16ns_16_4_1_U84                | 1   |        | mul_ln134_1 | mul | dsp_slice | 3       |
+|     mac_muladd_8s_8s_16ns_16_4_1_U84                | 1   |        | result_1    | add | dsp_slice | 3       |
+|     mac_muladd_8s_8s_16ns_16_4_1_U85                | 1   |        | mul_ln134_2 | mul | dsp_slice | 3       |
+|     mac_muladd_8s_8s_16ns_16_4_1_U85                | 1   |        | result_2    | add | dsp_slice | 3       |
+|     mac_muladd_8s_8s_16ns_16_4_1_U86                | 1   |        | mul_ln134_3 | mul | dsp_slice | 3       |
+|     mac_muladd_8s_8s_16ns_16_4_1_U86                | 1   |        | result_3    | add | dsp_slice | 3       |
+|     add_ln123_fu_352_p2                             |     |        | add_ln123   | add | fabric    | 0       |
+|  + mmult_Pipeline_writeC                            | 0   |        |             |     |           |         |
+|    add_ln213_fu_446_p2                              |     |        | add_ln213   | add | fabric    | 0       |
+|    add_ln216_fu_377_p2                              |     |        | add_ln216   | add | fabric    | 0       |
+|    add_ln219_fu_435_p2                              |     |        | add_ln219   | add | fabric    | 0       |
+|    j_5_fu_470_p2                                    |     |        | j_5         | add | fabric    | 0       |
++-----------------------------------------------------+-----+--------+-------------+-----+-----------+---------+
 
 
 ================================================================
 == Storage Report
 ================================================================
-+------------------------+-----------------+-------------+------+------+--------+--------------------+--------+---------+------------------+
-| Name                   | Usage           | Type        | BRAM | URAM | Pragma | Variable           | Impl   | Latency | Bitwidth, Depth, |
-|                        |                 |             |      |      |        |                    |        |         | Banks            |
-+------------------------+-----------------+-------------+------+------+--------+--------------------+--------+---------+------------------+
-| + mmult                |                 |             | 22   | 0    |        |                    |        |         |                  |
-|   control_s_axi_U      | interface       | s_axilite   |      |      |        |                    |        |         |                  |
-|   gmem0_m_axi_U        | interface       | m_axi       | 2    |      |        |                    |        |         |                  |
-|   gmem1_m_axi_U        | interface       | m_axi       | 2    |      |        |                    |        |         |                  |
-|   gmem2_m_axi_U        | interface       | m_axi       | 2    |      |        |                    |        |         |                  |
-|   c_c_U                | fifo channel    | scalar prop |      |      |        | c_c                | srl    | 0       | 64, 4, 1         |
-|   localA_3_U           | ram_2p channel  | pipo        |      |      |        | localA_3           | lutram | 1       | 8, 256, 2        |
-|   localA_2_U           | ram_2p channel  | pipo        |      |      |        | localA_2           | lutram | 1       | 8, 256, 2        |
-|   localA_1_U           | ram_2p channel  | pipo        |      |      |        | localA_1           | lutram | 1       | 8, 256, 2        |
-|   localA_U             | ram_2p channel  | pipo        |      |      |        | localA             | lutram | 1       | 8, 256, 2        |
-|   a_row_c26_channel_U  | fifo channel    | task level  |      |      |        | a_row_c26_channel  | srl    | 0       | 32, 2, 1         |
-|   a_col_c_channel_U    | fifo channel    | task level  |      |      |        | a_col_c_channel    | srl    | 0       | 32, 2, 1         |
-|   localB_3_U           | ram_2p channel  | pipo        |      |      |        | localB_3           | lutram | 1       | 8, 256, 2        |
-|   localB_2_U           | ram_2p channel  | pipo        |      |      |        | localB_2           | lutram | 1       | 8, 256, 2        |
-|   localB_1_U           | ram_2p channel  | pipo        |      |      |        | localB_1           | lutram | 1       | 8, 256, 2        |
-|   localB_U             | ram_2p channel  | pipo        |      |      |        | localB             | lutram | 1       | 8, 256, 2        |
-|   b_col_c27_channel3_U | fifo channel    | task level  |      |      |        | b_col_c27_channel3 | srl    | 0       | 32, 2, 1         |
-|   localC_U             | ram_s2p channel | pipo        |      |      |        | localC             | lutram | 1       | 16, 64, 2        |
-|   localC_1_U           | ram_s2p channel | pipo        |      |      |        | localC_1           | lutram | 1       | 16, 64, 2        |
-|   localC_2_U           | ram_s2p channel | pipo        |      |      |        | localC_2           | lutram | 1       | 16, 64, 2        |
-|   localC_3_U           | ram_s2p channel | pipo        |      |      |        | localC_3           | lutram | 1       | 16, 64, 2        |
-|   localC_4_U           | ram_s2p channel | pipo        |      |      |        | localC_4           | lutram | 1       | 16, 64, 2        |
-|   localC_5_U           | ram_s2p channel | pipo        |      |      |        | localC_5           | lutram | 1       | 16, 64, 2        |
-|   localC_6_U           | ram_s2p channel | pipo        |      |      |        | localC_6           | lutram | 1       | 16, 64, 2        |
-|   localC_7_U           | ram_s2p channel | pipo        |      |      |        | localC_7           | lutram | 1       | 16, 64, 2        |
-|   localC_8_U           | ram_s2p channel | pipo        |      |      |        | localC_8           | lutram | 1       | 16, 64, 2        |
-|   localC_9_U           | ram_s2p channel | pipo        |      |      |        | localC_9           | lutram | 1       | 16, 64, 2        |
-|   localC_10_U          | ram_s2p channel | pipo        |      |      |        | localC_10          | lutram | 1       | 16, 64, 2        |
-|   localC_11_U          | ram_s2p channel | pipo        |      |      |        | localC_11          | lutram | 1       | 16, 64, 2        |
-|   localC_12_U          | ram_s2p channel | pipo        |      |      |        | localC_12          | lutram | 1       | 16, 64, 2        |
-|   localC_13_U          | ram_s2p channel | pipo        |      |      |        | localC_13          | lutram | 1       | 16, 64, 2        |
-|   localC_14_U          | ram_s2p channel | pipo        |      |      |        | localC_14          | lutram | 1       | 16, 64, 2        |
-|   localC_15_U          | ram_s2p channel | pipo        |      |      |        | localC_15          | lutram | 1       | 16, 64, 2        |
-|   a_row_c_channel_U    | fifo channel    | task level  |      |      |        | a_row_c_channel    | srl    | 0       | 32, 2, 1         |
-|   b_col_c_channel_U    | fifo channel    | task level  |      |      |        | b_col_c_channel    | srl    | 0       | 32, 2, 1         |
-|  + compute_wrapper     |                 |             | 16   | 0    |        |                    |        |         |                  |
-|    tempC_U             | ram_s2p array   |             | 1    |      |        | tempC              | auto   | 1       | 16, 64, 1        |
-|    tempC_1_U           | ram_s2p array   |             | 1    |      |        | tempC_1            | auto   | 1       | 16, 64, 1        |
-|    tempC_2_U           | ram_s2p array   |             | 1    |      |        | tempC_2            | auto   | 1       | 16, 64, 1        |
-|    tempC_3_U           | ram_s2p array   |             | 1    |      |        | tempC_3            | auto   | 1       | 16, 64, 1        |
-|    tempC_4_U           | ram_s2p array   |             | 1    |      |        | tempC_4            | auto   | 1       | 16, 64, 1        |
-|    tempC_5_U           | ram_s2p array   |             | 1    |      |        | tempC_5            | auto   | 1       | 16, 64, 1        |
-|    tempC_6_U           | ram_s2p array   |             | 1    |      |        | tempC_6            | auto   | 1       | 16, 64, 1        |
-|    tempC_7_U           | ram_s2p array   |             | 1    |      |        | tempC_7            | auto   | 1       | 16, 64, 1        |
-|    tempC_8_U           | ram_s2p array   |             | 1    |      |        | tempC_8            | auto   | 1       | 16, 64, 1        |
-|    tempC_9_U           | ram_s2p array   |             | 1    |      |        | tempC_9            | auto   | 1       | 16, 64, 1        |
-|    tempC_10_U          | ram_s2p array   |             | 1    |      |        | tempC_10           | auto   | 1       | 16, 64, 1        |
-|    tempC_11_U          | ram_s2p array   |             | 1    |      |        | tempC_11           | auto   | 1       | 16, 64, 1        |
-|    tempC_12_U          | ram_s2p array   |             | 1    |      |        | tempC_12           | auto   | 1       | 16, 64, 1        |
-|    tempC_13_U          | ram_s2p array   |             | 1    |      |        | tempC_13           | auto   | 1       | 16, 64, 1        |
-|    tempC_14_U          | ram_s2p array   |             | 1    |      |        | tempC_14           | auto   | 1       | 16, 64, 1        |
-|    tempC_15_U          | ram_s2p array   |             | 1    |      |        | tempC_15           | auto   | 1       | 16, 64, 1        |
-+------------------------+-----------------+-------------+------+------+--------+--------------------+--------+---------+------------------+
++---------------+---------------+------+------+------+--------+-----------+--------+---------+------------------+
+| Name          | Usage         | Type | BRAM | URAM | Pragma | Variable  | Impl   | Latency | Bitwidth, Depth, |
+|               |               |      |      |      |        |           |        |         | Banks            |
++---------------+---------------+------+------+------+--------+-----------+--------+---------+------------------+
+| + mmult       |               |      | 16   | 0    |        |           |        |         |                  |
+|   localA_U    | ram_2p array  |      |      |      | yes    | localA    | lutram | 1       | 8, 256, 1        |
+|   localA_1_U  | ram_2p array  |      |      |      | yes    | localA_1  | lutram | 1       | 8, 256, 1        |
+|   localA_2_U  | ram_2p array  |      |      |      | yes    | localA_2  | lutram | 1       | 8, 256, 1        |
+|   localA_3_U  | ram_2p array  |      |      |      | yes    | localA_3  | lutram | 1       | 8, 256, 1        |
+|   localB_U    | ram_2p array  |      |      |      | yes    | localB    | lutram | 1       | 8, 256, 1        |
+|   localB_1_U  | ram_2p array  |      |      |      | yes    | localB_1  | lutram | 1       | 8, 256, 1        |
+|   localB_2_U  | ram_2p array  |      |      |      | yes    | localB_2  | lutram | 1       | 8, 256, 1        |
+|   localB_3_U  | ram_2p array  |      |      |      | yes    | localB_3  | lutram | 1       | 8, 256, 1        |
+|   localC_U    | ram_s2p array |      | 1    |      |        | localC    | auto   | 1       | 16, 64, 1        |
+|   localC_1_U  | ram_s2p array |      | 1    |      |        | localC_1  | auto   | 1       | 16, 64, 1        |
+|   localC_2_U  | ram_s2p array |      | 1    |      |        | localC_2  | auto   | 1       | 16, 64, 1        |
+|   localC_3_U  | ram_s2p array |      | 1    |      |        | localC_3  | auto   | 1       | 16, 64, 1        |
+|   localC_4_U  | ram_s2p array |      | 1    |      |        | localC_4  | auto   | 1       | 16, 64, 1        |
+|   localC_5_U  | ram_s2p array |      | 1    |      |        | localC_5  | auto   | 1       | 16, 64, 1        |
+|   localC_6_U  | ram_s2p array |      | 1    |      |        | localC_6  | auto   | 1       | 16, 64, 1        |
+|   localC_7_U  | ram_s2p array |      | 1    |      |        | localC_7  | auto   | 1       | 16, 64, 1        |
+|   localC_8_U  | ram_s2p array |      | 1    |      |        | localC_8  | auto   | 1       | 16, 64, 1        |
+|   localC_9_U  | ram_s2p array |      | 1    |      |        | localC_9  | auto   | 1       | 16, 64, 1        |
+|   localC_10_U | ram_s2p array |      | 1    |      |        | localC_10 | auto   | 1       | 16, 64, 1        |
+|   localC_11_U | ram_s2p array |      | 1    |      |        | localC_11 | auto   | 1       | 16, 64, 1        |
+|   localC_12_U | ram_s2p array |      | 1    |      |        | localC_12 | auto   | 1       | 16, 64, 1        |
+|   localC_13_U | ram_s2p array |      | 1    |      |        | localC_13 | auto   | 1       | 16, 64, 1        |
+|   localC_14_U | ram_s2p array |      | 1    |      |        | localC_14 | auto   | 1       | 16, 64, 1        |
+|   localC_15_U | ram_s2p array |      | 1    |      |        | localC_15 | auto   | 1       | 16, 64, 1        |
++---------------+---------------+------+------+------+--------+-----------+--------+---------+------------------+
 
 
 ================================================================
 == Pragma Report
 ================================================================
-* Pragmas with Warnings
-+----------+---------+------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| Type     | Options | Location               | Messages                                                                                                                                                                           |
-+----------+---------+------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-| dataflow |         | mmult.cpp:209 in mmult | Since the only kind of statements allowed in a canonical dataflow region are variable declarations and function calls, the compiler may not be able to correctly handle the region |
-+----------+---------+------------------------+------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-
 * Valid Pragma Syntax
-+-----------------+----------------------------------------------+----------------------------------+
-| Type            | Options                                      | Location                         |
-+-----------------+----------------------------------------------+----------------------------------+
-| loop_tripcount  | min = c_size max = c_size                    | mmult.cpp:117 in tile_process    |
-| unroll          | factor = 4                                   | mmult.cpp:120 in tile_process    |
-| unroll          | factor = 4                                   | mmult.cpp:123 in tile_process    |
-| array_partition | variable = tempC dim = 1 factor = 4 cyclic   | mmult.cpp:150 in compute_wrapper |
-| array_partition | variable = tempC dim = 2 factor = 4 cyclic   | mmult.cpp:151 in compute_wrapper |
-| unroll          | factor = 4                                   | mmult.cpp:156 in compute_wrapper |
-| unroll          | factor = 4                                   | mmult.cpp:171 in compute_wrapper |
-| interface       | m_axi port = a offset = slave bundle = gmem0 | mmult.cpp:184 in mmult           |
-| interface       | m_axi port = b offset = slave bundle = gmem1 | mmult.cpp:185 in mmult           |
-| interface       | m_axi port = c offset = slave bundle = gmem2 | mmult.cpp:186 in mmult           |
-| interface       | s_axilite register port = a_row              | mmult.cpp:187 in mmult           |
-| interface       | s_axilite register port = a_col              | mmult.cpp:188 in mmult           |
-| interface       | s_axilite register port = b_col              | mmult.cpp:189 in mmult           |
-| interface       | s_axilite register port = return             | mmult.cpp:190 in mmult           |
-| array_partition | variable = localA dim = 1 factor = 4 cyclic  | mmult.cpp:197 in mmult           |
-| bind_storage    | variable=localA type=ram_2p impl=lutram      | mmult.cpp:198 in mmult, localA   |
-| array_partition | variable = localB dim = 2 factor = 4 cyclic  | mmult.cpp:201 in mmult           |
-| bind_storage    | variable=localB type=ram_2p impl=lutram      | mmult.cpp:202 in mmult, localB   |
-| array_partition | variable = localC dim = 1 factor = 4 cyclic  | mmult.cpp:205 in mmult           |
-| array_partition | variable = localC dim = 2 factor = 4 cyclic  | mmult.cpp:206 in mmult           |
-| bind_storage    | variable=localC type=ram_s2p impl=lutram     | mmult.cpp:207 in mmult, localC   |
-| loop_tripcount  | min = c_size* c_size max = c_size * c_size   | mmult.cpp:216 in mmult           |
-| loop_tripcount  | min = c_size *c_size max = c_size * c_size   | mmult.cpp:227 in mmult           |
-| loop_tripcount  | min = c_size *c_size max = c_size * c_size   | mmult.cpp:241 in mmult           |
-+-----------------+----------------------------------------------+----------------------------------+
++-----------------+---------------------------------------------+--------------------------------+
+| Type            | Options                                     | Location                       |
++-----------------+---------------------------------------------+--------------------------------+
+| loop_tripcount  | min = c_size max = c_size                   | mmult.cpp:118 in tile_process  |
+| unroll          | factor = 4                                  | mmult.cpp:121 in tile_process  |
+| unroll          | factor = 4                                  | mmult.cpp:124 in tile_process  |
+| array_partition | variable = localA dim = 1 factor = 4 cyclic | mmult.cpp:156 in mmult         |
+| bind_storage    | variable=localA type=ram_2p impl=lutram     | mmult.cpp:158 in mmult, localA |
+| array_partition | variable = localB dim = 2 factor = 4 cyclic | mmult.cpp:161 in mmult         |
+| bind_storage    | variable=localB type=ram_2p impl=lutram     | mmult.cpp:163 in mmult, localB |
+| array_partition | variable = localC dim = 1 factor = 4 cyclic | mmult.cpp:166 in mmult         |
+| array_partition | variable = localC dim = 2 factor = 4 cyclic | mmult.cpp:168 in mmult         |
+| loop_tripcount  | min = c_size *c_size max = c_size * c_size  | mmult.cpp:176 in mmult         |
+| loop_tripcount  | min = c_size *c_size max = c_size * c_size  | mmult.cpp:187 in mmult         |
+| unroll          | factor = 4                                  | mmult.cpp:197 in mmult         |
+| loop_tripcount  | min = c_size *c_size max = c_size * c_size  | mmult.cpp:214 in mmult         |
++-----------------+---------------------------------------------+--------------------------------+
 
 

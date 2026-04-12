@@ -242,7 +242,7 @@ class AESL_RUNTIME_BC {
     string mName;
 };
 using hls::sim::Byte;
-extern "C" void mmult(Byte<1>*, Byte<1>*, Byte<2>*, int, int, int, int, int, int);
+extern "C" void mmult(Byte<1>*, Byte<1>*, Byte<2>*, int, int, int);
 extern "C" void apatb_mmult_hw(volatile void * __xlx_apatb_param_a, volatile void * __xlx_apatb_param_b, volatile void * __xlx_apatb_param_c, int __xlx_apatb_param_a_row, int __xlx_apatb_param_a_col, int __xlx_apatb_param_b_col) {
 using hls::sim::createStream;
   // Collect __xlx_a__tmp_vec
@@ -270,7 +270,7 @@ __xlx_c__tmp_vec.push_back(((Byte<2>*)__xlx_apatb_param_c)[i]);
   int __xlx_offset_param_c = 0;
   int __xlx_offset_byte_param_c = 0*2;
   // DUT call
-  mmult(__xlx_a__tmp_vec.data(), __xlx_b__tmp_vec.data(), __xlx_c__tmp_vec.data(), __xlx_offset_byte_param_a, __xlx_offset_byte_param_b, __xlx_offset_byte_param_c, __xlx_apatb_param_a_row, __xlx_apatb_param_a_col, __xlx_apatb_param_b_col);
+  mmult(__xlx_a__tmp_vec.data(), __xlx_b__tmp_vec.data(), __xlx_c__tmp_vec.data(), __xlx_apatb_param_a_row, __xlx_apatb_param_a_col, __xlx_apatb_param_b_col);
 // print __xlx_apatb_param_a
 for (size_t i = 0; i < __xlx_size_param_a; ++i) {
 ((Byte<1>*)__xlx_apatb_param_a)[i] = __xlx_a__tmp_vec[__xlx_offset_param_a+i];

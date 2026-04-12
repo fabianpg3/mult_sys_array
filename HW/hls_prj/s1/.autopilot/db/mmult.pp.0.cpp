@@ -156,9 +156,9 @@ extern "C" {
 }
 # 2 "<built-in>" 2
 # 1 "mmult.cpp" 2
-# 53 "mmult.cpp"
+# 54 "mmult.cpp"
 # 1 "./param.h" 1
-# 54 "mmult.cpp" 2
+# 55 "mmult.cpp" 2
 # 1 "/tools/Xilinx-2023.2/Vitis_HLS/2023.2/common/technology/autopilot/ap_int.h" 1
 # 10 "/tools/Xilinx-2023.2/Vitis_HLS/2023.2/common/technology/autopilot/ap_int.h"
 # 1 "/tools/Xilinx-2023.2/Vitis_HLS/2023.2/common/technology/autopilot/etc/ap_common.h" 1
@@ -5719,7 +5719,7 @@ inline __attribute__((nodebug)) bool operator!=(
 }
 # 366 "/tools/Xilinx-2023.2/Vitis_HLS/2023.2/common/technology/autopilot/ap_fixed.h" 2
 # 361 "/tools/Xilinx-2023.2/Vitis_HLS/2023.2/common/technology/autopilot/ap_int.h" 2
-# 55 "mmult.cpp" 2
+# 56 "mmult.cpp" 2
 # 1 "/usr/include/stdio.h" 1 3 4
 # 27 "/usr/include/stdio.h" 3 4
 # 1 "/usr/include/x86_64-linux-gnu/bits/libc-header-start.h" 1 3 4
@@ -6596,7 +6596,7 @@ extern int __uflow (FILE *);
 extern int __overflow (FILE *, int);
 # 873 "/usr/include/stdio.h" 3 4
 }
-# 56 "mmult.cpp" 2
+# 57 "mmult.cpp" 2
 
 
 const unsigned int c_size = 32;
@@ -6616,7 +6616,7 @@ void tile_process(
 #pragma HLS_PIPELINE II = 1
 
  ap_int<8> boundary_value = 0;
-# 115 "mmult.cpp"
+# 116 "mmult.cpp"
 systolic1:
   for (int k = start_k; k < finish_k; k++) {
 #pragma HLS LOOP_TRIPCOUNT min = c_size max = c_size
@@ -6644,41 +6644,6 @@ systolic1:
   }
 }
 
-void compute_wrapper(
-    ap_int<8> localA[32][32],
-    ap_int<8> localB[32][32],
-    ap_int<2 * 8> localC[32][32],
-    int a_row, int a_col, int b_col, int b_row) {
-
-
-  ap_int<2 * 8> tempC[32][32];
-#pragma HLS ARRAY_PARTITION variable = tempC dim = 1 factor = 4 cyclic
-#pragma HLS ARRAY_PARTITION variable = tempC dim = 2 factor = 4 cyclic
-
-
- VITIS_LOOP_154_1: for (int i = 0; i < 32; i++) {
-    VITIS_LOOP_155_2: for (int j = 0; j < 32; j++) {
-#pragma HLS UNROLL factor = 4
- tempC[i][j] = 0;
-    }
-  }
-
-
-  VITIS_LOOP_162_3: for (int q = 0; q < 4; q++) {
-    int start_k = q * (32 / 4);
-    int finish_k = (q + 1) * (32 / 4);
-    tile_process(localA, localB, tempC, start_k, finish_k, a_row, a_col, b_col, b_row);
-  }
-
-
-  VITIS_LOOP_169_4: for (int i = 0; i < 32; i++) {
-    VITIS_LOOP_170_5: for (int j = 0; j < 32; j++) {
-#pragma HLS UNROLL factor = 4
- localC[i][j] = tempC[i][j];
-    }
-  }
-}
-
 __attribute__((sdx_kernel("mmult", 0))) void mmult(ap_int<8> a[32 * 32],
            ap_int<8> b[32 * 32],
            ap_int<2 * 8> c[32 * 32],
@@ -6688,47 +6653,41 @@ __attribute__((sdx_kernel("mmult", 0))) void mmult(ap_int<8> a[32 * 32],
 ) {
 #line 13 "/home/jgaitan/Documents/mult_sys_array/HW/script.tcl"
 #pragma HLSDIRECTIVE TOP name=mmult
-# 183 "mmult.cpp"
+# 149 "mmult.cpp"
 
-#pragma HLS INTERFACE m_axi port = a offset = slave bundle = gmem0
-#pragma HLS INTERFACE m_axi port = b offset = slave bundle = gmem1
-#pragma HLS INTERFACE m_axi port = c offset = slave bundle = gmem2
-#pragma HLS INTERFACE s_axilite register port = a_row
-#pragma HLS INTERFACE s_axilite register port = a_col
-#pragma HLS INTERFACE s_axilite register port = b_col
-#pragma HLS INTERFACE s_axilite register port = return
- int b_row = a_col;
+  int b_row = a_col;
   int c_row = a_row;
   int c_col = b_col;
 
 
-    ap_int<8> localA[32][32];
+  ap_int<8> localA[32][32];
 #pragma HLS ARRAY_PARTITION variable = localA dim = 1 factor = 4 cyclic
+
 #pragma HLS BIND_STORAGE variable=localA type=ram_2p impl=lutram
 
  ap_int<8> localB[32][32];
 #pragma HLS ARRAY_PARTITION variable = localB dim = 2 factor = 4 cyclic
+
 #pragma HLS BIND_STORAGE variable=localB type=ram_2p impl=lutram
 
- ap_int<2*8> localC[32][32];
+ ap_int<2 * 8> localC[32][32];
 #pragma HLS ARRAY_PARTITION variable = localC dim = 1 factor = 4 cyclic
-#pragma HLS ARRAY_PARTITION variable = localC dim = 2 factor = 4 cyclic
-#pragma HLS BIND_STORAGE variable=localC type=ram_s2p impl=lutram
 
-#pragma HLS DATAFLOW
+#pragma HLS ARRAY_PARTITION variable = localC dim = 2 factor = 4 cyclic
+
 
 
 
 
 readA:
-    for (int loc = 0, i = 0, j = 0; loc < a_row * a_col; loc++, j++) {
-#pragma HLS LOOP_TRIPCOUNT min = c_size* c_size max = c_size * c_size
+  for (int loc = 0, i = 0, j = 0; loc < a_row * a_col; loc++, j++) {
+#pragma HLS LOOP_TRIPCOUNT min = c_size *c_size max = c_size * c_size
  if (j == a_col) {
-            i++;
-            j = 0;
-        }
-        localA[i][j] = a[loc];
+      i++;
+      j = 0;
     }
+    localA[i][j] = a[loc];
+  }
 
 
 readB:
@@ -6741,7 +6700,20 @@ readB:
     localB[i][j] = b[loc];
   }
 
-  compute_wrapper(localA, localB, localC, a_row, a_col, b_col, b_row);
+  VITIS_LOOP_195_1: for (int i = 0; i < 32; i++) {
+    VITIS_LOOP_196_2: for (int j = 0; j < 32; j++) {
+#pragma HLS UNROLL factor = 4
+ localC[i][j] = 0;
+    }
+  }
+
+tile_processing:
+  for (int q = 0; q < 4; q++) {
+    int start_k = q * (32 / 4);
+    int finish_k = (q + 1) * (32 / 4);
+    tile_process(localA, localB, localC, start_k, finish_k, a_row, a_col, b_col,
+                 b_row);
+  }
 
 
 

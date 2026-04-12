@@ -6,963 +6,521 @@
 
 `timescale 1 ns / 1 ps 
 
-(* CORE_GENERATION_INFO="mmult_mmult,hls_ip_2023_2,{HLS_INPUT_TYPE=cxx,HLS_INPUT_FLOAT=0,HLS_INPUT_FIXED=0,HLS_INPUT_PART=xck26-sfvc784-2LV-c,HLS_INPUT_CLOCK=3.300000,HLS_INPUT_ARCH=dataflow,HLS_SYN_CLOCK=2.829000,HLS_SYN_LAT=68146,HLS_SYN_TPT=64021,HLS_SYN_MEM=22,HLS_SYN_DSP=0,HLS_SYN_FF=7336,HLS_SYN_LUT=11111,HLS_VERSION=2023_2}" *)
+(* CORE_GENERATION_INFO="mmult_mmult,hls_ip_2023_2,{HLS_INPUT_TYPE=cxx,HLS_INPUT_FLOAT=0,HLS_INPUT_FIXED=0,HLS_INPUT_PART=xck26-sfvc784-2LV-c,HLS_INPUT_CLOCK=3.300000,HLS_INPUT_ARCH=others,HLS_SYN_CLOCK=2.365000,HLS_SYN_LAT=67606,HLS_SYN_TPT=none,HLS_SYN_MEM=16,HLS_SYN_DSP=0,HLS_SYN_FF=1888,HLS_SYN_LUT=5384,HLS_VERSION=2023_2}" *)
 
 module mmult (
         ap_clk,
-        ap_rst_n,
-        s_axi_control_AWVALID,
-        s_axi_control_AWREADY,
-        s_axi_control_AWADDR,
-        s_axi_control_WVALID,
-        s_axi_control_WREADY,
-        s_axi_control_WDATA,
-        s_axi_control_WSTRB,
-        s_axi_control_ARVALID,
-        s_axi_control_ARREADY,
-        s_axi_control_ARADDR,
-        s_axi_control_RVALID,
-        s_axi_control_RREADY,
-        s_axi_control_RDATA,
-        s_axi_control_RRESP,
-        s_axi_control_BVALID,
-        s_axi_control_BREADY,
-        s_axi_control_BRESP,
-        interrupt,
-        m_axi_gmem0_AWVALID,
-        m_axi_gmem0_AWREADY,
-        m_axi_gmem0_AWADDR,
-        m_axi_gmem0_AWID,
-        m_axi_gmem0_AWLEN,
-        m_axi_gmem0_AWSIZE,
-        m_axi_gmem0_AWBURST,
-        m_axi_gmem0_AWLOCK,
-        m_axi_gmem0_AWCACHE,
-        m_axi_gmem0_AWPROT,
-        m_axi_gmem0_AWQOS,
-        m_axi_gmem0_AWREGION,
-        m_axi_gmem0_AWUSER,
-        m_axi_gmem0_WVALID,
-        m_axi_gmem0_WREADY,
-        m_axi_gmem0_WDATA,
-        m_axi_gmem0_WSTRB,
-        m_axi_gmem0_WLAST,
-        m_axi_gmem0_WID,
-        m_axi_gmem0_WUSER,
-        m_axi_gmem0_ARVALID,
-        m_axi_gmem0_ARREADY,
-        m_axi_gmem0_ARADDR,
-        m_axi_gmem0_ARID,
-        m_axi_gmem0_ARLEN,
-        m_axi_gmem0_ARSIZE,
-        m_axi_gmem0_ARBURST,
-        m_axi_gmem0_ARLOCK,
-        m_axi_gmem0_ARCACHE,
-        m_axi_gmem0_ARPROT,
-        m_axi_gmem0_ARQOS,
-        m_axi_gmem0_ARREGION,
-        m_axi_gmem0_ARUSER,
-        m_axi_gmem0_RVALID,
-        m_axi_gmem0_RREADY,
-        m_axi_gmem0_RDATA,
-        m_axi_gmem0_RLAST,
-        m_axi_gmem0_RID,
-        m_axi_gmem0_RUSER,
-        m_axi_gmem0_RRESP,
-        m_axi_gmem0_BVALID,
-        m_axi_gmem0_BREADY,
-        m_axi_gmem0_BRESP,
-        m_axi_gmem0_BID,
-        m_axi_gmem0_BUSER,
-        m_axi_gmem1_AWVALID,
-        m_axi_gmem1_AWREADY,
-        m_axi_gmem1_AWADDR,
-        m_axi_gmem1_AWID,
-        m_axi_gmem1_AWLEN,
-        m_axi_gmem1_AWSIZE,
-        m_axi_gmem1_AWBURST,
-        m_axi_gmem1_AWLOCK,
-        m_axi_gmem1_AWCACHE,
-        m_axi_gmem1_AWPROT,
-        m_axi_gmem1_AWQOS,
-        m_axi_gmem1_AWREGION,
-        m_axi_gmem1_AWUSER,
-        m_axi_gmem1_WVALID,
-        m_axi_gmem1_WREADY,
-        m_axi_gmem1_WDATA,
-        m_axi_gmem1_WSTRB,
-        m_axi_gmem1_WLAST,
-        m_axi_gmem1_WID,
-        m_axi_gmem1_WUSER,
-        m_axi_gmem1_ARVALID,
-        m_axi_gmem1_ARREADY,
-        m_axi_gmem1_ARADDR,
-        m_axi_gmem1_ARID,
-        m_axi_gmem1_ARLEN,
-        m_axi_gmem1_ARSIZE,
-        m_axi_gmem1_ARBURST,
-        m_axi_gmem1_ARLOCK,
-        m_axi_gmem1_ARCACHE,
-        m_axi_gmem1_ARPROT,
-        m_axi_gmem1_ARQOS,
-        m_axi_gmem1_ARREGION,
-        m_axi_gmem1_ARUSER,
-        m_axi_gmem1_RVALID,
-        m_axi_gmem1_RREADY,
-        m_axi_gmem1_RDATA,
-        m_axi_gmem1_RLAST,
-        m_axi_gmem1_RID,
-        m_axi_gmem1_RUSER,
-        m_axi_gmem1_RRESP,
-        m_axi_gmem1_BVALID,
-        m_axi_gmem1_BREADY,
-        m_axi_gmem1_BRESP,
-        m_axi_gmem1_BID,
-        m_axi_gmem1_BUSER,
-        m_axi_gmem2_AWVALID,
-        m_axi_gmem2_AWREADY,
-        m_axi_gmem2_AWADDR,
-        m_axi_gmem2_AWID,
-        m_axi_gmem2_AWLEN,
-        m_axi_gmem2_AWSIZE,
-        m_axi_gmem2_AWBURST,
-        m_axi_gmem2_AWLOCK,
-        m_axi_gmem2_AWCACHE,
-        m_axi_gmem2_AWPROT,
-        m_axi_gmem2_AWQOS,
-        m_axi_gmem2_AWREGION,
-        m_axi_gmem2_AWUSER,
-        m_axi_gmem2_WVALID,
-        m_axi_gmem2_WREADY,
-        m_axi_gmem2_WDATA,
-        m_axi_gmem2_WSTRB,
-        m_axi_gmem2_WLAST,
-        m_axi_gmem2_WID,
-        m_axi_gmem2_WUSER,
-        m_axi_gmem2_ARVALID,
-        m_axi_gmem2_ARREADY,
-        m_axi_gmem2_ARADDR,
-        m_axi_gmem2_ARID,
-        m_axi_gmem2_ARLEN,
-        m_axi_gmem2_ARSIZE,
-        m_axi_gmem2_ARBURST,
-        m_axi_gmem2_ARLOCK,
-        m_axi_gmem2_ARCACHE,
-        m_axi_gmem2_ARPROT,
-        m_axi_gmem2_ARQOS,
-        m_axi_gmem2_ARREGION,
-        m_axi_gmem2_ARUSER,
-        m_axi_gmem2_RVALID,
-        m_axi_gmem2_RREADY,
-        m_axi_gmem2_RDATA,
-        m_axi_gmem2_RLAST,
-        m_axi_gmem2_RID,
-        m_axi_gmem2_RUSER,
-        m_axi_gmem2_RRESP,
-        m_axi_gmem2_BVALID,
-        m_axi_gmem2_BREADY,
-        m_axi_gmem2_BRESP,
-        m_axi_gmem2_BID,
-        m_axi_gmem2_BUSER
+        ap_rst,
+        ap_start,
+        ap_done,
+        ap_idle,
+        ap_ready,
+        a_address0,
+        a_ce0,
+        a_q0,
+        b_address0,
+        b_ce0,
+        b_q0,
+        c_address0,
+        c_ce0,
+        c_we0,
+        c_d0,
+        a_row,
+        a_col,
+        b_col
 );
 
-parameter    C_S_AXI_CONTROL_DATA_WIDTH = 32;
-parameter    C_S_AXI_CONTROL_ADDR_WIDTH = 7;
-parameter    C_S_AXI_DATA_WIDTH = 32;
-parameter    C_M_AXI_GMEM0_ID_WIDTH = 1;
-parameter    C_M_AXI_GMEM0_ADDR_WIDTH = 64;
-parameter    C_M_AXI_GMEM0_DATA_WIDTH = 32;
-parameter    C_M_AXI_GMEM0_AWUSER_WIDTH = 1;
-parameter    C_M_AXI_GMEM0_ARUSER_WIDTH = 1;
-parameter    C_M_AXI_GMEM0_WUSER_WIDTH = 1;
-parameter    C_M_AXI_GMEM0_RUSER_WIDTH = 1;
-parameter    C_M_AXI_GMEM0_BUSER_WIDTH = 1;
-parameter    C_M_AXI_GMEM0_USER_VALUE = 0;
-parameter    C_M_AXI_GMEM0_PROT_VALUE = 0;
-parameter    C_M_AXI_GMEM0_CACHE_VALUE = 3;
-parameter    C_M_AXI_DATA_WIDTH = 32;
-parameter    C_M_AXI_GMEM1_ID_WIDTH = 1;
-parameter    C_M_AXI_GMEM1_ADDR_WIDTH = 64;
-parameter    C_M_AXI_GMEM1_DATA_WIDTH = 32;
-parameter    C_M_AXI_GMEM1_AWUSER_WIDTH = 1;
-parameter    C_M_AXI_GMEM1_ARUSER_WIDTH = 1;
-parameter    C_M_AXI_GMEM1_WUSER_WIDTH = 1;
-parameter    C_M_AXI_GMEM1_RUSER_WIDTH = 1;
-parameter    C_M_AXI_GMEM1_BUSER_WIDTH = 1;
-parameter    C_M_AXI_GMEM1_USER_VALUE = 0;
-parameter    C_M_AXI_GMEM1_PROT_VALUE = 0;
-parameter    C_M_AXI_GMEM1_CACHE_VALUE = 3;
-parameter    C_M_AXI_GMEM2_ID_WIDTH = 1;
-parameter    C_M_AXI_GMEM2_ADDR_WIDTH = 64;
-parameter    C_M_AXI_GMEM2_DATA_WIDTH = 32;
-parameter    C_M_AXI_GMEM2_AWUSER_WIDTH = 1;
-parameter    C_M_AXI_GMEM2_ARUSER_WIDTH = 1;
-parameter    C_M_AXI_GMEM2_WUSER_WIDTH = 1;
-parameter    C_M_AXI_GMEM2_RUSER_WIDTH = 1;
-parameter    C_M_AXI_GMEM2_BUSER_WIDTH = 1;
-parameter    C_M_AXI_GMEM2_USER_VALUE = 0;
-parameter    C_M_AXI_GMEM2_PROT_VALUE = 0;
-parameter    C_M_AXI_GMEM2_CACHE_VALUE = 3;
-
-parameter C_S_AXI_CONTROL_WSTRB_WIDTH = (32 / 8);
-parameter C_S_AXI_WSTRB_WIDTH = (32 / 8);
-parameter C_M_AXI_GMEM0_WSTRB_WIDTH = (32 / 8);
-parameter C_M_AXI_WSTRB_WIDTH = (32 / 8);
-parameter C_M_AXI_GMEM1_WSTRB_WIDTH = (32 / 8);
-parameter C_M_AXI_GMEM2_WSTRB_WIDTH = (32 / 8);
+parameter    ap_ST_fsm_state1 = 7'd1;
+parameter    ap_ST_fsm_state2 = 7'd2;
+parameter    ap_ST_fsm_state3 = 7'd4;
+parameter    ap_ST_fsm_state4 = 7'd8;
+parameter    ap_ST_fsm_state5 = 7'd16;
+parameter    ap_ST_fsm_state6 = 7'd32;
+parameter    ap_ST_fsm_state7 = 7'd64;
 
 input   ap_clk;
-input   ap_rst_n;
-input   s_axi_control_AWVALID;
-output   s_axi_control_AWREADY;
-input  [C_S_AXI_CONTROL_ADDR_WIDTH - 1:0] s_axi_control_AWADDR;
-input   s_axi_control_WVALID;
-output   s_axi_control_WREADY;
-input  [C_S_AXI_CONTROL_DATA_WIDTH - 1:0] s_axi_control_WDATA;
-input  [C_S_AXI_CONTROL_WSTRB_WIDTH - 1:0] s_axi_control_WSTRB;
-input   s_axi_control_ARVALID;
-output   s_axi_control_ARREADY;
-input  [C_S_AXI_CONTROL_ADDR_WIDTH - 1:0] s_axi_control_ARADDR;
-output   s_axi_control_RVALID;
-input   s_axi_control_RREADY;
-output  [C_S_AXI_CONTROL_DATA_WIDTH - 1:0] s_axi_control_RDATA;
-output  [1:0] s_axi_control_RRESP;
-output   s_axi_control_BVALID;
-input   s_axi_control_BREADY;
-output  [1:0] s_axi_control_BRESP;
-output   interrupt;
-output   m_axi_gmem0_AWVALID;
-input   m_axi_gmem0_AWREADY;
-output  [C_M_AXI_GMEM0_ADDR_WIDTH - 1:0] m_axi_gmem0_AWADDR;
-output  [C_M_AXI_GMEM0_ID_WIDTH - 1:0] m_axi_gmem0_AWID;
-output  [7:0] m_axi_gmem0_AWLEN;
-output  [2:0] m_axi_gmem0_AWSIZE;
-output  [1:0] m_axi_gmem0_AWBURST;
-output  [1:0] m_axi_gmem0_AWLOCK;
-output  [3:0] m_axi_gmem0_AWCACHE;
-output  [2:0] m_axi_gmem0_AWPROT;
-output  [3:0] m_axi_gmem0_AWQOS;
-output  [3:0] m_axi_gmem0_AWREGION;
-output  [C_M_AXI_GMEM0_AWUSER_WIDTH - 1:0] m_axi_gmem0_AWUSER;
-output   m_axi_gmem0_WVALID;
-input   m_axi_gmem0_WREADY;
-output  [C_M_AXI_GMEM0_DATA_WIDTH - 1:0] m_axi_gmem0_WDATA;
-output  [C_M_AXI_GMEM0_WSTRB_WIDTH - 1:0] m_axi_gmem0_WSTRB;
-output   m_axi_gmem0_WLAST;
-output  [C_M_AXI_GMEM0_ID_WIDTH - 1:0] m_axi_gmem0_WID;
-output  [C_M_AXI_GMEM0_WUSER_WIDTH - 1:0] m_axi_gmem0_WUSER;
-output   m_axi_gmem0_ARVALID;
-input   m_axi_gmem0_ARREADY;
-output  [C_M_AXI_GMEM0_ADDR_WIDTH - 1:0] m_axi_gmem0_ARADDR;
-output  [C_M_AXI_GMEM0_ID_WIDTH - 1:0] m_axi_gmem0_ARID;
-output  [7:0] m_axi_gmem0_ARLEN;
-output  [2:0] m_axi_gmem0_ARSIZE;
-output  [1:0] m_axi_gmem0_ARBURST;
-output  [1:0] m_axi_gmem0_ARLOCK;
-output  [3:0] m_axi_gmem0_ARCACHE;
-output  [2:0] m_axi_gmem0_ARPROT;
-output  [3:0] m_axi_gmem0_ARQOS;
-output  [3:0] m_axi_gmem0_ARREGION;
-output  [C_M_AXI_GMEM0_ARUSER_WIDTH - 1:0] m_axi_gmem0_ARUSER;
-input   m_axi_gmem0_RVALID;
-output   m_axi_gmem0_RREADY;
-input  [C_M_AXI_GMEM0_DATA_WIDTH - 1:0] m_axi_gmem0_RDATA;
-input   m_axi_gmem0_RLAST;
-input  [C_M_AXI_GMEM0_ID_WIDTH - 1:0] m_axi_gmem0_RID;
-input  [C_M_AXI_GMEM0_RUSER_WIDTH - 1:0] m_axi_gmem0_RUSER;
-input  [1:0] m_axi_gmem0_RRESP;
-input   m_axi_gmem0_BVALID;
-output   m_axi_gmem0_BREADY;
-input  [1:0] m_axi_gmem0_BRESP;
-input  [C_M_AXI_GMEM0_ID_WIDTH - 1:0] m_axi_gmem0_BID;
-input  [C_M_AXI_GMEM0_BUSER_WIDTH - 1:0] m_axi_gmem0_BUSER;
-output   m_axi_gmem1_AWVALID;
-input   m_axi_gmem1_AWREADY;
-output  [C_M_AXI_GMEM1_ADDR_WIDTH - 1:0] m_axi_gmem1_AWADDR;
-output  [C_M_AXI_GMEM1_ID_WIDTH - 1:0] m_axi_gmem1_AWID;
-output  [7:0] m_axi_gmem1_AWLEN;
-output  [2:0] m_axi_gmem1_AWSIZE;
-output  [1:0] m_axi_gmem1_AWBURST;
-output  [1:0] m_axi_gmem1_AWLOCK;
-output  [3:0] m_axi_gmem1_AWCACHE;
-output  [2:0] m_axi_gmem1_AWPROT;
-output  [3:0] m_axi_gmem1_AWQOS;
-output  [3:0] m_axi_gmem1_AWREGION;
-output  [C_M_AXI_GMEM1_AWUSER_WIDTH - 1:0] m_axi_gmem1_AWUSER;
-output   m_axi_gmem1_WVALID;
-input   m_axi_gmem1_WREADY;
-output  [C_M_AXI_GMEM1_DATA_WIDTH - 1:0] m_axi_gmem1_WDATA;
-output  [C_M_AXI_GMEM1_WSTRB_WIDTH - 1:0] m_axi_gmem1_WSTRB;
-output   m_axi_gmem1_WLAST;
-output  [C_M_AXI_GMEM1_ID_WIDTH - 1:0] m_axi_gmem1_WID;
-output  [C_M_AXI_GMEM1_WUSER_WIDTH - 1:0] m_axi_gmem1_WUSER;
-output   m_axi_gmem1_ARVALID;
-input   m_axi_gmem1_ARREADY;
-output  [C_M_AXI_GMEM1_ADDR_WIDTH - 1:0] m_axi_gmem1_ARADDR;
-output  [C_M_AXI_GMEM1_ID_WIDTH - 1:0] m_axi_gmem1_ARID;
-output  [7:0] m_axi_gmem1_ARLEN;
-output  [2:0] m_axi_gmem1_ARSIZE;
-output  [1:0] m_axi_gmem1_ARBURST;
-output  [1:0] m_axi_gmem1_ARLOCK;
-output  [3:0] m_axi_gmem1_ARCACHE;
-output  [2:0] m_axi_gmem1_ARPROT;
-output  [3:0] m_axi_gmem1_ARQOS;
-output  [3:0] m_axi_gmem1_ARREGION;
-output  [C_M_AXI_GMEM1_ARUSER_WIDTH - 1:0] m_axi_gmem1_ARUSER;
-input   m_axi_gmem1_RVALID;
-output   m_axi_gmem1_RREADY;
-input  [C_M_AXI_GMEM1_DATA_WIDTH - 1:0] m_axi_gmem1_RDATA;
-input   m_axi_gmem1_RLAST;
-input  [C_M_AXI_GMEM1_ID_WIDTH - 1:0] m_axi_gmem1_RID;
-input  [C_M_AXI_GMEM1_RUSER_WIDTH - 1:0] m_axi_gmem1_RUSER;
-input  [1:0] m_axi_gmem1_RRESP;
-input   m_axi_gmem1_BVALID;
-output   m_axi_gmem1_BREADY;
-input  [1:0] m_axi_gmem1_BRESP;
-input  [C_M_AXI_GMEM1_ID_WIDTH - 1:0] m_axi_gmem1_BID;
-input  [C_M_AXI_GMEM1_BUSER_WIDTH - 1:0] m_axi_gmem1_BUSER;
-output   m_axi_gmem2_AWVALID;
-input   m_axi_gmem2_AWREADY;
-output  [C_M_AXI_GMEM2_ADDR_WIDTH - 1:0] m_axi_gmem2_AWADDR;
-output  [C_M_AXI_GMEM2_ID_WIDTH - 1:0] m_axi_gmem2_AWID;
-output  [7:0] m_axi_gmem2_AWLEN;
-output  [2:0] m_axi_gmem2_AWSIZE;
-output  [1:0] m_axi_gmem2_AWBURST;
-output  [1:0] m_axi_gmem2_AWLOCK;
-output  [3:0] m_axi_gmem2_AWCACHE;
-output  [2:0] m_axi_gmem2_AWPROT;
-output  [3:0] m_axi_gmem2_AWQOS;
-output  [3:0] m_axi_gmem2_AWREGION;
-output  [C_M_AXI_GMEM2_AWUSER_WIDTH - 1:0] m_axi_gmem2_AWUSER;
-output   m_axi_gmem2_WVALID;
-input   m_axi_gmem2_WREADY;
-output  [C_M_AXI_GMEM2_DATA_WIDTH - 1:0] m_axi_gmem2_WDATA;
-output  [C_M_AXI_GMEM2_WSTRB_WIDTH - 1:0] m_axi_gmem2_WSTRB;
-output   m_axi_gmem2_WLAST;
-output  [C_M_AXI_GMEM2_ID_WIDTH - 1:0] m_axi_gmem2_WID;
-output  [C_M_AXI_GMEM2_WUSER_WIDTH - 1:0] m_axi_gmem2_WUSER;
-output   m_axi_gmem2_ARVALID;
-input   m_axi_gmem2_ARREADY;
-output  [C_M_AXI_GMEM2_ADDR_WIDTH - 1:0] m_axi_gmem2_ARADDR;
-output  [C_M_AXI_GMEM2_ID_WIDTH - 1:0] m_axi_gmem2_ARID;
-output  [7:0] m_axi_gmem2_ARLEN;
-output  [2:0] m_axi_gmem2_ARSIZE;
-output  [1:0] m_axi_gmem2_ARBURST;
-output  [1:0] m_axi_gmem2_ARLOCK;
-output  [3:0] m_axi_gmem2_ARCACHE;
-output  [2:0] m_axi_gmem2_ARPROT;
-output  [3:0] m_axi_gmem2_ARQOS;
-output  [3:0] m_axi_gmem2_ARREGION;
-output  [C_M_AXI_GMEM2_ARUSER_WIDTH - 1:0] m_axi_gmem2_ARUSER;
-input   m_axi_gmem2_RVALID;
-output   m_axi_gmem2_RREADY;
-input  [C_M_AXI_GMEM2_DATA_WIDTH - 1:0] m_axi_gmem2_RDATA;
-input   m_axi_gmem2_RLAST;
-input  [C_M_AXI_GMEM2_ID_WIDTH - 1:0] m_axi_gmem2_RID;
-input  [C_M_AXI_GMEM2_RUSER_WIDTH - 1:0] m_axi_gmem2_RUSER;
-input  [1:0] m_axi_gmem2_RRESP;
-input   m_axi_gmem2_BVALID;
-output   m_axi_gmem2_BREADY;
-input  [1:0] m_axi_gmem2_BRESP;
-input  [C_M_AXI_GMEM2_ID_WIDTH - 1:0] m_axi_gmem2_BID;
-input  [C_M_AXI_GMEM2_BUSER_WIDTH - 1:0] m_axi_gmem2_BUSER;
+input   ap_rst;
+input   ap_start;
+output   ap_done;
+output   ap_idle;
+output   ap_ready;
+output  [9:0] a_address0;
+output   a_ce0;
+input  [7:0] a_q0;
+output  [9:0] b_address0;
+output   b_ce0;
+input  [7:0] b_q0;
+output  [9:0] c_address0;
+output   c_ce0;
+output   c_we0;
+output  [15:0] c_d0;
+input  [31:0] a_row;
+input  [31:0] a_col;
+input  [31:0] b_col;
 
- reg    ap_rst_n_inv;
-wire   [7:0] localA_i_q0;
-wire   [7:0] localA_t_q0;
-wire   [7:0] localA_1_i_q0;
-wire   [7:0] localA_1_t_q0;
-wire   [7:0] localA_2_i_q0;
-wire   [7:0] localA_2_t_q0;
-wire   [7:0] localA_3_i_q0;
-wire   [7:0] localA_3_t_q0;
-wire   [7:0] localB_i_q0;
-wire   [7:0] localB_t_q0;
-wire   [7:0] localB_1_i_q0;
-wire   [7:0] localB_1_t_q0;
-wire   [7:0] localB_2_i_q0;
-wire   [7:0] localB_2_t_q0;
-wire   [7:0] localB_3_i_q0;
-wire   [7:0] localB_3_t_q0;
-wire   [15:0] localC_i_q0;
-wire   [15:0] localC_t_q0;
-wire   [15:0] localC_1_i_q0;
-wire   [15:0] localC_1_t_q0;
-wire   [15:0] localC_2_i_q0;
-wire   [15:0] localC_2_t_q0;
-wire   [15:0] localC_3_i_q0;
-wire   [15:0] localC_3_t_q0;
-wire   [15:0] localC_4_i_q0;
-wire   [15:0] localC_4_t_q0;
-wire   [15:0] localC_5_i_q0;
-wire   [15:0] localC_5_t_q0;
-wire   [15:0] localC_6_i_q0;
-wire   [15:0] localC_6_t_q0;
-wire   [15:0] localC_7_i_q0;
-wire   [15:0] localC_7_t_q0;
-wire   [15:0] localC_8_i_q0;
-wire   [15:0] localC_8_t_q0;
-wire   [15:0] localC_9_i_q0;
-wire   [15:0] localC_9_t_q0;
-wire   [15:0] localC_10_i_q0;
-wire   [15:0] localC_10_t_q0;
-wire   [15:0] localC_11_i_q0;
-wire   [15:0] localC_11_t_q0;
-wire   [15:0] localC_12_i_q0;
-wire   [15:0] localC_12_t_q0;
-wire   [15:0] localC_13_i_q0;
-wire   [15:0] localC_13_t_q0;
-wire   [15:0] localC_14_i_q0;
-wire   [15:0] localC_14_t_q0;
-wire   [15:0] localC_15_i_q0;
-wire   [15:0] localC_15_t_q0;
-wire   [63:0] a;
-wire   [63:0] b;
-wire   [63:0] c;
-wire   [31:0] a_row;
-wire   [31:0] a_col;
-wire   [31:0] b_col;
-wire    ap_start;
-wire    ap_ready;
-wire    ap_done;
-wire    ap_idle;
-wire    gmem0_AWREADY;
-wire    gmem0_WREADY;
-wire    gmem0_ARREADY;
-wire    gmem0_RVALID;
-wire   [7:0] gmem0_RDATA;
-wire    gmem0_RLAST;
-wire   [0:0] gmem0_RID;
-wire   [10:0] gmem0_RFIFONUM;
-wire   [0:0] gmem0_RUSER;
-wire   [1:0] gmem0_RRESP;
-wire    gmem0_BVALID;
-wire    gmem1_AWREADY;
-wire    gmem1_WREADY;
-wire    gmem1_ARREADY;
-wire    gmem1_RVALID;
-wire   [7:0] gmem1_RDATA;
-wire    gmem1_RLAST;
-wire   [0:0] gmem1_RID;
-wire   [10:0] gmem1_RFIFONUM;
-wire   [0:0] gmem1_RUSER;
-wire   [1:0] gmem1_RRESP;
-wire    gmem1_BVALID;
-wire    gmem2_AWREADY;
-wire    gmem2_WREADY;
-wire    gmem2_ARREADY;
-wire    gmem2_RVALID;
-wire   [15:0] gmem2_RDATA;
-wire   [9:0] gmem2_RFIFONUM;
-wire    gmem2_BVALID;
-wire   [1:0] gmem2_BRESP;
-wire   [0:0] gmem2_BID;
-wire   [0:0] gmem2_BUSER;
-wire    entry_proc_U0_ap_start;
-wire    entry_proc_U0_ap_done;
-wire    entry_proc_U0_ap_continue;
-wire    entry_proc_U0_ap_idle;
-wire    entry_proc_U0_ap_ready;
-wire   [63:0] entry_proc_U0_c_c_din;
-wire    entry_proc_U0_c_c_write;
-wire    Loop_readA_proc_U0_ap_start;
-wire    Loop_readA_proc_U0_ap_done;
-wire    Loop_readA_proc_U0_ap_continue;
-wire    Loop_readA_proc_U0_ap_idle;
-wire    Loop_readA_proc_U0_ap_ready;
-wire    Loop_readA_proc_U0_m_axi_gmem0_AWVALID;
-wire   [63:0] Loop_readA_proc_U0_m_axi_gmem0_AWADDR;
-wire   [0:0] Loop_readA_proc_U0_m_axi_gmem0_AWID;
-wire   [31:0] Loop_readA_proc_U0_m_axi_gmem0_AWLEN;
-wire   [2:0] Loop_readA_proc_U0_m_axi_gmem0_AWSIZE;
-wire   [1:0] Loop_readA_proc_U0_m_axi_gmem0_AWBURST;
-wire   [1:0] Loop_readA_proc_U0_m_axi_gmem0_AWLOCK;
-wire   [3:0] Loop_readA_proc_U0_m_axi_gmem0_AWCACHE;
-wire   [2:0] Loop_readA_proc_U0_m_axi_gmem0_AWPROT;
-wire   [3:0] Loop_readA_proc_U0_m_axi_gmem0_AWQOS;
-wire   [3:0] Loop_readA_proc_U0_m_axi_gmem0_AWREGION;
-wire   [0:0] Loop_readA_proc_U0_m_axi_gmem0_AWUSER;
-wire    Loop_readA_proc_U0_m_axi_gmem0_WVALID;
-wire   [7:0] Loop_readA_proc_U0_m_axi_gmem0_WDATA;
-wire   [0:0] Loop_readA_proc_U0_m_axi_gmem0_WSTRB;
-wire    Loop_readA_proc_U0_m_axi_gmem0_WLAST;
-wire   [0:0] Loop_readA_proc_U0_m_axi_gmem0_WID;
-wire   [0:0] Loop_readA_proc_U0_m_axi_gmem0_WUSER;
-wire    Loop_readA_proc_U0_m_axi_gmem0_ARVALID;
-wire   [63:0] Loop_readA_proc_U0_m_axi_gmem0_ARADDR;
-wire   [0:0] Loop_readA_proc_U0_m_axi_gmem0_ARID;
-wire   [31:0] Loop_readA_proc_U0_m_axi_gmem0_ARLEN;
-wire   [2:0] Loop_readA_proc_U0_m_axi_gmem0_ARSIZE;
-wire   [1:0] Loop_readA_proc_U0_m_axi_gmem0_ARBURST;
-wire   [1:0] Loop_readA_proc_U0_m_axi_gmem0_ARLOCK;
-wire   [3:0] Loop_readA_proc_U0_m_axi_gmem0_ARCACHE;
-wire   [2:0] Loop_readA_proc_U0_m_axi_gmem0_ARPROT;
-wire   [3:0] Loop_readA_proc_U0_m_axi_gmem0_ARQOS;
-wire   [3:0] Loop_readA_proc_U0_m_axi_gmem0_ARREGION;
-wire   [0:0] Loop_readA_proc_U0_m_axi_gmem0_ARUSER;
-wire    Loop_readA_proc_U0_m_axi_gmem0_RREADY;
-wire    Loop_readA_proc_U0_m_axi_gmem0_BREADY;
-wire   [7:0] Loop_readA_proc_U0_localA_3_address1;
-wire    Loop_readA_proc_U0_localA_3_ce1;
-wire    Loop_readA_proc_U0_localA_3_we1;
-wire   [7:0] Loop_readA_proc_U0_localA_3_d1;
-wire   [7:0] Loop_readA_proc_U0_localA_2_address1;
-wire    Loop_readA_proc_U0_localA_2_ce1;
-wire    Loop_readA_proc_U0_localA_2_we1;
-wire   [7:0] Loop_readA_proc_U0_localA_2_d1;
-wire   [7:0] Loop_readA_proc_U0_localA_1_address1;
-wire    Loop_readA_proc_U0_localA_1_ce1;
-wire    Loop_readA_proc_U0_localA_1_we1;
-wire   [7:0] Loop_readA_proc_U0_localA_1_d1;
-wire   [7:0] Loop_readA_proc_U0_localA_address1;
-wire    Loop_readA_proc_U0_localA_ce1;
-wire    Loop_readA_proc_U0_localA_we1;
-wire   [7:0] Loop_readA_proc_U0_localA_d1;
-wire   [31:0] Loop_readA_proc_U0_ap_return_0;
-wire   [31:0] Loop_readA_proc_U0_ap_return_1;
-wire    ap_channel_done_a_col_c_channel;
-wire    a_col_c_channel_full_n;
-reg    ap_sync_reg_channel_write_a_col_c_channel;
-wire    ap_sync_channel_write_a_col_c_channel;
-wire    ap_channel_done_a_row_c26_channel;
-wire    a_row_c26_channel_full_n;
-reg    ap_sync_reg_channel_write_a_row_c26_channel;
-wire    ap_sync_channel_write_a_row_c26_channel;
-wire    ap_channel_done_localA;
-wire    Loop_readA_proc_U0_localA_full_n;
-reg    ap_sync_reg_channel_write_localA;
-wire    ap_sync_channel_write_localA;
-wire    ap_channel_done_localA_1;
-wire    Loop_readA_proc_U0_localA_1_full_n;
-reg    ap_sync_reg_channel_write_localA_1;
-wire    ap_sync_channel_write_localA_1;
-wire    ap_channel_done_localA_2;
-wire    Loop_readA_proc_U0_localA_2_full_n;
-reg    ap_sync_reg_channel_write_localA_2;
-wire    ap_sync_channel_write_localA_2;
-wire    ap_channel_done_localA_3;
-wire    Loop_readA_proc_U0_localA_3_full_n;
-reg    ap_sync_reg_channel_write_localA_3;
-wire    ap_sync_channel_write_localA_3;
-wire    Loop_readB_proc_U0_ap_start;
-wire    Loop_readB_proc_U0_ap_done;
-wire    Loop_readB_proc_U0_ap_continue;
-wire    Loop_readB_proc_U0_ap_idle;
-wire    Loop_readB_proc_U0_ap_ready;
-wire    Loop_readB_proc_U0_m_axi_gmem1_AWVALID;
-wire   [63:0] Loop_readB_proc_U0_m_axi_gmem1_AWADDR;
-wire   [0:0] Loop_readB_proc_U0_m_axi_gmem1_AWID;
-wire   [31:0] Loop_readB_proc_U0_m_axi_gmem1_AWLEN;
-wire   [2:0] Loop_readB_proc_U0_m_axi_gmem1_AWSIZE;
-wire   [1:0] Loop_readB_proc_U0_m_axi_gmem1_AWBURST;
-wire   [1:0] Loop_readB_proc_U0_m_axi_gmem1_AWLOCK;
-wire   [3:0] Loop_readB_proc_U0_m_axi_gmem1_AWCACHE;
-wire   [2:0] Loop_readB_proc_U0_m_axi_gmem1_AWPROT;
-wire   [3:0] Loop_readB_proc_U0_m_axi_gmem1_AWQOS;
-wire   [3:0] Loop_readB_proc_U0_m_axi_gmem1_AWREGION;
-wire   [0:0] Loop_readB_proc_U0_m_axi_gmem1_AWUSER;
-wire    Loop_readB_proc_U0_m_axi_gmem1_WVALID;
-wire   [7:0] Loop_readB_proc_U0_m_axi_gmem1_WDATA;
-wire   [0:0] Loop_readB_proc_U0_m_axi_gmem1_WSTRB;
-wire    Loop_readB_proc_U0_m_axi_gmem1_WLAST;
-wire   [0:0] Loop_readB_proc_U0_m_axi_gmem1_WID;
-wire   [0:0] Loop_readB_proc_U0_m_axi_gmem1_WUSER;
-wire    Loop_readB_proc_U0_m_axi_gmem1_ARVALID;
-wire   [63:0] Loop_readB_proc_U0_m_axi_gmem1_ARADDR;
-wire   [0:0] Loop_readB_proc_U0_m_axi_gmem1_ARID;
-wire   [31:0] Loop_readB_proc_U0_m_axi_gmem1_ARLEN;
-wire   [2:0] Loop_readB_proc_U0_m_axi_gmem1_ARSIZE;
-wire   [1:0] Loop_readB_proc_U0_m_axi_gmem1_ARBURST;
-wire   [1:0] Loop_readB_proc_U0_m_axi_gmem1_ARLOCK;
-wire   [3:0] Loop_readB_proc_U0_m_axi_gmem1_ARCACHE;
-wire   [2:0] Loop_readB_proc_U0_m_axi_gmem1_ARPROT;
-wire   [3:0] Loop_readB_proc_U0_m_axi_gmem1_ARQOS;
-wire   [3:0] Loop_readB_proc_U0_m_axi_gmem1_ARREGION;
-wire   [0:0] Loop_readB_proc_U0_m_axi_gmem1_ARUSER;
-wire    Loop_readB_proc_U0_m_axi_gmem1_RREADY;
-wire    Loop_readB_proc_U0_m_axi_gmem1_BREADY;
-wire   [7:0] Loop_readB_proc_U0_localB_3_address1;
-wire    Loop_readB_proc_U0_localB_3_ce1;
-wire    Loop_readB_proc_U0_localB_3_we1;
-wire   [7:0] Loop_readB_proc_U0_localB_3_d1;
-wire   [7:0] Loop_readB_proc_U0_localB_2_address1;
-wire    Loop_readB_proc_U0_localB_2_ce1;
-wire    Loop_readB_proc_U0_localB_2_we1;
-wire   [7:0] Loop_readB_proc_U0_localB_2_d1;
-wire   [7:0] Loop_readB_proc_U0_localB_1_address1;
-wire    Loop_readB_proc_U0_localB_1_ce1;
-wire    Loop_readB_proc_U0_localB_1_we1;
-wire   [7:0] Loop_readB_proc_U0_localB_1_d1;
-wire   [7:0] Loop_readB_proc_U0_localB_address1;
-wire    Loop_readB_proc_U0_localB_ce1;
-wire    Loop_readB_proc_U0_localB_we1;
-wire   [7:0] Loop_readB_proc_U0_localB_d1;
-wire   [31:0] Loop_readB_proc_U0_ap_return;
-wire    ap_channel_done_b_col_c27_channel3;
-wire    b_col_c27_channel3_full_n;
-reg    ap_sync_reg_channel_write_b_col_c27_channel3;
-wire    ap_sync_channel_write_b_col_c27_channel3;
-wire    ap_channel_done_localB;
-wire    Loop_readB_proc_U0_localB_full_n;
-reg    ap_sync_reg_channel_write_localB;
-wire    ap_sync_channel_write_localB;
-wire    ap_channel_done_localB_1;
-wire    Loop_readB_proc_U0_localB_1_full_n;
-reg    ap_sync_reg_channel_write_localB_1;
-wire    ap_sync_channel_write_localB_1;
-wire    ap_channel_done_localB_2;
-wire    Loop_readB_proc_U0_localB_2_full_n;
-reg    ap_sync_reg_channel_write_localB_2;
-wire    ap_sync_channel_write_localB_2;
-wire    ap_channel_done_localB_3;
-wire    Loop_readB_proc_U0_localB_3_full_n;
-reg    ap_sync_reg_channel_write_localB_3;
-wire    ap_sync_channel_write_localB_3;
-wire    compute_wrapper_U0_ap_start;
-wire    compute_wrapper_U0_ap_done;
-wire    compute_wrapper_U0_ap_continue;
-wire    compute_wrapper_U0_ap_idle;
-wire    compute_wrapper_U0_ap_ready;
-wire   [7:0] compute_wrapper_U0_localA_0_address0;
-wire    compute_wrapper_U0_localA_0_ce0;
-wire   [7:0] compute_wrapper_U0_localA_1_address0;
-wire    compute_wrapper_U0_localA_1_ce0;
-wire   [7:0] compute_wrapper_U0_localA_2_address0;
-wire    compute_wrapper_U0_localA_2_ce0;
-wire   [7:0] compute_wrapper_U0_localA_3_address0;
-wire    compute_wrapper_U0_localA_3_ce0;
-wire   [7:0] compute_wrapper_U0_localB_0_address0;
-wire    compute_wrapper_U0_localB_0_ce0;
-wire   [7:0] compute_wrapper_U0_localB_1_address0;
-wire    compute_wrapper_U0_localB_1_ce0;
-wire   [7:0] compute_wrapper_U0_localB_2_address0;
-wire    compute_wrapper_U0_localB_2_ce0;
-wire   [7:0] compute_wrapper_U0_localB_3_address0;
-wire    compute_wrapper_U0_localB_3_ce0;
-wire   [5:0] compute_wrapper_U0_localC_0_0_address1;
-wire    compute_wrapper_U0_localC_0_0_ce1;
-wire    compute_wrapper_U0_localC_0_0_we1;
-wire   [15:0] compute_wrapper_U0_localC_0_0_d1;
-wire   [5:0] compute_wrapper_U0_localC_0_1_address1;
-wire    compute_wrapper_U0_localC_0_1_ce1;
-wire    compute_wrapper_U0_localC_0_1_we1;
-wire   [15:0] compute_wrapper_U0_localC_0_1_d1;
-wire   [5:0] compute_wrapper_U0_localC_0_2_address1;
-wire    compute_wrapper_U0_localC_0_2_ce1;
-wire    compute_wrapper_U0_localC_0_2_we1;
-wire   [15:0] compute_wrapper_U0_localC_0_2_d1;
-wire   [5:0] compute_wrapper_U0_localC_0_3_address1;
-wire    compute_wrapper_U0_localC_0_3_ce1;
-wire    compute_wrapper_U0_localC_0_3_we1;
-wire   [15:0] compute_wrapper_U0_localC_0_3_d1;
-wire   [5:0] compute_wrapper_U0_localC_1_0_address1;
-wire    compute_wrapper_U0_localC_1_0_ce1;
-wire    compute_wrapper_U0_localC_1_0_we1;
-wire   [15:0] compute_wrapper_U0_localC_1_0_d1;
-wire   [5:0] compute_wrapper_U0_localC_1_1_address1;
-wire    compute_wrapper_U0_localC_1_1_ce1;
-wire    compute_wrapper_U0_localC_1_1_we1;
-wire   [15:0] compute_wrapper_U0_localC_1_1_d1;
-wire   [5:0] compute_wrapper_U0_localC_1_2_address1;
-wire    compute_wrapper_U0_localC_1_2_ce1;
-wire    compute_wrapper_U0_localC_1_2_we1;
-wire   [15:0] compute_wrapper_U0_localC_1_2_d1;
-wire   [5:0] compute_wrapper_U0_localC_1_3_address1;
-wire    compute_wrapper_U0_localC_1_3_ce1;
-wire    compute_wrapper_U0_localC_1_3_we1;
-wire   [15:0] compute_wrapper_U0_localC_1_3_d1;
-wire   [5:0] compute_wrapper_U0_localC_2_0_address1;
-wire    compute_wrapper_U0_localC_2_0_ce1;
-wire    compute_wrapper_U0_localC_2_0_we1;
-wire   [15:0] compute_wrapper_U0_localC_2_0_d1;
-wire   [5:0] compute_wrapper_U0_localC_2_1_address1;
-wire    compute_wrapper_U0_localC_2_1_ce1;
-wire    compute_wrapper_U0_localC_2_1_we1;
-wire   [15:0] compute_wrapper_U0_localC_2_1_d1;
-wire   [5:0] compute_wrapper_U0_localC_2_2_address1;
-wire    compute_wrapper_U0_localC_2_2_ce1;
-wire    compute_wrapper_U0_localC_2_2_we1;
-wire   [15:0] compute_wrapper_U0_localC_2_2_d1;
-wire   [5:0] compute_wrapper_U0_localC_2_3_address1;
-wire    compute_wrapper_U0_localC_2_3_ce1;
-wire    compute_wrapper_U0_localC_2_3_we1;
-wire   [15:0] compute_wrapper_U0_localC_2_3_d1;
-wire   [5:0] compute_wrapper_U0_localC_3_0_address1;
-wire    compute_wrapper_U0_localC_3_0_ce1;
-wire    compute_wrapper_U0_localC_3_0_we1;
-wire   [15:0] compute_wrapper_U0_localC_3_0_d1;
-wire   [5:0] compute_wrapper_U0_localC_3_1_address1;
-wire    compute_wrapper_U0_localC_3_1_ce1;
-wire    compute_wrapper_U0_localC_3_1_we1;
-wire   [15:0] compute_wrapper_U0_localC_3_1_d1;
-wire   [5:0] compute_wrapper_U0_localC_3_2_address1;
-wire    compute_wrapper_U0_localC_3_2_ce1;
-wire    compute_wrapper_U0_localC_3_2_we1;
-wire   [15:0] compute_wrapper_U0_localC_3_2_d1;
-wire   [5:0] compute_wrapper_U0_localC_3_3_address1;
-wire    compute_wrapper_U0_localC_3_3_ce1;
-wire    compute_wrapper_U0_localC_3_3_we1;
-wire   [15:0] compute_wrapper_U0_localC_3_3_d1;
-wire   [31:0] compute_wrapper_U0_ap_return_0;
-wire   [31:0] compute_wrapper_U0_ap_return_1;
-wire    ap_channel_done_b_col_c_channel;
-wire    b_col_c_channel_full_n;
-reg    ap_sync_reg_channel_write_b_col_c_channel;
-wire    ap_sync_channel_write_b_col_c_channel;
-wire    ap_channel_done_a_row_c_channel;
-wire    a_row_c_channel_full_n;
-reg    ap_sync_reg_channel_write_a_row_c_channel;
-wire    ap_sync_channel_write_a_row_c_channel;
-wire    ap_channel_done_localC_15;
-wire    compute_wrapper_U0_localC_3_3_full_n;
-reg    ap_sync_reg_channel_write_localC_15;
-wire    ap_sync_channel_write_localC_15;
-wire    ap_channel_done_localC_14;
-wire    compute_wrapper_U0_localC_3_2_full_n;
-reg    ap_sync_reg_channel_write_localC_14;
-wire    ap_sync_channel_write_localC_14;
-wire    ap_channel_done_localC_13;
-wire    compute_wrapper_U0_localC_3_1_full_n;
-reg    ap_sync_reg_channel_write_localC_13;
-wire    ap_sync_channel_write_localC_13;
-wire    ap_channel_done_localC_12;
-wire    compute_wrapper_U0_localC_3_0_full_n;
-reg    ap_sync_reg_channel_write_localC_12;
-wire    ap_sync_channel_write_localC_12;
-wire    ap_channel_done_localC_11;
-wire    compute_wrapper_U0_localC_2_3_full_n;
-reg    ap_sync_reg_channel_write_localC_11;
-wire    ap_sync_channel_write_localC_11;
-wire    ap_channel_done_localC_10;
-wire    compute_wrapper_U0_localC_2_2_full_n;
-reg    ap_sync_reg_channel_write_localC_10;
-wire    ap_sync_channel_write_localC_10;
-wire    ap_channel_done_localC_9;
-wire    compute_wrapper_U0_localC_2_1_full_n;
-reg    ap_sync_reg_channel_write_localC_9;
-wire    ap_sync_channel_write_localC_9;
-wire    ap_channel_done_localC_8;
-wire    compute_wrapper_U0_localC_2_0_full_n;
-reg    ap_sync_reg_channel_write_localC_8;
-wire    ap_sync_channel_write_localC_8;
-wire    ap_channel_done_localC_7;
-wire    compute_wrapper_U0_localC_1_3_full_n;
-reg    ap_sync_reg_channel_write_localC_7;
-wire    ap_sync_channel_write_localC_7;
-wire    ap_channel_done_localC_6;
-wire    compute_wrapper_U0_localC_1_2_full_n;
-reg    ap_sync_reg_channel_write_localC_6;
-wire    ap_sync_channel_write_localC_6;
-wire    ap_channel_done_localC_5;
-wire    compute_wrapper_U0_localC_1_1_full_n;
-reg    ap_sync_reg_channel_write_localC_5;
-wire    ap_sync_channel_write_localC_5;
-wire    ap_channel_done_localC_4;
-wire    compute_wrapper_U0_localC_1_0_full_n;
-reg    ap_sync_reg_channel_write_localC_4;
-wire    ap_sync_channel_write_localC_4;
-wire    ap_channel_done_localC_3;
-wire    compute_wrapper_U0_localC_0_3_full_n;
-reg    ap_sync_reg_channel_write_localC_3;
-wire    ap_sync_channel_write_localC_3;
-wire    ap_channel_done_localC_2;
-wire    compute_wrapper_U0_localC_0_2_full_n;
-reg    ap_sync_reg_channel_write_localC_2;
-wire    ap_sync_channel_write_localC_2;
-wire    ap_channel_done_localC_1;
-wire    compute_wrapper_U0_localC_0_1_full_n;
-reg    ap_sync_reg_channel_write_localC_1;
-wire    ap_sync_channel_write_localC_1;
-wire    ap_channel_done_localC;
-wire    compute_wrapper_U0_localC_0_0_full_n;
-reg    ap_sync_reg_channel_write_localC;
-wire    ap_sync_channel_write_localC;
-wire    Loop_writeC_proc_U0_ap_start;
-wire    Loop_writeC_proc_U0_ap_done;
-wire    Loop_writeC_proc_U0_ap_continue;
-wire    Loop_writeC_proc_U0_ap_idle;
-wire    Loop_writeC_proc_U0_ap_ready;
-wire    Loop_writeC_proc_U0_c_read;
-wire    Loop_writeC_proc_U0_m_axi_gmem2_AWVALID;
-wire   [63:0] Loop_writeC_proc_U0_m_axi_gmem2_AWADDR;
-wire   [0:0] Loop_writeC_proc_U0_m_axi_gmem2_AWID;
-wire   [31:0] Loop_writeC_proc_U0_m_axi_gmem2_AWLEN;
-wire   [2:0] Loop_writeC_proc_U0_m_axi_gmem2_AWSIZE;
-wire   [1:0] Loop_writeC_proc_U0_m_axi_gmem2_AWBURST;
-wire   [1:0] Loop_writeC_proc_U0_m_axi_gmem2_AWLOCK;
-wire   [3:0] Loop_writeC_proc_U0_m_axi_gmem2_AWCACHE;
-wire   [2:0] Loop_writeC_proc_U0_m_axi_gmem2_AWPROT;
-wire   [3:0] Loop_writeC_proc_U0_m_axi_gmem2_AWQOS;
-wire   [3:0] Loop_writeC_proc_U0_m_axi_gmem2_AWREGION;
-wire   [0:0] Loop_writeC_proc_U0_m_axi_gmem2_AWUSER;
-wire    Loop_writeC_proc_U0_m_axi_gmem2_WVALID;
-wire   [15:0] Loop_writeC_proc_U0_m_axi_gmem2_WDATA;
-wire   [1:0] Loop_writeC_proc_U0_m_axi_gmem2_WSTRB;
-wire    Loop_writeC_proc_U0_m_axi_gmem2_WLAST;
-wire   [0:0] Loop_writeC_proc_U0_m_axi_gmem2_WID;
-wire   [0:0] Loop_writeC_proc_U0_m_axi_gmem2_WUSER;
-wire    Loop_writeC_proc_U0_m_axi_gmem2_ARVALID;
-wire   [63:0] Loop_writeC_proc_U0_m_axi_gmem2_ARADDR;
-wire   [0:0] Loop_writeC_proc_U0_m_axi_gmem2_ARID;
-wire   [31:0] Loop_writeC_proc_U0_m_axi_gmem2_ARLEN;
-wire   [2:0] Loop_writeC_proc_U0_m_axi_gmem2_ARSIZE;
-wire   [1:0] Loop_writeC_proc_U0_m_axi_gmem2_ARBURST;
-wire   [1:0] Loop_writeC_proc_U0_m_axi_gmem2_ARLOCK;
-wire   [3:0] Loop_writeC_proc_U0_m_axi_gmem2_ARCACHE;
-wire   [2:0] Loop_writeC_proc_U0_m_axi_gmem2_ARPROT;
-wire   [3:0] Loop_writeC_proc_U0_m_axi_gmem2_ARQOS;
-wire   [3:0] Loop_writeC_proc_U0_m_axi_gmem2_ARREGION;
-wire   [0:0] Loop_writeC_proc_U0_m_axi_gmem2_ARUSER;
-wire    Loop_writeC_proc_U0_m_axi_gmem2_RREADY;
-wire    Loop_writeC_proc_U0_m_axi_gmem2_BREADY;
-wire   [5:0] Loop_writeC_proc_U0_localC_address0;
-wire    Loop_writeC_proc_U0_localC_ce0;
-wire   [5:0] Loop_writeC_proc_U0_localC_1_address0;
-wire    Loop_writeC_proc_U0_localC_1_ce0;
-wire   [5:0] Loop_writeC_proc_U0_localC_2_address0;
-wire    Loop_writeC_proc_U0_localC_2_ce0;
-wire   [5:0] Loop_writeC_proc_U0_localC_3_address0;
-wire    Loop_writeC_proc_U0_localC_3_ce0;
-wire   [5:0] Loop_writeC_proc_U0_localC_4_address0;
-wire    Loop_writeC_proc_U0_localC_4_ce0;
-wire   [5:0] Loop_writeC_proc_U0_localC_5_address0;
-wire    Loop_writeC_proc_U0_localC_5_ce0;
-wire   [5:0] Loop_writeC_proc_U0_localC_6_address0;
-wire    Loop_writeC_proc_U0_localC_6_ce0;
-wire   [5:0] Loop_writeC_proc_U0_localC_7_address0;
-wire    Loop_writeC_proc_U0_localC_7_ce0;
-wire   [5:0] Loop_writeC_proc_U0_localC_8_address0;
-wire    Loop_writeC_proc_U0_localC_8_ce0;
-wire   [5:0] Loop_writeC_proc_U0_localC_9_address0;
-wire    Loop_writeC_proc_U0_localC_9_ce0;
-wire   [5:0] Loop_writeC_proc_U0_localC_10_address0;
-wire    Loop_writeC_proc_U0_localC_10_ce0;
-wire   [5:0] Loop_writeC_proc_U0_localC_11_address0;
-wire    Loop_writeC_proc_U0_localC_11_ce0;
-wire   [5:0] Loop_writeC_proc_U0_localC_12_address0;
-wire    Loop_writeC_proc_U0_localC_12_ce0;
-wire   [5:0] Loop_writeC_proc_U0_localC_13_address0;
-wire    Loop_writeC_proc_U0_localC_13_ce0;
-wire   [5:0] Loop_writeC_proc_U0_localC_14_address0;
-wire    Loop_writeC_proc_U0_localC_14_ce0;
-wire   [5:0] Loop_writeC_proc_U0_localC_15_address0;
-wire    Loop_writeC_proc_U0_localC_15_ce0;
-wire    localA_3_i_full_n;
-wire    localA_3_t_empty_n;
-wire    localA_2_i_full_n;
-wire    localA_2_t_empty_n;
-wire    localA_1_i_full_n;
-wire    localA_1_t_empty_n;
-wire    localA_i_full_n;
-wire    localA_t_empty_n;
-wire    localB_3_i_full_n;
-wire    localB_3_t_empty_n;
-wire    localB_2_i_full_n;
-wire    localB_2_t_empty_n;
-wire    localB_1_i_full_n;
-wire    localB_1_t_empty_n;
-wire    localB_i_full_n;
-wire    localB_t_empty_n;
-wire    localC_i_full_n;
-wire    localC_t_empty_n;
-wire    localC_1_i_full_n;
-wire    localC_1_t_empty_n;
-wire    localC_2_i_full_n;
-wire    localC_2_t_empty_n;
-wire    localC_3_i_full_n;
-wire    localC_3_t_empty_n;
-wire    localC_4_i_full_n;
-wire    localC_4_t_empty_n;
-wire    localC_5_i_full_n;
-wire    localC_5_t_empty_n;
-wire    localC_6_i_full_n;
-wire    localC_6_t_empty_n;
-wire    localC_7_i_full_n;
-wire    localC_7_t_empty_n;
-wire    localC_8_i_full_n;
-wire    localC_8_t_empty_n;
-wire    localC_9_i_full_n;
-wire    localC_9_t_empty_n;
-wire    localC_10_i_full_n;
-wire    localC_10_t_empty_n;
-wire    localC_11_i_full_n;
-wire    localC_11_t_empty_n;
-wire    localC_12_i_full_n;
-wire    localC_12_t_empty_n;
-wire    localC_13_i_full_n;
-wire    localC_13_t_empty_n;
-wire    localC_14_i_full_n;
-wire    localC_14_t_empty_n;
-wire    localC_15_i_full_n;
-wire    localC_15_t_empty_n;
-wire    c_c_full_n;
-wire   [63:0] c_c_dout;
-wire   [2:0] c_c_num_data_valid;
-wire   [2:0] c_c_fifo_cap;
-wire    c_c_empty_n;
-wire   [31:0] a_row_c26_channel_dout;
-wire   [2:0] a_row_c26_channel_num_data_valid;
-wire   [2:0] a_row_c26_channel_fifo_cap;
-wire    a_row_c26_channel_empty_n;
-wire   [31:0] a_col_c_channel_dout;
-wire   [2:0] a_col_c_channel_num_data_valid;
-wire   [2:0] a_col_c_channel_fifo_cap;
-wire    a_col_c_channel_empty_n;
-wire   [31:0] b_col_c27_channel3_dout;
-wire   [2:0] b_col_c27_channel3_num_data_valid;
-wire   [2:0] b_col_c27_channel3_fifo_cap;
-wire    b_col_c27_channel3_empty_n;
-wire   [31:0] a_row_c_channel_dout;
-wire   [2:0] a_row_c_channel_num_data_valid;
-wire   [2:0] a_row_c_channel_fifo_cap;
-wire    a_row_c_channel_empty_n;
-wire   [31:0] b_col_c_channel_dout;
-wire   [2:0] b_col_c_channel_num_data_valid;
-wire   [2:0] b_col_c_channel_fifo_cap;
-wire    b_col_c_channel_empty_n;
-wire    ap_sync_ready;
-reg    ap_sync_reg_entry_proc_U0_ap_ready;
-wire    ap_sync_entry_proc_U0_ap_ready;
-reg    ap_sync_reg_Loop_readA_proc_U0_ap_ready;
-wire    ap_sync_Loop_readA_proc_U0_ap_ready;
-reg    ap_sync_reg_Loop_readB_proc_U0_ap_ready;
-wire    ap_sync_Loop_readB_proc_U0_ap_ready;
+reg ap_done;
+reg ap_idle;
+reg ap_ready;
+
+(* fsm_encoding = "none" *) reg   [6:0] ap_CS_fsm;
+wire    ap_CS_fsm_state1;
+wire   [31:0] grp_fu_291_p2;
+reg   [31:0] reg_306;
+wire    ap_CS_fsm_state2;
+wire    ap_CS_fsm_state6;
+wire   [31:0] grp_fu_298_p2;
+reg   [31:0] mul12_reg_391;
+wire   [4:0] start_k_fu_336_p3;
+reg   [4:0] start_k_reg_399;
+wire    ap_CS_fsm_state4;
+wire   [5:0] finish_k_fu_349_p2;
+reg   [5:0] finish_k_reg_404;
+reg    localA_ce0;
+wire   [7:0] localA_q0;
+reg    localA_ce1;
+reg    localA_we1;
+reg    localA_1_ce0;
+wire   [7:0] localA_1_q0;
+reg    localA_1_ce1;
+reg    localA_1_we1;
+reg    localA_2_ce0;
+wire   [7:0] localA_2_q0;
+reg    localA_2_ce1;
+reg    localA_2_we1;
+reg    localA_3_ce0;
+wire   [7:0] localA_3_q0;
+reg    localA_3_ce1;
+reg    localA_3_we1;
+reg    localB_ce0;
+wire   [7:0] localB_q0;
+reg    localB_ce1;
+reg    localB_we1;
+reg    localB_1_ce0;
+wire   [7:0] localB_1_q0;
+reg    localB_1_ce1;
+reg    localB_1_we1;
+reg    localB_2_ce0;
+wire   [7:0] localB_2_q0;
+reg    localB_2_ce1;
+reg    localB_2_we1;
+reg    localB_3_ce0;
+wire   [7:0] localB_3_q0;
+reg    localB_3_ce1;
+reg    localB_3_we1;
+reg   [5:0] localC_address0;
+reg    localC_ce0;
+reg    localC_we0;
+reg   [15:0] localC_d0;
+wire   [15:0] localC_q0;
+reg    localC_ce1;
+wire   [15:0] localC_q1;
+reg   [5:0] localC_1_address0;
+reg    localC_1_ce0;
+reg    localC_1_we0;
+reg   [15:0] localC_1_d0;
+wire   [15:0] localC_1_q0;
+reg    localC_1_ce1;
+wire   [15:0] localC_1_q1;
+reg   [5:0] localC_2_address0;
+reg    localC_2_ce0;
+reg    localC_2_we0;
+reg   [15:0] localC_2_d0;
+wire   [15:0] localC_2_q0;
+reg    localC_2_ce1;
+wire   [15:0] localC_2_q1;
+reg   [5:0] localC_3_address0;
+reg    localC_3_ce0;
+reg    localC_3_we0;
+reg   [15:0] localC_3_d0;
+wire   [15:0] localC_3_q0;
+reg    localC_3_ce1;
+wire   [15:0] localC_3_q1;
+reg   [5:0] localC_4_address0;
+reg    localC_4_ce0;
+reg    localC_4_we0;
+reg   [15:0] localC_4_d0;
+wire   [15:0] localC_4_q0;
+reg    localC_4_ce1;
+wire   [15:0] localC_4_q1;
+reg   [5:0] localC_5_address0;
+reg    localC_5_ce0;
+reg    localC_5_we0;
+reg   [15:0] localC_5_d0;
+wire   [15:0] localC_5_q0;
+reg    localC_5_ce1;
+wire   [15:0] localC_5_q1;
+reg   [5:0] localC_6_address0;
+reg    localC_6_ce0;
+reg    localC_6_we0;
+reg   [15:0] localC_6_d0;
+wire   [15:0] localC_6_q0;
+reg    localC_6_ce1;
+wire   [15:0] localC_6_q1;
+reg   [5:0] localC_7_address0;
+reg    localC_7_ce0;
+reg    localC_7_we0;
+reg   [15:0] localC_7_d0;
+wire   [15:0] localC_7_q0;
+reg    localC_7_ce1;
+wire   [15:0] localC_7_q1;
+reg   [5:0] localC_8_address0;
+reg    localC_8_ce0;
+reg    localC_8_we0;
+reg   [15:0] localC_8_d0;
+wire   [15:0] localC_8_q0;
+reg    localC_8_ce1;
+wire   [15:0] localC_8_q1;
+reg   [5:0] localC_9_address0;
+reg    localC_9_ce0;
+reg    localC_9_we0;
+reg   [15:0] localC_9_d0;
+wire   [15:0] localC_9_q0;
+reg    localC_9_ce1;
+wire   [15:0] localC_9_q1;
+reg   [5:0] localC_10_address0;
+reg    localC_10_ce0;
+reg    localC_10_we0;
+reg   [15:0] localC_10_d0;
+wire   [15:0] localC_10_q0;
+reg    localC_10_ce1;
+wire   [15:0] localC_10_q1;
+reg   [5:0] localC_11_address0;
+reg    localC_11_ce0;
+reg    localC_11_we0;
+reg   [15:0] localC_11_d0;
+wire   [15:0] localC_11_q0;
+reg    localC_11_ce1;
+wire   [15:0] localC_11_q1;
+reg   [5:0] localC_12_address0;
+reg    localC_12_ce0;
+reg    localC_12_we0;
+reg   [15:0] localC_12_d0;
+wire   [15:0] localC_12_q0;
+reg    localC_12_ce1;
+wire   [15:0] localC_12_q1;
+reg   [5:0] localC_13_address0;
+reg    localC_13_ce0;
+reg    localC_13_we0;
+reg   [15:0] localC_13_d0;
+wire   [15:0] localC_13_q0;
+reg    localC_13_ce1;
+wire   [15:0] localC_13_q1;
+reg   [5:0] localC_14_address0;
+reg    localC_14_ce0;
+reg    localC_14_we0;
+reg   [15:0] localC_14_d0;
+wire   [15:0] localC_14_q0;
+reg    localC_14_ce1;
+wire   [15:0] localC_14_q1;
+reg   [5:0] localC_15_address0;
+reg    localC_15_ce0;
+reg    localC_15_we0;
+reg   [15:0] localC_15_d0;
+wire   [15:0] localC_15_q0;
+reg    localC_15_ce1;
+wire   [15:0] localC_15_q1;
+wire    grp_mmult_Pipeline_readA_fu_190_ap_start;
+wire    grp_mmult_Pipeline_readA_fu_190_ap_done;
+wire    grp_mmult_Pipeline_readA_fu_190_ap_idle;
+wire    grp_mmult_Pipeline_readA_fu_190_ap_ready;
+wire   [7:0] grp_mmult_Pipeline_readA_fu_190_localA_3_address1;
+wire    grp_mmult_Pipeline_readA_fu_190_localA_3_ce1;
+wire    grp_mmult_Pipeline_readA_fu_190_localA_3_we1;
+wire   [7:0] grp_mmult_Pipeline_readA_fu_190_localA_3_d1;
+wire   [7:0] grp_mmult_Pipeline_readA_fu_190_localA_2_address1;
+wire    grp_mmult_Pipeline_readA_fu_190_localA_2_ce1;
+wire    grp_mmult_Pipeline_readA_fu_190_localA_2_we1;
+wire   [7:0] grp_mmult_Pipeline_readA_fu_190_localA_2_d1;
+wire   [7:0] grp_mmult_Pipeline_readA_fu_190_localA_1_address1;
+wire    grp_mmult_Pipeline_readA_fu_190_localA_1_ce1;
+wire    grp_mmult_Pipeline_readA_fu_190_localA_1_we1;
+wire   [7:0] grp_mmult_Pipeline_readA_fu_190_localA_1_d1;
+wire   [7:0] grp_mmult_Pipeline_readA_fu_190_localA_address1;
+wire    grp_mmult_Pipeline_readA_fu_190_localA_ce1;
+wire    grp_mmult_Pipeline_readA_fu_190_localA_we1;
+wire   [7:0] grp_mmult_Pipeline_readA_fu_190_localA_d1;
+wire   [9:0] grp_mmult_Pipeline_readA_fu_190_a_address0;
+wire    grp_mmult_Pipeline_readA_fu_190_a_ce0;
+wire    grp_mmult_Pipeline_readB_fu_202_ap_start;
+wire    grp_mmult_Pipeline_readB_fu_202_ap_done;
+wire    grp_mmult_Pipeline_readB_fu_202_ap_idle;
+wire    grp_mmult_Pipeline_readB_fu_202_ap_ready;
+wire   [7:0] grp_mmult_Pipeline_readB_fu_202_localB_3_address1;
+wire    grp_mmult_Pipeline_readB_fu_202_localB_3_ce1;
+wire    grp_mmult_Pipeline_readB_fu_202_localB_3_we1;
+wire   [7:0] grp_mmult_Pipeline_readB_fu_202_localB_3_d1;
+wire   [7:0] grp_mmult_Pipeline_readB_fu_202_localB_2_address1;
+wire    grp_mmult_Pipeline_readB_fu_202_localB_2_ce1;
+wire    grp_mmult_Pipeline_readB_fu_202_localB_2_we1;
+wire   [7:0] grp_mmult_Pipeline_readB_fu_202_localB_2_d1;
+wire   [7:0] grp_mmult_Pipeline_readB_fu_202_localB_1_address1;
+wire    grp_mmult_Pipeline_readB_fu_202_localB_1_ce1;
+wire    grp_mmult_Pipeline_readB_fu_202_localB_1_we1;
+wire   [7:0] grp_mmult_Pipeline_readB_fu_202_localB_1_d1;
+wire   [7:0] grp_mmult_Pipeline_readB_fu_202_localB_address1;
+wire    grp_mmult_Pipeline_readB_fu_202_localB_ce1;
+wire    grp_mmult_Pipeline_readB_fu_202_localB_we1;
+wire   [7:0] grp_mmult_Pipeline_readB_fu_202_localB_d1;
+wire   [9:0] grp_mmult_Pipeline_readB_fu_202_b_address0;
+wire    grp_mmult_Pipeline_readB_fu_202_b_ce0;
+wire    grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_ap_start;
+wire    grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_ap_done;
+wire    grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_ap_idle;
+wire    grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_ap_ready;
+wire   [5:0] grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_address0;
+wire    grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_ce0;
+wire    grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_we0;
+wire   [15:0] grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_d0;
+wire   [5:0] grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_1_address0;
+wire    grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_1_ce0;
+wire    grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_1_we0;
+wire   [15:0] grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_1_d0;
+wire   [5:0] grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_2_address0;
+wire    grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_2_ce0;
+wire    grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_2_we0;
+wire   [15:0] grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_2_d0;
+wire   [5:0] grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_3_address0;
+wire    grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_3_ce0;
+wire    grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_3_we0;
+wire   [15:0] grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_3_d0;
+wire   [5:0] grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_4_address0;
+wire    grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_4_ce0;
+wire    grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_4_we0;
+wire   [15:0] grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_4_d0;
+wire   [5:0] grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_5_address0;
+wire    grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_5_ce0;
+wire    grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_5_we0;
+wire   [15:0] grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_5_d0;
+wire   [5:0] grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_6_address0;
+wire    grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_6_ce0;
+wire    grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_6_we0;
+wire   [15:0] grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_6_d0;
+wire   [5:0] grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_7_address0;
+wire    grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_7_ce0;
+wire    grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_7_we0;
+wire   [15:0] grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_7_d0;
+wire   [5:0] grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_8_address0;
+wire    grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_8_ce0;
+wire    grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_8_we0;
+wire   [15:0] grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_8_d0;
+wire   [5:0] grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_9_address0;
+wire    grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_9_ce0;
+wire    grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_9_we0;
+wire   [15:0] grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_9_d0;
+wire   [5:0] grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_10_address0;
+wire    grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_10_ce0;
+wire    grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_10_we0;
+wire   [15:0] grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_10_d0;
+wire   [5:0] grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_11_address0;
+wire    grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_11_ce0;
+wire    grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_11_we0;
+wire   [15:0] grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_11_d0;
+wire   [5:0] grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_12_address0;
+wire    grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_12_ce0;
+wire    grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_12_we0;
+wire   [15:0] grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_12_d0;
+wire   [5:0] grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_13_address0;
+wire    grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_13_ce0;
+wire    grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_13_we0;
+wire   [15:0] grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_13_d0;
+wire   [5:0] grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_14_address0;
+wire    grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_14_ce0;
+wire    grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_14_we0;
+wire   [15:0] grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_14_d0;
+wire   [5:0] grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_15_address0;
+wire    grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_15_ce0;
+wire    grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_15_we0;
+wire   [15:0] grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_15_d0;
+wire    grp_tile_process_fu_234_ap_start;
+wire    grp_tile_process_fu_234_ap_done;
+wire    grp_tile_process_fu_234_ap_idle;
+wire    grp_tile_process_fu_234_ap_ready;
+wire   [7:0] grp_tile_process_fu_234_a_row_major_0_address0;
+wire    grp_tile_process_fu_234_a_row_major_0_ce0;
+wire   [7:0] grp_tile_process_fu_234_a_row_major_1_address0;
+wire    grp_tile_process_fu_234_a_row_major_1_ce0;
+wire   [7:0] grp_tile_process_fu_234_a_row_major_2_address0;
+wire    grp_tile_process_fu_234_a_row_major_2_ce0;
+wire   [7:0] grp_tile_process_fu_234_a_row_major_3_address0;
+wire    grp_tile_process_fu_234_a_row_major_3_ce0;
+wire   [7:0] grp_tile_process_fu_234_b_row_major_0_address0;
+wire    grp_tile_process_fu_234_b_row_major_0_ce0;
+wire   [7:0] grp_tile_process_fu_234_b_row_major_1_address0;
+wire    grp_tile_process_fu_234_b_row_major_1_ce0;
+wire   [7:0] grp_tile_process_fu_234_b_row_major_2_address0;
+wire    grp_tile_process_fu_234_b_row_major_2_ce0;
+wire   [7:0] grp_tile_process_fu_234_b_row_major_3_address0;
+wire    grp_tile_process_fu_234_b_row_major_3_ce0;
+wire   [5:0] grp_tile_process_fu_234_c_row_major_0_0_address0;
+wire    grp_tile_process_fu_234_c_row_major_0_0_ce0;
+wire    grp_tile_process_fu_234_c_row_major_0_0_we0;
+wire   [15:0] grp_tile_process_fu_234_c_row_major_0_0_d0;
+wire   [5:0] grp_tile_process_fu_234_c_row_major_0_0_address1;
+wire    grp_tile_process_fu_234_c_row_major_0_0_ce1;
+wire   [5:0] grp_tile_process_fu_234_c_row_major_0_1_address0;
+wire    grp_tile_process_fu_234_c_row_major_0_1_ce0;
+wire    grp_tile_process_fu_234_c_row_major_0_1_we0;
+wire   [15:0] grp_tile_process_fu_234_c_row_major_0_1_d0;
+wire   [5:0] grp_tile_process_fu_234_c_row_major_0_1_address1;
+wire    grp_tile_process_fu_234_c_row_major_0_1_ce1;
+wire   [5:0] grp_tile_process_fu_234_c_row_major_0_2_address0;
+wire    grp_tile_process_fu_234_c_row_major_0_2_ce0;
+wire    grp_tile_process_fu_234_c_row_major_0_2_we0;
+wire   [15:0] grp_tile_process_fu_234_c_row_major_0_2_d0;
+wire   [5:0] grp_tile_process_fu_234_c_row_major_0_2_address1;
+wire    grp_tile_process_fu_234_c_row_major_0_2_ce1;
+wire   [5:0] grp_tile_process_fu_234_c_row_major_0_3_address0;
+wire    grp_tile_process_fu_234_c_row_major_0_3_ce0;
+wire    grp_tile_process_fu_234_c_row_major_0_3_we0;
+wire   [15:0] grp_tile_process_fu_234_c_row_major_0_3_d0;
+wire   [5:0] grp_tile_process_fu_234_c_row_major_0_3_address1;
+wire    grp_tile_process_fu_234_c_row_major_0_3_ce1;
+wire   [5:0] grp_tile_process_fu_234_c_row_major_1_0_address0;
+wire    grp_tile_process_fu_234_c_row_major_1_0_ce0;
+wire    grp_tile_process_fu_234_c_row_major_1_0_we0;
+wire   [15:0] grp_tile_process_fu_234_c_row_major_1_0_d0;
+wire   [5:0] grp_tile_process_fu_234_c_row_major_1_0_address1;
+wire    grp_tile_process_fu_234_c_row_major_1_0_ce1;
+wire   [5:0] grp_tile_process_fu_234_c_row_major_1_1_address0;
+wire    grp_tile_process_fu_234_c_row_major_1_1_ce0;
+wire    grp_tile_process_fu_234_c_row_major_1_1_we0;
+wire   [15:0] grp_tile_process_fu_234_c_row_major_1_1_d0;
+wire   [5:0] grp_tile_process_fu_234_c_row_major_1_1_address1;
+wire    grp_tile_process_fu_234_c_row_major_1_1_ce1;
+wire   [5:0] grp_tile_process_fu_234_c_row_major_1_2_address0;
+wire    grp_tile_process_fu_234_c_row_major_1_2_ce0;
+wire    grp_tile_process_fu_234_c_row_major_1_2_we0;
+wire   [15:0] grp_tile_process_fu_234_c_row_major_1_2_d0;
+wire   [5:0] grp_tile_process_fu_234_c_row_major_1_2_address1;
+wire    grp_tile_process_fu_234_c_row_major_1_2_ce1;
+wire   [5:0] grp_tile_process_fu_234_c_row_major_1_3_address0;
+wire    grp_tile_process_fu_234_c_row_major_1_3_ce0;
+wire    grp_tile_process_fu_234_c_row_major_1_3_we0;
+wire   [15:0] grp_tile_process_fu_234_c_row_major_1_3_d0;
+wire   [5:0] grp_tile_process_fu_234_c_row_major_1_3_address1;
+wire    grp_tile_process_fu_234_c_row_major_1_3_ce1;
+wire   [5:0] grp_tile_process_fu_234_c_row_major_2_0_address0;
+wire    grp_tile_process_fu_234_c_row_major_2_0_ce0;
+wire    grp_tile_process_fu_234_c_row_major_2_0_we0;
+wire   [15:0] grp_tile_process_fu_234_c_row_major_2_0_d0;
+wire   [5:0] grp_tile_process_fu_234_c_row_major_2_0_address1;
+wire    grp_tile_process_fu_234_c_row_major_2_0_ce1;
+wire   [5:0] grp_tile_process_fu_234_c_row_major_2_1_address0;
+wire    grp_tile_process_fu_234_c_row_major_2_1_ce0;
+wire    grp_tile_process_fu_234_c_row_major_2_1_we0;
+wire   [15:0] grp_tile_process_fu_234_c_row_major_2_1_d0;
+wire   [5:0] grp_tile_process_fu_234_c_row_major_2_1_address1;
+wire    grp_tile_process_fu_234_c_row_major_2_1_ce1;
+wire   [5:0] grp_tile_process_fu_234_c_row_major_2_2_address0;
+wire    grp_tile_process_fu_234_c_row_major_2_2_ce0;
+wire    grp_tile_process_fu_234_c_row_major_2_2_we0;
+wire   [15:0] grp_tile_process_fu_234_c_row_major_2_2_d0;
+wire   [5:0] grp_tile_process_fu_234_c_row_major_2_2_address1;
+wire    grp_tile_process_fu_234_c_row_major_2_2_ce1;
+wire   [5:0] grp_tile_process_fu_234_c_row_major_2_3_address0;
+wire    grp_tile_process_fu_234_c_row_major_2_3_ce0;
+wire    grp_tile_process_fu_234_c_row_major_2_3_we0;
+wire   [15:0] grp_tile_process_fu_234_c_row_major_2_3_d0;
+wire   [5:0] grp_tile_process_fu_234_c_row_major_2_3_address1;
+wire    grp_tile_process_fu_234_c_row_major_2_3_ce1;
+wire   [5:0] grp_tile_process_fu_234_c_row_major_3_0_address0;
+wire    grp_tile_process_fu_234_c_row_major_3_0_ce0;
+wire    grp_tile_process_fu_234_c_row_major_3_0_we0;
+wire   [15:0] grp_tile_process_fu_234_c_row_major_3_0_d0;
+wire   [5:0] grp_tile_process_fu_234_c_row_major_3_0_address1;
+wire    grp_tile_process_fu_234_c_row_major_3_0_ce1;
+wire   [5:0] grp_tile_process_fu_234_c_row_major_3_1_address0;
+wire    grp_tile_process_fu_234_c_row_major_3_1_ce0;
+wire    grp_tile_process_fu_234_c_row_major_3_1_we0;
+wire   [15:0] grp_tile_process_fu_234_c_row_major_3_1_d0;
+wire   [5:0] grp_tile_process_fu_234_c_row_major_3_1_address1;
+wire    grp_tile_process_fu_234_c_row_major_3_1_ce1;
+wire   [5:0] grp_tile_process_fu_234_c_row_major_3_2_address0;
+wire    grp_tile_process_fu_234_c_row_major_3_2_ce0;
+wire    grp_tile_process_fu_234_c_row_major_3_2_we0;
+wire   [15:0] grp_tile_process_fu_234_c_row_major_3_2_d0;
+wire   [5:0] grp_tile_process_fu_234_c_row_major_3_2_address1;
+wire    grp_tile_process_fu_234_c_row_major_3_2_ce1;
+wire   [5:0] grp_tile_process_fu_234_c_row_major_3_3_address0;
+wire    grp_tile_process_fu_234_c_row_major_3_3_ce0;
+wire    grp_tile_process_fu_234_c_row_major_3_3_we0;
+wire   [15:0] grp_tile_process_fu_234_c_row_major_3_3_d0;
+wire   [5:0] grp_tile_process_fu_234_c_row_major_3_3_address1;
+wire    grp_tile_process_fu_234_c_row_major_3_3_ce1;
+wire    grp_mmult_Pipeline_writeC_fu_267_ap_start;
+wire    grp_mmult_Pipeline_writeC_fu_267_ap_done;
+wire    grp_mmult_Pipeline_writeC_fu_267_ap_idle;
+wire    grp_mmult_Pipeline_writeC_fu_267_ap_ready;
+wire   [5:0] grp_mmult_Pipeline_writeC_fu_267_localC_address0;
+wire    grp_mmult_Pipeline_writeC_fu_267_localC_ce0;
+wire   [5:0] grp_mmult_Pipeline_writeC_fu_267_localC_1_address0;
+wire    grp_mmult_Pipeline_writeC_fu_267_localC_1_ce0;
+wire   [5:0] grp_mmult_Pipeline_writeC_fu_267_localC_2_address0;
+wire    grp_mmult_Pipeline_writeC_fu_267_localC_2_ce0;
+wire   [5:0] grp_mmult_Pipeline_writeC_fu_267_localC_3_address0;
+wire    grp_mmult_Pipeline_writeC_fu_267_localC_3_ce0;
+wire   [5:0] grp_mmult_Pipeline_writeC_fu_267_localC_4_address0;
+wire    grp_mmult_Pipeline_writeC_fu_267_localC_4_ce0;
+wire   [5:0] grp_mmult_Pipeline_writeC_fu_267_localC_5_address0;
+wire    grp_mmult_Pipeline_writeC_fu_267_localC_5_ce0;
+wire   [5:0] grp_mmult_Pipeline_writeC_fu_267_localC_6_address0;
+wire    grp_mmult_Pipeline_writeC_fu_267_localC_6_ce0;
+wire   [5:0] grp_mmult_Pipeline_writeC_fu_267_localC_7_address0;
+wire    grp_mmult_Pipeline_writeC_fu_267_localC_7_ce0;
+wire   [5:0] grp_mmult_Pipeline_writeC_fu_267_localC_8_address0;
+wire    grp_mmult_Pipeline_writeC_fu_267_localC_8_ce0;
+wire   [5:0] grp_mmult_Pipeline_writeC_fu_267_localC_9_address0;
+wire    grp_mmult_Pipeline_writeC_fu_267_localC_9_ce0;
+wire   [5:0] grp_mmult_Pipeline_writeC_fu_267_localC_10_address0;
+wire    grp_mmult_Pipeline_writeC_fu_267_localC_10_ce0;
+wire   [5:0] grp_mmult_Pipeline_writeC_fu_267_localC_11_address0;
+wire    grp_mmult_Pipeline_writeC_fu_267_localC_11_ce0;
+wire   [5:0] grp_mmult_Pipeline_writeC_fu_267_localC_12_address0;
+wire    grp_mmult_Pipeline_writeC_fu_267_localC_12_ce0;
+wire   [5:0] grp_mmult_Pipeline_writeC_fu_267_localC_13_address0;
+wire    grp_mmult_Pipeline_writeC_fu_267_localC_13_ce0;
+wire   [5:0] grp_mmult_Pipeline_writeC_fu_267_localC_14_address0;
+wire    grp_mmult_Pipeline_writeC_fu_267_localC_14_ce0;
+wire   [5:0] grp_mmult_Pipeline_writeC_fu_267_localC_15_address0;
+wire    grp_mmult_Pipeline_writeC_fu_267_localC_15_ce0;
+wire   [9:0] grp_mmult_Pipeline_writeC_fu_267_c_address0;
+wire    grp_mmult_Pipeline_writeC_fu_267_c_ce0;
+wire    grp_mmult_Pipeline_writeC_fu_267_c_we0;
+wire   [15:0] grp_mmult_Pipeline_writeC_fu_267_c_d0;
+reg    grp_mmult_Pipeline_readA_fu_190_ap_start_reg;
+wire    ap_CS_fsm_state3;
+reg    grp_mmult_Pipeline_readB_fu_202_ap_start_reg;
+reg    grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_ap_start_reg;
+reg    grp_tile_process_fu_234_ap_start_reg;
+wire   [0:0] icmp_ln203_fu_320_p2;
+wire    ap_CS_fsm_state5;
+reg    grp_mmult_Pipeline_writeC_fu_267_ap_start_reg;
+wire    ap_CS_fsm_state7;
+reg   [2:0] q_fu_72;
+wire   [2:0] q_2_fu_326_p2;
+reg  signed [31:0] grp_fu_291_p0;
+wire   [1:0] trunc_ln204_fu_332_p1;
+wire   [5:0] zext_ln204_fu_345_p1;
+reg   [6:0] ap_NS_fsm;
+reg    ap_ST_fsm_state1_blk;
+wire    ap_ST_fsm_state2_blk;
+reg    ap_block_state3_on_subcall_done;
+reg    ap_ST_fsm_state3_blk;
+wire    ap_ST_fsm_state4_blk;
+reg    ap_ST_fsm_state5_blk;
+wire    ap_ST_fsm_state6_blk;
+reg    ap_ST_fsm_state7_blk;
 wire    ap_ce_reg;
 
 // power-on initialization
 initial begin
-#0 ap_sync_reg_channel_write_a_col_c_channel = 1'b0;
-#0 ap_sync_reg_channel_write_a_row_c26_channel = 1'b0;
-#0 ap_sync_reg_channel_write_localA = 1'b0;
-#0 ap_sync_reg_channel_write_localA_1 = 1'b0;
-#0 ap_sync_reg_channel_write_localA_2 = 1'b0;
-#0 ap_sync_reg_channel_write_localA_3 = 1'b0;
-#0 ap_sync_reg_channel_write_b_col_c27_channel3 = 1'b0;
-#0 ap_sync_reg_channel_write_localB = 1'b0;
-#0 ap_sync_reg_channel_write_localB_1 = 1'b0;
-#0 ap_sync_reg_channel_write_localB_2 = 1'b0;
-#0 ap_sync_reg_channel_write_localB_3 = 1'b0;
-#0 ap_sync_reg_channel_write_b_col_c_channel = 1'b0;
-#0 ap_sync_reg_channel_write_a_row_c_channel = 1'b0;
-#0 ap_sync_reg_channel_write_localC_15 = 1'b0;
-#0 ap_sync_reg_channel_write_localC_14 = 1'b0;
-#0 ap_sync_reg_channel_write_localC_13 = 1'b0;
-#0 ap_sync_reg_channel_write_localC_12 = 1'b0;
-#0 ap_sync_reg_channel_write_localC_11 = 1'b0;
-#0 ap_sync_reg_channel_write_localC_10 = 1'b0;
-#0 ap_sync_reg_channel_write_localC_9 = 1'b0;
-#0 ap_sync_reg_channel_write_localC_8 = 1'b0;
-#0 ap_sync_reg_channel_write_localC_7 = 1'b0;
-#0 ap_sync_reg_channel_write_localC_6 = 1'b0;
-#0 ap_sync_reg_channel_write_localC_5 = 1'b0;
-#0 ap_sync_reg_channel_write_localC_4 = 1'b0;
-#0 ap_sync_reg_channel_write_localC_3 = 1'b0;
-#0 ap_sync_reg_channel_write_localC_2 = 1'b0;
-#0 ap_sync_reg_channel_write_localC_1 = 1'b0;
-#0 ap_sync_reg_channel_write_localC = 1'b0;
-#0 ap_sync_reg_entry_proc_U0_ap_ready = 1'b0;
-#0 ap_sync_reg_Loop_readA_proc_U0_ap_ready = 1'b0;
-#0 ap_sync_reg_Loop_readB_proc_U0_ap_ready = 1'b0;
+#0 ap_CS_fsm = 7'd1;
+#0 grp_mmult_Pipeline_readA_fu_190_ap_start_reg = 1'b0;
+#0 grp_mmult_Pipeline_readB_fu_202_ap_start_reg = 1'b0;
+#0 grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_ap_start_reg = 1'b0;
+#0 grp_tile_process_fu_234_ap_start_reg = 1'b0;
+#0 grp_mmult_Pipeline_writeC_fu_267_ap_start_reg = 1'b0;
+#0 q_fu_72 = 3'd0;
 end
 
 mmult_localA_RAM_2P_LUTRAM_1R1W #(
@@ -971,27 +529,14 @@ mmult_localA_RAM_2P_LUTRAM_1R1W #(
     .AddressWidth( 8 ))
 localA_U(
     .clk(ap_clk),
-    .reset(ap_rst_n_inv),
-    .i_address0(8'd0),
-    .i_ce0(1'b0),
-    .i_q0(localA_i_q0),
-    .i_address1(Loop_readA_proc_U0_localA_address1),
-    .i_ce1(Loop_readA_proc_U0_localA_ce1),
-    .i_we1(Loop_readA_proc_U0_localA_we1),
-    .i_d1(Loop_readA_proc_U0_localA_d1),
-    .t_address0(compute_wrapper_U0_localA_0_address0),
-    .t_ce0(compute_wrapper_U0_localA_0_ce0),
-    .t_q0(localA_t_q0),
-    .t_address1(8'd0),
-    .t_ce1(1'b0),
-    .t_we1(1'b0),
-    .t_d1(8'd0),
-    .i_ce(1'b1),
-    .t_ce(1'b1),
-    .i_full_n(localA_i_full_n),
-    .i_write(ap_channel_done_localA),
-    .t_empty_n(localA_t_empty_n),
-    .t_read(compute_wrapper_U0_ap_ready)
+    .reset(ap_rst),
+    .address0(grp_tile_process_fu_234_a_row_major_0_address0),
+    .ce0(localA_ce0),
+    .q0(localA_q0),
+    .address1(grp_mmult_Pipeline_readA_fu_190_localA_address1),
+    .ce1(localA_ce1),
+    .we1(localA_we1),
+    .d1(grp_mmult_Pipeline_readA_fu_190_localA_d1)
 );
 
 mmult_localA_RAM_2P_LUTRAM_1R1W #(
@@ -1000,27 +545,14 @@ mmult_localA_RAM_2P_LUTRAM_1R1W #(
     .AddressWidth( 8 ))
 localA_1_U(
     .clk(ap_clk),
-    .reset(ap_rst_n_inv),
-    .i_address0(8'd0),
-    .i_ce0(1'b0),
-    .i_q0(localA_1_i_q0),
-    .i_address1(Loop_readA_proc_U0_localA_1_address1),
-    .i_ce1(Loop_readA_proc_U0_localA_1_ce1),
-    .i_we1(Loop_readA_proc_U0_localA_1_we1),
-    .i_d1(Loop_readA_proc_U0_localA_1_d1),
-    .t_address0(compute_wrapper_U0_localA_1_address0),
-    .t_ce0(compute_wrapper_U0_localA_1_ce0),
-    .t_q0(localA_1_t_q0),
-    .t_address1(8'd0),
-    .t_ce1(1'b0),
-    .t_we1(1'b0),
-    .t_d1(8'd0),
-    .i_ce(1'b1),
-    .t_ce(1'b1),
-    .i_full_n(localA_1_i_full_n),
-    .i_write(ap_channel_done_localA_1),
-    .t_empty_n(localA_1_t_empty_n),
-    .t_read(compute_wrapper_U0_ap_ready)
+    .reset(ap_rst),
+    .address0(grp_tile_process_fu_234_a_row_major_1_address0),
+    .ce0(localA_1_ce0),
+    .q0(localA_1_q0),
+    .address1(grp_mmult_Pipeline_readA_fu_190_localA_1_address1),
+    .ce1(localA_1_ce1),
+    .we1(localA_1_we1),
+    .d1(grp_mmult_Pipeline_readA_fu_190_localA_1_d1)
 );
 
 mmult_localA_RAM_2P_LUTRAM_1R1W #(
@@ -1029,27 +561,14 @@ mmult_localA_RAM_2P_LUTRAM_1R1W #(
     .AddressWidth( 8 ))
 localA_2_U(
     .clk(ap_clk),
-    .reset(ap_rst_n_inv),
-    .i_address0(8'd0),
-    .i_ce0(1'b0),
-    .i_q0(localA_2_i_q0),
-    .i_address1(Loop_readA_proc_U0_localA_2_address1),
-    .i_ce1(Loop_readA_proc_U0_localA_2_ce1),
-    .i_we1(Loop_readA_proc_U0_localA_2_we1),
-    .i_d1(Loop_readA_proc_U0_localA_2_d1),
-    .t_address0(compute_wrapper_U0_localA_2_address0),
-    .t_ce0(compute_wrapper_U0_localA_2_ce0),
-    .t_q0(localA_2_t_q0),
-    .t_address1(8'd0),
-    .t_ce1(1'b0),
-    .t_we1(1'b0),
-    .t_d1(8'd0),
-    .i_ce(1'b1),
-    .t_ce(1'b1),
-    .i_full_n(localA_2_i_full_n),
-    .i_write(ap_channel_done_localA_2),
-    .t_empty_n(localA_2_t_empty_n),
-    .t_read(compute_wrapper_U0_ap_ready)
+    .reset(ap_rst),
+    .address0(grp_tile_process_fu_234_a_row_major_2_address0),
+    .ce0(localA_2_ce0),
+    .q0(localA_2_q0),
+    .address1(grp_mmult_Pipeline_readA_fu_190_localA_2_address1),
+    .ce1(localA_2_ce1),
+    .we1(localA_2_we1),
+    .d1(grp_mmult_Pipeline_readA_fu_190_localA_2_d1)
 );
 
 mmult_localA_RAM_2P_LUTRAM_1R1W #(
@@ -1058,27 +577,14 @@ mmult_localA_RAM_2P_LUTRAM_1R1W #(
     .AddressWidth( 8 ))
 localA_3_U(
     .clk(ap_clk),
-    .reset(ap_rst_n_inv),
-    .i_address0(8'd0),
-    .i_ce0(1'b0),
-    .i_q0(localA_3_i_q0),
-    .i_address1(Loop_readA_proc_U0_localA_3_address1),
-    .i_ce1(Loop_readA_proc_U0_localA_3_ce1),
-    .i_we1(Loop_readA_proc_U0_localA_3_we1),
-    .i_d1(Loop_readA_proc_U0_localA_3_d1),
-    .t_address0(compute_wrapper_U0_localA_3_address0),
-    .t_ce0(compute_wrapper_U0_localA_3_ce0),
-    .t_q0(localA_3_t_q0),
-    .t_address1(8'd0),
-    .t_ce1(1'b0),
-    .t_we1(1'b0),
-    .t_d1(8'd0),
-    .i_ce(1'b1),
-    .t_ce(1'b1),
-    .i_full_n(localA_3_i_full_n),
-    .i_write(ap_channel_done_localA_3),
-    .t_empty_n(localA_3_t_empty_n),
-    .t_read(compute_wrapper_U0_ap_ready)
+    .reset(ap_rst),
+    .address0(grp_tile_process_fu_234_a_row_major_3_address0),
+    .ce0(localA_3_ce0),
+    .q0(localA_3_q0),
+    .address1(grp_mmult_Pipeline_readA_fu_190_localA_3_address1),
+    .ce1(localA_3_ce1),
+    .we1(localA_3_we1),
+    .d1(grp_mmult_Pipeline_readA_fu_190_localA_3_d1)
 );
 
 mmult_localA_RAM_2P_LUTRAM_1R1W #(
@@ -1087,27 +593,14 @@ mmult_localA_RAM_2P_LUTRAM_1R1W #(
     .AddressWidth( 8 ))
 localB_U(
     .clk(ap_clk),
-    .reset(ap_rst_n_inv),
-    .i_address0(8'd0),
-    .i_ce0(1'b0),
-    .i_q0(localB_i_q0),
-    .i_address1(Loop_readB_proc_U0_localB_address1),
-    .i_ce1(Loop_readB_proc_U0_localB_ce1),
-    .i_we1(Loop_readB_proc_U0_localB_we1),
-    .i_d1(Loop_readB_proc_U0_localB_d1),
-    .t_address0(compute_wrapper_U0_localB_0_address0),
-    .t_ce0(compute_wrapper_U0_localB_0_ce0),
-    .t_q0(localB_t_q0),
-    .t_address1(8'd0),
-    .t_ce1(1'b0),
-    .t_we1(1'b0),
-    .t_d1(8'd0),
-    .i_ce(1'b1),
-    .t_ce(1'b1),
-    .i_full_n(localB_i_full_n),
-    .i_write(ap_channel_done_localB),
-    .t_empty_n(localB_t_empty_n),
-    .t_read(compute_wrapper_U0_ap_ready)
+    .reset(ap_rst),
+    .address0(grp_tile_process_fu_234_b_row_major_0_address0),
+    .ce0(localB_ce0),
+    .q0(localB_q0),
+    .address1(grp_mmult_Pipeline_readB_fu_202_localB_address1),
+    .ce1(localB_ce1),
+    .we1(localB_we1),
+    .d1(grp_mmult_Pipeline_readB_fu_202_localB_d1)
 );
 
 mmult_localA_RAM_2P_LUTRAM_1R1W #(
@@ -1116,27 +609,14 @@ mmult_localA_RAM_2P_LUTRAM_1R1W #(
     .AddressWidth( 8 ))
 localB_1_U(
     .clk(ap_clk),
-    .reset(ap_rst_n_inv),
-    .i_address0(8'd0),
-    .i_ce0(1'b0),
-    .i_q0(localB_1_i_q0),
-    .i_address1(Loop_readB_proc_U0_localB_1_address1),
-    .i_ce1(Loop_readB_proc_U0_localB_1_ce1),
-    .i_we1(Loop_readB_proc_U0_localB_1_we1),
-    .i_d1(Loop_readB_proc_U0_localB_1_d1),
-    .t_address0(compute_wrapper_U0_localB_1_address0),
-    .t_ce0(compute_wrapper_U0_localB_1_ce0),
-    .t_q0(localB_1_t_q0),
-    .t_address1(8'd0),
-    .t_ce1(1'b0),
-    .t_we1(1'b0),
-    .t_d1(8'd0),
-    .i_ce(1'b1),
-    .t_ce(1'b1),
-    .i_full_n(localB_1_i_full_n),
-    .i_write(ap_channel_done_localB_1),
-    .t_empty_n(localB_1_t_empty_n),
-    .t_read(compute_wrapper_U0_ap_ready)
+    .reset(ap_rst),
+    .address0(grp_tile_process_fu_234_b_row_major_1_address0),
+    .ce0(localB_1_ce0),
+    .q0(localB_1_q0),
+    .address1(grp_mmult_Pipeline_readB_fu_202_localB_1_address1),
+    .ce1(localB_1_ce1),
+    .we1(localB_1_we1),
+    .d1(grp_mmult_Pipeline_readB_fu_202_localB_1_d1)
 );
 
 mmult_localA_RAM_2P_LUTRAM_1R1W #(
@@ -1145,27 +625,14 @@ mmult_localA_RAM_2P_LUTRAM_1R1W #(
     .AddressWidth( 8 ))
 localB_2_U(
     .clk(ap_clk),
-    .reset(ap_rst_n_inv),
-    .i_address0(8'd0),
-    .i_ce0(1'b0),
-    .i_q0(localB_2_i_q0),
-    .i_address1(Loop_readB_proc_U0_localB_2_address1),
-    .i_ce1(Loop_readB_proc_U0_localB_2_ce1),
-    .i_we1(Loop_readB_proc_U0_localB_2_we1),
-    .i_d1(Loop_readB_proc_U0_localB_2_d1),
-    .t_address0(compute_wrapper_U0_localB_2_address0),
-    .t_ce0(compute_wrapper_U0_localB_2_ce0),
-    .t_q0(localB_2_t_q0),
-    .t_address1(8'd0),
-    .t_ce1(1'b0),
-    .t_we1(1'b0),
-    .t_d1(8'd0),
-    .i_ce(1'b1),
-    .t_ce(1'b1),
-    .i_full_n(localB_2_i_full_n),
-    .i_write(ap_channel_done_localB_2),
-    .t_empty_n(localB_2_t_empty_n),
-    .t_read(compute_wrapper_U0_ap_ready)
+    .reset(ap_rst),
+    .address0(grp_tile_process_fu_234_b_row_major_2_address0),
+    .ce0(localB_2_ce0),
+    .q0(localB_2_q0),
+    .address1(grp_mmult_Pipeline_readB_fu_202_localB_2_address1),
+    .ce1(localB_2_ce1),
+    .we1(localB_2_we1),
+    .d1(grp_mmult_Pipeline_readB_fu_202_localB_2_d1)
 );
 
 mmult_localA_RAM_2P_LUTRAM_1R1W #(
@@ -1174,1879 +641,1963 @@ mmult_localA_RAM_2P_LUTRAM_1R1W #(
     .AddressWidth( 8 ))
 localB_3_U(
     .clk(ap_clk),
-    .reset(ap_rst_n_inv),
-    .i_address0(8'd0),
-    .i_ce0(1'b0),
-    .i_q0(localB_3_i_q0),
-    .i_address1(Loop_readB_proc_U0_localB_3_address1),
-    .i_ce1(Loop_readB_proc_U0_localB_3_ce1),
-    .i_we1(Loop_readB_proc_U0_localB_3_we1),
-    .i_d1(Loop_readB_proc_U0_localB_3_d1),
-    .t_address0(compute_wrapper_U0_localB_3_address0),
-    .t_ce0(compute_wrapper_U0_localB_3_ce0),
-    .t_q0(localB_3_t_q0),
-    .t_address1(8'd0),
-    .t_ce1(1'b0),
-    .t_we1(1'b0),
-    .t_d1(8'd0),
-    .i_ce(1'b1),
-    .t_ce(1'b1),
-    .i_full_n(localB_3_i_full_n),
-    .i_write(ap_channel_done_localB_3),
-    .t_empty_n(localB_3_t_empty_n),
-    .t_read(compute_wrapper_U0_ap_ready)
+    .reset(ap_rst),
+    .address0(grp_tile_process_fu_234_b_row_major_3_address0),
+    .ce0(localB_3_ce0),
+    .q0(localB_3_q0),
+    .address1(grp_mmult_Pipeline_readB_fu_202_localB_3_address1),
+    .ce1(localB_3_ce1),
+    .we1(localB_3_we1),
+    .d1(grp_mmult_Pipeline_readB_fu_202_localB_3_d1)
 );
 
-mmult_localC_RAM_S2P_LUTRAM_1R1W #(
+mmult_localC_RAM_AUTO_1R1W #(
     .DataWidth( 16 ),
     .AddressRange( 64 ),
     .AddressWidth( 6 ))
 localC_U(
     .clk(ap_clk),
-    .reset(ap_rst_n_inv),
-    .i_address0(6'd0),
-    .i_ce0(1'b0),
-    .i_q0(localC_i_q0),
-    .i_address1(compute_wrapper_U0_localC_0_0_address1),
-    .i_ce1(compute_wrapper_U0_localC_0_0_ce1),
-    .i_we1(compute_wrapper_U0_localC_0_0_we1),
-    .i_d1(compute_wrapper_U0_localC_0_0_d1),
-    .t_address0(Loop_writeC_proc_U0_localC_address0),
-    .t_ce0(Loop_writeC_proc_U0_localC_ce0),
-    .t_q0(localC_t_q0),
-    .t_address1(6'd0),
-    .t_ce1(1'b0),
-    .t_we1(1'b0),
-    .t_d1(16'd0),
-    .i_ce(1'b1),
-    .t_ce(1'b1),
-    .i_full_n(localC_i_full_n),
-    .i_write(ap_channel_done_localC),
-    .t_empty_n(localC_t_empty_n),
-    .t_read(Loop_writeC_proc_U0_ap_ready)
+    .reset(ap_rst),
+    .address0(localC_address0),
+    .ce0(localC_ce0),
+    .we0(localC_we0),
+    .d0(localC_d0),
+    .q0(localC_q0),
+    .address1(grp_tile_process_fu_234_c_row_major_0_0_address1),
+    .ce1(localC_ce1),
+    .q1(localC_q1)
 );
 
-mmult_localC_RAM_S2P_LUTRAM_1R1W #(
+mmult_localC_RAM_AUTO_1R1W #(
     .DataWidth( 16 ),
     .AddressRange( 64 ),
     .AddressWidth( 6 ))
 localC_1_U(
     .clk(ap_clk),
-    .reset(ap_rst_n_inv),
-    .i_address0(6'd0),
-    .i_ce0(1'b0),
-    .i_q0(localC_1_i_q0),
-    .i_address1(compute_wrapper_U0_localC_0_1_address1),
-    .i_ce1(compute_wrapper_U0_localC_0_1_ce1),
-    .i_we1(compute_wrapper_U0_localC_0_1_we1),
-    .i_d1(compute_wrapper_U0_localC_0_1_d1),
-    .t_address0(Loop_writeC_proc_U0_localC_1_address0),
-    .t_ce0(Loop_writeC_proc_U0_localC_1_ce0),
-    .t_q0(localC_1_t_q0),
-    .t_address1(6'd0),
-    .t_ce1(1'b0),
-    .t_we1(1'b0),
-    .t_d1(16'd0),
-    .i_ce(1'b1),
-    .t_ce(1'b1),
-    .i_full_n(localC_1_i_full_n),
-    .i_write(ap_channel_done_localC_1),
-    .t_empty_n(localC_1_t_empty_n),
-    .t_read(Loop_writeC_proc_U0_ap_ready)
+    .reset(ap_rst),
+    .address0(localC_1_address0),
+    .ce0(localC_1_ce0),
+    .we0(localC_1_we0),
+    .d0(localC_1_d0),
+    .q0(localC_1_q0),
+    .address1(grp_tile_process_fu_234_c_row_major_0_1_address1),
+    .ce1(localC_1_ce1),
+    .q1(localC_1_q1)
 );
 
-mmult_localC_RAM_S2P_LUTRAM_1R1W #(
+mmult_localC_RAM_AUTO_1R1W #(
     .DataWidth( 16 ),
     .AddressRange( 64 ),
     .AddressWidth( 6 ))
 localC_2_U(
     .clk(ap_clk),
-    .reset(ap_rst_n_inv),
-    .i_address0(6'd0),
-    .i_ce0(1'b0),
-    .i_q0(localC_2_i_q0),
-    .i_address1(compute_wrapper_U0_localC_0_2_address1),
-    .i_ce1(compute_wrapper_U0_localC_0_2_ce1),
-    .i_we1(compute_wrapper_U0_localC_0_2_we1),
-    .i_d1(compute_wrapper_U0_localC_0_2_d1),
-    .t_address0(Loop_writeC_proc_U0_localC_2_address0),
-    .t_ce0(Loop_writeC_proc_U0_localC_2_ce0),
-    .t_q0(localC_2_t_q0),
-    .t_address1(6'd0),
-    .t_ce1(1'b0),
-    .t_we1(1'b0),
-    .t_d1(16'd0),
-    .i_ce(1'b1),
-    .t_ce(1'b1),
-    .i_full_n(localC_2_i_full_n),
-    .i_write(ap_channel_done_localC_2),
-    .t_empty_n(localC_2_t_empty_n),
-    .t_read(Loop_writeC_proc_U0_ap_ready)
+    .reset(ap_rst),
+    .address0(localC_2_address0),
+    .ce0(localC_2_ce0),
+    .we0(localC_2_we0),
+    .d0(localC_2_d0),
+    .q0(localC_2_q0),
+    .address1(grp_tile_process_fu_234_c_row_major_0_2_address1),
+    .ce1(localC_2_ce1),
+    .q1(localC_2_q1)
 );
 
-mmult_localC_RAM_S2P_LUTRAM_1R1W #(
+mmult_localC_RAM_AUTO_1R1W #(
     .DataWidth( 16 ),
     .AddressRange( 64 ),
     .AddressWidth( 6 ))
 localC_3_U(
     .clk(ap_clk),
-    .reset(ap_rst_n_inv),
-    .i_address0(6'd0),
-    .i_ce0(1'b0),
-    .i_q0(localC_3_i_q0),
-    .i_address1(compute_wrapper_U0_localC_0_3_address1),
-    .i_ce1(compute_wrapper_U0_localC_0_3_ce1),
-    .i_we1(compute_wrapper_U0_localC_0_3_we1),
-    .i_d1(compute_wrapper_U0_localC_0_3_d1),
-    .t_address0(Loop_writeC_proc_U0_localC_3_address0),
-    .t_ce0(Loop_writeC_proc_U0_localC_3_ce0),
-    .t_q0(localC_3_t_q0),
-    .t_address1(6'd0),
-    .t_ce1(1'b0),
-    .t_we1(1'b0),
-    .t_d1(16'd0),
-    .i_ce(1'b1),
-    .t_ce(1'b1),
-    .i_full_n(localC_3_i_full_n),
-    .i_write(ap_channel_done_localC_3),
-    .t_empty_n(localC_3_t_empty_n),
-    .t_read(Loop_writeC_proc_U0_ap_ready)
+    .reset(ap_rst),
+    .address0(localC_3_address0),
+    .ce0(localC_3_ce0),
+    .we0(localC_3_we0),
+    .d0(localC_3_d0),
+    .q0(localC_3_q0),
+    .address1(grp_tile_process_fu_234_c_row_major_0_3_address1),
+    .ce1(localC_3_ce1),
+    .q1(localC_3_q1)
 );
 
-mmult_localC_RAM_S2P_LUTRAM_1R1W #(
+mmult_localC_RAM_AUTO_1R1W #(
     .DataWidth( 16 ),
     .AddressRange( 64 ),
     .AddressWidth( 6 ))
 localC_4_U(
     .clk(ap_clk),
-    .reset(ap_rst_n_inv),
-    .i_address0(6'd0),
-    .i_ce0(1'b0),
-    .i_q0(localC_4_i_q0),
-    .i_address1(compute_wrapper_U0_localC_1_0_address1),
-    .i_ce1(compute_wrapper_U0_localC_1_0_ce1),
-    .i_we1(compute_wrapper_U0_localC_1_0_we1),
-    .i_d1(compute_wrapper_U0_localC_1_0_d1),
-    .t_address0(Loop_writeC_proc_U0_localC_4_address0),
-    .t_ce0(Loop_writeC_proc_U0_localC_4_ce0),
-    .t_q0(localC_4_t_q0),
-    .t_address1(6'd0),
-    .t_ce1(1'b0),
-    .t_we1(1'b0),
-    .t_d1(16'd0),
-    .i_ce(1'b1),
-    .t_ce(1'b1),
-    .i_full_n(localC_4_i_full_n),
-    .i_write(ap_channel_done_localC_4),
-    .t_empty_n(localC_4_t_empty_n),
-    .t_read(Loop_writeC_proc_U0_ap_ready)
+    .reset(ap_rst),
+    .address0(localC_4_address0),
+    .ce0(localC_4_ce0),
+    .we0(localC_4_we0),
+    .d0(localC_4_d0),
+    .q0(localC_4_q0),
+    .address1(grp_tile_process_fu_234_c_row_major_1_0_address1),
+    .ce1(localC_4_ce1),
+    .q1(localC_4_q1)
 );
 
-mmult_localC_RAM_S2P_LUTRAM_1R1W #(
+mmult_localC_RAM_AUTO_1R1W #(
     .DataWidth( 16 ),
     .AddressRange( 64 ),
     .AddressWidth( 6 ))
 localC_5_U(
     .clk(ap_clk),
-    .reset(ap_rst_n_inv),
-    .i_address0(6'd0),
-    .i_ce0(1'b0),
-    .i_q0(localC_5_i_q0),
-    .i_address1(compute_wrapper_U0_localC_1_1_address1),
-    .i_ce1(compute_wrapper_U0_localC_1_1_ce1),
-    .i_we1(compute_wrapper_U0_localC_1_1_we1),
-    .i_d1(compute_wrapper_U0_localC_1_1_d1),
-    .t_address0(Loop_writeC_proc_U0_localC_5_address0),
-    .t_ce0(Loop_writeC_proc_U0_localC_5_ce0),
-    .t_q0(localC_5_t_q0),
-    .t_address1(6'd0),
-    .t_ce1(1'b0),
-    .t_we1(1'b0),
-    .t_d1(16'd0),
-    .i_ce(1'b1),
-    .t_ce(1'b1),
-    .i_full_n(localC_5_i_full_n),
-    .i_write(ap_channel_done_localC_5),
-    .t_empty_n(localC_5_t_empty_n),
-    .t_read(Loop_writeC_proc_U0_ap_ready)
+    .reset(ap_rst),
+    .address0(localC_5_address0),
+    .ce0(localC_5_ce0),
+    .we0(localC_5_we0),
+    .d0(localC_5_d0),
+    .q0(localC_5_q0),
+    .address1(grp_tile_process_fu_234_c_row_major_1_1_address1),
+    .ce1(localC_5_ce1),
+    .q1(localC_5_q1)
 );
 
-mmult_localC_RAM_S2P_LUTRAM_1R1W #(
+mmult_localC_RAM_AUTO_1R1W #(
     .DataWidth( 16 ),
     .AddressRange( 64 ),
     .AddressWidth( 6 ))
 localC_6_U(
     .clk(ap_clk),
-    .reset(ap_rst_n_inv),
-    .i_address0(6'd0),
-    .i_ce0(1'b0),
-    .i_q0(localC_6_i_q0),
-    .i_address1(compute_wrapper_U0_localC_1_2_address1),
-    .i_ce1(compute_wrapper_U0_localC_1_2_ce1),
-    .i_we1(compute_wrapper_U0_localC_1_2_we1),
-    .i_d1(compute_wrapper_U0_localC_1_2_d1),
-    .t_address0(Loop_writeC_proc_U0_localC_6_address0),
-    .t_ce0(Loop_writeC_proc_U0_localC_6_ce0),
-    .t_q0(localC_6_t_q0),
-    .t_address1(6'd0),
-    .t_ce1(1'b0),
-    .t_we1(1'b0),
-    .t_d1(16'd0),
-    .i_ce(1'b1),
-    .t_ce(1'b1),
-    .i_full_n(localC_6_i_full_n),
-    .i_write(ap_channel_done_localC_6),
-    .t_empty_n(localC_6_t_empty_n),
-    .t_read(Loop_writeC_proc_U0_ap_ready)
+    .reset(ap_rst),
+    .address0(localC_6_address0),
+    .ce0(localC_6_ce0),
+    .we0(localC_6_we0),
+    .d0(localC_6_d0),
+    .q0(localC_6_q0),
+    .address1(grp_tile_process_fu_234_c_row_major_1_2_address1),
+    .ce1(localC_6_ce1),
+    .q1(localC_6_q1)
 );
 
-mmult_localC_RAM_S2P_LUTRAM_1R1W #(
+mmult_localC_RAM_AUTO_1R1W #(
     .DataWidth( 16 ),
     .AddressRange( 64 ),
     .AddressWidth( 6 ))
 localC_7_U(
     .clk(ap_clk),
-    .reset(ap_rst_n_inv),
-    .i_address0(6'd0),
-    .i_ce0(1'b0),
-    .i_q0(localC_7_i_q0),
-    .i_address1(compute_wrapper_U0_localC_1_3_address1),
-    .i_ce1(compute_wrapper_U0_localC_1_3_ce1),
-    .i_we1(compute_wrapper_U0_localC_1_3_we1),
-    .i_d1(compute_wrapper_U0_localC_1_3_d1),
-    .t_address0(Loop_writeC_proc_U0_localC_7_address0),
-    .t_ce0(Loop_writeC_proc_U0_localC_7_ce0),
-    .t_q0(localC_7_t_q0),
-    .t_address1(6'd0),
-    .t_ce1(1'b0),
-    .t_we1(1'b0),
-    .t_d1(16'd0),
-    .i_ce(1'b1),
-    .t_ce(1'b1),
-    .i_full_n(localC_7_i_full_n),
-    .i_write(ap_channel_done_localC_7),
-    .t_empty_n(localC_7_t_empty_n),
-    .t_read(Loop_writeC_proc_U0_ap_ready)
+    .reset(ap_rst),
+    .address0(localC_7_address0),
+    .ce0(localC_7_ce0),
+    .we0(localC_7_we0),
+    .d0(localC_7_d0),
+    .q0(localC_7_q0),
+    .address1(grp_tile_process_fu_234_c_row_major_1_3_address1),
+    .ce1(localC_7_ce1),
+    .q1(localC_7_q1)
 );
 
-mmult_localC_RAM_S2P_LUTRAM_1R1W #(
+mmult_localC_RAM_AUTO_1R1W #(
     .DataWidth( 16 ),
     .AddressRange( 64 ),
     .AddressWidth( 6 ))
 localC_8_U(
     .clk(ap_clk),
-    .reset(ap_rst_n_inv),
-    .i_address0(6'd0),
-    .i_ce0(1'b0),
-    .i_q0(localC_8_i_q0),
-    .i_address1(compute_wrapper_U0_localC_2_0_address1),
-    .i_ce1(compute_wrapper_U0_localC_2_0_ce1),
-    .i_we1(compute_wrapper_U0_localC_2_0_we1),
-    .i_d1(compute_wrapper_U0_localC_2_0_d1),
-    .t_address0(Loop_writeC_proc_U0_localC_8_address0),
-    .t_ce0(Loop_writeC_proc_U0_localC_8_ce0),
-    .t_q0(localC_8_t_q0),
-    .t_address1(6'd0),
-    .t_ce1(1'b0),
-    .t_we1(1'b0),
-    .t_d1(16'd0),
-    .i_ce(1'b1),
-    .t_ce(1'b1),
-    .i_full_n(localC_8_i_full_n),
-    .i_write(ap_channel_done_localC_8),
-    .t_empty_n(localC_8_t_empty_n),
-    .t_read(Loop_writeC_proc_U0_ap_ready)
+    .reset(ap_rst),
+    .address0(localC_8_address0),
+    .ce0(localC_8_ce0),
+    .we0(localC_8_we0),
+    .d0(localC_8_d0),
+    .q0(localC_8_q0),
+    .address1(grp_tile_process_fu_234_c_row_major_2_0_address1),
+    .ce1(localC_8_ce1),
+    .q1(localC_8_q1)
 );
 
-mmult_localC_RAM_S2P_LUTRAM_1R1W #(
+mmult_localC_RAM_AUTO_1R1W #(
     .DataWidth( 16 ),
     .AddressRange( 64 ),
     .AddressWidth( 6 ))
 localC_9_U(
     .clk(ap_clk),
-    .reset(ap_rst_n_inv),
-    .i_address0(6'd0),
-    .i_ce0(1'b0),
-    .i_q0(localC_9_i_q0),
-    .i_address1(compute_wrapper_U0_localC_2_1_address1),
-    .i_ce1(compute_wrapper_U0_localC_2_1_ce1),
-    .i_we1(compute_wrapper_U0_localC_2_1_we1),
-    .i_d1(compute_wrapper_U0_localC_2_1_d1),
-    .t_address0(Loop_writeC_proc_U0_localC_9_address0),
-    .t_ce0(Loop_writeC_proc_U0_localC_9_ce0),
-    .t_q0(localC_9_t_q0),
-    .t_address1(6'd0),
-    .t_ce1(1'b0),
-    .t_we1(1'b0),
-    .t_d1(16'd0),
-    .i_ce(1'b1),
-    .t_ce(1'b1),
-    .i_full_n(localC_9_i_full_n),
-    .i_write(ap_channel_done_localC_9),
-    .t_empty_n(localC_9_t_empty_n),
-    .t_read(Loop_writeC_proc_U0_ap_ready)
+    .reset(ap_rst),
+    .address0(localC_9_address0),
+    .ce0(localC_9_ce0),
+    .we0(localC_9_we0),
+    .d0(localC_9_d0),
+    .q0(localC_9_q0),
+    .address1(grp_tile_process_fu_234_c_row_major_2_1_address1),
+    .ce1(localC_9_ce1),
+    .q1(localC_9_q1)
 );
 
-mmult_localC_RAM_S2P_LUTRAM_1R1W #(
+mmult_localC_RAM_AUTO_1R1W #(
     .DataWidth( 16 ),
     .AddressRange( 64 ),
     .AddressWidth( 6 ))
 localC_10_U(
     .clk(ap_clk),
-    .reset(ap_rst_n_inv),
-    .i_address0(6'd0),
-    .i_ce0(1'b0),
-    .i_q0(localC_10_i_q0),
-    .i_address1(compute_wrapper_U0_localC_2_2_address1),
-    .i_ce1(compute_wrapper_U0_localC_2_2_ce1),
-    .i_we1(compute_wrapper_U0_localC_2_2_we1),
-    .i_d1(compute_wrapper_U0_localC_2_2_d1),
-    .t_address0(Loop_writeC_proc_U0_localC_10_address0),
-    .t_ce0(Loop_writeC_proc_U0_localC_10_ce0),
-    .t_q0(localC_10_t_q0),
-    .t_address1(6'd0),
-    .t_ce1(1'b0),
-    .t_we1(1'b0),
-    .t_d1(16'd0),
-    .i_ce(1'b1),
-    .t_ce(1'b1),
-    .i_full_n(localC_10_i_full_n),
-    .i_write(ap_channel_done_localC_10),
-    .t_empty_n(localC_10_t_empty_n),
-    .t_read(Loop_writeC_proc_U0_ap_ready)
+    .reset(ap_rst),
+    .address0(localC_10_address0),
+    .ce0(localC_10_ce0),
+    .we0(localC_10_we0),
+    .d0(localC_10_d0),
+    .q0(localC_10_q0),
+    .address1(grp_tile_process_fu_234_c_row_major_2_2_address1),
+    .ce1(localC_10_ce1),
+    .q1(localC_10_q1)
 );
 
-mmult_localC_RAM_S2P_LUTRAM_1R1W #(
+mmult_localC_RAM_AUTO_1R1W #(
     .DataWidth( 16 ),
     .AddressRange( 64 ),
     .AddressWidth( 6 ))
 localC_11_U(
     .clk(ap_clk),
-    .reset(ap_rst_n_inv),
-    .i_address0(6'd0),
-    .i_ce0(1'b0),
-    .i_q0(localC_11_i_q0),
-    .i_address1(compute_wrapper_U0_localC_2_3_address1),
-    .i_ce1(compute_wrapper_U0_localC_2_3_ce1),
-    .i_we1(compute_wrapper_U0_localC_2_3_we1),
-    .i_d1(compute_wrapper_U0_localC_2_3_d1),
-    .t_address0(Loop_writeC_proc_U0_localC_11_address0),
-    .t_ce0(Loop_writeC_proc_U0_localC_11_ce0),
-    .t_q0(localC_11_t_q0),
-    .t_address1(6'd0),
-    .t_ce1(1'b0),
-    .t_we1(1'b0),
-    .t_d1(16'd0),
-    .i_ce(1'b1),
-    .t_ce(1'b1),
-    .i_full_n(localC_11_i_full_n),
-    .i_write(ap_channel_done_localC_11),
-    .t_empty_n(localC_11_t_empty_n),
-    .t_read(Loop_writeC_proc_U0_ap_ready)
+    .reset(ap_rst),
+    .address0(localC_11_address0),
+    .ce0(localC_11_ce0),
+    .we0(localC_11_we0),
+    .d0(localC_11_d0),
+    .q0(localC_11_q0),
+    .address1(grp_tile_process_fu_234_c_row_major_2_3_address1),
+    .ce1(localC_11_ce1),
+    .q1(localC_11_q1)
 );
 
-mmult_localC_RAM_S2P_LUTRAM_1R1W #(
+mmult_localC_RAM_AUTO_1R1W #(
     .DataWidth( 16 ),
     .AddressRange( 64 ),
     .AddressWidth( 6 ))
 localC_12_U(
     .clk(ap_clk),
-    .reset(ap_rst_n_inv),
-    .i_address0(6'd0),
-    .i_ce0(1'b0),
-    .i_q0(localC_12_i_q0),
-    .i_address1(compute_wrapper_U0_localC_3_0_address1),
-    .i_ce1(compute_wrapper_U0_localC_3_0_ce1),
-    .i_we1(compute_wrapper_U0_localC_3_0_we1),
-    .i_d1(compute_wrapper_U0_localC_3_0_d1),
-    .t_address0(Loop_writeC_proc_U0_localC_12_address0),
-    .t_ce0(Loop_writeC_proc_U0_localC_12_ce0),
-    .t_q0(localC_12_t_q0),
-    .t_address1(6'd0),
-    .t_ce1(1'b0),
-    .t_we1(1'b0),
-    .t_d1(16'd0),
-    .i_ce(1'b1),
-    .t_ce(1'b1),
-    .i_full_n(localC_12_i_full_n),
-    .i_write(ap_channel_done_localC_12),
-    .t_empty_n(localC_12_t_empty_n),
-    .t_read(Loop_writeC_proc_U0_ap_ready)
+    .reset(ap_rst),
+    .address0(localC_12_address0),
+    .ce0(localC_12_ce0),
+    .we0(localC_12_we0),
+    .d0(localC_12_d0),
+    .q0(localC_12_q0),
+    .address1(grp_tile_process_fu_234_c_row_major_3_0_address1),
+    .ce1(localC_12_ce1),
+    .q1(localC_12_q1)
 );
 
-mmult_localC_RAM_S2P_LUTRAM_1R1W #(
+mmult_localC_RAM_AUTO_1R1W #(
     .DataWidth( 16 ),
     .AddressRange( 64 ),
     .AddressWidth( 6 ))
 localC_13_U(
     .clk(ap_clk),
-    .reset(ap_rst_n_inv),
-    .i_address0(6'd0),
-    .i_ce0(1'b0),
-    .i_q0(localC_13_i_q0),
-    .i_address1(compute_wrapper_U0_localC_3_1_address1),
-    .i_ce1(compute_wrapper_U0_localC_3_1_ce1),
-    .i_we1(compute_wrapper_U0_localC_3_1_we1),
-    .i_d1(compute_wrapper_U0_localC_3_1_d1),
-    .t_address0(Loop_writeC_proc_U0_localC_13_address0),
-    .t_ce0(Loop_writeC_proc_U0_localC_13_ce0),
-    .t_q0(localC_13_t_q0),
-    .t_address1(6'd0),
-    .t_ce1(1'b0),
-    .t_we1(1'b0),
-    .t_d1(16'd0),
-    .i_ce(1'b1),
-    .t_ce(1'b1),
-    .i_full_n(localC_13_i_full_n),
-    .i_write(ap_channel_done_localC_13),
-    .t_empty_n(localC_13_t_empty_n),
-    .t_read(Loop_writeC_proc_U0_ap_ready)
+    .reset(ap_rst),
+    .address0(localC_13_address0),
+    .ce0(localC_13_ce0),
+    .we0(localC_13_we0),
+    .d0(localC_13_d0),
+    .q0(localC_13_q0),
+    .address1(grp_tile_process_fu_234_c_row_major_3_1_address1),
+    .ce1(localC_13_ce1),
+    .q1(localC_13_q1)
 );
 
-mmult_localC_RAM_S2P_LUTRAM_1R1W #(
+mmult_localC_RAM_AUTO_1R1W #(
     .DataWidth( 16 ),
     .AddressRange( 64 ),
     .AddressWidth( 6 ))
 localC_14_U(
     .clk(ap_clk),
-    .reset(ap_rst_n_inv),
-    .i_address0(6'd0),
-    .i_ce0(1'b0),
-    .i_q0(localC_14_i_q0),
-    .i_address1(compute_wrapper_U0_localC_3_2_address1),
-    .i_ce1(compute_wrapper_U0_localC_3_2_ce1),
-    .i_we1(compute_wrapper_U0_localC_3_2_we1),
-    .i_d1(compute_wrapper_U0_localC_3_2_d1),
-    .t_address0(Loop_writeC_proc_U0_localC_14_address0),
-    .t_ce0(Loop_writeC_proc_U0_localC_14_ce0),
-    .t_q0(localC_14_t_q0),
-    .t_address1(6'd0),
-    .t_ce1(1'b0),
-    .t_we1(1'b0),
-    .t_d1(16'd0),
-    .i_ce(1'b1),
-    .t_ce(1'b1),
-    .i_full_n(localC_14_i_full_n),
-    .i_write(ap_channel_done_localC_14),
-    .t_empty_n(localC_14_t_empty_n),
-    .t_read(Loop_writeC_proc_U0_ap_ready)
+    .reset(ap_rst),
+    .address0(localC_14_address0),
+    .ce0(localC_14_ce0),
+    .we0(localC_14_we0),
+    .d0(localC_14_d0),
+    .q0(localC_14_q0),
+    .address1(grp_tile_process_fu_234_c_row_major_3_2_address1),
+    .ce1(localC_14_ce1),
+    .q1(localC_14_q1)
 );
 
-mmult_localC_RAM_S2P_LUTRAM_1R1W #(
+mmult_localC_RAM_AUTO_1R1W #(
     .DataWidth( 16 ),
     .AddressRange( 64 ),
     .AddressWidth( 6 ))
 localC_15_U(
     .clk(ap_clk),
-    .reset(ap_rst_n_inv),
-    .i_address0(6'd0),
-    .i_ce0(1'b0),
-    .i_q0(localC_15_i_q0),
-    .i_address1(compute_wrapper_U0_localC_3_3_address1),
-    .i_ce1(compute_wrapper_U0_localC_3_3_ce1),
-    .i_we1(compute_wrapper_U0_localC_3_3_we1),
-    .i_d1(compute_wrapper_U0_localC_3_3_d1),
-    .t_address0(Loop_writeC_proc_U0_localC_15_address0),
-    .t_ce0(Loop_writeC_proc_U0_localC_15_ce0),
-    .t_q0(localC_15_t_q0),
-    .t_address1(6'd0),
-    .t_ce1(1'b0),
-    .t_we1(1'b0),
-    .t_d1(16'd0),
-    .i_ce(1'b1),
-    .t_ce(1'b1),
-    .i_full_n(localC_15_i_full_n),
-    .i_write(ap_channel_done_localC_15),
-    .t_empty_n(localC_15_t_empty_n),
-    .t_read(Loop_writeC_proc_U0_ap_ready)
+    .reset(ap_rst),
+    .address0(localC_15_address0),
+    .ce0(localC_15_ce0),
+    .we0(localC_15_we0),
+    .d0(localC_15_d0),
+    .q0(localC_15_q0),
+    .address1(grp_tile_process_fu_234_c_row_major_3_3_address1),
+    .ce1(localC_15_ce1),
+    .q1(localC_15_q1)
 );
 
-mmult_control_s_axi #(
-    .C_S_AXI_ADDR_WIDTH( C_S_AXI_CONTROL_ADDR_WIDTH ),
-    .C_S_AXI_DATA_WIDTH( C_S_AXI_CONTROL_DATA_WIDTH ))
-control_s_axi_U(
-    .AWVALID(s_axi_control_AWVALID),
-    .AWREADY(s_axi_control_AWREADY),
-    .AWADDR(s_axi_control_AWADDR),
-    .WVALID(s_axi_control_WVALID),
-    .WREADY(s_axi_control_WREADY),
-    .WDATA(s_axi_control_WDATA),
-    .WSTRB(s_axi_control_WSTRB),
-    .ARVALID(s_axi_control_ARVALID),
-    .ARREADY(s_axi_control_ARREADY),
-    .ARADDR(s_axi_control_ARADDR),
-    .RVALID(s_axi_control_RVALID),
-    .RREADY(s_axi_control_RREADY),
-    .RDATA(s_axi_control_RDATA),
-    .RRESP(s_axi_control_RRESP),
-    .BVALID(s_axi_control_BVALID),
-    .BREADY(s_axi_control_BREADY),
-    .BRESP(s_axi_control_BRESP),
-    .ACLK(ap_clk),
-    .ARESET(ap_rst_n_inv),
-    .ACLK_EN(1'b1),
-    .a(a),
-    .b(b),
-    .c(c),
+mmult_mmult_Pipeline_readA grp_mmult_Pipeline_readA_fu_190(
+    .ap_clk(ap_clk),
+    .ap_rst(ap_rst),
+    .ap_start(grp_mmult_Pipeline_readA_fu_190_ap_start),
+    .ap_done(grp_mmult_Pipeline_readA_fu_190_ap_done),
+    .ap_idle(grp_mmult_Pipeline_readA_fu_190_ap_idle),
+    .ap_ready(grp_mmult_Pipeline_readA_fu_190_ap_ready),
+    .mul(reg_306),
+    .localA_3_address1(grp_mmult_Pipeline_readA_fu_190_localA_3_address1),
+    .localA_3_ce1(grp_mmult_Pipeline_readA_fu_190_localA_3_ce1),
+    .localA_3_we1(grp_mmult_Pipeline_readA_fu_190_localA_3_we1),
+    .localA_3_d1(grp_mmult_Pipeline_readA_fu_190_localA_3_d1),
+    .localA_2_address1(grp_mmult_Pipeline_readA_fu_190_localA_2_address1),
+    .localA_2_ce1(grp_mmult_Pipeline_readA_fu_190_localA_2_ce1),
+    .localA_2_we1(grp_mmult_Pipeline_readA_fu_190_localA_2_we1),
+    .localA_2_d1(grp_mmult_Pipeline_readA_fu_190_localA_2_d1),
+    .localA_1_address1(grp_mmult_Pipeline_readA_fu_190_localA_1_address1),
+    .localA_1_ce1(grp_mmult_Pipeline_readA_fu_190_localA_1_ce1),
+    .localA_1_we1(grp_mmult_Pipeline_readA_fu_190_localA_1_we1),
+    .localA_1_d1(grp_mmult_Pipeline_readA_fu_190_localA_1_d1),
+    .localA_address1(grp_mmult_Pipeline_readA_fu_190_localA_address1),
+    .localA_ce1(grp_mmult_Pipeline_readA_fu_190_localA_ce1),
+    .localA_we1(grp_mmult_Pipeline_readA_fu_190_localA_we1),
+    .localA_d1(grp_mmult_Pipeline_readA_fu_190_localA_d1),
+    .a_col(a_col),
+    .a_address0(grp_mmult_Pipeline_readA_fu_190_a_address0),
+    .a_ce0(grp_mmult_Pipeline_readA_fu_190_a_ce0),
+    .a_q0(a_q0)
+);
+
+mmult_mmult_Pipeline_readB grp_mmult_Pipeline_readB_fu_202(
+    .ap_clk(ap_clk),
+    .ap_rst(ap_rst),
+    .ap_start(grp_mmult_Pipeline_readB_fu_202_ap_start),
+    .ap_done(grp_mmult_Pipeline_readB_fu_202_ap_done),
+    .ap_idle(grp_mmult_Pipeline_readB_fu_202_ap_idle),
+    .ap_ready(grp_mmult_Pipeline_readB_fu_202_ap_ready),
+    .mul12(mul12_reg_391),
+    .localB_3_address1(grp_mmult_Pipeline_readB_fu_202_localB_3_address1),
+    .localB_3_ce1(grp_mmult_Pipeline_readB_fu_202_localB_3_ce1),
+    .localB_3_we1(grp_mmult_Pipeline_readB_fu_202_localB_3_we1),
+    .localB_3_d1(grp_mmult_Pipeline_readB_fu_202_localB_3_d1),
+    .localB_2_address1(grp_mmult_Pipeline_readB_fu_202_localB_2_address1),
+    .localB_2_ce1(grp_mmult_Pipeline_readB_fu_202_localB_2_ce1),
+    .localB_2_we1(grp_mmult_Pipeline_readB_fu_202_localB_2_we1),
+    .localB_2_d1(grp_mmult_Pipeline_readB_fu_202_localB_2_d1),
+    .localB_1_address1(grp_mmult_Pipeline_readB_fu_202_localB_1_address1),
+    .localB_1_ce1(grp_mmult_Pipeline_readB_fu_202_localB_1_ce1),
+    .localB_1_we1(grp_mmult_Pipeline_readB_fu_202_localB_1_we1),
+    .localB_1_d1(grp_mmult_Pipeline_readB_fu_202_localB_1_d1),
+    .localB_address1(grp_mmult_Pipeline_readB_fu_202_localB_address1),
+    .localB_ce1(grp_mmult_Pipeline_readB_fu_202_localB_ce1),
+    .localB_we1(grp_mmult_Pipeline_readB_fu_202_localB_we1),
+    .localB_d1(grp_mmult_Pipeline_readB_fu_202_localB_d1),
+    .b_col(b_col),
+    .b_address0(grp_mmult_Pipeline_readB_fu_202_b_address0),
+    .b_ce0(grp_mmult_Pipeline_readB_fu_202_b_ce0),
+    .b_q0(b_q0)
+);
+
+mmult_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2 grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214(
+    .ap_clk(ap_clk),
+    .ap_rst(ap_rst),
+    .ap_start(grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_ap_start),
+    .ap_done(grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_ap_done),
+    .ap_idle(grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_ap_idle),
+    .ap_ready(grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_ap_ready),
+    .localC_address0(grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_address0),
+    .localC_ce0(grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_ce0),
+    .localC_we0(grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_we0),
+    .localC_d0(grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_d0),
+    .localC_1_address0(grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_1_address0),
+    .localC_1_ce0(grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_1_ce0),
+    .localC_1_we0(grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_1_we0),
+    .localC_1_d0(grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_1_d0),
+    .localC_2_address0(grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_2_address0),
+    .localC_2_ce0(grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_2_ce0),
+    .localC_2_we0(grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_2_we0),
+    .localC_2_d0(grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_2_d0),
+    .localC_3_address0(grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_3_address0),
+    .localC_3_ce0(grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_3_ce0),
+    .localC_3_we0(grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_3_we0),
+    .localC_3_d0(grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_3_d0),
+    .localC_4_address0(grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_4_address0),
+    .localC_4_ce0(grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_4_ce0),
+    .localC_4_we0(grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_4_we0),
+    .localC_4_d0(grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_4_d0),
+    .localC_5_address0(grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_5_address0),
+    .localC_5_ce0(grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_5_ce0),
+    .localC_5_we0(grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_5_we0),
+    .localC_5_d0(grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_5_d0),
+    .localC_6_address0(grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_6_address0),
+    .localC_6_ce0(grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_6_ce0),
+    .localC_6_we0(grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_6_we0),
+    .localC_6_d0(grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_6_d0),
+    .localC_7_address0(grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_7_address0),
+    .localC_7_ce0(grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_7_ce0),
+    .localC_7_we0(grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_7_we0),
+    .localC_7_d0(grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_7_d0),
+    .localC_8_address0(grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_8_address0),
+    .localC_8_ce0(grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_8_ce0),
+    .localC_8_we0(grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_8_we0),
+    .localC_8_d0(grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_8_d0),
+    .localC_9_address0(grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_9_address0),
+    .localC_9_ce0(grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_9_ce0),
+    .localC_9_we0(grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_9_we0),
+    .localC_9_d0(grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_9_d0),
+    .localC_10_address0(grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_10_address0),
+    .localC_10_ce0(grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_10_ce0),
+    .localC_10_we0(grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_10_we0),
+    .localC_10_d0(grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_10_d0),
+    .localC_11_address0(grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_11_address0),
+    .localC_11_ce0(grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_11_ce0),
+    .localC_11_we0(grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_11_we0),
+    .localC_11_d0(grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_11_d0),
+    .localC_12_address0(grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_12_address0),
+    .localC_12_ce0(grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_12_ce0),
+    .localC_12_we0(grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_12_we0),
+    .localC_12_d0(grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_12_d0),
+    .localC_13_address0(grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_13_address0),
+    .localC_13_ce0(grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_13_ce0),
+    .localC_13_we0(grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_13_we0),
+    .localC_13_d0(grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_13_d0),
+    .localC_14_address0(grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_14_address0),
+    .localC_14_ce0(grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_14_ce0),
+    .localC_14_we0(grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_14_we0),
+    .localC_14_d0(grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_14_d0),
+    .localC_15_address0(grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_15_address0),
+    .localC_15_ce0(grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_15_ce0),
+    .localC_15_we0(grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_15_we0),
+    .localC_15_d0(grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_15_d0)
+);
+
+mmult_tile_process grp_tile_process_fu_234(
+    .ap_clk(ap_clk),
+    .ap_rst(ap_rst),
+    .ap_start(grp_tile_process_fu_234_ap_start),
+    .ap_done(grp_tile_process_fu_234_ap_done),
+    .ap_idle(grp_tile_process_fu_234_ap_idle),
+    .ap_ready(grp_tile_process_fu_234_ap_ready),
+    .a_row_major_0_address0(grp_tile_process_fu_234_a_row_major_0_address0),
+    .a_row_major_0_ce0(grp_tile_process_fu_234_a_row_major_0_ce0),
+    .a_row_major_0_q0(localA_q0),
+    .a_row_major_1_address0(grp_tile_process_fu_234_a_row_major_1_address0),
+    .a_row_major_1_ce0(grp_tile_process_fu_234_a_row_major_1_ce0),
+    .a_row_major_1_q0(localA_1_q0),
+    .a_row_major_2_address0(grp_tile_process_fu_234_a_row_major_2_address0),
+    .a_row_major_2_ce0(grp_tile_process_fu_234_a_row_major_2_ce0),
+    .a_row_major_2_q0(localA_2_q0),
+    .a_row_major_3_address0(grp_tile_process_fu_234_a_row_major_3_address0),
+    .a_row_major_3_ce0(grp_tile_process_fu_234_a_row_major_3_ce0),
+    .a_row_major_3_q0(localA_3_q0),
+    .b_row_major_0_address0(grp_tile_process_fu_234_b_row_major_0_address0),
+    .b_row_major_0_ce0(grp_tile_process_fu_234_b_row_major_0_ce0),
+    .b_row_major_0_q0(localB_q0),
+    .b_row_major_1_address0(grp_tile_process_fu_234_b_row_major_1_address0),
+    .b_row_major_1_ce0(grp_tile_process_fu_234_b_row_major_1_ce0),
+    .b_row_major_1_q0(localB_1_q0),
+    .b_row_major_2_address0(grp_tile_process_fu_234_b_row_major_2_address0),
+    .b_row_major_2_ce0(grp_tile_process_fu_234_b_row_major_2_ce0),
+    .b_row_major_2_q0(localB_2_q0),
+    .b_row_major_3_address0(grp_tile_process_fu_234_b_row_major_3_address0),
+    .b_row_major_3_ce0(grp_tile_process_fu_234_b_row_major_3_ce0),
+    .b_row_major_3_q0(localB_3_q0),
+    .c_row_major_0_0_address0(grp_tile_process_fu_234_c_row_major_0_0_address0),
+    .c_row_major_0_0_ce0(grp_tile_process_fu_234_c_row_major_0_0_ce0),
+    .c_row_major_0_0_we0(grp_tile_process_fu_234_c_row_major_0_0_we0),
+    .c_row_major_0_0_d0(grp_tile_process_fu_234_c_row_major_0_0_d0),
+    .c_row_major_0_0_address1(grp_tile_process_fu_234_c_row_major_0_0_address1),
+    .c_row_major_0_0_ce1(grp_tile_process_fu_234_c_row_major_0_0_ce1),
+    .c_row_major_0_0_q1(localC_q1),
+    .c_row_major_0_1_address0(grp_tile_process_fu_234_c_row_major_0_1_address0),
+    .c_row_major_0_1_ce0(grp_tile_process_fu_234_c_row_major_0_1_ce0),
+    .c_row_major_0_1_we0(grp_tile_process_fu_234_c_row_major_0_1_we0),
+    .c_row_major_0_1_d0(grp_tile_process_fu_234_c_row_major_0_1_d0),
+    .c_row_major_0_1_address1(grp_tile_process_fu_234_c_row_major_0_1_address1),
+    .c_row_major_0_1_ce1(grp_tile_process_fu_234_c_row_major_0_1_ce1),
+    .c_row_major_0_1_q1(localC_1_q1),
+    .c_row_major_0_2_address0(grp_tile_process_fu_234_c_row_major_0_2_address0),
+    .c_row_major_0_2_ce0(grp_tile_process_fu_234_c_row_major_0_2_ce0),
+    .c_row_major_0_2_we0(grp_tile_process_fu_234_c_row_major_0_2_we0),
+    .c_row_major_0_2_d0(grp_tile_process_fu_234_c_row_major_0_2_d0),
+    .c_row_major_0_2_address1(grp_tile_process_fu_234_c_row_major_0_2_address1),
+    .c_row_major_0_2_ce1(grp_tile_process_fu_234_c_row_major_0_2_ce1),
+    .c_row_major_0_2_q1(localC_2_q1),
+    .c_row_major_0_3_address0(grp_tile_process_fu_234_c_row_major_0_3_address0),
+    .c_row_major_0_3_ce0(grp_tile_process_fu_234_c_row_major_0_3_ce0),
+    .c_row_major_0_3_we0(grp_tile_process_fu_234_c_row_major_0_3_we0),
+    .c_row_major_0_3_d0(grp_tile_process_fu_234_c_row_major_0_3_d0),
+    .c_row_major_0_3_address1(grp_tile_process_fu_234_c_row_major_0_3_address1),
+    .c_row_major_0_3_ce1(grp_tile_process_fu_234_c_row_major_0_3_ce1),
+    .c_row_major_0_3_q1(localC_3_q1),
+    .c_row_major_1_0_address0(grp_tile_process_fu_234_c_row_major_1_0_address0),
+    .c_row_major_1_0_ce0(grp_tile_process_fu_234_c_row_major_1_0_ce0),
+    .c_row_major_1_0_we0(grp_tile_process_fu_234_c_row_major_1_0_we0),
+    .c_row_major_1_0_d0(grp_tile_process_fu_234_c_row_major_1_0_d0),
+    .c_row_major_1_0_address1(grp_tile_process_fu_234_c_row_major_1_0_address1),
+    .c_row_major_1_0_ce1(grp_tile_process_fu_234_c_row_major_1_0_ce1),
+    .c_row_major_1_0_q1(localC_4_q1),
+    .c_row_major_1_1_address0(grp_tile_process_fu_234_c_row_major_1_1_address0),
+    .c_row_major_1_1_ce0(grp_tile_process_fu_234_c_row_major_1_1_ce0),
+    .c_row_major_1_1_we0(grp_tile_process_fu_234_c_row_major_1_1_we0),
+    .c_row_major_1_1_d0(grp_tile_process_fu_234_c_row_major_1_1_d0),
+    .c_row_major_1_1_address1(grp_tile_process_fu_234_c_row_major_1_1_address1),
+    .c_row_major_1_1_ce1(grp_tile_process_fu_234_c_row_major_1_1_ce1),
+    .c_row_major_1_1_q1(localC_5_q1),
+    .c_row_major_1_2_address0(grp_tile_process_fu_234_c_row_major_1_2_address0),
+    .c_row_major_1_2_ce0(grp_tile_process_fu_234_c_row_major_1_2_ce0),
+    .c_row_major_1_2_we0(grp_tile_process_fu_234_c_row_major_1_2_we0),
+    .c_row_major_1_2_d0(grp_tile_process_fu_234_c_row_major_1_2_d0),
+    .c_row_major_1_2_address1(grp_tile_process_fu_234_c_row_major_1_2_address1),
+    .c_row_major_1_2_ce1(grp_tile_process_fu_234_c_row_major_1_2_ce1),
+    .c_row_major_1_2_q1(localC_6_q1),
+    .c_row_major_1_3_address0(grp_tile_process_fu_234_c_row_major_1_3_address0),
+    .c_row_major_1_3_ce0(grp_tile_process_fu_234_c_row_major_1_3_ce0),
+    .c_row_major_1_3_we0(grp_tile_process_fu_234_c_row_major_1_3_we0),
+    .c_row_major_1_3_d0(grp_tile_process_fu_234_c_row_major_1_3_d0),
+    .c_row_major_1_3_address1(grp_tile_process_fu_234_c_row_major_1_3_address1),
+    .c_row_major_1_3_ce1(grp_tile_process_fu_234_c_row_major_1_3_ce1),
+    .c_row_major_1_3_q1(localC_7_q1),
+    .c_row_major_2_0_address0(grp_tile_process_fu_234_c_row_major_2_0_address0),
+    .c_row_major_2_0_ce0(grp_tile_process_fu_234_c_row_major_2_0_ce0),
+    .c_row_major_2_0_we0(grp_tile_process_fu_234_c_row_major_2_0_we0),
+    .c_row_major_2_0_d0(grp_tile_process_fu_234_c_row_major_2_0_d0),
+    .c_row_major_2_0_address1(grp_tile_process_fu_234_c_row_major_2_0_address1),
+    .c_row_major_2_0_ce1(grp_tile_process_fu_234_c_row_major_2_0_ce1),
+    .c_row_major_2_0_q1(localC_8_q1),
+    .c_row_major_2_1_address0(grp_tile_process_fu_234_c_row_major_2_1_address0),
+    .c_row_major_2_1_ce0(grp_tile_process_fu_234_c_row_major_2_1_ce0),
+    .c_row_major_2_1_we0(grp_tile_process_fu_234_c_row_major_2_1_we0),
+    .c_row_major_2_1_d0(grp_tile_process_fu_234_c_row_major_2_1_d0),
+    .c_row_major_2_1_address1(grp_tile_process_fu_234_c_row_major_2_1_address1),
+    .c_row_major_2_1_ce1(grp_tile_process_fu_234_c_row_major_2_1_ce1),
+    .c_row_major_2_1_q1(localC_9_q1),
+    .c_row_major_2_2_address0(grp_tile_process_fu_234_c_row_major_2_2_address0),
+    .c_row_major_2_2_ce0(grp_tile_process_fu_234_c_row_major_2_2_ce0),
+    .c_row_major_2_2_we0(grp_tile_process_fu_234_c_row_major_2_2_we0),
+    .c_row_major_2_2_d0(grp_tile_process_fu_234_c_row_major_2_2_d0),
+    .c_row_major_2_2_address1(grp_tile_process_fu_234_c_row_major_2_2_address1),
+    .c_row_major_2_2_ce1(grp_tile_process_fu_234_c_row_major_2_2_ce1),
+    .c_row_major_2_2_q1(localC_10_q1),
+    .c_row_major_2_3_address0(grp_tile_process_fu_234_c_row_major_2_3_address0),
+    .c_row_major_2_3_ce0(grp_tile_process_fu_234_c_row_major_2_3_ce0),
+    .c_row_major_2_3_we0(grp_tile_process_fu_234_c_row_major_2_3_we0),
+    .c_row_major_2_3_d0(grp_tile_process_fu_234_c_row_major_2_3_d0),
+    .c_row_major_2_3_address1(grp_tile_process_fu_234_c_row_major_2_3_address1),
+    .c_row_major_2_3_ce1(grp_tile_process_fu_234_c_row_major_2_3_ce1),
+    .c_row_major_2_3_q1(localC_11_q1),
+    .c_row_major_3_0_address0(grp_tile_process_fu_234_c_row_major_3_0_address0),
+    .c_row_major_3_0_ce0(grp_tile_process_fu_234_c_row_major_3_0_ce0),
+    .c_row_major_3_0_we0(grp_tile_process_fu_234_c_row_major_3_0_we0),
+    .c_row_major_3_0_d0(grp_tile_process_fu_234_c_row_major_3_0_d0),
+    .c_row_major_3_0_address1(grp_tile_process_fu_234_c_row_major_3_0_address1),
+    .c_row_major_3_0_ce1(grp_tile_process_fu_234_c_row_major_3_0_ce1),
+    .c_row_major_3_0_q1(localC_12_q1),
+    .c_row_major_3_1_address0(grp_tile_process_fu_234_c_row_major_3_1_address0),
+    .c_row_major_3_1_ce0(grp_tile_process_fu_234_c_row_major_3_1_ce0),
+    .c_row_major_3_1_we0(grp_tile_process_fu_234_c_row_major_3_1_we0),
+    .c_row_major_3_1_d0(grp_tile_process_fu_234_c_row_major_3_1_d0),
+    .c_row_major_3_1_address1(grp_tile_process_fu_234_c_row_major_3_1_address1),
+    .c_row_major_3_1_ce1(grp_tile_process_fu_234_c_row_major_3_1_ce1),
+    .c_row_major_3_1_q1(localC_13_q1),
+    .c_row_major_3_2_address0(grp_tile_process_fu_234_c_row_major_3_2_address0),
+    .c_row_major_3_2_ce0(grp_tile_process_fu_234_c_row_major_3_2_ce0),
+    .c_row_major_3_2_we0(grp_tile_process_fu_234_c_row_major_3_2_we0),
+    .c_row_major_3_2_d0(grp_tile_process_fu_234_c_row_major_3_2_d0),
+    .c_row_major_3_2_address1(grp_tile_process_fu_234_c_row_major_3_2_address1),
+    .c_row_major_3_2_ce1(grp_tile_process_fu_234_c_row_major_3_2_ce1),
+    .c_row_major_3_2_q1(localC_14_q1),
+    .c_row_major_3_3_address0(grp_tile_process_fu_234_c_row_major_3_3_address0),
+    .c_row_major_3_3_ce0(grp_tile_process_fu_234_c_row_major_3_3_ce0),
+    .c_row_major_3_3_we0(grp_tile_process_fu_234_c_row_major_3_3_we0),
+    .c_row_major_3_3_d0(grp_tile_process_fu_234_c_row_major_3_3_d0),
+    .c_row_major_3_3_address1(grp_tile_process_fu_234_c_row_major_3_3_address1),
+    .c_row_major_3_3_ce1(grp_tile_process_fu_234_c_row_major_3_3_ce1),
+    .c_row_major_3_3_q1(localC_15_q1),
+    .start_k(start_k_reg_399),
+    .finish_k(finish_k_reg_404),
     .a_row(a_row),
     .a_col(a_col),
+    .b_col(b_col)
+);
+
+mmult_mmult_Pipeline_writeC grp_mmult_Pipeline_writeC_fu_267(
+    .ap_clk(ap_clk),
+    .ap_rst(ap_rst),
+    .ap_start(grp_mmult_Pipeline_writeC_fu_267_ap_start),
+    .ap_done(grp_mmult_Pipeline_writeC_fu_267_ap_done),
+    .ap_idle(grp_mmult_Pipeline_writeC_fu_267_ap_idle),
+    .ap_ready(grp_mmult_Pipeline_writeC_fu_267_ap_ready),
+    .mul65(reg_306),
     .b_col(b_col),
-    .ap_start(ap_start),
-    .interrupt(interrupt),
-    .ap_ready(ap_ready),
-    .ap_done(ap_done),
-    .ap_idle(ap_idle)
+    .localC_address0(grp_mmult_Pipeline_writeC_fu_267_localC_address0),
+    .localC_ce0(grp_mmult_Pipeline_writeC_fu_267_localC_ce0),
+    .localC_q0(localC_q0),
+    .localC_1_address0(grp_mmult_Pipeline_writeC_fu_267_localC_1_address0),
+    .localC_1_ce0(grp_mmult_Pipeline_writeC_fu_267_localC_1_ce0),
+    .localC_1_q0(localC_1_q0),
+    .localC_2_address0(grp_mmult_Pipeline_writeC_fu_267_localC_2_address0),
+    .localC_2_ce0(grp_mmult_Pipeline_writeC_fu_267_localC_2_ce0),
+    .localC_2_q0(localC_2_q0),
+    .localC_3_address0(grp_mmult_Pipeline_writeC_fu_267_localC_3_address0),
+    .localC_3_ce0(grp_mmult_Pipeline_writeC_fu_267_localC_3_ce0),
+    .localC_3_q0(localC_3_q0),
+    .localC_4_address0(grp_mmult_Pipeline_writeC_fu_267_localC_4_address0),
+    .localC_4_ce0(grp_mmult_Pipeline_writeC_fu_267_localC_4_ce0),
+    .localC_4_q0(localC_4_q0),
+    .localC_5_address0(grp_mmult_Pipeline_writeC_fu_267_localC_5_address0),
+    .localC_5_ce0(grp_mmult_Pipeline_writeC_fu_267_localC_5_ce0),
+    .localC_5_q0(localC_5_q0),
+    .localC_6_address0(grp_mmult_Pipeline_writeC_fu_267_localC_6_address0),
+    .localC_6_ce0(grp_mmult_Pipeline_writeC_fu_267_localC_6_ce0),
+    .localC_6_q0(localC_6_q0),
+    .localC_7_address0(grp_mmult_Pipeline_writeC_fu_267_localC_7_address0),
+    .localC_7_ce0(grp_mmult_Pipeline_writeC_fu_267_localC_7_ce0),
+    .localC_7_q0(localC_7_q0),
+    .localC_8_address0(grp_mmult_Pipeline_writeC_fu_267_localC_8_address0),
+    .localC_8_ce0(grp_mmult_Pipeline_writeC_fu_267_localC_8_ce0),
+    .localC_8_q0(localC_8_q0),
+    .localC_9_address0(grp_mmult_Pipeline_writeC_fu_267_localC_9_address0),
+    .localC_9_ce0(grp_mmult_Pipeline_writeC_fu_267_localC_9_ce0),
+    .localC_9_q0(localC_9_q0),
+    .localC_10_address0(grp_mmult_Pipeline_writeC_fu_267_localC_10_address0),
+    .localC_10_ce0(grp_mmult_Pipeline_writeC_fu_267_localC_10_ce0),
+    .localC_10_q0(localC_10_q0),
+    .localC_11_address0(grp_mmult_Pipeline_writeC_fu_267_localC_11_address0),
+    .localC_11_ce0(grp_mmult_Pipeline_writeC_fu_267_localC_11_ce0),
+    .localC_11_q0(localC_11_q0),
+    .localC_12_address0(grp_mmult_Pipeline_writeC_fu_267_localC_12_address0),
+    .localC_12_ce0(grp_mmult_Pipeline_writeC_fu_267_localC_12_ce0),
+    .localC_12_q0(localC_12_q0),
+    .localC_13_address0(grp_mmult_Pipeline_writeC_fu_267_localC_13_address0),
+    .localC_13_ce0(grp_mmult_Pipeline_writeC_fu_267_localC_13_ce0),
+    .localC_13_q0(localC_13_q0),
+    .localC_14_address0(grp_mmult_Pipeline_writeC_fu_267_localC_14_address0),
+    .localC_14_ce0(grp_mmult_Pipeline_writeC_fu_267_localC_14_ce0),
+    .localC_14_q0(localC_14_q0),
+    .localC_15_address0(grp_mmult_Pipeline_writeC_fu_267_localC_15_address0),
+    .localC_15_ce0(grp_mmult_Pipeline_writeC_fu_267_localC_15_ce0),
+    .localC_15_q0(localC_15_q0),
+    .c_address0(grp_mmult_Pipeline_writeC_fu_267_c_address0),
+    .c_ce0(grp_mmult_Pipeline_writeC_fu_267_c_ce0),
+    .c_we0(grp_mmult_Pipeline_writeC_fu_267_c_we0),
+    .c_d0(grp_mmult_Pipeline_writeC_fu_267_c_d0)
 );
 
-mmult_gmem0_m_axi #(
-    .CONSERVATIVE( 1 ),
-    .USER_MAXREQS( 7 ),
-    .MAX_READ_BURST_LENGTH( 16 ),
-    .MAX_WRITE_BURST_LENGTH( 16 ),
-    .C_M_AXI_ID_WIDTH( C_M_AXI_GMEM0_ID_WIDTH ),
-    .C_M_AXI_ADDR_WIDTH( C_M_AXI_GMEM0_ADDR_WIDTH ),
-    .C_M_AXI_DATA_WIDTH( C_M_AXI_GMEM0_DATA_WIDTH ),
-    .C_M_AXI_AWUSER_WIDTH( C_M_AXI_GMEM0_AWUSER_WIDTH ),
-    .C_M_AXI_ARUSER_WIDTH( C_M_AXI_GMEM0_ARUSER_WIDTH ),
-    .C_M_AXI_WUSER_WIDTH( C_M_AXI_GMEM0_WUSER_WIDTH ),
-    .C_M_AXI_RUSER_WIDTH( C_M_AXI_GMEM0_RUSER_WIDTH ),
-    .C_M_AXI_BUSER_WIDTH( C_M_AXI_GMEM0_BUSER_WIDTH ),
-    .C_USER_VALUE( C_M_AXI_GMEM0_USER_VALUE ),
-    .C_PROT_VALUE( C_M_AXI_GMEM0_PROT_VALUE ),
-    .C_CACHE_VALUE( C_M_AXI_GMEM0_CACHE_VALUE ),
-    .USER_RFIFONUM_WIDTH( 11 ),
-    .USER_DW( 8 ),
-    .USER_AW( 64 ),
-    .NUM_READ_OUTSTANDING( 16 ),
-    .NUM_WRITE_OUTSTANDING( 16 ))
-gmem0_m_axi_U(
-    .AWVALID(m_axi_gmem0_AWVALID),
-    .AWREADY(m_axi_gmem0_AWREADY),
-    .AWADDR(m_axi_gmem0_AWADDR),
-    .AWID(m_axi_gmem0_AWID),
-    .AWLEN(m_axi_gmem0_AWLEN),
-    .AWSIZE(m_axi_gmem0_AWSIZE),
-    .AWBURST(m_axi_gmem0_AWBURST),
-    .AWLOCK(m_axi_gmem0_AWLOCK),
-    .AWCACHE(m_axi_gmem0_AWCACHE),
-    .AWPROT(m_axi_gmem0_AWPROT),
-    .AWQOS(m_axi_gmem0_AWQOS),
-    .AWREGION(m_axi_gmem0_AWREGION),
-    .AWUSER(m_axi_gmem0_AWUSER),
-    .WVALID(m_axi_gmem0_WVALID),
-    .WREADY(m_axi_gmem0_WREADY),
-    .WDATA(m_axi_gmem0_WDATA),
-    .WSTRB(m_axi_gmem0_WSTRB),
-    .WLAST(m_axi_gmem0_WLAST),
-    .WID(m_axi_gmem0_WID),
-    .WUSER(m_axi_gmem0_WUSER),
-    .ARVALID(m_axi_gmem0_ARVALID),
-    .ARREADY(m_axi_gmem0_ARREADY),
-    .ARADDR(m_axi_gmem0_ARADDR),
-    .ARID(m_axi_gmem0_ARID),
-    .ARLEN(m_axi_gmem0_ARLEN),
-    .ARSIZE(m_axi_gmem0_ARSIZE),
-    .ARBURST(m_axi_gmem0_ARBURST),
-    .ARLOCK(m_axi_gmem0_ARLOCK),
-    .ARCACHE(m_axi_gmem0_ARCACHE),
-    .ARPROT(m_axi_gmem0_ARPROT),
-    .ARQOS(m_axi_gmem0_ARQOS),
-    .ARREGION(m_axi_gmem0_ARREGION),
-    .ARUSER(m_axi_gmem0_ARUSER),
-    .RVALID(m_axi_gmem0_RVALID),
-    .RREADY(m_axi_gmem0_RREADY),
-    .RDATA(m_axi_gmem0_RDATA),
-    .RLAST(m_axi_gmem0_RLAST),
-    .RID(m_axi_gmem0_RID),
-    .RUSER(m_axi_gmem0_RUSER),
-    .RRESP(m_axi_gmem0_RRESP),
-    .BVALID(m_axi_gmem0_BVALID),
-    .BREADY(m_axi_gmem0_BREADY),
-    .BRESP(m_axi_gmem0_BRESP),
-    .BID(m_axi_gmem0_BID),
-    .BUSER(m_axi_gmem0_BUSER),
-    .ACLK(ap_clk),
-    .ARESET(ap_rst_n_inv),
-    .ACLK_EN(1'b1),
-    .I_ARVALID(Loop_readA_proc_U0_m_axi_gmem0_ARVALID),
-    .I_ARREADY(gmem0_ARREADY),
-    .I_ARADDR(Loop_readA_proc_U0_m_axi_gmem0_ARADDR),
-    .I_ARLEN(Loop_readA_proc_U0_m_axi_gmem0_ARLEN),
-    .I_RVALID(gmem0_RVALID),
-    .I_RREADY(Loop_readA_proc_U0_m_axi_gmem0_RREADY),
-    .I_RDATA(gmem0_RDATA),
-    .I_RFIFONUM(gmem0_RFIFONUM),
-    .I_AWVALID(1'b0),
-    .I_AWREADY(gmem0_AWREADY),
-    .I_AWADDR(64'd0),
-    .I_AWLEN(32'd0),
-    .I_WVALID(1'b0),
-    .I_WREADY(gmem0_WREADY),
-    .I_WDATA(8'd0),
-    .I_WSTRB(1'd0),
-    .I_BVALID(gmem0_BVALID),
-    .I_BREADY(1'b0)
-);
-
-mmult_gmem1_m_axi #(
-    .CONSERVATIVE( 1 ),
-    .USER_MAXREQS( 7 ),
-    .MAX_READ_BURST_LENGTH( 16 ),
-    .MAX_WRITE_BURST_LENGTH( 16 ),
-    .C_M_AXI_ID_WIDTH( C_M_AXI_GMEM1_ID_WIDTH ),
-    .C_M_AXI_ADDR_WIDTH( C_M_AXI_GMEM1_ADDR_WIDTH ),
-    .C_M_AXI_DATA_WIDTH( C_M_AXI_GMEM1_DATA_WIDTH ),
-    .C_M_AXI_AWUSER_WIDTH( C_M_AXI_GMEM1_AWUSER_WIDTH ),
-    .C_M_AXI_ARUSER_WIDTH( C_M_AXI_GMEM1_ARUSER_WIDTH ),
-    .C_M_AXI_WUSER_WIDTH( C_M_AXI_GMEM1_WUSER_WIDTH ),
-    .C_M_AXI_RUSER_WIDTH( C_M_AXI_GMEM1_RUSER_WIDTH ),
-    .C_M_AXI_BUSER_WIDTH( C_M_AXI_GMEM1_BUSER_WIDTH ),
-    .C_USER_VALUE( C_M_AXI_GMEM1_USER_VALUE ),
-    .C_PROT_VALUE( C_M_AXI_GMEM1_PROT_VALUE ),
-    .C_CACHE_VALUE( C_M_AXI_GMEM1_CACHE_VALUE ),
-    .USER_RFIFONUM_WIDTH( 11 ),
-    .USER_DW( 8 ),
-    .USER_AW( 64 ),
-    .NUM_READ_OUTSTANDING( 16 ),
-    .NUM_WRITE_OUTSTANDING( 16 ))
-gmem1_m_axi_U(
-    .AWVALID(m_axi_gmem1_AWVALID),
-    .AWREADY(m_axi_gmem1_AWREADY),
-    .AWADDR(m_axi_gmem1_AWADDR),
-    .AWID(m_axi_gmem1_AWID),
-    .AWLEN(m_axi_gmem1_AWLEN),
-    .AWSIZE(m_axi_gmem1_AWSIZE),
-    .AWBURST(m_axi_gmem1_AWBURST),
-    .AWLOCK(m_axi_gmem1_AWLOCK),
-    .AWCACHE(m_axi_gmem1_AWCACHE),
-    .AWPROT(m_axi_gmem1_AWPROT),
-    .AWQOS(m_axi_gmem1_AWQOS),
-    .AWREGION(m_axi_gmem1_AWREGION),
-    .AWUSER(m_axi_gmem1_AWUSER),
-    .WVALID(m_axi_gmem1_WVALID),
-    .WREADY(m_axi_gmem1_WREADY),
-    .WDATA(m_axi_gmem1_WDATA),
-    .WSTRB(m_axi_gmem1_WSTRB),
-    .WLAST(m_axi_gmem1_WLAST),
-    .WID(m_axi_gmem1_WID),
-    .WUSER(m_axi_gmem1_WUSER),
-    .ARVALID(m_axi_gmem1_ARVALID),
-    .ARREADY(m_axi_gmem1_ARREADY),
-    .ARADDR(m_axi_gmem1_ARADDR),
-    .ARID(m_axi_gmem1_ARID),
-    .ARLEN(m_axi_gmem1_ARLEN),
-    .ARSIZE(m_axi_gmem1_ARSIZE),
-    .ARBURST(m_axi_gmem1_ARBURST),
-    .ARLOCK(m_axi_gmem1_ARLOCK),
-    .ARCACHE(m_axi_gmem1_ARCACHE),
-    .ARPROT(m_axi_gmem1_ARPROT),
-    .ARQOS(m_axi_gmem1_ARQOS),
-    .ARREGION(m_axi_gmem1_ARREGION),
-    .ARUSER(m_axi_gmem1_ARUSER),
-    .RVALID(m_axi_gmem1_RVALID),
-    .RREADY(m_axi_gmem1_RREADY),
-    .RDATA(m_axi_gmem1_RDATA),
-    .RLAST(m_axi_gmem1_RLAST),
-    .RID(m_axi_gmem1_RID),
-    .RUSER(m_axi_gmem1_RUSER),
-    .RRESP(m_axi_gmem1_RRESP),
-    .BVALID(m_axi_gmem1_BVALID),
-    .BREADY(m_axi_gmem1_BREADY),
-    .BRESP(m_axi_gmem1_BRESP),
-    .BID(m_axi_gmem1_BID),
-    .BUSER(m_axi_gmem1_BUSER),
-    .ACLK(ap_clk),
-    .ARESET(ap_rst_n_inv),
-    .ACLK_EN(1'b1),
-    .I_ARVALID(Loop_readB_proc_U0_m_axi_gmem1_ARVALID),
-    .I_ARREADY(gmem1_ARREADY),
-    .I_ARADDR(Loop_readB_proc_U0_m_axi_gmem1_ARADDR),
-    .I_ARLEN(Loop_readB_proc_U0_m_axi_gmem1_ARLEN),
-    .I_RVALID(gmem1_RVALID),
-    .I_RREADY(Loop_readB_proc_U0_m_axi_gmem1_RREADY),
-    .I_RDATA(gmem1_RDATA),
-    .I_RFIFONUM(gmem1_RFIFONUM),
-    .I_AWVALID(1'b0),
-    .I_AWREADY(gmem1_AWREADY),
-    .I_AWADDR(64'd0),
-    .I_AWLEN(32'd0),
-    .I_WVALID(1'b0),
-    .I_WREADY(gmem1_WREADY),
-    .I_WDATA(8'd0),
-    .I_WSTRB(1'd0),
-    .I_BVALID(gmem1_BVALID),
-    .I_BREADY(1'b0)
-);
-
-mmult_gmem2_m_axi #(
-    .CONSERVATIVE( 1 ),
-    .USER_MAXREQS( 4 ),
-    .MAX_READ_BURST_LENGTH( 16 ),
-    .MAX_WRITE_BURST_LENGTH( 16 ),
-    .C_M_AXI_ID_WIDTH( C_M_AXI_GMEM2_ID_WIDTH ),
-    .C_M_AXI_ADDR_WIDTH( C_M_AXI_GMEM2_ADDR_WIDTH ),
-    .C_M_AXI_DATA_WIDTH( C_M_AXI_GMEM2_DATA_WIDTH ),
-    .C_M_AXI_AWUSER_WIDTH( C_M_AXI_GMEM2_AWUSER_WIDTH ),
-    .C_M_AXI_ARUSER_WIDTH( C_M_AXI_GMEM2_ARUSER_WIDTH ),
-    .C_M_AXI_WUSER_WIDTH( C_M_AXI_GMEM2_WUSER_WIDTH ),
-    .C_M_AXI_RUSER_WIDTH( C_M_AXI_GMEM2_RUSER_WIDTH ),
-    .C_M_AXI_BUSER_WIDTH( C_M_AXI_GMEM2_BUSER_WIDTH ),
-    .C_USER_VALUE( C_M_AXI_GMEM2_USER_VALUE ),
-    .C_PROT_VALUE( C_M_AXI_GMEM2_PROT_VALUE ),
-    .C_CACHE_VALUE( C_M_AXI_GMEM2_CACHE_VALUE ),
-    .USER_RFIFONUM_WIDTH( 10 ),
-    .USER_DW( 16 ),
-    .USER_AW( 64 ),
-    .NUM_READ_OUTSTANDING( 16 ),
-    .NUM_WRITE_OUTSTANDING( 16 ))
-gmem2_m_axi_U(
-    .AWVALID(m_axi_gmem2_AWVALID),
-    .AWREADY(m_axi_gmem2_AWREADY),
-    .AWADDR(m_axi_gmem2_AWADDR),
-    .AWID(m_axi_gmem2_AWID),
-    .AWLEN(m_axi_gmem2_AWLEN),
-    .AWSIZE(m_axi_gmem2_AWSIZE),
-    .AWBURST(m_axi_gmem2_AWBURST),
-    .AWLOCK(m_axi_gmem2_AWLOCK),
-    .AWCACHE(m_axi_gmem2_AWCACHE),
-    .AWPROT(m_axi_gmem2_AWPROT),
-    .AWQOS(m_axi_gmem2_AWQOS),
-    .AWREGION(m_axi_gmem2_AWREGION),
-    .AWUSER(m_axi_gmem2_AWUSER),
-    .WVALID(m_axi_gmem2_WVALID),
-    .WREADY(m_axi_gmem2_WREADY),
-    .WDATA(m_axi_gmem2_WDATA),
-    .WSTRB(m_axi_gmem2_WSTRB),
-    .WLAST(m_axi_gmem2_WLAST),
-    .WID(m_axi_gmem2_WID),
-    .WUSER(m_axi_gmem2_WUSER),
-    .ARVALID(m_axi_gmem2_ARVALID),
-    .ARREADY(m_axi_gmem2_ARREADY),
-    .ARADDR(m_axi_gmem2_ARADDR),
-    .ARID(m_axi_gmem2_ARID),
-    .ARLEN(m_axi_gmem2_ARLEN),
-    .ARSIZE(m_axi_gmem2_ARSIZE),
-    .ARBURST(m_axi_gmem2_ARBURST),
-    .ARLOCK(m_axi_gmem2_ARLOCK),
-    .ARCACHE(m_axi_gmem2_ARCACHE),
-    .ARPROT(m_axi_gmem2_ARPROT),
-    .ARQOS(m_axi_gmem2_ARQOS),
-    .ARREGION(m_axi_gmem2_ARREGION),
-    .ARUSER(m_axi_gmem2_ARUSER),
-    .RVALID(m_axi_gmem2_RVALID),
-    .RREADY(m_axi_gmem2_RREADY),
-    .RDATA(m_axi_gmem2_RDATA),
-    .RLAST(m_axi_gmem2_RLAST),
-    .RID(m_axi_gmem2_RID),
-    .RUSER(m_axi_gmem2_RUSER),
-    .RRESP(m_axi_gmem2_RRESP),
-    .BVALID(m_axi_gmem2_BVALID),
-    .BREADY(m_axi_gmem2_BREADY),
-    .BRESP(m_axi_gmem2_BRESP),
-    .BID(m_axi_gmem2_BID),
-    .BUSER(m_axi_gmem2_BUSER),
-    .ACLK(ap_clk),
-    .ARESET(ap_rst_n_inv),
-    .ACLK_EN(1'b1),
-    .I_ARVALID(1'b0),
-    .I_ARREADY(gmem2_ARREADY),
-    .I_ARADDR(64'd0),
-    .I_ARLEN(32'd0),
-    .I_RVALID(gmem2_RVALID),
-    .I_RREADY(1'b0),
-    .I_RDATA(gmem2_RDATA),
-    .I_RFIFONUM(gmem2_RFIFONUM),
-    .I_AWVALID(Loop_writeC_proc_U0_m_axi_gmem2_AWVALID),
-    .I_AWREADY(gmem2_AWREADY),
-    .I_AWADDR(Loop_writeC_proc_U0_m_axi_gmem2_AWADDR),
-    .I_AWLEN(Loop_writeC_proc_U0_m_axi_gmem2_AWLEN),
-    .I_WVALID(Loop_writeC_proc_U0_m_axi_gmem2_WVALID),
-    .I_WREADY(gmem2_WREADY),
-    .I_WDATA(Loop_writeC_proc_U0_m_axi_gmem2_WDATA),
-    .I_WSTRB(Loop_writeC_proc_U0_m_axi_gmem2_WSTRB),
-    .I_BVALID(gmem2_BVALID),
-    .I_BREADY(Loop_writeC_proc_U0_m_axi_gmem2_BREADY)
-);
-
-mmult_entry_proc entry_proc_U0(
-    .ap_clk(ap_clk),
-    .ap_rst(ap_rst_n_inv),
-    .ap_start(entry_proc_U0_ap_start),
-    .ap_done(entry_proc_U0_ap_done),
-    .ap_continue(entry_proc_U0_ap_continue),
-    .ap_idle(entry_proc_U0_ap_idle),
-    .ap_ready(entry_proc_U0_ap_ready),
-    .c(c),
-    .c_c_din(entry_proc_U0_c_c_din),
-    .c_c_num_data_valid(c_c_num_data_valid),
-    .c_c_fifo_cap(c_c_fifo_cap),
-    .c_c_full_n(c_c_full_n),
-    .c_c_write(entry_proc_U0_c_c_write)
-);
-
-mmult_Loop_readA_proc Loop_readA_proc_U0(
-    .ap_clk(ap_clk),
-    .ap_rst(ap_rst_n_inv),
-    .ap_start(Loop_readA_proc_U0_ap_start),
-    .ap_done(Loop_readA_proc_U0_ap_done),
-    .ap_continue(Loop_readA_proc_U0_ap_continue),
-    .ap_idle(Loop_readA_proc_U0_ap_idle),
-    .ap_ready(Loop_readA_proc_U0_ap_ready),
-    .a_col(a_col),
-    .a_row(a_row),
-    .m_axi_gmem0_AWVALID(Loop_readA_proc_U0_m_axi_gmem0_AWVALID),
-    .m_axi_gmem0_AWREADY(1'b0),
-    .m_axi_gmem0_AWADDR(Loop_readA_proc_U0_m_axi_gmem0_AWADDR),
-    .m_axi_gmem0_AWID(Loop_readA_proc_U0_m_axi_gmem0_AWID),
-    .m_axi_gmem0_AWLEN(Loop_readA_proc_U0_m_axi_gmem0_AWLEN),
-    .m_axi_gmem0_AWSIZE(Loop_readA_proc_U0_m_axi_gmem0_AWSIZE),
-    .m_axi_gmem0_AWBURST(Loop_readA_proc_U0_m_axi_gmem0_AWBURST),
-    .m_axi_gmem0_AWLOCK(Loop_readA_proc_U0_m_axi_gmem0_AWLOCK),
-    .m_axi_gmem0_AWCACHE(Loop_readA_proc_U0_m_axi_gmem0_AWCACHE),
-    .m_axi_gmem0_AWPROT(Loop_readA_proc_U0_m_axi_gmem0_AWPROT),
-    .m_axi_gmem0_AWQOS(Loop_readA_proc_U0_m_axi_gmem0_AWQOS),
-    .m_axi_gmem0_AWREGION(Loop_readA_proc_U0_m_axi_gmem0_AWREGION),
-    .m_axi_gmem0_AWUSER(Loop_readA_proc_U0_m_axi_gmem0_AWUSER),
-    .m_axi_gmem0_WVALID(Loop_readA_proc_U0_m_axi_gmem0_WVALID),
-    .m_axi_gmem0_WREADY(1'b0),
-    .m_axi_gmem0_WDATA(Loop_readA_proc_U0_m_axi_gmem0_WDATA),
-    .m_axi_gmem0_WSTRB(Loop_readA_proc_U0_m_axi_gmem0_WSTRB),
-    .m_axi_gmem0_WLAST(Loop_readA_proc_U0_m_axi_gmem0_WLAST),
-    .m_axi_gmem0_WID(Loop_readA_proc_U0_m_axi_gmem0_WID),
-    .m_axi_gmem0_WUSER(Loop_readA_proc_U0_m_axi_gmem0_WUSER),
-    .m_axi_gmem0_ARVALID(Loop_readA_proc_U0_m_axi_gmem0_ARVALID),
-    .m_axi_gmem0_ARREADY(gmem0_ARREADY),
-    .m_axi_gmem0_ARADDR(Loop_readA_proc_U0_m_axi_gmem0_ARADDR),
-    .m_axi_gmem0_ARID(Loop_readA_proc_U0_m_axi_gmem0_ARID),
-    .m_axi_gmem0_ARLEN(Loop_readA_proc_U0_m_axi_gmem0_ARLEN),
-    .m_axi_gmem0_ARSIZE(Loop_readA_proc_U0_m_axi_gmem0_ARSIZE),
-    .m_axi_gmem0_ARBURST(Loop_readA_proc_U0_m_axi_gmem0_ARBURST),
-    .m_axi_gmem0_ARLOCK(Loop_readA_proc_U0_m_axi_gmem0_ARLOCK),
-    .m_axi_gmem0_ARCACHE(Loop_readA_proc_U0_m_axi_gmem0_ARCACHE),
-    .m_axi_gmem0_ARPROT(Loop_readA_proc_U0_m_axi_gmem0_ARPROT),
-    .m_axi_gmem0_ARQOS(Loop_readA_proc_U0_m_axi_gmem0_ARQOS),
-    .m_axi_gmem0_ARREGION(Loop_readA_proc_U0_m_axi_gmem0_ARREGION),
-    .m_axi_gmem0_ARUSER(Loop_readA_proc_U0_m_axi_gmem0_ARUSER),
-    .m_axi_gmem0_RVALID(gmem0_RVALID),
-    .m_axi_gmem0_RREADY(Loop_readA_proc_U0_m_axi_gmem0_RREADY),
-    .m_axi_gmem0_RDATA(gmem0_RDATA),
-    .m_axi_gmem0_RLAST(gmem0_RLAST),
-    .m_axi_gmem0_RID(gmem0_RID),
-    .m_axi_gmem0_RFIFONUM(gmem0_RFIFONUM),
-    .m_axi_gmem0_RUSER(gmem0_RUSER),
-    .m_axi_gmem0_RRESP(gmem0_RRESP),
-    .m_axi_gmem0_BVALID(1'b0),
-    .m_axi_gmem0_BREADY(Loop_readA_proc_U0_m_axi_gmem0_BREADY),
-    .m_axi_gmem0_BRESP(2'd0),
-    .m_axi_gmem0_BID(1'd0),
-    .m_axi_gmem0_BUSER(1'd0),
-    .a(a),
-    .localA_3_address1(Loop_readA_proc_U0_localA_3_address1),
-    .localA_3_ce1(Loop_readA_proc_U0_localA_3_ce1),
-    .localA_3_we1(Loop_readA_proc_U0_localA_3_we1),
-    .localA_3_d1(Loop_readA_proc_U0_localA_3_d1),
-    .localA_2_address1(Loop_readA_proc_U0_localA_2_address1),
-    .localA_2_ce1(Loop_readA_proc_U0_localA_2_ce1),
-    .localA_2_we1(Loop_readA_proc_U0_localA_2_we1),
-    .localA_2_d1(Loop_readA_proc_U0_localA_2_d1),
-    .localA_1_address1(Loop_readA_proc_U0_localA_1_address1),
-    .localA_1_ce1(Loop_readA_proc_U0_localA_1_ce1),
-    .localA_1_we1(Loop_readA_proc_U0_localA_1_we1),
-    .localA_1_d1(Loop_readA_proc_U0_localA_1_d1),
-    .localA_address1(Loop_readA_proc_U0_localA_address1),
-    .localA_ce1(Loop_readA_proc_U0_localA_ce1),
-    .localA_we1(Loop_readA_proc_U0_localA_we1),
-    .localA_d1(Loop_readA_proc_U0_localA_d1),
-    .ap_return_0(Loop_readA_proc_U0_ap_return_0),
-    .ap_return_1(Loop_readA_proc_U0_ap_return_1)
-);
-
-mmult_Loop_readB_proc Loop_readB_proc_U0(
-    .ap_clk(ap_clk),
-    .ap_rst(ap_rst_n_inv),
-    .ap_start(Loop_readB_proc_U0_ap_start),
-    .ap_done(Loop_readB_proc_U0_ap_done),
-    .ap_continue(Loop_readB_proc_U0_ap_continue),
-    .ap_idle(Loop_readB_proc_U0_ap_idle),
-    .ap_ready(Loop_readB_proc_U0_ap_ready),
-    .b_col(b_col),
-    .a_col(a_col),
-    .m_axi_gmem1_AWVALID(Loop_readB_proc_U0_m_axi_gmem1_AWVALID),
-    .m_axi_gmem1_AWREADY(1'b0),
-    .m_axi_gmem1_AWADDR(Loop_readB_proc_U0_m_axi_gmem1_AWADDR),
-    .m_axi_gmem1_AWID(Loop_readB_proc_U0_m_axi_gmem1_AWID),
-    .m_axi_gmem1_AWLEN(Loop_readB_proc_U0_m_axi_gmem1_AWLEN),
-    .m_axi_gmem1_AWSIZE(Loop_readB_proc_U0_m_axi_gmem1_AWSIZE),
-    .m_axi_gmem1_AWBURST(Loop_readB_proc_U0_m_axi_gmem1_AWBURST),
-    .m_axi_gmem1_AWLOCK(Loop_readB_proc_U0_m_axi_gmem1_AWLOCK),
-    .m_axi_gmem1_AWCACHE(Loop_readB_proc_U0_m_axi_gmem1_AWCACHE),
-    .m_axi_gmem1_AWPROT(Loop_readB_proc_U0_m_axi_gmem1_AWPROT),
-    .m_axi_gmem1_AWQOS(Loop_readB_proc_U0_m_axi_gmem1_AWQOS),
-    .m_axi_gmem1_AWREGION(Loop_readB_proc_U0_m_axi_gmem1_AWREGION),
-    .m_axi_gmem1_AWUSER(Loop_readB_proc_U0_m_axi_gmem1_AWUSER),
-    .m_axi_gmem1_WVALID(Loop_readB_proc_U0_m_axi_gmem1_WVALID),
-    .m_axi_gmem1_WREADY(1'b0),
-    .m_axi_gmem1_WDATA(Loop_readB_proc_U0_m_axi_gmem1_WDATA),
-    .m_axi_gmem1_WSTRB(Loop_readB_proc_U0_m_axi_gmem1_WSTRB),
-    .m_axi_gmem1_WLAST(Loop_readB_proc_U0_m_axi_gmem1_WLAST),
-    .m_axi_gmem1_WID(Loop_readB_proc_U0_m_axi_gmem1_WID),
-    .m_axi_gmem1_WUSER(Loop_readB_proc_U0_m_axi_gmem1_WUSER),
-    .m_axi_gmem1_ARVALID(Loop_readB_proc_U0_m_axi_gmem1_ARVALID),
-    .m_axi_gmem1_ARREADY(gmem1_ARREADY),
-    .m_axi_gmem1_ARADDR(Loop_readB_proc_U0_m_axi_gmem1_ARADDR),
-    .m_axi_gmem1_ARID(Loop_readB_proc_U0_m_axi_gmem1_ARID),
-    .m_axi_gmem1_ARLEN(Loop_readB_proc_U0_m_axi_gmem1_ARLEN),
-    .m_axi_gmem1_ARSIZE(Loop_readB_proc_U0_m_axi_gmem1_ARSIZE),
-    .m_axi_gmem1_ARBURST(Loop_readB_proc_U0_m_axi_gmem1_ARBURST),
-    .m_axi_gmem1_ARLOCK(Loop_readB_proc_U0_m_axi_gmem1_ARLOCK),
-    .m_axi_gmem1_ARCACHE(Loop_readB_proc_U0_m_axi_gmem1_ARCACHE),
-    .m_axi_gmem1_ARPROT(Loop_readB_proc_U0_m_axi_gmem1_ARPROT),
-    .m_axi_gmem1_ARQOS(Loop_readB_proc_U0_m_axi_gmem1_ARQOS),
-    .m_axi_gmem1_ARREGION(Loop_readB_proc_U0_m_axi_gmem1_ARREGION),
-    .m_axi_gmem1_ARUSER(Loop_readB_proc_U0_m_axi_gmem1_ARUSER),
-    .m_axi_gmem1_RVALID(gmem1_RVALID),
-    .m_axi_gmem1_RREADY(Loop_readB_proc_U0_m_axi_gmem1_RREADY),
-    .m_axi_gmem1_RDATA(gmem1_RDATA),
-    .m_axi_gmem1_RLAST(gmem1_RLAST),
-    .m_axi_gmem1_RID(gmem1_RID),
-    .m_axi_gmem1_RFIFONUM(gmem1_RFIFONUM),
-    .m_axi_gmem1_RUSER(gmem1_RUSER),
-    .m_axi_gmem1_RRESP(gmem1_RRESP),
-    .m_axi_gmem1_BVALID(1'b0),
-    .m_axi_gmem1_BREADY(Loop_readB_proc_U0_m_axi_gmem1_BREADY),
-    .m_axi_gmem1_BRESP(2'd0),
-    .m_axi_gmem1_BID(1'd0),
-    .m_axi_gmem1_BUSER(1'd0),
-    .b(b),
-    .localB_3_address1(Loop_readB_proc_U0_localB_3_address1),
-    .localB_3_ce1(Loop_readB_proc_U0_localB_3_ce1),
-    .localB_3_we1(Loop_readB_proc_U0_localB_3_we1),
-    .localB_3_d1(Loop_readB_proc_U0_localB_3_d1),
-    .localB_2_address1(Loop_readB_proc_U0_localB_2_address1),
-    .localB_2_ce1(Loop_readB_proc_U0_localB_2_ce1),
-    .localB_2_we1(Loop_readB_proc_U0_localB_2_we1),
-    .localB_2_d1(Loop_readB_proc_U0_localB_2_d1),
-    .localB_1_address1(Loop_readB_proc_U0_localB_1_address1),
-    .localB_1_ce1(Loop_readB_proc_U0_localB_1_ce1),
-    .localB_1_we1(Loop_readB_proc_U0_localB_1_we1),
-    .localB_1_d1(Loop_readB_proc_U0_localB_1_d1),
-    .localB_address1(Loop_readB_proc_U0_localB_address1),
-    .localB_ce1(Loop_readB_proc_U0_localB_ce1),
-    .localB_we1(Loop_readB_proc_U0_localB_we1),
-    .localB_d1(Loop_readB_proc_U0_localB_d1),
-    .ap_return(Loop_readB_proc_U0_ap_return)
-);
-
-mmult_compute_wrapper compute_wrapper_U0(
-    .ap_clk(ap_clk),
-    .ap_rst(ap_rst_n_inv),
-    .ap_start(compute_wrapper_U0_ap_start),
-    .ap_done(compute_wrapper_U0_ap_done),
-    .ap_continue(compute_wrapper_U0_ap_continue),
-    .ap_idle(compute_wrapper_U0_ap_idle),
-    .ap_ready(compute_wrapper_U0_ap_ready),
-    .localA_0_address0(compute_wrapper_U0_localA_0_address0),
-    .localA_0_ce0(compute_wrapper_U0_localA_0_ce0),
-    .localA_0_q0(localA_t_q0),
-    .localA_1_address0(compute_wrapper_U0_localA_1_address0),
-    .localA_1_ce0(compute_wrapper_U0_localA_1_ce0),
-    .localA_1_q0(localA_1_t_q0),
-    .localA_2_address0(compute_wrapper_U0_localA_2_address0),
-    .localA_2_ce0(compute_wrapper_U0_localA_2_ce0),
-    .localA_2_q0(localA_2_t_q0),
-    .localA_3_address0(compute_wrapper_U0_localA_3_address0),
-    .localA_3_ce0(compute_wrapper_U0_localA_3_ce0),
-    .localA_3_q0(localA_3_t_q0),
-    .localB_0_address0(compute_wrapper_U0_localB_0_address0),
-    .localB_0_ce0(compute_wrapper_U0_localB_0_ce0),
-    .localB_0_q0(localB_t_q0),
-    .localB_1_address0(compute_wrapper_U0_localB_1_address0),
-    .localB_1_ce0(compute_wrapper_U0_localB_1_ce0),
-    .localB_1_q0(localB_1_t_q0),
-    .localB_2_address0(compute_wrapper_U0_localB_2_address0),
-    .localB_2_ce0(compute_wrapper_U0_localB_2_ce0),
-    .localB_2_q0(localB_2_t_q0),
-    .localB_3_address0(compute_wrapper_U0_localB_3_address0),
-    .localB_3_ce0(compute_wrapper_U0_localB_3_ce0),
-    .localB_3_q0(localB_3_t_q0),
-    .localC_0_0_address1(compute_wrapper_U0_localC_0_0_address1),
-    .localC_0_0_ce1(compute_wrapper_U0_localC_0_0_ce1),
-    .localC_0_0_we1(compute_wrapper_U0_localC_0_0_we1),
-    .localC_0_0_d1(compute_wrapper_U0_localC_0_0_d1),
-    .localC_0_1_address1(compute_wrapper_U0_localC_0_1_address1),
-    .localC_0_1_ce1(compute_wrapper_U0_localC_0_1_ce1),
-    .localC_0_1_we1(compute_wrapper_U0_localC_0_1_we1),
-    .localC_0_1_d1(compute_wrapper_U0_localC_0_1_d1),
-    .localC_0_2_address1(compute_wrapper_U0_localC_0_2_address1),
-    .localC_0_2_ce1(compute_wrapper_U0_localC_0_2_ce1),
-    .localC_0_2_we1(compute_wrapper_U0_localC_0_2_we1),
-    .localC_0_2_d1(compute_wrapper_U0_localC_0_2_d1),
-    .localC_0_3_address1(compute_wrapper_U0_localC_0_3_address1),
-    .localC_0_3_ce1(compute_wrapper_U0_localC_0_3_ce1),
-    .localC_0_3_we1(compute_wrapper_U0_localC_0_3_we1),
-    .localC_0_3_d1(compute_wrapper_U0_localC_0_3_d1),
-    .localC_1_0_address1(compute_wrapper_U0_localC_1_0_address1),
-    .localC_1_0_ce1(compute_wrapper_U0_localC_1_0_ce1),
-    .localC_1_0_we1(compute_wrapper_U0_localC_1_0_we1),
-    .localC_1_0_d1(compute_wrapper_U0_localC_1_0_d1),
-    .localC_1_1_address1(compute_wrapper_U0_localC_1_1_address1),
-    .localC_1_1_ce1(compute_wrapper_U0_localC_1_1_ce1),
-    .localC_1_1_we1(compute_wrapper_U0_localC_1_1_we1),
-    .localC_1_1_d1(compute_wrapper_U0_localC_1_1_d1),
-    .localC_1_2_address1(compute_wrapper_U0_localC_1_2_address1),
-    .localC_1_2_ce1(compute_wrapper_U0_localC_1_2_ce1),
-    .localC_1_2_we1(compute_wrapper_U0_localC_1_2_we1),
-    .localC_1_2_d1(compute_wrapper_U0_localC_1_2_d1),
-    .localC_1_3_address1(compute_wrapper_U0_localC_1_3_address1),
-    .localC_1_3_ce1(compute_wrapper_U0_localC_1_3_ce1),
-    .localC_1_3_we1(compute_wrapper_U0_localC_1_3_we1),
-    .localC_1_3_d1(compute_wrapper_U0_localC_1_3_d1),
-    .localC_2_0_address1(compute_wrapper_U0_localC_2_0_address1),
-    .localC_2_0_ce1(compute_wrapper_U0_localC_2_0_ce1),
-    .localC_2_0_we1(compute_wrapper_U0_localC_2_0_we1),
-    .localC_2_0_d1(compute_wrapper_U0_localC_2_0_d1),
-    .localC_2_1_address1(compute_wrapper_U0_localC_2_1_address1),
-    .localC_2_1_ce1(compute_wrapper_U0_localC_2_1_ce1),
-    .localC_2_1_we1(compute_wrapper_U0_localC_2_1_we1),
-    .localC_2_1_d1(compute_wrapper_U0_localC_2_1_d1),
-    .localC_2_2_address1(compute_wrapper_U0_localC_2_2_address1),
-    .localC_2_2_ce1(compute_wrapper_U0_localC_2_2_ce1),
-    .localC_2_2_we1(compute_wrapper_U0_localC_2_2_we1),
-    .localC_2_2_d1(compute_wrapper_U0_localC_2_2_d1),
-    .localC_2_3_address1(compute_wrapper_U0_localC_2_3_address1),
-    .localC_2_3_ce1(compute_wrapper_U0_localC_2_3_ce1),
-    .localC_2_3_we1(compute_wrapper_U0_localC_2_3_we1),
-    .localC_2_3_d1(compute_wrapper_U0_localC_2_3_d1),
-    .localC_3_0_address1(compute_wrapper_U0_localC_3_0_address1),
-    .localC_3_0_ce1(compute_wrapper_U0_localC_3_0_ce1),
-    .localC_3_0_we1(compute_wrapper_U0_localC_3_0_we1),
-    .localC_3_0_d1(compute_wrapper_U0_localC_3_0_d1),
-    .localC_3_1_address1(compute_wrapper_U0_localC_3_1_address1),
-    .localC_3_1_ce1(compute_wrapper_U0_localC_3_1_ce1),
-    .localC_3_1_we1(compute_wrapper_U0_localC_3_1_we1),
-    .localC_3_1_d1(compute_wrapper_U0_localC_3_1_d1),
-    .localC_3_2_address1(compute_wrapper_U0_localC_3_2_address1),
-    .localC_3_2_ce1(compute_wrapper_U0_localC_3_2_ce1),
-    .localC_3_2_we1(compute_wrapper_U0_localC_3_2_we1),
-    .localC_3_2_d1(compute_wrapper_U0_localC_3_2_d1),
-    .localC_3_3_address1(compute_wrapper_U0_localC_3_3_address1),
-    .localC_3_3_ce1(compute_wrapper_U0_localC_3_3_ce1),
-    .localC_3_3_we1(compute_wrapper_U0_localC_3_3_we1),
-    .localC_3_3_d1(compute_wrapper_U0_localC_3_3_d1),
-    .p_read(a_row_c26_channel_dout),
-    .p_read1(a_col_c_channel_dout),
-    .p_read2(b_col_c27_channel3_dout),
-    .ap_return_0(compute_wrapper_U0_ap_return_0),
-    .ap_return_1(compute_wrapper_U0_ap_return_1)
-);
-
-mmult_Loop_writeC_proc Loop_writeC_proc_U0(
-    .ap_clk(ap_clk),
-    .ap_rst(ap_rst_n_inv),
-    .ap_start(Loop_writeC_proc_U0_ap_start),
-    .ap_done(Loop_writeC_proc_U0_ap_done),
-    .ap_continue(Loop_writeC_proc_U0_ap_continue),
-    .ap_idle(Loop_writeC_proc_U0_ap_idle),
-    .ap_ready(Loop_writeC_proc_U0_ap_ready),
-    .p_read(b_col_c_channel_dout),
-    .p_read1(a_row_c_channel_dout),
-    .c_dout(c_c_dout),
-    .c_num_data_valid(c_c_num_data_valid),
-    .c_fifo_cap(c_c_fifo_cap),
-    .c_empty_n(c_c_empty_n),
-    .c_read(Loop_writeC_proc_U0_c_read),
-    .m_axi_gmem2_AWVALID(Loop_writeC_proc_U0_m_axi_gmem2_AWVALID),
-    .m_axi_gmem2_AWREADY(gmem2_AWREADY),
-    .m_axi_gmem2_AWADDR(Loop_writeC_proc_U0_m_axi_gmem2_AWADDR),
-    .m_axi_gmem2_AWID(Loop_writeC_proc_U0_m_axi_gmem2_AWID),
-    .m_axi_gmem2_AWLEN(Loop_writeC_proc_U0_m_axi_gmem2_AWLEN),
-    .m_axi_gmem2_AWSIZE(Loop_writeC_proc_U0_m_axi_gmem2_AWSIZE),
-    .m_axi_gmem2_AWBURST(Loop_writeC_proc_U0_m_axi_gmem2_AWBURST),
-    .m_axi_gmem2_AWLOCK(Loop_writeC_proc_U0_m_axi_gmem2_AWLOCK),
-    .m_axi_gmem2_AWCACHE(Loop_writeC_proc_U0_m_axi_gmem2_AWCACHE),
-    .m_axi_gmem2_AWPROT(Loop_writeC_proc_U0_m_axi_gmem2_AWPROT),
-    .m_axi_gmem2_AWQOS(Loop_writeC_proc_U0_m_axi_gmem2_AWQOS),
-    .m_axi_gmem2_AWREGION(Loop_writeC_proc_U0_m_axi_gmem2_AWREGION),
-    .m_axi_gmem2_AWUSER(Loop_writeC_proc_U0_m_axi_gmem2_AWUSER),
-    .m_axi_gmem2_WVALID(Loop_writeC_proc_U0_m_axi_gmem2_WVALID),
-    .m_axi_gmem2_WREADY(gmem2_WREADY),
-    .m_axi_gmem2_WDATA(Loop_writeC_proc_U0_m_axi_gmem2_WDATA),
-    .m_axi_gmem2_WSTRB(Loop_writeC_proc_U0_m_axi_gmem2_WSTRB),
-    .m_axi_gmem2_WLAST(Loop_writeC_proc_U0_m_axi_gmem2_WLAST),
-    .m_axi_gmem2_WID(Loop_writeC_proc_U0_m_axi_gmem2_WID),
-    .m_axi_gmem2_WUSER(Loop_writeC_proc_U0_m_axi_gmem2_WUSER),
-    .m_axi_gmem2_ARVALID(Loop_writeC_proc_U0_m_axi_gmem2_ARVALID),
-    .m_axi_gmem2_ARREADY(1'b0),
-    .m_axi_gmem2_ARADDR(Loop_writeC_proc_U0_m_axi_gmem2_ARADDR),
-    .m_axi_gmem2_ARID(Loop_writeC_proc_U0_m_axi_gmem2_ARID),
-    .m_axi_gmem2_ARLEN(Loop_writeC_proc_U0_m_axi_gmem2_ARLEN),
-    .m_axi_gmem2_ARSIZE(Loop_writeC_proc_U0_m_axi_gmem2_ARSIZE),
-    .m_axi_gmem2_ARBURST(Loop_writeC_proc_U0_m_axi_gmem2_ARBURST),
-    .m_axi_gmem2_ARLOCK(Loop_writeC_proc_U0_m_axi_gmem2_ARLOCK),
-    .m_axi_gmem2_ARCACHE(Loop_writeC_proc_U0_m_axi_gmem2_ARCACHE),
-    .m_axi_gmem2_ARPROT(Loop_writeC_proc_U0_m_axi_gmem2_ARPROT),
-    .m_axi_gmem2_ARQOS(Loop_writeC_proc_U0_m_axi_gmem2_ARQOS),
-    .m_axi_gmem2_ARREGION(Loop_writeC_proc_U0_m_axi_gmem2_ARREGION),
-    .m_axi_gmem2_ARUSER(Loop_writeC_proc_U0_m_axi_gmem2_ARUSER),
-    .m_axi_gmem2_RVALID(1'b0),
-    .m_axi_gmem2_RREADY(Loop_writeC_proc_U0_m_axi_gmem2_RREADY),
-    .m_axi_gmem2_RDATA(16'd0),
-    .m_axi_gmem2_RLAST(1'b0),
-    .m_axi_gmem2_RID(1'd0),
-    .m_axi_gmem2_RFIFONUM(10'd0),
-    .m_axi_gmem2_RUSER(1'd0),
-    .m_axi_gmem2_RRESP(2'd0),
-    .m_axi_gmem2_BVALID(gmem2_BVALID),
-    .m_axi_gmem2_BREADY(Loop_writeC_proc_U0_m_axi_gmem2_BREADY),
-    .m_axi_gmem2_BRESP(gmem2_BRESP),
-    .m_axi_gmem2_BID(gmem2_BID),
-    .m_axi_gmem2_BUSER(gmem2_BUSER),
-    .localC_address0(Loop_writeC_proc_U0_localC_address0),
-    .localC_ce0(Loop_writeC_proc_U0_localC_ce0),
-    .localC_q0(localC_t_q0),
-    .localC_1_address0(Loop_writeC_proc_U0_localC_1_address0),
-    .localC_1_ce0(Loop_writeC_proc_U0_localC_1_ce0),
-    .localC_1_q0(localC_1_t_q0),
-    .localC_2_address0(Loop_writeC_proc_U0_localC_2_address0),
-    .localC_2_ce0(Loop_writeC_proc_U0_localC_2_ce0),
-    .localC_2_q0(localC_2_t_q0),
-    .localC_3_address0(Loop_writeC_proc_U0_localC_3_address0),
-    .localC_3_ce0(Loop_writeC_proc_U0_localC_3_ce0),
-    .localC_3_q0(localC_3_t_q0),
-    .localC_4_address0(Loop_writeC_proc_U0_localC_4_address0),
-    .localC_4_ce0(Loop_writeC_proc_U0_localC_4_ce0),
-    .localC_4_q0(localC_4_t_q0),
-    .localC_5_address0(Loop_writeC_proc_U0_localC_5_address0),
-    .localC_5_ce0(Loop_writeC_proc_U0_localC_5_ce0),
-    .localC_5_q0(localC_5_t_q0),
-    .localC_6_address0(Loop_writeC_proc_U0_localC_6_address0),
-    .localC_6_ce0(Loop_writeC_proc_U0_localC_6_ce0),
-    .localC_6_q0(localC_6_t_q0),
-    .localC_7_address0(Loop_writeC_proc_U0_localC_7_address0),
-    .localC_7_ce0(Loop_writeC_proc_U0_localC_7_ce0),
-    .localC_7_q0(localC_7_t_q0),
-    .localC_8_address0(Loop_writeC_proc_U0_localC_8_address0),
-    .localC_8_ce0(Loop_writeC_proc_U0_localC_8_ce0),
-    .localC_8_q0(localC_8_t_q0),
-    .localC_9_address0(Loop_writeC_proc_U0_localC_9_address0),
-    .localC_9_ce0(Loop_writeC_proc_U0_localC_9_ce0),
-    .localC_9_q0(localC_9_t_q0),
-    .localC_10_address0(Loop_writeC_proc_U0_localC_10_address0),
-    .localC_10_ce0(Loop_writeC_proc_U0_localC_10_ce0),
-    .localC_10_q0(localC_10_t_q0),
-    .localC_11_address0(Loop_writeC_proc_U0_localC_11_address0),
-    .localC_11_ce0(Loop_writeC_proc_U0_localC_11_ce0),
-    .localC_11_q0(localC_11_t_q0),
-    .localC_12_address0(Loop_writeC_proc_U0_localC_12_address0),
-    .localC_12_ce0(Loop_writeC_proc_U0_localC_12_ce0),
-    .localC_12_q0(localC_12_t_q0),
-    .localC_13_address0(Loop_writeC_proc_U0_localC_13_address0),
-    .localC_13_ce0(Loop_writeC_proc_U0_localC_13_ce0),
-    .localC_13_q0(localC_13_t_q0),
-    .localC_14_address0(Loop_writeC_proc_U0_localC_14_address0),
-    .localC_14_ce0(Loop_writeC_proc_U0_localC_14_ce0),
-    .localC_14_q0(localC_14_t_q0),
-    .localC_15_address0(Loop_writeC_proc_U0_localC_15_address0),
-    .localC_15_ce0(Loop_writeC_proc_U0_localC_15_ce0),
-    .localC_15_q0(localC_15_t_q0)
-);
-
-mmult_fifo_w64_d4_S c_c_U(
+mmult_mul_32s_32s_32_2_1 #(
+    .ID( 1 ),
+    .NUM_STAGE( 2 ),
+    .din0_WIDTH( 32 ),
+    .din1_WIDTH( 32 ),
+    .dout_WIDTH( 32 ))
+mul_32s_32s_32_2_1_U154(
     .clk(ap_clk),
-    .reset(ap_rst_n_inv),
-    .if_read_ce(1'b1),
-    .if_write_ce(1'b1),
-    .if_din(entry_proc_U0_c_c_din),
-    .if_full_n(c_c_full_n),
-    .if_write(entry_proc_U0_c_c_write),
-    .if_dout(c_c_dout),
-    .if_num_data_valid(c_c_num_data_valid),
-    .if_fifo_cap(c_c_fifo_cap),
-    .if_empty_n(c_c_empty_n),
-    .if_read(Loop_writeC_proc_U0_c_read)
+    .reset(ap_rst),
+    .din0(grp_fu_291_p0),
+    .din1(a_row),
+    .ce(1'b1),
+    .dout(grp_fu_291_p2)
 );
 
-mmult_fifo_w32_d2_S a_row_c26_channel_U(
+mmult_mul_32s_32s_32_2_1 #(
+    .ID( 1 ),
+    .NUM_STAGE( 2 ),
+    .din0_WIDTH( 32 ),
+    .din1_WIDTH( 32 ),
+    .dout_WIDTH( 32 ))
+mul_32s_32s_32_2_1_U155(
     .clk(ap_clk),
-    .reset(ap_rst_n_inv),
-    .if_read_ce(1'b1),
-    .if_write_ce(1'b1),
-    .if_din(Loop_readA_proc_U0_ap_return_0),
-    .if_full_n(a_row_c26_channel_full_n),
-    .if_write(ap_channel_done_a_row_c26_channel),
-    .if_dout(a_row_c26_channel_dout),
-    .if_num_data_valid(a_row_c26_channel_num_data_valid),
-    .if_fifo_cap(a_row_c26_channel_fifo_cap),
-    .if_empty_n(a_row_c26_channel_empty_n),
-    .if_read(compute_wrapper_U0_ap_ready)
-);
-
-mmult_fifo_w32_d2_S a_col_c_channel_U(
-    .clk(ap_clk),
-    .reset(ap_rst_n_inv),
-    .if_read_ce(1'b1),
-    .if_write_ce(1'b1),
-    .if_din(Loop_readA_proc_U0_ap_return_1),
-    .if_full_n(a_col_c_channel_full_n),
-    .if_write(ap_channel_done_a_col_c_channel),
-    .if_dout(a_col_c_channel_dout),
-    .if_num_data_valid(a_col_c_channel_num_data_valid),
-    .if_fifo_cap(a_col_c_channel_fifo_cap),
-    .if_empty_n(a_col_c_channel_empty_n),
-    .if_read(compute_wrapper_U0_ap_ready)
-);
-
-mmult_fifo_w32_d2_S b_col_c27_channel3_U(
-    .clk(ap_clk),
-    .reset(ap_rst_n_inv),
-    .if_read_ce(1'b1),
-    .if_write_ce(1'b1),
-    .if_din(Loop_readB_proc_U0_ap_return),
-    .if_full_n(b_col_c27_channel3_full_n),
-    .if_write(ap_channel_done_b_col_c27_channel3),
-    .if_dout(b_col_c27_channel3_dout),
-    .if_num_data_valid(b_col_c27_channel3_num_data_valid),
-    .if_fifo_cap(b_col_c27_channel3_fifo_cap),
-    .if_empty_n(b_col_c27_channel3_empty_n),
-    .if_read(compute_wrapper_U0_ap_ready)
-);
-
-mmult_fifo_w32_d2_S a_row_c_channel_U(
-    .clk(ap_clk),
-    .reset(ap_rst_n_inv),
-    .if_read_ce(1'b1),
-    .if_write_ce(1'b1),
-    .if_din(compute_wrapper_U0_ap_return_0),
-    .if_full_n(a_row_c_channel_full_n),
-    .if_write(ap_channel_done_a_row_c_channel),
-    .if_dout(a_row_c_channel_dout),
-    .if_num_data_valid(a_row_c_channel_num_data_valid),
-    .if_fifo_cap(a_row_c_channel_fifo_cap),
-    .if_empty_n(a_row_c_channel_empty_n),
-    .if_read(Loop_writeC_proc_U0_ap_ready)
-);
-
-mmult_fifo_w32_d2_S b_col_c_channel_U(
-    .clk(ap_clk),
-    .reset(ap_rst_n_inv),
-    .if_read_ce(1'b1),
-    .if_write_ce(1'b1),
-    .if_din(compute_wrapper_U0_ap_return_1),
-    .if_full_n(b_col_c_channel_full_n),
-    .if_write(ap_channel_done_b_col_c_channel),
-    .if_dout(b_col_c_channel_dout),
-    .if_num_data_valid(b_col_c_channel_num_data_valid),
-    .if_fifo_cap(b_col_c_channel_fifo_cap),
-    .if_empty_n(b_col_c_channel_empty_n),
-    .if_read(Loop_writeC_proc_U0_ap_ready)
+    .reset(ap_rst),
+    .din0(b_col),
+    .din1(a_col),
+    .ce(1'b1),
+    .dout(grp_fu_298_p2)
 );
 
 always @ (posedge ap_clk) begin
-    if (ap_rst_n_inv == 1'b1) begin
-        ap_sync_reg_Loop_readA_proc_U0_ap_ready <= 1'b0;
+    if (ap_rst == 1'b1) begin
+        ap_CS_fsm <= ap_ST_fsm_state1;
     end else begin
-        if (((ap_sync_ready & ap_start) == 1'b1)) begin
-            ap_sync_reg_Loop_readA_proc_U0_ap_ready <= 1'b0;
-        end else begin
-            ap_sync_reg_Loop_readA_proc_U0_ap_ready <= ap_sync_Loop_readA_proc_U0_ap_ready;
+        ap_CS_fsm <= ap_NS_fsm;
+    end
+end
+
+always @ (posedge ap_clk) begin
+    if (ap_rst == 1'b1) begin
+        grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_ap_start_reg <= 1'b0;
+    end else begin
+        if ((1'b1 == ap_CS_fsm_state2)) begin
+            grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_ap_start_reg <= 1'b1;
+        end else if ((grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_ap_ready == 1'b1)) begin
+            grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_ap_start_reg <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
-    if (ap_rst_n_inv == 1'b1) begin
-        ap_sync_reg_Loop_readB_proc_U0_ap_ready <= 1'b0;
+    if (ap_rst == 1'b1) begin
+        grp_mmult_Pipeline_readA_fu_190_ap_start_reg <= 1'b0;
     end else begin
-        if (((ap_sync_ready & ap_start) == 1'b1)) begin
-            ap_sync_reg_Loop_readB_proc_U0_ap_ready <= 1'b0;
-        end else begin
-            ap_sync_reg_Loop_readB_proc_U0_ap_ready <= ap_sync_Loop_readB_proc_U0_ap_ready;
+        if ((1'b1 == ap_CS_fsm_state2)) begin
+            grp_mmult_Pipeline_readA_fu_190_ap_start_reg <= 1'b1;
+        end else if ((grp_mmult_Pipeline_readA_fu_190_ap_ready == 1'b1)) begin
+            grp_mmult_Pipeline_readA_fu_190_ap_start_reg <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
-    if (ap_rst_n_inv == 1'b1) begin
-        ap_sync_reg_channel_write_a_col_c_channel <= 1'b0;
+    if (ap_rst == 1'b1) begin
+        grp_mmult_Pipeline_readB_fu_202_ap_start_reg <= 1'b0;
     end else begin
-        if (((Loop_readA_proc_U0_ap_done & Loop_readA_proc_U0_ap_continue) == 1'b1)) begin
-            ap_sync_reg_channel_write_a_col_c_channel <= 1'b0;
-        end else begin
-            ap_sync_reg_channel_write_a_col_c_channel <= ap_sync_channel_write_a_col_c_channel;
+        if ((1'b1 == ap_CS_fsm_state2)) begin
+            grp_mmult_Pipeline_readB_fu_202_ap_start_reg <= 1'b1;
+        end else if ((grp_mmult_Pipeline_readB_fu_202_ap_ready == 1'b1)) begin
+            grp_mmult_Pipeline_readB_fu_202_ap_start_reg <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
-    if (ap_rst_n_inv == 1'b1) begin
-        ap_sync_reg_channel_write_a_row_c26_channel <= 1'b0;
+    if (ap_rst == 1'b1) begin
+        grp_mmult_Pipeline_writeC_fu_267_ap_start_reg <= 1'b0;
     end else begin
-        if (((Loop_readA_proc_U0_ap_done & Loop_readA_proc_U0_ap_continue) == 1'b1)) begin
-            ap_sync_reg_channel_write_a_row_c26_channel <= 1'b0;
-        end else begin
-            ap_sync_reg_channel_write_a_row_c26_channel <= ap_sync_channel_write_a_row_c26_channel;
+        if ((1'b1 == ap_CS_fsm_state6)) begin
+            grp_mmult_Pipeline_writeC_fu_267_ap_start_reg <= 1'b1;
+        end else if ((grp_mmult_Pipeline_writeC_fu_267_ap_ready == 1'b1)) begin
+            grp_mmult_Pipeline_writeC_fu_267_ap_start_reg <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
-    if (ap_rst_n_inv == 1'b1) begin
-        ap_sync_reg_channel_write_a_row_c_channel <= 1'b0;
+    if (ap_rst == 1'b1) begin
+        grp_tile_process_fu_234_ap_start_reg <= 1'b0;
     end else begin
-        if (((compute_wrapper_U0_ap_done & compute_wrapper_U0_ap_continue) == 1'b1)) begin
-            ap_sync_reg_channel_write_a_row_c_channel <= 1'b0;
-        end else begin
-            ap_sync_reg_channel_write_a_row_c_channel <= ap_sync_channel_write_a_row_c_channel;
+        if (((icmp_ln203_fu_320_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state4))) begin
+            grp_tile_process_fu_234_ap_start_reg <= 1'b1;
+        end else if ((grp_tile_process_fu_234_ap_ready == 1'b1)) begin
+            grp_tile_process_fu_234_ap_start_reg <= 1'b0;
         end
     end
 end
 
 always @ (posedge ap_clk) begin
-    if (ap_rst_n_inv == 1'b1) begin
-        ap_sync_reg_channel_write_b_col_c27_channel3 <= 1'b0;
-    end else begin
-        if (((Loop_readB_proc_U0_ap_done & Loop_readB_proc_U0_ap_continue) == 1'b1)) begin
-            ap_sync_reg_channel_write_b_col_c27_channel3 <= 1'b0;
-        end else begin
-            ap_sync_reg_channel_write_b_col_c27_channel3 <= ap_sync_channel_write_b_col_c27_channel3;
-        end
+    if (((1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1))) begin
+        q_fu_72 <= 3'd0;
+    end else if (((icmp_ln203_fu_320_p2 == 1'd0) & (1'b1 == ap_CS_fsm_state4))) begin
+        q_fu_72 <= q_2_fu_326_p2;
     end
 end
 
 always @ (posedge ap_clk) begin
-    if (ap_rst_n_inv == 1'b1) begin
-        ap_sync_reg_channel_write_b_col_c_channel <= 1'b0;
-    end else begin
-        if (((compute_wrapper_U0_ap_done & compute_wrapper_U0_ap_continue) == 1'b1)) begin
-            ap_sync_reg_channel_write_b_col_c_channel <= 1'b0;
-        end else begin
-            ap_sync_reg_channel_write_b_col_c_channel <= ap_sync_channel_write_b_col_c_channel;
-        end
+    if ((1'b1 == ap_CS_fsm_state4)) begin
+        finish_k_reg_404[5 : 3] <= finish_k_fu_349_p2[5 : 3];
+        start_k_reg_399[4 : 3] <= start_k_fu_336_p3[4 : 3];
     end
 end
 
 always @ (posedge ap_clk) begin
-    if (ap_rst_n_inv == 1'b1) begin
-        ap_sync_reg_channel_write_localA <= 1'b0;
-    end else begin
-        if (((Loop_readA_proc_U0_ap_done & Loop_readA_proc_U0_ap_continue) == 1'b1)) begin
-            ap_sync_reg_channel_write_localA <= 1'b0;
-        end else begin
-            ap_sync_reg_channel_write_localA <= ap_sync_channel_write_localA;
-        end
+    if ((1'b1 == ap_CS_fsm_state2)) begin
+        mul12_reg_391 <= grp_fu_298_p2;
     end
 end
 
 always @ (posedge ap_clk) begin
-    if (ap_rst_n_inv == 1'b1) begin
-        ap_sync_reg_channel_write_localA_1 <= 1'b0;
-    end else begin
-        if (((Loop_readA_proc_U0_ap_done & Loop_readA_proc_U0_ap_continue) == 1'b1)) begin
-            ap_sync_reg_channel_write_localA_1 <= 1'b0;
-        end else begin
-            ap_sync_reg_channel_write_localA_1 <= ap_sync_channel_write_localA_1;
-        end
+    if (((1'b1 == ap_CS_fsm_state6) | (1'b1 == ap_CS_fsm_state2))) begin
+        reg_306 <= grp_fu_291_p2;
     end
 end
-
-always @ (posedge ap_clk) begin
-    if (ap_rst_n_inv == 1'b1) begin
-        ap_sync_reg_channel_write_localA_2 <= 1'b0;
-    end else begin
-        if (((Loop_readA_proc_U0_ap_done & Loop_readA_proc_U0_ap_continue) == 1'b1)) begin
-            ap_sync_reg_channel_write_localA_2 <= 1'b0;
-        end else begin
-            ap_sync_reg_channel_write_localA_2 <= ap_sync_channel_write_localA_2;
-        end
-    end
-end
-
-always @ (posedge ap_clk) begin
-    if (ap_rst_n_inv == 1'b1) begin
-        ap_sync_reg_channel_write_localA_3 <= 1'b0;
-    end else begin
-        if (((Loop_readA_proc_U0_ap_done & Loop_readA_proc_U0_ap_continue) == 1'b1)) begin
-            ap_sync_reg_channel_write_localA_3 <= 1'b0;
-        end else begin
-            ap_sync_reg_channel_write_localA_3 <= ap_sync_channel_write_localA_3;
-        end
-    end
-end
-
-always @ (posedge ap_clk) begin
-    if (ap_rst_n_inv == 1'b1) begin
-        ap_sync_reg_channel_write_localB <= 1'b0;
-    end else begin
-        if (((Loop_readB_proc_U0_ap_done & Loop_readB_proc_U0_ap_continue) == 1'b1)) begin
-            ap_sync_reg_channel_write_localB <= 1'b0;
-        end else begin
-            ap_sync_reg_channel_write_localB <= ap_sync_channel_write_localB;
-        end
-    end
-end
-
-always @ (posedge ap_clk) begin
-    if (ap_rst_n_inv == 1'b1) begin
-        ap_sync_reg_channel_write_localB_1 <= 1'b0;
-    end else begin
-        if (((Loop_readB_proc_U0_ap_done & Loop_readB_proc_U0_ap_continue) == 1'b1)) begin
-            ap_sync_reg_channel_write_localB_1 <= 1'b0;
-        end else begin
-            ap_sync_reg_channel_write_localB_1 <= ap_sync_channel_write_localB_1;
-        end
-    end
-end
-
-always @ (posedge ap_clk) begin
-    if (ap_rst_n_inv == 1'b1) begin
-        ap_sync_reg_channel_write_localB_2 <= 1'b0;
-    end else begin
-        if (((Loop_readB_proc_U0_ap_done & Loop_readB_proc_U0_ap_continue) == 1'b1)) begin
-            ap_sync_reg_channel_write_localB_2 <= 1'b0;
-        end else begin
-            ap_sync_reg_channel_write_localB_2 <= ap_sync_channel_write_localB_2;
-        end
-    end
-end
-
-always @ (posedge ap_clk) begin
-    if (ap_rst_n_inv == 1'b1) begin
-        ap_sync_reg_channel_write_localB_3 <= 1'b0;
-    end else begin
-        if (((Loop_readB_proc_U0_ap_done & Loop_readB_proc_U0_ap_continue) == 1'b1)) begin
-            ap_sync_reg_channel_write_localB_3 <= 1'b0;
-        end else begin
-            ap_sync_reg_channel_write_localB_3 <= ap_sync_channel_write_localB_3;
-        end
-    end
-end
-
-always @ (posedge ap_clk) begin
-    if (ap_rst_n_inv == 1'b1) begin
-        ap_sync_reg_channel_write_localC <= 1'b0;
-    end else begin
-        if (((compute_wrapper_U0_ap_done & compute_wrapper_U0_ap_continue) == 1'b1)) begin
-            ap_sync_reg_channel_write_localC <= 1'b0;
-        end else begin
-            ap_sync_reg_channel_write_localC <= ap_sync_channel_write_localC;
-        end
-    end
-end
-
-always @ (posedge ap_clk) begin
-    if (ap_rst_n_inv == 1'b1) begin
-        ap_sync_reg_channel_write_localC_1 <= 1'b0;
-    end else begin
-        if (((compute_wrapper_U0_ap_done & compute_wrapper_U0_ap_continue) == 1'b1)) begin
-            ap_sync_reg_channel_write_localC_1 <= 1'b0;
-        end else begin
-            ap_sync_reg_channel_write_localC_1 <= ap_sync_channel_write_localC_1;
-        end
-    end
-end
-
-always @ (posedge ap_clk) begin
-    if (ap_rst_n_inv == 1'b1) begin
-        ap_sync_reg_channel_write_localC_10 <= 1'b0;
-    end else begin
-        if (((compute_wrapper_U0_ap_done & compute_wrapper_U0_ap_continue) == 1'b1)) begin
-            ap_sync_reg_channel_write_localC_10 <= 1'b0;
-        end else begin
-            ap_sync_reg_channel_write_localC_10 <= ap_sync_channel_write_localC_10;
-        end
-    end
-end
-
-always @ (posedge ap_clk) begin
-    if (ap_rst_n_inv == 1'b1) begin
-        ap_sync_reg_channel_write_localC_11 <= 1'b0;
-    end else begin
-        if (((compute_wrapper_U0_ap_done & compute_wrapper_U0_ap_continue) == 1'b1)) begin
-            ap_sync_reg_channel_write_localC_11 <= 1'b0;
-        end else begin
-            ap_sync_reg_channel_write_localC_11 <= ap_sync_channel_write_localC_11;
-        end
-    end
-end
-
-always @ (posedge ap_clk) begin
-    if (ap_rst_n_inv == 1'b1) begin
-        ap_sync_reg_channel_write_localC_12 <= 1'b0;
-    end else begin
-        if (((compute_wrapper_U0_ap_done & compute_wrapper_U0_ap_continue) == 1'b1)) begin
-            ap_sync_reg_channel_write_localC_12 <= 1'b0;
-        end else begin
-            ap_sync_reg_channel_write_localC_12 <= ap_sync_channel_write_localC_12;
-        end
-    end
-end
-
-always @ (posedge ap_clk) begin
-    if (ap_rst_n_inv == 1'b1) begin
-        ap_sync_reg_channel_write_localC_13 <= 1'b0;
-    end else begin
-        if (((compute_wrapper_U0_ap_done & compute_wrapper_U0_ap_continue) == 1'b1)) begin
-            ap_sync_reg_channel_write_localC_13 <= 1'b0;
-        end else begin
-            ap_sync_reg_channel_write_localC_13 <= ap_sync_channel_write_localC_13;
-        end
-    end
-end
-
-always @ (posedge ap_clk) begin
-    if (ap_rst_n_inv == 1'b1) begin
-        ap_sync_reg_channel_write_localC_14 <= 1'b0;
-    end else begin
-        if (((compute_wrapper_U0_ap_done & compute_wrapper_U0_ap_continue) == 1'b1)) begin
-            ap_sync_reg_channel_write_localC_14 <= 1'b0;
-        end else begin
-            ap_sync_reg_channel_write_localC_14 <= ap_sync_channel_write_localC_14;
-        end
-    end
-end
-
-always @ (posedge ap_clk) begin
-    if (ap_rst_n_inv == 1'b1) begin
-        ap_sync_reg_channel_write_localC_15 <= 1'b0;
-    end else begin
-        if (((compute_wrapper_U0_ap_done & compute_wrapper_U0_ap_continue) == 1'b1)) begin
-            ap_sync_reg_channel_write_localC_15 <= 1'b0;
-        end else begin
-            ap_sync_reg_channel_write_localC_15 <= ap_sync_channel_write_localC_15;
-        end
-    end
-end
-
-always @ (posedge ap_clk) begin
-    if (ap_rst_n_inv == 1'b1) begin
-        ap_sync_reg_channel_write_localC_2 <= 1'b0;
-    end else begin
-        if (((compute_wrapper_U0_ap_done & compute_wrapper_U0_ap_continue) == 1'b1)) begin
-            ap_sync_reg_channel_write_localC_2 <= 1'b0;
-        end else begin
-            ap_sync_reg_channel_write_localC_2 <= ap_sync_channel_write_localC_2;
-        end
-    end
-end
-
-always @ (posedge ap_clk) begin
-    if (ap_rst_n_inv == 1'b1) begin
-        ap_sync_reg_channel_write_localC_3 <= 1'b0;
-    end else begin
-        if (((compute_wrapper_U0_ap_done & compute_wrapper_U0_ap_continue) == 1'b1)) begin
-            ap_sync_reg_channel_write_localC_3 <= 1'b0;
-        end else begin
-            ap_sync_reg_channel_write_localC_3 <= ap_sync_channel_write_localC_3;
-        end
-    end
-end
-
-always @ (posedge ap_clk) begin
-    if (ap_rst_n_inv == 1'b1) begin
-        ap_sync_reg_channel_write_localC_4 <= 1'b0;
-    end else begin
-        if (((compute_wrapper_U0_ap_done & compute_wrapper_U0_ap_continue) == 1'b1)) begin
-            ap_sync_reg_channel_write_localC_4 <= 1'b0;
-        end else begin
-            ap_sync_reg_channel_write_localC_4 <= ap_sync_channel_write_localC_4;
-        end
-    end
-end
-
-always @ (posedge ap_clk) begin
-    if (ap_rst_n_inv == 1'b1) begin
-        ap_sync_reg_channel_write_localC_5 <= 1'b0;
-    end else begin
-        if (((compute_wrapper_U0_ap_done & compute_wrapper_U0_ap_continue) == 1'b1)) begin
-            ap_sync_reg_channel_write_localC_5 <= 1'b0;
-        end else begin
-            ap_sync_reg_channel_write_localC_5 <= ap_sync_channel_write_localC_5;
-        end
-    end
-end
-
-always @ (posedge ap_clk) begin
-    if (ap_rst_n_inv == 1'b1) begin
-        ap_sync_reg_channel_write_localC_6 <= 1'b0;
-    end else begin
-        if (((compute_wrapper_U0_ap_done & compute_wrapper_U0_ap_continue) == 1'b1)) begin
-            ap_sync_reg_channel_write_localC_6 <= 1'b0;
-        end else begin
-            ap_sync_reg_channel_write_localC_6 <= ap_sync_channel_write_localC_6;
-        end
-    end
-end
-
-always @ (posedge ap_clk) begin
-    if (ap_rst_n_inv == 1'b1) begin
-        ap_sync_reg_channel_write_localC_7 <= 1'b0;
-    end else begin
-        if (((compute_wrapper_U0_ap_done & compute_wrapper_U0_ap_continue) == 1'b1)) begin
-            ap_sync_reg_channel_write_localC_7 <= 1'b0;
-        end else begin
-            ap_sync_reg_channel_write_localC_7 <= ap_sync_channel_write_localC_7;
-        end
-    end
-end
-
-always @ (posedge ap_clk) begin
-    if (ap_rst_n_inv == 1'b1) begin
-        ap_sync_reg_channel_write_localC_8 <= 1'b0;
-    end else begin
-        if (((compute_wrapper_U0_ap_done & compute_wrapper_U0_ap_continue) == 1'b1)) begin
-            ap_sync_reg_channel_write_localC_8 <= 1'b0;
-        end else begin
-            ap_sync_reg_channel_write_localC_8 <= ap_sync_channel_write_localC_8;
-        end
-    end
-end
-
-always @ (posedge ap_clk) begin
-    if (ap_rst_n_inv == 1'b1) begin
-        ap_sync_reg_channel_write_localC_9 <= 1'b0;
-    end else begin
-        if (((compute_wrapper_U0_ap_done & compute_wrapper_U0_ap_continue) == 1'b1)) begin
-            ap_sync_reg_channel_write_localC_9 <= 1'b0;
-        end else begin
-            ap_sync_reg_channel_write_localC_9 <= ap_sync_channel_write_localC_9;
-        end
-    end
-end
-
-always @ (posedge ap_clk) begin
-    if (ap_rst_n_inv == 1'b1) begin
-        ap_sync_reg_entry_proc_U0_ap_ready <= 1'b0;
-    end else begin
-        if (((ap_sync_ready & ap_start) == 1'b1)) begin
-            ap_sync_reg_entry_proc_U0_ap_ready <= 1'b0;
-        end else begin
-            ap_sync_reg_entry_proc_U0_ap_ready <= ap_sync_entry_proc_U0_ap_ready;
-        end
-    end
-end
-
-assign Loop_readA_proc_U0_ap_continue = (ap_sync_channel_write_localA_3 & ap_sync_channel_write_localA_2 & ap_sync_channel_write_localA_1 & ap_sync_channel_write_localA & ap_sync_channel_write_a_row_c26_channel & ap_sync_channel_write_a_col_c_channel);
-
-assign Loop_readA_proc_U0_ap_start = ((ap_sync_reg_Loop_readA_proc_U0_ap_ready ^ 1'b1) & ap_start);
-
-assign Loop_readA_proc_U0_localA_1_full_n = localA_1_i_full_n;
-
-assign Loop_readA_proc_U0_localA_2_full_n = localA_2_i_full_n;
-
-assign Loop_readA_proc_U0_localA_3_full_n = localA_3_i_full_n;
-
-assign Loop_readA_proc_U0_localA_full_n = localA_i_full_n;
-
-assign Loop_readB_proc_U0_ap_continue = (ap_sync_channel_write_localB_3 & ap_sync_channel_write_localB_2 & ap_sync_channel_write_localB_1 & ap_sync_channel_write_localB & ap_sync_channel_write_b_col_c27_channel3);
-
-assign Loop_readB_proc_U0_ap_start = ((ap_sync_reg_Loop_readB_proc_U0_ap_ready ^ 1'b1) & ap_start);
-
-assign Loop_readB_proc_U0_localB_1_full_n = localB_1_i_full_n;
-
-assign Loop_readB_proc_U0_localB_2_full_n = localB_2_i_full_n;
-
-assign Loop_readB_proc_U0_localB_3_full_n = localB_3_i_full_n;
-
-assign Loop_readB_proc_U0_localB_full_n = localB_i_full_n;
-
-assign Loop_writeC_proc_U0_ap_continue = 1'b1;
-
-assign Loop_writeC_proc_U0_ap_start = (localC_t_empty_n & localC_9_t_empty_n & localC_8_t_empty_n & localC_7_t_empty_n & localC_6_t_empty_n & localC_5_t_empty_n & localC_4_t_empty_n & localC_3_t_empty_n & localC_2_t_empty_n & localC_1_t_empty_n & localC_15_t_empty_n & localC_14_t_empty_n & localC_13_t_empty_n & localC_12_t_empty_n & localC_11_t_empty_n & localC_10_t_empty_n & b_col_c_channel_empty_n & a_row_c_channel_empty_n);
-
-assign ap_channel_done_a_col_c_channel = ((ap_sync_reg_channel_write_a_col_c_channel ^ 1'b1) & Loop_readA_proc_U0_ap_done);
-
-assign ap_channel_done_a_row_c26_channel = ((ap_sync_reg_channel_write_a_row_c26_channel ^ 1'b1) & Loop_readA_proc_U0_ap_done);
-
-assign ap_channel_done_a_row_c_channel = ((ap_sync_reg_channel_write_a_row_c_channel ^ 1'b1) & compute_wrapper_U0_ap_done);
-
-assign ap_channel_done_b_col_c27_channel3 = ((ap_sync_reg_channel_write_b_col_c27_channel3 ^ 1'b1) & Loop_readB_proc_U0_ap_done);
-
-assign ap_channel_done_b_col_c_channel = ((ap_sync_reg_channel_write_b_col_c_channel ^ 1'b1) & compute_wrapper_U0_ap_done);
-
-assign ap_channel_done_localA = ((ap_sync_reg_channel_write_localA ^ 1'b1) & Loop_readA_proc_U0_ap_done);
-
-assign ap_channel_done_localA_1 = ((ap_sync_reg_channel_write_localA_1 ^ 1'b1) & Loop_readA_proc_U0_ap_done);
-
-assign ap_channel_done_localA_2 = ((ap_sync_reg_channel_write_localA_2 ^ 1'b1) & Loop_readA_proc_U0_ap_done);
-
-assign ap_channel_done_localA_3 = ((ap_sync_reg_channel_write_localA_3 ^ 1'b1) & Loop_readA_proc_U0_ap_done);
-
-assign ap_channel_done_localB = ((ap_sync_reg_channel_write_localB ^ 1'b1) & Loop_readB_proc_U0_ap_done);
-
-assign ap_channel_done_localB_1 = ((ap_sync_reg_channel_write_localB_1 ^ 1'b1) & Loop_readB_proc_U0_ap_done);
-
-assign ap_channel_done_localB_2 = ((ap_sync_reg_channel_write_localB_2 ^ 1'b1) & Loop_readB_proc_U0_ap_done);
-
-assign ap_channel_done_localB_3 = ((ap_sync_reg_channel_write_localB_3 ^ 1'b1) & Loop_readB_proc_U0_ap_done);
-
-assign ap_channel_done_localC = ((ap_sync_reg_channel_write_localC ^ 1'b1) & compute_wrapper_U0_ap_done);
-
-assign ap_channel_done_localC_1 = ((ap_sync_reg_channel_write_localC_1 ^ 1'b1) & compute_wrapper_U0_ap_done);
-
-assign ap_channel_done_localC_10 = ((ap_sync_reg_channel_write_localC_10 ^ 1'b1) & compute_wrapper_U0_ap_done);
-
-assign ap_channel_done_localC_11 = ((ap_sync_reg_channel_write_localC_11 ^ 1'b1) & compute_wrapper_U0_ap_done);
-
-assign ap_channel_done_localC_12 = ((ap_sync_reg_channel_write_localC_12 ^ 1'b1) & compute_wrapper_U0_ap_done);
-
-assign ap_channel_done_localC_13 = ((ap_sync_reg_channel_write_localC_13 ^ 1'b1) & compute_wrapper_U0_ap_done);
-
-assign ap_channel_done_localC_14 = ((ap_sync_reg_channel_write_localC_14 ^ 1'b1) & compute_wrapper_U0_ap_done);
-
-assign ap_channel_done_localC_15 = ((ap_sync_reg_channel_write_localC_15 ^ 1'b1) & compute_wrapper_U0_ap_done);
-
-assign ap_channel_done_localC_2 = ((ap_sync_reg_channel_write_localC_2 ^ 1'b1) & compute_wrapper_U0_ap_done);
-
-assign ap_channel_done_localC_3 = ((ap_sync_reg_channel_write_localC_3 ^ 1'b1) & compute_wrapper_U0_ap_done);
-
-assign ap_channel_done_localC_4 = ((ap_sync_reg_channel_write_localC_4 ^ 1'b1) & compute_wrapper_U0_ap_done);
-
-assign ap_channel_done_localC_5 = ((ap_sync_reg_channel_write_localC_5 ^ 1'b1) & compute_wrapper_U0_ap_done);
-
-assign ap_channel_done_localC_6 = ((ap_sync_reg_channel_write_localC_6 ^ 1'b1) & compute_wrapper_U0_ap_done);
-
-assign ap_channel_done_localC_7 = ((ap_sync_reg_channel_write_localC_7 ^ 1'b1) & compute_wrapper_U0_ap_done);
-
-assign ap_channel_done_localC_8 = ((ap_sync_reg_channel_write_localC_8 ^ 1'b1) & compute_wrapper_U0_ap_done);
-
-assign ap_channel_done_localC_9 = ((ap_sync_reg_channel_write_localC_9 ^ 1'b1) & compute_wrapper_U0_ap_done);
-
-assign ap_done = Loop_writeC_proc_U0_ap_done;
-
-assign ap_idle = ((1'b1 ^ a_row_c_channel_empty_n) & (1'b1 ^ a_col_c_channel_empty_n) & (1'b1 ^ a_row_c26_channel_empty_n) & (b_col_c_channel_empty_n ^ 1'b1) & (b_col_c27_channel3_empty_n ^ 1'b1) & (localC_15_t_empty_n ^ 1'b1) & (localC_14_t_empty_n ^ 1'b1) & (localC_13_t_empty_n ^ 1'b1) & (localC_12_t_empty_n ^ 1'b1) & (localC_11_t_empty_n ^ 1'b1) & (localC_10_t_empty_n ^ 1'b1) & (localC_9_t_empty_n ^ 1'b1) & (localC_8_t_empty_n ^ 1'b1) & (localC_7_t_empty_n ^ 1'b1) & (localC_6_t_empty_n ^ 1'b1) & (localC_5_t_empty_n ^ 1'b1) & (localC_4_t_empty_n ^ 1'b1) & (localC_3_t_empty_n ^ 1'b1) & (localC_2_t_empty_n ^ 1'b1) & (localC_1_t_empty_n ^ 1'b1) & (localC_t_empty_n ^ 1'b1) & (localB_t_empty_n ^ 1'b1) & (localB_1_t_empty_n ^ 1'b1) & (localB_2_t_empty_n ^ 1'b1) & (localB_3_t_empty_n ^ 1'b1) & (localA_t_empty_n ^ 1'b1) & (localA_1_t_empty_n ^ 1'b1) & (localA_2_t_empty_n ^ 1'b1) & (localA_3_t_empty_n ^ 1'b1) & entry_proc_U0_ap_idle & compute_wrapper_U0_ap_idle & Loop_writeC_proc_U0_ap_idle & Loop_readB_proc_U0_ap_idle & Loop_readA_proc_U0_ap_idle);
-
-assign ap_ready = ap_sync_ready;
 
 always @ (*) begin
-    ap_rst_n_inv = ~ap_rst_n;
+    if ((ap_start == 1'b0)) begin
+        ap_ST_fsm_state1_blk = 1'b1;
+    end else begin
+        ap_ST_fsm_state1_blk = 1'b0;
+    end
 end
 
-assign ap_sync_Loop_readA_proc_U0_ap_ready = (ap_sync_reg_Loop_readA_proc_U0_ap_ready | Loop_readA_proc_U0_ap_ready);
+assign ap_ST_fsm_state2_blk = 1'b0;
 
-assign ap_sync_Loop_readB_proc_U0_ap_ready = (ap_sync_reg_Loop_readB_proc_U0_ap_ready | Loop_readB_proc_U0_ap_ready);
+always @ (*) begin
+    if ((1'b1 == ap_block_state3_on_subcall_done)) begin
+        ap_ST_fsm_state3_blk = 1'b1;
+    end else begin
+        ap_ST_fsm_state3_blk = 1'b0;
+    end
+end
 
-assign ap_sync_channel_write_a_col_c_channel = ((ap_channel_done_a_col_c_channel & a_col_c_channel_full_n) | ap_sync_reg_channel_write_a_col_c_channel);
+assign ap_ST_fsm_state4_blk = 1'b0;
 
-assign ap_sync_channel_write_a_row_c26_channel = ((ap_channel_done_a_row_c26_channel & a_row_c26_channel_full_n) | ap_sync_reg_channel_write_a_row_c26_channel);
+always @ (*) begin
+    if ((grp_tile_process_fu_234_ap_done == 1'b0)) begin
+        ap_ST_fsm_state5_blk = 1'b1;
+    end else begin
+        ap_ST_fsm_state5_blk = 1'b0;
+    end
+end
 
-assign ap_sync_channel_write_a_row_c_channel = ((ap_channel_done_a_row_c_channel & a_row_c_channel_full_n) | ap_sync_reg_channel_write_a_row_c_channel);
+assign ap_ST_fsm_state6_blk = 1'b0;
 
-assign ap_sync_channel_write_b_col_c27_channel3 = ((b_col_c27_channel3_full_n & ap_channel_done_b_col_c27_channel3) | ap_sync_reg_channel_write_b_col_c27_channel3);
+always @ (*) begin
+    if ((grp_mmult_Pipeline_writeC_fu_267_ap_done == 1'b0)) begin
+        ap_ST_fsm_state7_blk = 1'b1;
+    end else begin
+        ap_ST_fsm_state7_blk = 1'b0;
+    end
+end
 
-assign ap_sync_channel_write_b_col_c_channel = ((b_col_c_channel_full_n & ap_channel_done_b_col_c_channel) | ap_sync_reg_channel_write_b_col_c_channel);
+always @ (*) begin
+    if (((grp_mmult_Pipeline_writeC_fu_267_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state7))) begin
+        ap_done = 1'b1;
+    end else begin
+        ap_done = 1'b0;
+    end
+end
 
-assign ap_sync_channel_write_localA = ((ap_channel_done_localA & Loop_readA_proc_U0_localA_full_n) | ap_sync_reg_channel_write_localA);
+always @ (*) begin
+    if (((1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b0))) begin
+        ap_idle = 1'b1;
+    end else begin
+        ap_idle = 1'b0;
+    end
+end
 
-assign ap_sync_channel_write_localA_1 = ((ap_channel_done_localA_1 & Loop_readA_proc_U0_localA_1_full_n) | ap_sync_reg_channel_write_localA_1);
+always @ (*) begin
+    if (((grp_mmult_Pipeline_writeC_fu_267_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state7))) begin
+        ap_ready = 1'b1;
+    end else begin
+        ap_ready = 1'b0;
+    end
+end
 
-assign ap_sync_channel_write_localA_2 = ((ap_channel_done_localA_2 & Loop_readA_proc_U0_localA_2_full_n) | ap_sync_reg_channel_write_localA_2);
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state4)) begin
+        grp_fu_291_p0 = b_col;
+    end else if ((1'b1 == ap_CS_fsm_state1)) begin
+        grp_fu_291_p0 = a_col;
+    end else begin
+        grp_fu_291_p0 = 'bx;
+    end
+end
 
-assign ap_sync_channel_write_localA_3 = ((ap_channel_done_localA_3 & Loop_readA_proc_U0_localA_3_full_n) | ap_sync_reg_channel_write_localA_3);
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state5)) begin
+        localA_1_ce0 = grp_tile_process_fu_234_a_row_major_1_ce0;
+    end else begin
+        localA_1_ce0 = 1'b0;
+    end
+end
 
-assign ap_sync_channel_write_localB = ((ap_channel_done_localB & Loop_readB_proc_U0_localB_full_n) | ap_sync_reg_channel_write_localB);
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state3)) begin
+        localA_1_ce1 = grp_mmult_Pipeline_readA_fu_190_localA_1_ce1;
+    end else begin
+        localA_1_ce1 = 1'b0;
+    end
+end
 
-assign ap_sync_channel_write_localB_1 = ((ap_channel_done_localB_1 & Loop_readB_proc_U0_localB_1_full_n) | ap_sync_reg_channel_write_localB_1);
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state3)) begin
+        localA_1_we1 = grp_mmult_Pipeline_readA_fu_190_localA_1_we1;
+    end else begin
+        localA_1_we1 = 1'b0;
+    end
+end
 
-assign ap_sync_channel_write_localB_2 = ((ap_channel_done_localB_2 & Loop_readB_proc_U0_localB_2_full_n) | ap_sync_reg_channel_write_localB_2);
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state5)) begin
+        localA_2_ce0 = grp_tile_process_fu_234_a_row_major_2_ce0;
+    end else begin
+        localA_2_ce0 = 1'b0;
+    end
+end
 
-assign ap_sync_channel_write_localB_3 = ((ap_channel_done_localB_3 & Loop_readB_proc_U0_localB_3_full_n) | ap_sync_reg_channel_write_localB_3);
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state3)) begin
+        localA_2_ce1 = grp_mmult_Pipeline_readA_fu_190_localA_2_ce1;
+    end else begin
+        localA_2_ce1 = 1'b0;
+    end
+end
 
-assign ap_sync_channel_write_localC = ((compute_wrapper_U0_localC_0_0_full_n & ap_channel_done_localC) | ap_sync_reg_channel_write_localC);
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state3)) begin
+        localA_2_we1 = grp_mmult_Pipeline_readA_fu_190_localA_2_we1;
+    end else begin
+        localA_2_we1 = 1'b0;
+    end
+end
 
-assign ap_sync_channel_write_localC_1 = ((compute_wrapper_U0_localC_0_1_full_n & ap_channel_done_localC_1) | ap_sync_reg_channel_write_localC_1);
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state5)) begin
+        localA_3_ce0 = grp_tile_process_fu_234_a_row_major_3_ce0;
+    end else begin
+        localA_3_ce0 = 1'b0;
+    end
+end
 
-assign ap_sync_channel_write_localC_10 = ((compute_wrapper_U0_localC_2_2_full_n & ap_channel_done_localC_10) | ap_sync_reg_channel_write_localC_10);
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state3)) begin
+        localA_3_ce1 = grp_mmult_Pipeline_readA_fu_190_localA_3_ce1;
+    end else begin
+        localA_3_ce1 = 1'b0;
+    end
+end
 
-assign ap_sync_channel_write_localC_11 = ((compute_wrapper_U0_localC_2_3_full_n & ap_channel_done_localC_11) | ap_sync_reg_channel_write_localC_11);
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state3)) begin
+        localA_3_we1 = grp_mmult_Pipeline_readA_fu_190_localA_3_we1;
+    end else begin
+        localA_3_we1 = 1'b0;
+    end
+end
 
-assign ap_sync_channel_write_localC_12 = ((compute_wrapper_U0_localC_3_0_full_n & ap_channel_done_localC_12) | ap_sync_reg_channel_write_localC_12);
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state5)) begin
+        localA_ce0 = grp_tile_process_fu_234_a_row_major_0_ce0;
+    end else begin
+        localA_ce0 = 1'b0;
+    end
+end
 
-assign ap_sync_channel_write_localC_13 = ((compute_wrapper_U0_localC_3_1_full_n & ap_channel_done_localC_13) | ap_sync_reg_channel_write_localC_13);
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state3)) begin
+        localA_ce1 = grp_mmult_Pipeline_readA_fu_190_localA_ce1;
+    end else begin
+        localA_ce1 = 1'b0;
+    end
+end
 
-assign ap_sync_channel_write_localC_14 = ((compute_wrapper_U0_localC_3_2_full_n & ap_channel_done_localC_14) | ap_sync_reg_channel_write_localC_14);
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state3)) begin
+        localA_we1 = grp_mmult_Pipeline_readA_fu_190_localA_we1;
+    end else begin
+        localA_we1 = 1'b0;
+    end
+end
 
-assign ap_sync_channel_write_localC_15 = ((compute_wrapper_U0_localC_3_3_full_n & ap_channel_done_localC_15) | ap_sync_reg_channel_write_localC_15);
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state5)) begin
+        localB_1_ce0 = grp_tile_process_fu_234_b_row_major_1_ce0;
+    end else begin
+        localB_1_ce0 = 1'b0;
+    end
+end
 
-assign ap_sync_channel_write_localC_2 = ((compute_wrapper_U0_localC_0_2_full_n & ap_channel_done_localC_2) | ap_sync_reg_channel_write_localC_2);
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state3)) begin
+        localB_1_ce1 = grp_mmult_Pipeline_readB_fu_202_localB_1_ce1;
+    end else begin
+        localB_1_ce1 = 1'b0;
+    end
+end
 
-assign ap_sync_channel_write_localC_3 = ((compute_wrapper_U0_localC_0_3_full_n & ap_channel_done_localC_3) | ap_sync_reg_channel_write_localC_3);
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state3)) begin
+        localB_1_we1 = grp_mmult_Pipeline_readB_fu_202_localB_1_we1;
+    end else begin
+        localB_1_we1 = 1'b0;
+    end
+end
 
-assign ap_sync_channel_write_localC_4 = ((compute_wrapper_U0_localC_1_0_full_n & ap_channel_done_localC_4) | ap_sync_reg_channel_write_localC_4);
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state5)) begin
+        localB_2_ce0 = grp_tile_process_fu_234_b_row_major_2_ce0;
+    end else begin
+        localB_2_ce0 = 1'b0;
+    end
+end
 
-assign ap_sync_channel_write_localC_5 = ((compute_wrapper_U0_localC_1_1_full_n & ap_channel_done_localC_5) | ap_sync_reg_channel_write_localC_5);
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state3)) begin
+        localB_2_ce1 = grp_mmult_Pipeline_readB_fu_202_localB_2_ce1;
+    end else begin
+        localB_2_ce1 = 1'b0;
+    end
+end
 
-assign ap_sync_channel_write_localC_6 = ((compute_wrapper_U0_localC_1_2_full_n & ap_channel_done_localC_6) | ap_sync_reg_channel_write_localC_6);
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state3)) begin
+        localB_2_we1 = grp_mmult_Pipeline_readB_fu_202_localB_2_we1;
+    end else begin
+        localB_2_we1 = 1'b0;
+    end
+end
 
-assign ap_sync_channel_write_localC_7 = ((compute_wrapper_U0_localC_1_3_full_n & ap_channel_done_localC_7) | ap_sync_reg_channel_write_localC_7);
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state5)) begin
+        localB_3_ce0 = grp_tile_process_fu_234_b_row_major_3_ce0;
+    end else begin
+        localB_3_ce0 = 1'b0;
+    end
+end
 
-assign ap_sync_channel_write_localC_8 = ((compute_wrapper_U0_localC_2_0_full_n & ap_channel_done_localC_8) | ap_sync_reg_channel_write_localC_8);
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state3)) begin
+        localB_3_ce1 = grp_mmult_Pipeline_readB_fu_202_localB_3_ce1;
+    end else begin
+        localB_3_ce1 = 1'b0;
+    end
+end
 
-assign ap_sync_channel_write_localC_9 = ((compute_wrapper_U0_localC_2_1_full_n & ap_channel_done_localC_9) | ap_sync_reg_channel_write_localC_9);
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state3)) begin
+        localB_3_we1 = grp_mmult_Pipeline_readB_fu_202_localB_3_we1;
+    end else begin
+        localB_3_we1 = 1'b0;
+    end
+end
 
-assign ap_sync_entry_proc_U0_ap_ready = (entry_proc_U0_ap_ready | ap_sync_reg_entry_proc_U0_ap_ready);
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state5)) begin
+        localB_ce0 = grp_tile_process_fu_234_b_row_major_0_ce0;
+    end else begin
+        localB_ce0 = 1'b0;
+    end
+end
 
-assign ap_sync_ready = (ap_sync_entry_proc_U0_ap_ready & ap_sync_Loop_readB_proc_U0_ap_ready & ap_sync_Loop_readA_proc_U0_ap_ready);
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state3)) begin
+        localB_ce1 = grp_mmult_Pipeline_readB_fu_202_localB_ce1;
+    end else begin
+        localB_ce1 = 1'b0;
+    end
+end
 
-assign compute_wrapper_U0_ap_continue = (ap_sync_channel_write_localC_9 & ap_sync_channel_write_localC_8 & ap_sync_channel_write_localC_7 & ap_sync_channel_write_localC_6 & ap_sync_channel_write_localC_5 & ap_sync_channel_write_localC_4 & ap_sync_channel_write_localC_3 & ap_sync_channel_write_localC_2 & ap_sync_channel_write_localC_15 & ap_sync_channel_write_localC_14 & ap_sync_channel_write_localC_13 & ap_sync_channel_write_localC_12 & ap_sync_channel_write_localC_11 & ap_sync_channel_write_localC_10 & ap_sync_channel_write_localC_1 & ap_sync_channel_write_localC & ap_sync_channel_write_b_col_c_channel & ap_sync_channel_write_a_row_c_channel);
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state3)) begin
+        localB_we1 = grp_mmult_Pipeline_readB_fu_202_localB_we1;
+    end else begin
+        localB_we1 = 1'b0;
+    end
+end
 
-assign compute_wrapper_U0_ap_start = (localB_t_empty_n & localB_3_t_empty_n & localB_2_t_empty_n & localB_1_t_empty_n & localA_t_empty_n & localA_3_t_empty_n & localA_2_t_empty_n & localA_1_t_empty_n & b_col_c27_channel3_empty_n & a_row_c26_channel_empty_n & a_col_c_channel_empty_n);
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state7)) begin
+        localC_10_address0 = grp_mmult_Pipeline_writeC_fu_267_localC_10_address0;
+    end else if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_10_address0 = grp_tile_process_fu_234_c_row_major_2_2_address0;
+    end else if ((1'b1 == ap_CS_fsm_state3)) begin
+        localC_10_address0 = grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_10_address0;
+    end else begin
+        localC_10_address0 = 'bx;
+    end
+end
 
-assign compute_wrapper_U0_localC_0_0_full_n = localC_i_full_n;
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state7)) begin
+        localC_10_ce0 = grp_mmult_Pipeline_writeC_fu_267_localC_10_ce0;
+    end else if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_10_ce0 = grp_tile_process_fu_234_c_row_major_2_2_ce0;
+    end else if ((1'b1 == ap_CS_fsm_state3)) begin
+        localC_10_ce0 = grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_10_ce0;
+    end else begin
+        localC_10_ce0 = 1'b0;
+    end
+end
 
-assign compute_wrapper_U0_localC_0_1_full_n = localC_1_i_full_n;
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_10_ce1 = grp_tile_process_fu_234_c_row_major_2_2_ce1;
+    end else begin
+        localC_10_ce1 = 1'b0;
+    end
+end
 
-assign compute_wrapper_U0_localC_0_2_full_n = localC_2_i_full_n;
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_10_d0 = grp_tile_process_fu_234_c_row_major_2_2_d0;
+    end else if ((1'b1 == ap_CS_fsm_state3)) begin
+        localC_10_d0 = grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_10_d0;
+    end else begin
+        localC_10_d0 = 'bx;
+    end
+end
 
-assign compute_wrapper_U0_localC_0_3_full_n = localC_3_i_full_n;
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_10_we0 = grp_tile_process_fu_234_c_row_major_2_2_we0;
+    end else if ((1'b1 == ap_CS_fsm_state3)) begin
+        localC_10_we0 = grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_10_we0;
+    end else begin
+        localC_10_we0 = 1'b0;
+    end
+end
 
-assign compute_wrapper_U0_localC_1_0_full_n = localC_4_i_full_n;
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state7)) begin
+        localC_11_address0 = grp_mmult_Pipeline_writeC_fu_267_localC_11_address0;
+    end else if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_11_address0 = grp_tile_process_fu_234_c_row_major_2_3_address0;
+    end else if ((1'b1 == ap_CS_fsm_state3)) begin
+        localC_11_address0 = grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_11_address0;
+    end else begin
+        localC_11_address0 = 'bx;
+    end
+end
 
-assign compute_wrapper_U0_localC_1_1_full_n = localC_5_i_full_n;
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state7)) begin
+        localC_11_ce0 = grp_mmult_Pipeline_writeC_fu_267_localC_11_ce0;
+    end else if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_11_ce0 = grp_tile_process_fu_234_c_row_major_2_3_ce0;
+    end else if ((1'b1 == ap_CS_fsm_state3)) begin
+        localC_11_ce0 = grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_11_ce0;
+    end else begin
+        localC_11_ce0 = 1'b0;
+    end
+end
 
-assign compute_wrapper_U0_localC_1_2_full_n = localC_6_i_full_n;
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_11_ce1 = grp_tile_process_fu_234_c_row_major_2_3_ce1;
+    end else begin
+        localC_11_ce1 = 1'b0;
+    end
+end
 
-assign compute_wrapper_U0_localC_1_3_full_n = localC_7_i_full_n;
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_11_d0 = grp_tile_process_fu_234_c_row_major_2_3_d0;
+    end else if ((1'b1 == ap_CS_fsm_state3)) begin
+        localC_11_d0 = grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_11_d0;
+    end else begin
+        localC_11_d0 = 'bx;
+    end
+end
 
-assign compute_wrapper_U0_localC_2_0_full_n = localC_8_i_full_n;
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_11_we0 = grp_tile_process_fu_234_c_row_major_2_3_we0;
+    end else if ((1'b1 == ap_CS_fsm_state3)) begin
+        localC_11_we0 = grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_11_we0;
+    end else begin
+        localC_11_we0 = 1'b0;
+    end
+end
 
-assign compute_wrapper_U0_localC_2_1_full_n = localC_9_i_full_n;
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state7)) begin
+        localC_12_address0 = grp_mmult_Pipeline_writeC_fu_267_localC_12_address0;
+    end else if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_12_address0 = grp_tile_process_fu_234_c_row_major_3_0_address0;
+    end else if ((1'b1 == ap_CS_fsm_state3)) begin
+        localC_12_address0 = grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_12_address0;
+    end else begin
+        localC_12_address0 = 'bx;
+    end
+end
 
-assign compute_wrapper_U0_localC_2_2_full_n = localC_10_i_full_n;
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state7)) begin
+        localC_12_ce0 = grp_mmult_Pipeline_writeC_fu_267_localC_12_ce0;
+    end else if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_12_ce0 = grp_tile_process_fu_234_c_row_major_3_0_ce0;
+    end else if ((1'b1 == ap_CS_fsm_state3)) begin
+        localC_12_ce0 = grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_12_ce0;
+    end else begin
+        localC_12_ce0 = 1'b0;
+    end
+end
 
-assign compute_wrapper_U0_localC_2_3_full_n = localC_11_i_full_n;
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_12_ce1 = grp_tile_process_fu_234_c_row_major_3_0_ce1;
+    end else begin
+        localC_12_ce1 = 1'b0;
+    end
+end
 
-assign compute_wrapper_U0_localC_3_0_full_n = localC_12_i_full_n;
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_12_d0 = grp_tile_process_fu_234_c_row_major_3_0_d0;
+    end else if ((1'b1 == ap_CS_fsm_state3)) begin
+        localC_12_d0 = grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_12_d0;
+    end else begin
+        localC_12_d0 = 'bx;
+    end
+end
 
-assign compute_wrapper_U0_localC_3_1_full_n = localC_13_i_full_n;
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_12_we0 = grp_tile_process_fu_234_c_row_major_3_0_we0;
+    end else if ((1'b1 == ap_CS_fsm_state3)) begin
+        localC_12_we0 = grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_12_we0;
+    end else begin
+        localC_12_we0 = 1'b0;
+    end
+end
 
-assign compute_wrapper_U0_localC_3_2_full_n = localC_14_i_full_n;
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state7)) begin
+        localC_13_address0 = grp_mmult_Pipeline_writeC_fu_267_localC_13_address0;
+    end else if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_13_address0 = grp_tile_process_fu_234_c_row_major_3_1_address0;
+    end else if ((1'b1 == ap_CS_fsm_state3)) begin
+        localC_13_address0 = grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_13_address0;
+    end else begin
+        localC_13_address0 = 'bx;
+    end
+end
 
-assign compute_wrapper_U0_localC_3_3_full_n = localC_15_i_full_n;
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state7)) begin
+        localC_13_ce0 = grp_mmult_Pipeline_writeC_fu_267_localC_13_ce0;
+    end else if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_13_ce0 = grp_tile_process_fu_234_c_row_major_3_1_ce0;
+    end else if ((1'b1 == ap_CS_fsm_state3)) begin
+        localC_13_ce0 = grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_13_ce0;
+    end else begin
+        localC_13_ce0 = 1'b0;
+    end
+end
 
-assign entry_proc_U0_ap_continue = 1'b1;
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_13_ce1 = grp_tile_process_fu_234_c_row_major_3_1_ce1;
+    end else begin
+        localC_13_ce1 = 1'b0;
+    end
+end
 
-assign entry_proc_U0_ap_start = ((ap_sync_reg_entry_proc_U0_ap_ready ^ 1'b1) & ap_start);
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_13_d0 = grp_tile_process_fu_234_c_row_major_3_1_d0;
+    end else if ((1'b1 == ap_CS_fsm_state3)) begin
+        localC_13_d0 = grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_13_d0;
+    end else begin
+        localC_13_d0 = 'bx;
+    end
+end
 
-assign gmem0_RID = 1'd0;
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_13_we0 = grp_tile_process_fu_234_c_row_major_3_1_we0;
+    end else if ((1'b1 == ap_CS_fsm_state3)) begin
+        localC_13_we0 = grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_13_we0;
+    end else begin
+        localC_13_we0 = 1'b0;
+    end
+end
 
-assign gmem0_RLAST = 1'b0;
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state7)) begin
+        localC_14_address0 = grp_mmult_Pipeline_writeC_fu_267_localC_14_address0;
+    end else if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_14_address0 = grp_tile_process_fu_234_c_row_major_3_2_address0;
+    end else if ((1'b1 == ap_CS_fsm_state3)) begin
+        localC_14_address0 = grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_14_address0;
+    end else begin
+        localC_14_address0 = 'bx;
+    end
+end
 
-assign gmem0_RRESP = 2'd0;
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state7)) begin
+        localC_14_ce0 = grp_mmult_Pipeline_writeC_fu_267_localC_14_ce0;
+    end else if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_14_ce0 = grp_tile_process_fu_234_c_row_major_3_2_ce0;
+    end else if ((1'b1 == ap_CS_fsm_state3)) begin
+        localC_14_ce0 = grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_14_ce0;
+    end else begin
+        localC_14_ce0 = 1'b0;
+    end
+end
 
-assign gmem0_RUSER = 1'd0;
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_14_ce1 = grp_tile_process_fu_234_c_row_major_3_2_ce1;
+    end else begin
+        localC_14_ce1 = 1'b0;
+    end
+end
 
-assign gmem1_RID = 1'd0;
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_14_d0 = grp_tile_process_fu_234_c_row_major_3_2_d0;
+    end else if ((1'b1 == ap_CS_fsm_state3)) begin
+        localC_14_d0 = grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_14_d0;
+    end else begin
+        localC_14_d0 = 'bx;
+    end
+end
 
-assign gmem1_RLAST = 1'b0;
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_14_we0 = grp_tile_process_fu_234_c_row_major_3_2_we0;
+    end else if ((1'b1 == ap_CS_fsm_state3)) begin
+        localC_14_we0 = grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_14_we0;
+    end else begin
+        localC_14_we0 = 1'b0;
+    end
+end
 
-assign gmem1_RRESP = 2'd0;
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state7)) begin
+        localC_15_address0 = grp_mmult_Pipeline_writeC_fu_267_localC_15_address0;
+    end else if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_15_address0 = grp_tile_process_fu_234_c_row_major_3_3_address0;
+    end else if ((1'b1 == ap_CS_fsm_state3)) begin
+        localC_15_address0 = grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_15_address0;
+    end else begin
+        localC_15_address0 = 'bx;
+    end
+end
 
-assign gmem1_RUSER = 1'd0;
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state7)) begin
+        localC_15_ce0 = grp_mmult_Pipeline_writeC_fu_267_localC_15_ce0;
+    end else if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_15_ce0 = grp_tile_process_fu_234_c_row_major_3_3_ce0;
+    end else if ((1'b1 == ap_CS_fsm_state3)) begin
+        localC_15_ce0 = grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_15_ce0;
+    end else begin
+        localC_15_ce0 = 1'b0;
+    end
+end
 
-assign gmem2_BID = 1'd0;
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_15_ce1 = grp_tile_process_fu_234_c_row_major_3_3_ce1;
+    end else begin
+        localC_15_ce1 = 1'b0;
+    end
+end
 
-assign gmem2_BRESP = 2'd0;
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_15_d0 = grp_tile_process_fu_234_c_row_major_3_3_d0;
+    end else if ((1'b1 == ap_CS_fsm_state3)) begin
+        localC_15_d0 = grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_15_d0;
+    end else begin
+        localC_15_d0 = 'bx;
+    end
+end
 
-assign gmem2_BUSER = 1'd0;
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_15_we0 = grp_tile_process_fu_234_c_row_major_3_3_we0;
+    end else if ((1'b1 == ap_CS_fsm_state3)) begin
+        localC_15_we0 = grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_15_we0;
+    end else begin
+        localC_15_we0 = 1'b0;
+    end
+end
+
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state7)) begin
+        localC_1_address0 = grp_mmult_Pipeline_writeC_fu_267_localC_1_address0;
+    end else if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_1_address0 = grp_tile_process_fu_234_c_row_major_0_1_address0;
+    end else if ((1'b1 == ap_CS_fsm_state3)) begin
+        localC_1_address0 = grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_1_address0;
+    end else begin
+        localC_1_address0 = 'bx;
+    end
+end
+
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state7)) begin
+        localC_1_ce0 = grp_mmult_Pipeline_writeC_fu_267_localC_1_ce0;
+    end else if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_1_ce0 = grp_tile_process_fu_234_c_row_major_0_1_ce0;
+    end else if ((1'b1 == ap_CS_fsm_state3)) begin
+        localC_1_ce0 = grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_1_ce0;
+    end else begin
+        localC_1_ce0 = 1'b0;
+    end
+end
+
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_1_ce1 = grp_tile_process_fu_234_c_row_major_0_1_ce1;
+    end else begin
+        localC_1_ce1 = 1'b0;
+    end
+end
+
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_1_d0 = grp_tile_process_fu_234_c_row_major_0_1_d0;
+    end else if ((1'b1 == ap_CS_fsm_state3)) begin
+        localC_1_d0 = grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_1_d0;
+    end else begin
+        localC_1_d0 = 'bx;
+    end
+end
+
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_1_we0 = grp_tile_process_fu_234_c_row_major_0_1_we0;
+    end else if ((1'b1 == ap_CS_fsm_state3)) begin
+        localC_1_we0 = grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_1_we0;
+    end else begin
+        localC_1_we0 = 1'b0;
+    end
+end
+
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state7)) begin
+        localC_2_address0 = grp_mmult_Pipeline_writeC_fu_267_localC_2_address0;
+    end else if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_2_address0 = grp_tile_process_fu_234_c_row_major_0_2_address0;
+    end else if ((1'b1 == ap_CS_fsm_state3)) begin
+        localC_2_address0 = grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_2_address0;
+    end else begin
+        localC_2_address0 = 'bx;
+    end
+end
+
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state7)) begin
+        localC_2_ce0 = grp_mmult_Pipeline_writeC_fu_267_localC_2_ce0;
+    end else if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_2_ce0 = grp_tile_process_fu_234_c_row_major_0_2_ce0;
+    end else if ((1'b1 == ap_CS_fsm_state3)) begin
+        localC_2_ce0 = grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_2_ce0;
+    end else begin
+        localC_2_ce0 = 1'b0;
+    end
+end
+
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_2_ce1 = grp_tile_process_fu_234_c_row_major_0_2_ce1;
+    end else begin
+        localC_2_ce1 = 1'b0;
+    end
+end
+
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_2_d0 = grp_tile_process_fu_234_c_row_major_0_2_d0;
+    end else if ((1'b1 == ap_CS_fsm_state3)) begin
+        localC_2_d0 = grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_2_d0;
+    end else begin
+        localC_2_d0 = 'bx;
+    end
+end
+
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_2_we0 = grp_tile_process_fu_234_c_row_major_0_2_we0;
+    end else if ((1'b1 == ap_CS_fsm_state3)) begin
+        localC_2_we0 = grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_2_we0;
+    end else begin
+        localC_2_we0 = 1'b0;
+    end
+end
+
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state7)) begin
+        localC_3_address0 = grp_mmult_Pipeline_writeC_fu_267_localC_3_address0;
+    end else if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_3_address0 = grp_tile_process_fu_234_c_row_major_0_3_address0;
+    end else if ((1'b1 == ap_CS_fsm_state3)) begin
+        localC_3_address0 = grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_3_address0;
+    end else begin
+        localC_3_address0 = 'bx;
+    end
+end
+
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state7)) begin
+        localC_3_ce0 = grp_mmult_Pipeline_writeC_fu_267_localC_3_ce0;
+    end else if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_3_ce0 = grp_tile_process_fu_234_c_row_major_0_3_ce0;
+    end else if ((1'b1 == ap_CS_fsm_state3)) begin
+        localC_3_ce0 = grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_3_ce0;
+    end else begin
+        localC_3_ce0 = 1'b0;
+    end
+end
+
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_3_ce1 = grp_tile_process_fu_234_c_row_major_0_3_ce1;
+    end else begin
+        localC_3_ce1 = 1'b0;
+    end
+end
+
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_3_d0 = grp_tile_process_fu_234_c_row_major_0_3_d0;
+    end else if ((1'b1 == ap_CS_fsm_state3)) begin
+        localC_3_d0 = grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_3_d0;
+    end else begin
+        localC_3_d0 = 'bx;
+    end
+end
+
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_3_we0 = grp_tile_process_fu_234_c_row_major_0_3_we0;
+    end else if ((1'b1 == ap_CS_fsm_state3)) begin
+        localC_3_we0 = grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_3_we0;
+    end else begin
+        localC_3_we0 = 1'b0;
+    end
+end
+
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state7)) begin
+        localC_4_address0 = grp_mmult_Pipeline_writeC_fu_267_localC_4_address0;
+    end else if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_4_address0 = grp_tile_process_fu_234_c_row_major_1_0_address0;
+    end else if ((1'b1 == ap_CS_fsm_state3)) begin
+        localC_4_address0 = grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_4_address0;
+    end else begin
+        localC_4_address0 = 'bx;
+    end
+end
+
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state7)) begin
+        localC_4_ce0 = grp_mmult_Pipeline_writeC_fu_267_localC_4_ce0;
+    end else if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_4_ce0 = grp_tile_process_fu_234_c_row_major_1_0_ce0;
+    end else if ((1'b1 == ap_CS_fsm_state3)) begin
+        localC_4_ce0 = grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_4_ce0;
+    end else begin
+        localC_4_ce0 = 1'b0;
+    end
+end
+
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_4_ce1 = grp_tile_process_fu_234_c_row_major_1_0_ce1;
+    end else begin
+        localC_4_ce1 = 1'b0;
+    end
+end
+
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_4_d0 = grp_tile_process_fu_234_c_row_major_1_0_d0;
+    end else if ((1'b1 == ap_CS_fsm_state3)) begin
+        localC_4_d0 = grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_4_d0;
+    end else begin
+        localC_4_d0 = 'bx;
+    end
+end
+
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_4_we0 = grp_tile_process_fu_234_c_row_major_1_0_we0;
+    end else if ((1'b1 == ap_CS_fsm_state3)) begin
+        localC_4_we0 = grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_4_we0;
+    end else begin
+        localC_4_we0 = 1'b0;
+    end
+end
+
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state7)) begin
+        localC_5_address0 = grp_mmult_Pipeline_writeC_fu_267_localC_5_address0;
+    end else if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_5_address0 = grp_tile_process_fu_234_c_row_major_1_1_address0;
+    end else if ((1'b1 == ap_CS_fsm_state3)) begin
+        localC_5_address0 = grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_5_address0;
+    end else begin
+        localC_5_address0 = 'bx;
+    end
+end
+
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state7)) begin
+        localC_5_ce0 = grp_mmult_Pipeline_writeC_fu_267_localC_5_ce0;
+    end else if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_5_ce0 = grp_tile_process_fu_234_c_row_major_1_1_ce0;
+    end else if ((1'b1 == ap_CS_fsm_state3)) begin
+        localC_5_ce0 = grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_5_ce0;
+    end else begin
+        localC_5_ce0 = 1'b0;
+    end
+end
+
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_5_ce1 = grp_tile_process_fu_234_c_row_major_1_1_ce1;
+    end else begin
+        localC_5_ce1 = 1'b0;
+    end
+end
+
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_5_d0 = grp_tile_process_fu_234_c_row_major_1_1_d0;
+    end else if ((1'b1 == ap_CS_fsm_state3)) begin
+        localC_5_d0 = grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_5_d0;
+    end else begin
+        localC_5_d0 = 'bx;
+    end
+end
+
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_5_we0 = grp_tile_process_fu_234_c_row_major_1_1_we0;
+    end else if ((1'b1 == ap_CS_fsm_state3)) begin
+        localC_5_we0 = grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_5_we0;
+    end else begin
+        localC_5_we0 = 1'b0;
+    end
+end
+
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state7)) begin
+        localC_6_address0 = grp_mmult_Pipeline_writeC_fu_267_localC_6_address0;
+    end else if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_6_address0 = grp_tile_process_fu_234_c_row_major_1_2_address0;
+    end else if ((1'b1 == ap_CS_fsm_state3)) begin
+        localC_6_address0 = grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_6_address0;
+    end else begin
+        localC_6_address0 = 'bx;
+    end
+end
+
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state7)) begin
+        localC_6_ce0 = grp_mmult_Pipeline_writeC_fu_267_localC_6_ce0;
+    end else if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_6_ce0 = grp_tile_process_fu_234_c_row_major_1_2_ce0;
+    end else if ((1'b1 == ap_CS_fsm_state3)) begin
+        localC_6_ce0 = grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_6_ce0;
+    end else begin
+        localC_6_ce0 = 1'b0;
+    end
+end
+
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_6_ce1 = grp_tile_process_fu_234_c_row_major_1_2_ce1;
+    end else begin
+        localC_6_ce1 = 1'b0;
+    end
+end
+
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_6_d0 = grp_tile_process_fu_234_c_row_major_1_2_d0;
+    end else if ((1'b1 == ap_CS_fsm_state3)) begin
+        localC_6_d0 = grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_6_d0;
+    end else begin
+        localC_6_d0 = 'bx;
+    end
+end
+
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_6_we0 = grp_tile_process_fu_234_c_row_major_1_2_we0;
+    end else if ((1'b1 == ap_CS_fsm_state3)) begin
+        localC_6_we0 = grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_6_we0;
+    end else begin
+        localC_6_we0 = 1'b0;
+    end
+end
+
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state7)) begin
+        localC_7_address0 = grp_mmult_Pipeline_writeC_fu_267_localC_7_address0;
+    end else if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_7_address0 = grp_tile_process_fu_234_c_row_major_1_3_address0;
+    end else if ((1'b1 == ap_CS_fsm_state3)) begin
+        localC_7_address0 = grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_7_address0;
+    end else begin
+        localC_7_address0 = 'bx;
+    end
+end
+
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state7)) begin
+        localC_7_ce0 = grp_mmult_Pipeline_writeC_fu_267_localC_7_ce0;
+    end else if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_7_ce0 = grp_tile_process_fu_234_c_row_major_1_3_ce0;
+    end else if ((1'b1 == ap_CS_fsm_state3)) begin
+        localC_7_ce0 = grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_7_ce0;
+    end else begin
+        localC_7_ce0 = 1'b0;
+    end
+end
+
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_7_ce1 = grp_tile_process_fu_234_c_row_major_1_3_ce1;
+    end else begin
+        localC_7_ce1 = 1'b0;
+    end
+end
+
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_7_d0 = grp_tile_process_fu_234_c_row_major_1_3_d0;
+    end else if ((1'b1 == ap_CS_fsm_state3)) begin
+        localC_7_d0 = grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_7_d0;
+    end else begin
+        localC_7_d0 = 'bx;
+    end
+end
+
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_7_we0 = grp_tile_process_fu_234_c_row_major_1_3_we0;
+    end else if ((1'b1 == ap_CS_fsm_state3)) begin
+        localC_7_we0 = grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_7_we0;
+    end else begin
+        localC_7_we0 = 1'b0;
+    end
+end
+
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state7)) begin
+        localC_8_address0 = grp_mmult_Pipeline_writeC_fu_267_localC_8_address0;
+    end else if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_8_address0 = grp_tile_process_fu_234_c_row_major_2_0_address0;
+    end else if ((1'b1 == ap_CS_fsm_state3)) begin
+        localC_8_address0 = grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_8_address0;
+    end else begin
+        localC_8_address0 = 'bx;
+    end
+end
+
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state7)) begin
+        localC_8_ce0 = grp_mmult_Pipeline_writeC_fu_267_localC_8_ce0;
+    end else if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_8_ce0 = grp_tile_process_fu_234_c_row_major_2_0_ce0;
+    end else if ((1'b1 == ap_CS_fsm_state3)) begin
+        localC_8_ce0 = grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_8_ce0;
+    end else begin
+        localC_8_ce0 = 1'b0;
+    end
+end
+
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_8_ce1 = grp_tile_process_fu_234_c_row_major_2_0_ce1;
+    end else begin
+        localC_8_ce1 = 1'b0;
+    end
+end
+
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_8_d0 = grp_tile_process_fu_234_c_row_major_2_0_d0;
+    end else if ((1'b1 == ap_CS_fsm_state3)) begin
+        localC_8_d0 = grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_8_d0;
+    end else begin
+        localC_8_d0 = 'bx;
+    end
+end
+
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_8_we0 = grp_tile_process_fu_234_c_row_major_2_0_we0;
+    end else if ((1'b1 == ap_CS_fsm_state3)) begin
+        localC_8_we0 = grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_8_we0;
+    end else begin
+        localC_8_we0 = 1'b0;
+    end
+end
+
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state7)) begin
+        localC_9_address0 = grp_mmult_Pipeline_writeC_fu_267_localC_9_address0;
+    end else if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_9_address0 = grp_tile_process_fu_234_c_row_major_2_1_address0;
+    end else if ((1'b1 == ap_CS_fsm_state3)) begin
+        localC_9_address0 = grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_9_address0;
+    end else begin
+        localC_9_address0 = 'bx;
+    end
+end
+
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state7)) begin
+        localC_9_ce0 = grp_mmult_Pipeline_writeC_fu_267_localC_9_ce0;
+    end else if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_9_ce0 = grp_tile_process_fu_234_c_row_major_2_1_ce0;
+    end else if ((1'b1 == ap_CS_fsm_state3)) begin
+        localC_9_ce0 = grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_9_ce0;
+    end else begin
+        localC_9_ce0 = 1'b0;
+    end
+end
+
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_9_ce1 = grp_tile_process_fu_234_c_row_major_2_1_ce1;
+    end else begin
+        localC_9_ce1 = 1'b0;
+    end
+end
+
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_9_d0 = grp_tile_process_fu_234_c_row_major_2_1_d0;
+    end else if ((1'b1 == ap_CS_fsm_state3)) begin
+        localC_9_d0 = grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_9_d0;
+    end else begin
+        localC_9_d0 = 'bx;
+    end
+end
+
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_9_we0 = grp_tile_process_fu_234_c_row_major_2_1_we0;
+    end else if ((1'b1 == ap_CS_fsm_state3)) begin
+        localC_9_we0 = grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_9_we0;
+    end else begin
+        localC_9_we0 = 1'b0;
+    end
+end
+
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state7)) begin
+        localC_address0 = grp_mmult_Pipeline_writeC_fu_267_localC_address0;
+    end else if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_address0 = grp_tile_process_fu_234_c_row_major_0_0_address0;
+    end else if ((1'b1 == ap_CS_fsm_state3)) begin
+        localC_address0 = grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_address0;
+    end else begin
+        localC_address0 = 'bx;
+    end
+end
+
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state7)) begin
+        localC_ce0 = grp_mmult_Pipeline_writeC_fu_267_localC_ce0;
+    end else if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_ce0 = grp_tile_process_fu_234_c_row_major_0_0_ce0;
+    end else if ((1'b1 == ap_CS_fsm_state3)) begin
+        localC_ce0 = grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_ce0;
+    end else begin
+        localC_ce0 = 1'b0;
+    end
+end
+
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_ce1 = grp_tile_process_fu_234_c_row_major_0_0_ce1;
+    end else begin
+        localC_ce1 = 1'b0;
+    end
+end
+
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_d0 = grp_tile_process_fu_234_c_row_major_0_0_d0;
+    end else if ((1'b1 == ap_CS_fsm_state3)) begin
+        localC_d0 = grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_d0;
+    end else begin
+        localC_d0 = 'bx;
+    end
+end
+
+always @ (*) begin
+    if ((1'b1 == ap_CS_fsm_state5)) begin
+        localC_we0 = grp_tile_process_fu_234_c_row_major_0_0_we0;
+    end else if ((1'b1 == ap_CS_fsm_state3)) begin
+        localC_we0 = grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_localC_we0;
+    end else begin
+        localC_we0 = 1'b0;
+    end
+end
+
+always @ (*) begin
+    case (ap_CS_fsm)
+        ap_ST_fsm_state1 : begin
+            if (((1'b1 == ap_CS_fsm_state1) & (ap_start == 1'b1))) begin
+                ap_NS_fsm = ap_ST_fsm_state2;
+            end else begin
+                ap_NS_fsm = ap_ST_fsm_state1;
+            end
+        end
+        ap_ST_fsm_state2 : begin
+            ap_NS_fsm = ap_ST_fsm_state3;
+        end
+        ap_ST_fsm_state3 : begin
+            if (((1'b0 == ap_block_state3_on_subcall_done) & (1'b1 == ap_CS_fsm_state3))) begin
+                ap_NS_fsm = ap_ST_fsm_state4;
+            end else begin
+                ap_NS_fsm = ap_ST_fsm_state3;
+            end
+        end
+        ap_ST_fsm_state4 : begin
+            if (((icmp_ln203_fu_320_p2 == 1'd1) & (1'b1 == ap_CS_fsm_state4))) begin
+                ap_NS_fsm = ap_ST_fsm_state6;
+            end else begin
+                ap_NS_fsm = ap_ST_fsm_state5;
+            end
+        end
+        ap_ST_fsm_state5 : begin
+            if (((grp_tile_process_fu_234_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state5))) begin
+                ap_NS_fsm = ap_ST_fsm_state4;
+            end else begin
+                ap_NS_fsm = ap_ST_fsm_state5;
+            end
+        end
+        ap_ST_fsm_state6 : begin
+            ap_NS_fsm = ap_ST_fsm_state7;
+        end
+        ap_ST_fsm_state7 : begin
+            if (((grp_mmult_Pipeline_writeC_fu_267_ap_done == 1'b1) & (1'b1 == ap_CS_fsm_state7))) begin
+                ap_NS_fsm = ap_ST_fsm_state1;
+            end else begin
+                ap_NS_fsm = ap_ST_fsm_state7;
+            end
+        end
+        default : begin
+            ap_NS_fsm = 'bx;
+        end
+    endcase
+end
+
+assign a_address0 = grp_mmult_Pipeline_readA_fu_190_a_address0;
+
+assign a_ce0 = grp_mmult_Pipeline_readA_fu_190_a_ce0;
+
+assign ap_CS_fsm_state1 = ap_CS_fsm[32'd0];
+
+assign ap_CS_fsm_state2 = ap_CS_fsm[32'd1];
+
+assign ap_CS_fsm_state3 = ap_CS_fsm[32'd2];
+
+assign ap_CS_fsm_state4 = ap_CS_fsm[32'd3];
+
+assign ap_CS_fsm_state5 = ap_CS_fsm[32'd4];
+
+assign ap_CS_fsm_state6 = ap_CS_fsm[32'd5];
+
+assign ap_CS_fsm_state7 = ap_CS_fsm[32'd6];
+
+always @ (*) begin
+    ap_block_state3_on_subcall_done = ((grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_ap_done == 1'b0) | (grp_mmult_Pipeline_readB_fu_202_ap_done == 1'b0) | (grp_mmult_Pipeline_readA_fu_190_ap_done == 1'b0));
+end
+
+assign b_address0 = grp_mmult_Pipeline_readB_fu_202_b_address0;
+
+assign b_ce0 = grp_mmult_Pipeline_readB_fu_202_b_ce0;
+
+assign c_address0 = grp_mmult_Pipeline_writeC_fu_267_c_address0;
+
+assign c_ce0 = grp_mmult_Pipeline_writeC_fu_267_c_ce0;
+
+assign c_d0 = grp_mmult_Pipeline_writeC_fu_267_c_d0;
+
+assign c_we0 = grp_mmult_Pipeline_writeC_fu_267_c_we0;
+
+assign finish_k_fu_349_p2 = (zext_ln204_fu_345_p1 + 6'd8);
+
+assign grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_ap_start = grp_mmult_Pipeline_VITIS_LOOP_195_1_VITIS_LOOP_196_2_fu_214_ap_start_reg;
+
+assign grp_mmult_Pipeline_readA_fu_190_ap_start = grp_mmult_Pipeline_readA_fu_190_ap_start_reg;
+
+assign grp_mmult_Pipeline_readB_fu_202_ap_start = grp_mmult_Pipeline_readB_fu_202_ap_start_reg;
+
+assign grp_mmult_Pipeline_writeC_fu_267_ap_start = grp_mmult_Pipeline_writeC_fu_267_ap_start_reg;
+
+assign grp_tile_process_fu_234_ap_start = grp_tile_process_fu_234_ap_start_reg;
+
+assign icmp_ln203_fu_320_p2 = ((q_fu_72 == 3'd4) ? 1'b1 : 1'b0);
+
+assign q_2_fu_326_p2 = (q_fu_72 + 3'd1);
+
+assign start_k_fu_336_p3 = {{trunc_ln204_fu_332_p1}, {3'd0}};
+
+assign trunc_ln204_fu_332_p1 = q_fu_72[1:0];
+
+assign zext_ln204_fu_345_p1 = start_k_fu_336_p3;
+
+always @ (posedge ap_clk) begin
+    start_k_reg_399[2:0] <= 3'b000;
+    finish_k_reg_404[2:0] <= 3'b000;
+end
 
 endmodule //mmult

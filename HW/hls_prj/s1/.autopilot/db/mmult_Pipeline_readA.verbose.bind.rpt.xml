@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'mmult_Pipeline_readA'" level="0">
-<item name = "Date">Sun Apr 12 07:56:33 2026
+<item name = "Date">Sun Apr 12 17:39:46 2026
 </item>
 <item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
 <item name = "Project">hls_prj</item>
@@ -15,7 +15,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="4">Clock, Target, Estimated, Uncertainty</keys>
-<column name="ap_clk">3.30 ns, 2.409 ns, 0.89 ns</column>
+<column name="ap_clk">3.30 ns, 1.914 ns, 0.89 ns</column>
 </table>
 </item>
 </section>
@@ -35,7 +35,7 @@
 </item>
 <item name = "Loop"><table name="" hasTotal="0">
 <keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
-<column name="- readA">2048, 2048, 3, 2, 1, 1024, yes</column>
+<column name="- readA">2048, 2048, 2, 2, 1, 1024, yes</column>
 </table>
 </item>
 </section>
