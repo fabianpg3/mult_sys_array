@@ -158,29 +158,19 @@ void mmult(ap_int<DATA_BIT_SIZE> a[MAX_SIZE * MAX_SIZE], // Read-Only Matrix A
   int c_col = b_col;
 
   // Local memory to store input and output matrices
-  ap_int<DATA_BIT_SIZE> localA[MAX_SIZE][MAX_SIZE];
-#pragma HLS ARRAY_PARTITION variable = localA dim = 1 complete
+#pragma HLS ARRAY_PARTITION variable = localA dim = 1 factor = PARALLELISM_FACTOR cyclic
+#pragma HLS BIND_STORAGE variable=localA type=ram_2p impl=lutram
 
-  ap_int<DATA_BIT_SIZE> localB[MAX_SIZE][MAX_SIZE];
-#pragma HLS ARRAY_PARTITION variable = localB dim = 2 complete
+    ap_int<DATA_BIT_SIZE> localB[MAX_SIZE][MAX_SIZE];
+#pragma HLS ARRAY_PARTITION variable = localB dim = 2 factor = PARALLELISM_FACTOR cyclic
+#pragma HLS BIND_STORAGE variable=localB type=ram_2p impl=lutram
 
-  ap_int<2 * DATA_BIT_SIZE> localC[MAX_SIZE][MAX_SIZE];
-#pragma HLS ARRAY_PARTITION variable = localC dim = 0 complete
+    ap_int<2*DATA_BIT_SIZE> localC[MAX_SIZE][MAX_SIZE];
+#pragma HLS ARRAY_PARTITION variable = localC dim = 1 factor = PARALLELISM_FACTOR cyclic
+#pragma HLS ARRAY_PARTITION variable = localC dim = 2 factor = PARALLELISM_FACTOR cyclic
+#pragma HLS BIND_STORAGE variable=localC type=ram_s2p impl=lutram
 
-// Burst reads on input matrices from global memory
-// Read Input A
-// Auto-pipeline is going to apply pipeline to these loops
-readA:
-  for (int loc = 0, i = 0, j = 0; loc < a_row * a_col; loc++, j++) {
-#pragma HLS LOOP_TRIPCOUNT min = c_size *c_size max = c_size * c_size
-    if (j == a_col) {
-      i++;
-      j = 0;
-    }
-    localA[i][j] = a[loc];
-  }
-
-// Read Input B
+#pragma HLS DATAFLOW
 readB:
   for (int loc = 0, i = 0, j = 0; loc < b_row * b_col; loc++, j++) {
 #pragma HLS LOOP_TRIPCOUNT min = c_size *c_size max = c_size * c_size
