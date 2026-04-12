@@ -1,0 +1,480 @@
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: mmult.cpp, Line: 144, Column: 0 }
+Function:        mmult
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        VITIS_LOOP_191_2
+  - String:          ''' ('
+  - LoopLoc:         'mmult.cpp:191:23'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          mmult
+  - String:          ''' completely with a factor of '
+  - Factor:          '32'
+...
+--- !Passed
+Pass:            reflow-inliner
+Name:            Inline
+DebugLoc:        { File: mmult.cpp, Line: 144, Column: 0 }
+Function:        mmult
+Args:            
+  - String:          'Inlining function '''
+  - Callee:          tile_process
+    DebugLoc:        { File: mmult.cpp, Line: 72, Column: 0 }
+  - String:          ''' into '''
+  - Caller:          mmult
+    DebugLoc:        { File: mmult.cpp, Line: 144, Column: 0 }
+  - String:          ''''
+...
+--- !Passed
+Pass:            reflow-array-partition
+Name:            ArrayXform
+DebugLoc:        { File: mmult.cpp, Line: 157, Column: 15 }
+Function:        mmult
+Args:            
+  - String:          'Applying '
+  - String:          array_partition
+  - String:          ' to '''
+  - UOName:          localA
+  - String:          ''':'
+  - String:          ' '
+  - Mode:            Complete
+  - String:          ' partitioning'
+  - String:          ' on dimension '
+  - Dim:             '1'
+  - String:          .
+...
+--- !Passed
+Pass:            reflow-array-partition
+Name:            ArrayXform
+DebugLoc:        { File: mmult.cpp, Line: 160, Column: 12 }
+Function:        mmult
+Args:            
+  - String:          'Applying '
+  - String:          array_partition
+  - String:          ' to '''
+  - UOName:          localB
+  - String:          ''':'
+  - String:          ' '
+  - Mode:            Complete
+  - String:          ' partitioning'
+  - String:          ' on dimension '
+  - Dim:             '2'
+  - String:          .
+...
+--- !Passed
+Pass:            reflow-array-partition
+Name:            ArrayXform
+DebugLoc:        { File: mmult.cpp, Line: 163, Column: 14 }
+Function:        mmult
+Args:            
+  - String:          'Applying '
+  - String:          array_partition
+  - String:          ' to '''
+  - UOName:          localC
+  - String:          ''':'
+  - String:          ' '
+  - Mode:            Complete
+  - String:          ' partitioning'
+  - String:          ' on dimension '
+  - Dim:             '1'
+  - String:          .
+  - String:          ' '
+  - Mode:            Complete
+  - String:          ' partitioning'
+  - String:          ' on dimension '
+  - Dim:             '2'
+  - String:          .
+...
+--- !Passed
+Pass:            reflow-burst-inference
+Name:            BurstInferred
+DebugLoc:        { File: mmult.cpp, Line: 170, Column: 5 }
+Function:        mmult
+Args:            
+  - String:          'Sequential '
+  - Direction:       read
+  - String:          ' of '
+  - Length:          variable
+  - String:          ' length'
+  - String:          ' has been inferred'
+  - String:          ' _XLX_SEP_ '
+  - AccessID:        a4172seq
+  - ArrayName:       a
+  - String:          ' '
+  - BundleName:      gmem0
+  - String:          ' '
+  - LoopName:        readA
+  - String:          ' '
+  - LoopLoc:         'mmult.cpp:170:5'
+  - String:          ' '
+  - Function:        mmult
+    DebugLoc:        { File: mmult.cpp, Line: 144, Column: 0 }
+  - String:          ' '
+  - String:          ' _XLX_SEP_ '
+  - OrigAccess:      load
+    DebugLoc:        { File: mmult.cpp, Line: 176, Column: 22 }
+  - OrigDirection:   read
+  - OrigID:          for.body.load.79
+...
+--- !Passed
+Pass:            reflow-burst-inference
+Name:            BurstInferred
+DebugLoc:        { File: mmult.cpp, Line: 181, Column: 5 }
+Function:        mmult
+Args:            
+  - String:          'Sequential '
+  - Direction:       read
+  - String:          ' of '
+  - Length:          variable
+  - String:          ' length'
+  - String:          ' has been inferred'
+  - String:          ' _XLX_SEP_ '
+  - AccessID:        b4173seq
+  - ArrayName:       b
+  - String:          ' '
+  - BundleName:      gmem1
+  - String:          ' '
+  - LoopName:        readB
+  - String:          ' '
+  - LoopLoc:         'mmult.cpp:181:5'
+  - String:          ' '
+  - Function:        mmult
+    DebugLoc:        { File: mmult.cpp, Line: 144, Column: 0 }
+  - String:          ' '
+  - String:          ' _XLX_SEP_ '
+  - OrigAccess:      load
+    DebugLoc:        { File: mmult.cpp, Line: 187, Column: 22 }
+  - OrigDirection:   read
+  - OrigID:          for.body15.load.79
+...
+--- !Passed
+Pass:            reflow-burst-inference
+Name:            BurstInferred
+DebugLoc:        { File: mmult.cpp, Line: 207, Column: 5 }
+Function:        mmult
+Args:            
+  - String:          'Sequential '
+  - Direction:       write
+  - String:          ' of '
+  - Length:          variable
+  - String:          ' length'
+  - String:          ' has been inferred'
+  - String:          ' _XLX_SEP_ '
+  - AccessID:        c4174seq
+  - ArrayName:       c
+  - String:          ' '
+  - BundleName:      gmem2
+  - String:          ' '
+  - LoopName:        writeC
+  - String:          ' '
+  - LoopLoc:         'mmult.cpp:207:5'
+  - String:          ' '
+  - Function:        mmult
+    DebugLoc:        { File: mmult.cpp, Line: 144, Column: 0 }
+  - String:          ' '
+  - String:          ' _XLX_SEP_ '
+  - OrigAccess:      store
+    DebugLoc:        { File: mmult.cpp, Line: 213, Column: 16 }
+  - OrigDirection:   write
+  - OrigID:          for.body68.store.50
+...
+--- !Missed
+Pass:            reflow-burst-widen
+Name:            GreaterOrEqualThreshold
+DebugLoc:        { File: mmult.cpp, Line: 207, Column: 5 }
+Function:        mmult
+Args:            
+  - String:          'Could not widen since type '
+  - Type:            i16
+  - String:          ' size is greater than or equal to the max_widen_bitwidth threshold of '
+  - Threshold:       '0'
+  - String:          ' _XLX_SEP_ '
+  - OrigAccess:      call
+    DebugLoc:        { File: mmult.cpp, Line: 207, Column: 5 }
+  - OrigDirection:   write
+  - OrigID:          c4174seq
+  - ArrayName:       c
+  - String:          ' '
+  - BundleName:      gmem2
+  - String:          ' '
+  - LoopName:        writeC
+  - String:          ' '
+  - LoopLoc:         'mmult.cpp:207:5'
+  - String:          ' '
+  - Function:        mmult
+    DebugLoc:        { File: mmult.cpp, Line: 144, Column: 0 }
+  - String:          ' '
+...
+--- !Missed
+Pass:            reflow-burst-widen
+Name:            GreaterOrEqualThreshold
+DebugLoc:        { File: mmult.cpp, Line: 181, Column: 5 }
+Function:        mmult
+Args:            
+  - String:          'Could not widen since type '
+  - Type:            i8
+  - String:          ' size is greater than or equal to the max_widen_bitwidth threshold of '
+  - Threshold:       '0'
+  - String:          ' _XLX_SEP_ '
+  - OrigAccess:      call
+    DebugLoc:        { File: mmult.cpp, Line: 181, Column: 5 }
+  - OrigDirection:   read
+  - OrigID:          b4173seq
+  - ArrayName:       b
+  - String:          ' '
+  - BundleName:      gmem1
+  - String:          ' '
+  - LoopName:        readB
+  - String:          ' '
+  - LoopLoc:         'mmult.cpp:181:5'
+  - String:          ' '
+  - Function:        mmult
+    DebugLoc:        { File: mmult.cpp, Line: 144, Column: 0 }
+  - String:          ' '
+...
+--- !Missed
+Pass:            reflow-burst-widen
+Name:            GreaterOrEqualThreshold
+DebugLoc:        { File: mmult.cpp, Line: 170, Column: 5 }
+Function:        mmult
+Args:            
+  - String:          'Could not widen since type '
+  - Type:            i8
+  - String:          ' size is greater than or equal to the max_widen_bitwidth threshold of '
+  - Threshold:       '0'
+  - String:          ' _XLX_SEP_ '
+  - OrigAccess:      call
+    DebugLoc:        { File: mmult.cpp, Line: 170, Column: 5 }
+  - OrigDirection:   read
+  - OrigID:          a4172seq
+  - ArrayName:       a
+  - String:          ' '
+  - BundleName:      gmem0
+  - String:          ' '
+  - LoopName:        readA
+  - String:          ' '
+  - LoopLoc:         'mmult.cpp:170:5'
+  - String:          ' '
+  - Function:        mmult
+    DebugLoc:        { File: mmult.cpp, Line: 144, Column: 0 }
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        readA
+  - String:          '> at '
+  - LoopLoc:         'mmult.cpp:170:5'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        readB
+  - String:          '> at '
+  - LoopLoc:         'mmult.cpp:181:5'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        systolic2
+  - String:          '> at '
+  - LoopLoc:         'mmult.cpp:119:13'
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        writeC
+  - String:          '> at '
+  - LoopLoc:         'mmult.cpp:207:5'
+  - String:          ' '
+...
+--- !Passed
+Pass:            reflow-infer-unroll
+Name:            ImplicitUnroll
+DebugLoc:        { File: mmult.cpp, Line: 121, Column: 17 }
+Function:        mmult
+Args:            
+  - String:          'Loop '''
+  - LoopName:        systolic3
+  - String:          ''' is marked as complete unroll implied by the pipeline pragma'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: mmult.cpp, Line: 144, Column: 0 }
+Function:        mmult
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        systolic3
+  - String:          ''' ('
+  - LoopLoc:         'mmult.cpp:121:17'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          mmult
+  - String:          ''' completely with a factor of '
+  - Factor:          '32'
+...
+--- !Passed
+Pass:            reflow-burst-summary
+Name:            BurstInferredVerboseSummary
+DebugLoc:        { File: mmult.cpp, Line: 170, Column: 5 }
+Function:        mmult
+Args:            
+  - String:          'Multiple burst '
+  - Direction:       reads
+  - String:          ' of '
+  - Length:          variable
+  - String:          ' length and bit width '
+  - Width:           '8'
+  - String:          ' has been inferred.'
+  - String:          ' These burst requests might be further partitioned into multiple requests during RTL generation, based on max_read_burst_length or max_write_burst_length settings.'
+  - String:          ' _XLX_SEP_ '
+  - AccessID:        seq
+  - ArrayName:       ''
+  - String:          ' '
+  - BundleName:      gmem0
+  - String:          ' '
+  - LoopName:        readA
+  - String:          ' '
+  - LoopLoc:         'mmult.cpp:170:5'
+  - String:          ' '
+  - Function:        mmult
+    DebugLoc:        { File: mmult.cpp, Line: 144, Column: 0 }
+  - String:          ' '
+...
+--- !Passed
+Pass:            reflow-burst-summary
+Name:            BurstInferredSummary
+DebugLoc:        { File: mmult.cpp, Line: 170, Column: 5 }
+Function:        mmult
+Args:            
+  - String:          'Multiple burst '
+  - Direction:       reads
+  - String:          ' of '
+  - Length:          variable
+  - String:          ' length and bit width '
+  - Width:           '8'
+  - String:          ' in loop '''
+  - LoopName:        readA
+  - String:          '''('
+  - LoopLoc:         'mmult.cpp:170:5'
+  - String:          ')'
+  - String:          ' has been inferred on bundle '''
+  - BundleName:      gmem0
+  - String:          '''.'
+  - String:          ' These burst requests might be further partitioned into multiple requests during RTL generation, based on max_read_burst_length or max_write_burst_length settings.'
+...
+--- !Passed
+Pass:            reflow-burst-summary
+Name:            BurstInferredVerboseSummary
+DebugLoc:        { File: mmult.cpp, Line: 181, Column: 5 }
+Function:        mmult
+Args:            
+  - String:          'Multiple burst '
+  - Direction:       reads
+  - String:          ' of '
+  - Length:          variable
+  - String:          ' length and bit width '
+  - Width:           '8'
+  - String:          ' has been inferred.'
+  - String:          ' These burst requests might be further partitioned into multiple requests during RTL generation, based on max_read_burst_length or max_write_burst_length settings.'
+  - String:          ' _XLX_SEP_ '
+  - AccessID:        seq1
+  - ArrayName:       ''
+  - String:          ' '
+  - BundleName:      gmem1
+  - String:          ' '
+  - LoopName:        readB
+  - String:          ' '
+  - LoopLoc:         'mmult.cpp:181:5'
+  - String:          ' '
+  - Function:        mmult
+    DebugLoc:        { File: mmult.cpp, Line: 144, Column: 0 }
+  - String:          ' '
+...
+--- !Passed
+Pass:            reflow-burst-summary
+Name:            BurstInferredSummary
+DebugLoc:        { File: mmult.cpp, Line: 181, Column: 5 }
+Function:        mmult
+Args:            
+  - String:          'Multiple burst '
+  - Direction:       reads
+  - String:          ' of '
+  - Length:          variable
+  - String:          ' length and bit width '
+  - Width:           '8'
+  - String:          ' in loop '''
+  - LoopName:        readB
+  - String:          '''('
+  - LoopLoc:         'mmult.cpp:181:5'
+  - String:          ')'
+  - String:          ' has been inferred on bundle '''
+  - BundleName:      gmem1
+  - String:          '''.'
+  - String:          ' These burst requests might be further partitioned into multiple requests during RTL generation, based on max_read_burst_length or max_write_burst_length settings.'
+...
+--- !Passed
+Pass:            reflow-burst-summary
+Name:            BurstInferredVerboseSummary
+DebugLoc:        { File: mmult.cpp, Line: 207, Column: 5 }
+Function:        mmult
+Args:            
+  - String:          'Multiple burst '
+  - Direction:       writes
+  - String:          ' of '
+  - Length:          variable
+  - String:          ' length and bit width '
+  - Width:           '16'
+  - String:          ' has been inferred.'
+  - String:          ' These burst requests might be further partitioned into multiple requests during RTL generation, based on max_read_burst_length or max_write_burst_length settings.'
+  - String:          ' _XLX_SEP_ '
+  - AccessID:        seq2
+  - ArrayName:       ''
+  - String:          ' '
+  - BundleName:      gmem2
+  - String:          ' '
+  - LoopName:        writeC
+  - String:          ' '
+  - LoopLoc:         'mmult.cpp:207:5'
+  - String:          ' '
+  - Function:        mmult
+    DebugLoc:        { File: mmult.cpp, Line: 144, Column: 0 }
+  - String:          ' '
+...
+--- !Passed
+Pass:            reflow-burst-summary
+Name:            BurstInferredSummary
+DebugLoc:        { File: mmult.cpp, Line: 207, Column: 5 }
+Function:        mmult
+Args:            
+  - String:          'Multiple burst '
+  - Direction:       writes
+  - String:          ' of '
+  - Length:          variable
+  - String:          ' length and bit width '
+  - Width:           '16'
+  - String:          ' in loop '''
+  - LoopName:        writeC
+  - String:          '''('
+  - LoopLoc:         'mmult.cpp:207:5'
+  - String:          ')'
+  - String:          ' has been inferred on bundle '''
+  - BundleName:      gmem2
+  - String:          '''.'
+  - String:          ' These burst requests might be further partitioned into multiple requests during RTL generation, based on max_read_burst_length or max_write_burst_length settings.'
+...

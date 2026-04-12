@@ -1,0 +1,67 @@
+---
+MainSourceFile:  /home/jgaitan/Documents/mult_sys_array/HW/hls_prj/s1/.autopilot/db/mmult.pp.0.cpp
+Diagnostics:     
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_1207_1:  '
+    FileOffset:      1207
+    FilePath:        /tools/Xilinx-2023.2/Vitis_HLS/2023.2/common/technology/autopilot/etc/ap_int_base.h
+    Replacements:    
+      - FilePath:        /home/jgaitan/Documents/mult_sys_array/HW/hls_prj/s1/.autopilot/db/mmult.pp.0.cpp
+        Offset:          73893
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_1207_1: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_676_1:  '
+    FileOffset:      676
+    FilePath:        /tools/Xilinx-2023.2/Vitis_HLS/2023.2/common/technology/autopilot/etc/ap_int_ref.h
+    Replacements:    
+      - FilePath:        /home/jgaitan/Documents/mult_sys_array/HW/hls_prj/s1/.autopilot/db/mmult.pp.0.cpp
+        Offset:          301497
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_676_1: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_690_1:  '
+    FileOffset:      690
+    FilePath:        /tools/Xilinx-2023.2/Vitis_HLS/2023.2/common/technology/autopilot/etc/ap_int_ref.h
+    Replacements:    
+      - FilePath:        /home/jgaitan/Documents/mult_sys_array/HW/hls_prj/s1/.autopilot/db/mmult.pp.0.cpp
+        Offset:          301961
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_690_1: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_704_1:  '
+    FileOffset:      704
+    FilePath:        /tools/Xilinx-2023.2/Vitis_HLS/2023.2/common/technology/autopilot/etc/ap_int_ref.h
+    Replacements:    
+      - FilePath:        /home/jgaitan/Documents/mult_sys_array/HW/hls_prj/s1/.autopilot/db/mmult.pp.0.cpp
+        Offset:          302426
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_704_1: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_1247_1:  '
+    FileOffset:      1247
+    FilePath:        /tools/Xilinx-2023.2/Vitis_HLS/2023.2/common/technology/autopilot/etc/ap_fixed_base.h
+    Replacements:    
+      - FilePath:        /home/jgaitan/Documents/mult_sys_array/HW/hls_prj/s1/.autopilot/db/mmult.pp.0.cpp
+        Offset:          586058
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_1247_1: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_190_1:  '
+    FileOffset:      190
+    FilePath:        mmult.cpp
+    Replacements:    
+      - FilePath:        /home/jgaitan/Documents/mult_sys_array/HW/hls_prj/s1/.autopilot/db/mmult.pp.0.cpp
+        Offset:          956730
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_190_1: '
+  - DiagnosticName:  xilinx-label-all-loops
+    Message:         'Added loop label VITIS_LOOP_191_2:  '
+    FileOffset:      191
+    FilePath:        mmult.cpp
+    Replacements:    
+      - FilePath:        /home/jgaitan/Documents/mult_sys_array/HW/hls_prj/s1/.autopilot/db/mmult.pp.0.cpp
+        Offset:          956765
+        Length:          0
+        ReplacementText: 'VITIS_LOOP_191_2: '
+...
