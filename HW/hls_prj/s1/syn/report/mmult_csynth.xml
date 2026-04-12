@@ -22,12 +22,12 @@
 </SummaryOfTimingAnalysis>
 <SummaryOfOverallLatency>
 <unit>clock cycles</unit>
-<Best-caseLatency>8259</Best-caseLatency>
-<Average-caseLatency>8259</Average-caseLatency>
-<Worst-caseLatency>8259</Worst-caseLatency>
-<Best-caseRealTimeLatency>27.255 us</Best-caseRealTimeLatency>
-<Average-caseRealTimeLatency>27.255 us</Average-caseRealTimeLatency>
-<Worst-caseRealTimeLatency>27.255 us</Worst-caseRealTimeLatency>
+<Best-caseLatency>8258</Best-caseLatency>
+<Average-caseLatency>8258</Average-caseLatency>
+<Worst-caseLatency>8258</Worst-caseLatency>
+<Best-caseRealTimeLatency>27.251 us</Best-caseRealTimeLatency>
+<Average-caseRealTimeLatency>27.251 us</Average-caseRealTimeLatency>
+<Worst-caseRealTimeLatency>27.251 us</Worst-caseRealTimeLatency>
 <DataflowPipelineThroughput>4134</DataflowPipelineThroughput>
 <Interval-min>4134</Interval-min>
 <Interval-max>4134</Interval-max>
@@ -35,7 +35,7 @@
 <SummaryOfViolations>
 <IssueType>-</IssueType>
 <ViolationType>-</ViolationType>
-<SourceLocation>mmult.cpp:166</SourceLocation>
+<SourceLocation>mmult.cpp:169</SourceLocation>
 </SummaryOfViolations>
 </PerformanceEstimates>
 
@@ -43,8 +43,8 @@
 <Resources>
 <BRAM_18K>6</BRAM_18K>
 <DSP>41</DSP>
-<FF>347062</FF>
-<LUT>300711</LUT>
+<FF>127381</FF>
+<LUT>128573</LUT>
 <URAM>0</URAM>
 </Resources>
 <AvailableResources>

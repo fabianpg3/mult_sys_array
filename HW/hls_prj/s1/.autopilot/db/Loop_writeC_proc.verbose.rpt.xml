@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'Loop_writeC_proc'" level="0">
-<item name = "Date">Sun Apr 12 09:00:36 2026
+<item name = "Date">Sun Apr 12 15:52:33 2026
 </item>
 <item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
 <item name = "Project">hls_prj</item>
@@ -63,7 +63,7 @@
 <item name = "Instance"><table name="" hasTotal="1">
 <keys size="7">Instance, Module, BRAM_18K, DSP, FF, LUT, URAM</keys>
 <column name="grp_Loop_writeC_proc_Pipeline_writeC_fu_8269">Loop_writeC_proc_Pipeline_writeC, 0, 0, 662, 5223, 0</column>
-<column name="mul_32s_32s_32_2_1_U8396">mul_32s_32s_32_2_1, 0, 3, 165, 49, 0</column>
+<column name="mul_32s_32s_32_2_1_U2441">mul_32s_32s_32_2_1, 0, 3, 165, 49, 0</column>
 </table>
 </item>
 <item name = "DSP"><table name="" hasTotal="0">
@@ -80,9 +80,9 @@
 </item>
 <item name = "Expression"><table name="" hasTotal="1">
 <keys size="7">Variable Name, Operation, DSP, FF, LUT, Bitwidth P0, Bitwidth P1</keys>
-<column name="icmp_ln209_fu_10344_p2">icmp, 0, 0, 39, 32, 1</column>
+<column name="icmp_ln212_fu_10344_p2">icmp, 0, 0, 39, 32, 1</column>
 <column name="ap_block_state1">or, 0, 0, 2, 1, 1</column>
-<column name="select_ln209_fu_10349_p3">select, 0, 0, 31, 1, 31</column>
+<column name="select_ln212_fu_10349_p3">select, 0, 0, 31, 1, 31</column>
 </table>
 </item>
 <item name = "Multiplexer"><table name="" hasTotal="1">
@@ -118,9 +118,9 @@
 <column name="b_col_read_reg_10370">32, 0, 32, 0</column>
 <column name="grp_Loop_writeC_proc_Pipeline_writeC_fu_8269_ap_start_reg">1, 0, 1, 0</column>
 <column name="mul65_i_reg_10387">32, 0, 32, 0</column>
-<column name="select_ln209_reg_10398">31, 0, 31, 0</column>
-<column name="trunc_ln209_1_reg_10381">63, 0, 63, 0</column>
-<column name="trunc_ln209_reg_10393">31, 0, 31, 0</column>
+<column name="select_ln212_reg_10398">31, 0, 31, 0</column>
+<column name="trunc_ln212_1_reg_10381">63, 0, 63, 0</column>
+<column name="trunc_ln212_reg_10393">31, 0, 31, 0</column>
 </table>
 </item>
 </section>

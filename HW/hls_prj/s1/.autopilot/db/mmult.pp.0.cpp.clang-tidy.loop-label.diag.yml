@@ -46,22 +46,37 @@ Diagnostics:
         Offset:          586058
         Length:          0
         ReplacementText: 'VITIS_LOOP_1247_1: '
+  - DiagnosticName:  clang-diagnostic-error
+    Message:         'Invalid Directive: for current device, ram_2p + lutram is invalid combination for BIND_STORAGE''s option ''type + impl'''
+    FileOffset:      159
+    FilePath:        mmult.cpp
+    Replacements:    
+  - DiagnosticName:  clang-diagnostic-error
+    Message:         'Invalid Directive: for current device, ram_2p + lutram is invalid combination for BIND_STORAGE''s option ''type + impl'''
+    FileOffset:      163
+    FilePath:        mmult.cpp
+    Replacements:    
+  - DiagnosticName:  clang-diagnostic-error
+    Message:         'Invalid Directive: for current device, ram_s2p + lutram is invalid combination for BIND_STORAGE''s option ''type + impl'''
+    FileOffset:      167
+    FilePath:        mmult.cpp
+    Replacements:    
   - DiagnosticName:  xilinx-label-all-loops
-    Message:         'Added loop label VITIS_LOOP_192_1:  '
-    FileOffset:      192
+    Message:         'Added loop label VITIS_LOOP_195_1:  '
+    FileOffset:      195
     FilePath:        mmult.cpp
     Replacements:    
       - FilePath:        /home/jgaitan/Documents/mult_sys_array/HW/hls_prj/s1/.autopilot/db/mmult.pp.0.cpp
-        Offset:          956752
+        Offset:          956948
         Length:          0
-        ReplacementText: 'VITIS_LOOP_192_1: '
+        ReplacementText: 'VITIS_LOOP_195_1: '
   - DiagnosticName:  xilinx-label-all-loops
-    Message:         'Added loop label VITIS_LOOP_193_2:  '
-    FileOffset:      193
+    Message:         'Added loop label VITIS_LOOP_196_2:  '
+    FileOffset:      196
     FilePath:        mmult.cpp
     Replacements:    
       - FilePath:        /home/jgaitan/Documents/mult_sys_array/HW/hls_prj/s1/.autopilot/db/mmult.pp.0.cpp
-        Offset:          956787
+        Offset:          956983
         Length:          0
-        ReplacementText: 'VITIS_LOOP_193_2: '
+        ReplacementText: 'VITIS_LOOP_196_2: '
 ...

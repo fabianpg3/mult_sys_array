@@ -4,7 +4,7 @@
     "calls": "",
     "file": "mmult.cpp",
     "fileloc": 138,
-    "instructions": 240,
+    "instructions": 243,
     "loads": {
       "L": 4,
       "T": 2
@@ -14,6 +14,6 @@
       "L": 35,
       "T": 1
     },
-    "total_instructions": 240
+    "total_instructions": 243
   }
 }

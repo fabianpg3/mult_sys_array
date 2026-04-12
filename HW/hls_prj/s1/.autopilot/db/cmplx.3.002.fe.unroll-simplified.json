@@ -4,7 +4,7 @@
     "calls": "1",
     "file": "mmult.cpp",
     "fileloc": 138,
-    "instructions": 183,
+    "instructions": 186,
     "loads": {
       "L": 1,
       "T": 2
@@ -14,7 +14,7 @@
       "L": 34,
       "T": 1
     },
-    "total_instructions": 236
+    "total_instructions": 239
   },
   "1": {
     "basicblocks": 8,
