@@ -155,13 +155,16 @@ void mmult(ap_int<DATA_BIT_SIZE> a[MAX_SIZE * MAX_SIZE], // Read-Only Matrix A
 
     // Local memory to store input and output matrices
     ap_int<DATA_BIT_SIZE> localA[MAX_SIZE][MAX_SIZE];
-#pragma HLS ARRAY_PARTITION variable = localA dim = 0 complete
+#pragma HLS ARRAY_PARTITION variable = localA dim = 1 complete
+#pragma HLS BIND_STORAGE variable=localA type=ram_2p impl=lutram
 
     ap_int<DATA_BIT_SIZE> localB[MAX_SIZE][MAX_SIZE];
-#pragma HLS ARRAY_PARTITION variable = localB dim = 0 complete
+#pragma HLS ARRAY_PARTITION variable = localB dim = 2 complete
+#pragma HLS BIND_STORAGE variable=localB type=ram_2p impl=lutram
 
     ap_int<2*DATA_BIT_SIZE> localC[MAX_SIZE][MAX_SIZE];
 #pragma HLS ARRAY_PARTITION variable = localC dim = 0 complete
+#pragma HLS BIND_STORAGE variable=localC type=ram_s2p impl=lutram
 
 #pragma HLS DATAFLOW
 
