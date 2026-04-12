@@ -139,6 +139,41 @@ systolic1:
   }
 }
 
+void compute_wrapper(
+    ap_int<DATA_BIT_SIZE> localA[MAX_SIZE][MAX_SIZE],
+    ap_int<DATA_BIT_SIZE> localB[MAX_SIZE][MAX_SIZE],
+    ap_int<2 * DATA_BIT_SIZE> localC[MAX_SIZE][MAX_SIZE],
+    int a_row, int a_col, int b_col, int b_row) {
+
+  // Internal accumulator to avoid Dataflow Read/Write Ping-Pong violations
+  ap_int<2 * DATA_BIT_SIZE> tempC[MAX_SIZE][MAX_SIZE];
+#pragma HLS ARRAY_PARTITION variable = tempC dim = 1 factor = PARALLELISM_FACTOR cyclic
+#pragma HLS ARRAY_PARTITION variable = tempC dim = 2 factor = PARALLELISM_FACTOR cyclic
+
+  // Initialize tempC
+  for (int i = 0; i < MAX_SIZE; i++) {
+    for (int j = 0; j < MAX_SIZE; j++) {
+#pragma HLS UNROLL factor = PARALLELISM_FACTOR
+      tempC[i][j] = 0;
+    }
+  }
+
+  // Tile process into tempC
+  for (int q = 0; q < TILE_FACTOR; q++) {
+    int start_k = q * TILE_SIZE;
+    int finish_k = (q + 1) * TILE_SIZE;
+    tile_process(localA, localB, tempC, start_k, finish_k, a_row, a_col, b_col, b_row);
+  }
+
+  // Pure Write-Out to the Dataflow Channel (localC)
+  for (int i = 0; i < MAX_SIZE; i++) {
+    for (int j = 0; j < MAX_SIZE; j++) {
+#pragma HLS UNROLL factor = PARALLELISM_FACTOR
+      localC[i][j] = tempC[i][j];
+    }
+  }
+}
+
 void mmult(ap_int<DATA_BIT_SIZE> a[MAX_SIZE * MAX_SIZE], // Read-Only Matrix A
            ap_int<DATA_BIT_SIZE> b[MAX_SIZE * MAX_SIZE], // Read-Only Matrix B
            ap_int<2 * DATA_BIT_SIZE> c[MAX_SIZE * MAX_SIZE], // Output Result
@@ -196,21 +231,8 @@ readB:
     }
     localB[i][j] = b[loc];
   }
-  // Initialize localC to 0
-  for (int i = 0; i < MAX_SIZE; i++) {
-    for (int j = 0; j < MAX_SIZE; j++) {
-#pragma HLS UNROLL factor = PARALLELISM_FACTOR
-      localC[i][j] = 0;
-    }
-  }
-// Tile process the input matrices and produce output matrix in local memory
-tile_processing:
-  for (int q = 0; q < TILE_FACTOR; q++) {
-    int start_k = q * TILE_SIZE;
-    int finish_k = (q + 1) * TILE_SIZE;
-    tile_process(localA, localB, localC, start_k, finish_k, a_row, a_col, b_col,
-                 b_row);
-  }
+  // Compute wrapper completely isolates the read-modify-write accumulator
+  compute_wrapper(localA, localB, localC, a_row, a_col, b_col, b_row);
 
 // Burst write from output matrices to global memory
 // Burst write from matrix C
