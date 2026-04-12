@@ -1,7 +1,7 @@
 Instructions for compile and run
 
 ```
-cd src/
+cd HW/
 vitis_hls -f script.tcl 
 ```
 

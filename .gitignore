@@ -19,4 +19,5 @@ lib/
 *_REMOTE_*
 *.swp
 src/hls_prj
+HW/hls_prj
 *.log
