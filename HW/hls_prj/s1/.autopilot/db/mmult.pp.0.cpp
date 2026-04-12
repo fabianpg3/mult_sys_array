@@ -6664,13 +6664,15 @@ __attribute__((sdx_kernel("mmult", 0))) void mmult(ap_int<8> a[32 * 32],
 
 
     ap_int<8> localA[32][32];
-#pragma HLS ARRAY_PARTITION variable = localA dim = 1 complete
+#pragma HLS ARRAY_PARTITION variable = localA dim = 0 complete
 
  ap_int<8> localB[32][32];
-#pragma HLS ARRAY_PARTITION variable = localB dim = 2 complete
+#pragma HLS ARRAY_PARTITION variable = localB dim = 0 complete
 
  ap_int<2*8> localC[32][32];
 #pragma HLS ARRAY_PARTITION variable = localC dim = 0 complete
+
+#pragma HLS DATAFLOW
 
 
 
@@ -6696,8 +6698,8 @@ readB:
         localB[i][j] = b[loc];
     }
 
-VITIS_LOOP_190_1: for (int i = 0; i < 32; i++) {
-    VITIS_LOOP_191_2: for (int j = 0; j < 32; j++) {
+VITIS_LOOP_192_1: for (int i = 0; i < 32; i++) {
+    VITIS_LOOP_193_2: for (int j = 0; j < 32; j++) {
 #pragma HLS UNROLL
  localC[i][j] = 0;
     }

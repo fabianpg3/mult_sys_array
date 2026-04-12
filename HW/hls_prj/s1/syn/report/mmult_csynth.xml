@@ -15,54 +15,36 @@
 </UserAssignments>
 
 <PerformanceEstimates>
-<PipelineType>no</PipelineType>
+<PipelineType>dataflow</PipelineType>
 <SummaryOfTimingAnalysis>
 <unit>ns</unit>
 <EstimatedClockPeriod>2.409</EstimatedClockPeriod>
 </SummaryOfTimingAnalysis>
 <SummaryOfOverallLatency>
 <unit>clock cycles</unit>
-<Best-caseLatency>8257</Best-caseLatency>
-<Average-caseLatency>8257</Average-caseLatency>
-<Worst-caseLatency>8257</Worst-caseLatency>
-<Best-caseRealTimeLatency>27.248 us</Best-caseRealTimeLatency>
-<Average-caseRealTimeLatency>27.248 us</Average-caseRealTimeLatency>
-<Worst-caseRealTimeLatency>27.248 us</Worst-caseRealTimeLatency>
-<Interval-min>8258</Interval-min>
-<Interval-max>8258</Interval-max>
+<Best-caseLatency>8259</Best-caseLatency>
+<Average-caseLatency>8259</Average-caseLatency>
+<Worst-caseLatency>8259</Worst-caseLatency>
+<Best-caseRealTimeLatency>27.255 us</Best-caseRealTimeLatency>
+<Average-caseRealTimeLatency>27.255 us</Average-caseRealTimeLatency>
+<Worst-caseRealTimeLatency>27.255 us</Worst-caseRealTimeLatency>
+<DataflowPipelineThroughput>4134</DataflowPipelineThroughput>
+<Interval-min>4134</Interval-min>
+<Interval-max>4134</Interval-max>
 </SummaryOfOverallLatency>
-<SummaryOfLoopLatency>
-<tile_processing>
-<Slack>2.41</Slack>
-<TripCount>4</TripCount>
-<Latency>4132</Latency>
-<AbsoluteTimeLatency>13635</AbsoluteTimeLatency>
-<IterationLatency>1033</IterationLatency>
-<InstanceList>
-</InstanceList>
-</tile_processing>
-</SummaryOfLoopLatency>
 <SummaryOfViolations>
 <IssueType>-</IssueType>
 <ViolationType>-</ViolationType>
-<SourceLocation>mmult.cpp:198</SourceLocation>
-<SummaryOfLoopViolations>
-<tile_processing>
-<Name>tile_processing</Name>
-<IssueType>-</IssueType>
-<ViolationType>-</ViolationType>
-<SourceLocation>mmult.cpp:199</SourceLocation>
-</tile_processing>
-</SummaryOfLoopViolations>
+<SourceLocation>mmult.cpp:166</SourceLocation>
 </SummaryOfViolations>
 </PerformanceEstimates>
 
 <AreaEstimates>
 <Resources>
 <BRAM_18K>6</BRAM_18K>
-<DSP>38</DSP>
-<FF>22788</FF>
-<LUT>46914</LUT>
+<DSP>41</DSP>
+<FF>347062</FF>
+<LUT>300711</LUT>
 <URAM>0</URAM>
 </Resources>
 <AvailableResources>

@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'mmult'" level="0">
-<item name = "Date">Sun Apr 12 07:56:45 2026
+<item name = "Date">Sun Apr 12 08:57:35 2026
 </item>
 <item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
 <item name = "Project">hls_prj</item>
@@ -24,7 +24,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="8">, min, max, min, max, min, max, Type</keys>
-<column name="">8257, 8257, 27.248 us, 27.248 us, 8258, 8258, no</column>
+<column name="">8259, 8259, 27.255 us, 27.255 us, 4134, 4134, dataflow</column>
 </table>
 </item>
 <item name = "Detail">
@@ -35,7 +35,6 @@
 </item>
 <item name = "Loop"><table name="" hasTotal="0">
 <keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
-<column name="- tile_processing">4132, 4132, 1033, -, -, 4, no</column>
 </table>
 </item>
 </section>

@@ -47,21 +47,21 @@ Diagnostics:
         Length:          0
         ReplacementText: 'VITIS_LOOP_1247_1: '
   - DiagnosticName:  xilinx-label-all-loops
-    Message:         'Added loop label VITIS_LOOP_190_1:  '
-    FileOffset:      190
+    Message:         'Added loop label VITIS_LOOP_192_1:  '
+    FileOffset:      192
     FilePath:        mmult.cpp
     Replacements:    
       - FilePath:        /home/jgaitan/Documents/mult_sys_array/HW/hls_prj/s1/.autopilot/db/mmult.pp.0.cpp
-        Offset:          956730
+        Offset:          956752
         Length:          0
-        ReplacementText: 'VITIS_LOOP_190_1: '
+        ReplacementText: 'VITIS_LOOP_192_1: '
   - DiagnosticName:  xilinx-label-all-loops
-    Message:         'Added loop label VITIS_LOOP_191_2:  '
-    FileOffset:      191
+    Message:         'Added loop label VITIS_LOOP_193_2:  '
+    FileOffset:      193
     FilePath:        mmult.cpp
     Replacements:    
       - FilePath:        /home/jgaitan/Documents/mult_sys_array/HW/hls_prj/s1/.autopilot/db/mmult.pp.0.cpp
-        Offset:          956765
+        Offset:          956787
         Length:          0
-        ReplacementText: 'VITIS_LOOP_191_2: '
+        ReplacementText: 'VITIS_LOOP_193_2: '
 ...

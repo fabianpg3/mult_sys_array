@@ -1,4 +1,7 @@
 <AutoPilot:solution xmlns:AutoPilot="com.autoesl.autopilot.solution">
+    <config>
+        <config_export format="ip_catalog" rtl="verilog"/>
+    </config>
     <name>
         <value string="s1"/>
     </name>
@@ -13,10 +16,7 @@
         <library value="xilinx/zynquplus/zynquplus" name="DefaultPlatform"/>
     </libraryList>
     <clockList>
-        <clock name="default" period="3.3" default="false"/>
+        <clock default="false" name="default" period="3.3"/>
     </clockList>
-    <config>
-        <config_export format="ip_catalog" rtl="verilog"/>
-    </config>
 </AutoPilot:solution>
 
