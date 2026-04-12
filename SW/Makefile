@@ -1,6 +1,6 @@
 # List of source files and corresponding executables
-SOURCES := host.cpp
-EXECUTABLES := host
+SOURCES := mmult.cpp
+EXECUTABLES := mmult
 
 # In mult_sys_array, OpenCL bindings are needed
 CFLAGS := -I/usr/include -I/opt/xilinx/xrt/include -Wall -std=c++17 -O0 -g -I. -I../HW
