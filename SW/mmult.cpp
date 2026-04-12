@@ -3,9 +3,9 @@
 #include <string>
 #include <vector>
 
-#include "/usr/include/xrt/experimental/xrt_bo.h"
-#include "/usr/include/xrt/experimental/xrt_device.h"
-#include "/usr/include/xrt/experimental/xrt_kernel.h"
+#include "/usr/include/xrt/xrt_bo.h"
+#include "/usr/include/xrt/xrt_device.h"
+#include "/usr/include/xrt/xrt_kernel.h"
 
 // Array Size to access
 #define DATA_SIZE 16
