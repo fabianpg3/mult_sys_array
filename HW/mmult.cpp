@@ -1,3 +1,4 @@
+
 /**
  * Copyright (C) 2020 Xilinx, Inc
  *
@@ -139,41 +140,6 @@ systolic1:
   }
 }
 
-void compute_wrapper(
-    ap_int<DATA_BIT_SIZE> localA[MAX_SIZE][MAX_SIZE],
-    ap_int<DATA_BIT_SIZE> localB[MAX_SIZE][MAX_SIZE],
-    ap_int<2 * DATA_BIT_SIZE> localC[MAX_SIZE][MAX_SIZE],
-    int a_row, int a_col, int b_col, int b_row) {
-
-  // Internal accumulator to avoid Dataflow Read/Write Ping-Pong violations
-  ap_int<2 * DATA_BIT_SIZE> tempC[MAX_SIZE][MAX_SIZE];
-#pragma HLS ARRAY_PARTITION variable = tempC dim = 1 factor = PARALLELISM_FACTOR cyclic
-#pragma HLS ARRAY_PARTITION variable = tempC dim = 2 factor = PARALLELISM_FACTOR cyclic
-
-  // Initialize tempC
-  for (int i = 0; i < MAX_SIZE; i++) {
-    for (int j = 0; j < MAX_SIZE; j++) {
-#pragma HLS UNROLL factor = PARALLELISM_FACTOR
-      tempC[i][j] = 0;
-    }
-  }
-
-  // Tile process into tempC
-  for (int q = 0; q < TILE_FACTOR; q++) {
-    int start_k = q * TILE_SIZE;
-    int finish_k = (q + 1) * TILE_SIZE;
-    tile_process(localA, localB, tempC, start_k, finish_k, a_row, a_col, b_col, b_row);
-  }
-
-  // Pure Write-Out to the Dataflow Channel (localC)
-  for (int i = 0; i < MAX_SIZE; i++) {
-    for (int j = 0; j < MAX_SIZE; j++) {
-#pragma HLS UNROLL factor = PARALLELISM_FACTOR
-      localC[i][j] = tempC[i][j];
-    }
-  }
-}
-
 void mmult(ap_int<DATA_BIT_SIZE> a[MAX_SIZE * MAX_SIZE], // Read-Only Matrix A
            ap_int<DATA_BIT_SIZE> b[MAX_SIZE * MAX_SIZE], // Read-Only Matrix B
            ap_int<2 * DATA_BIT_SIZE> c[MAX_SIZE * MAX_SIZE], // Output Result
@@ -181,45 +147,39 @@ void mmult(ap_int<DATA_BIT_SIZE> a[MAX_SIZE * MAX_SIZE], // Read-Only Matrix A
            int a_col, // Matrix A Col Size
            int b_col  // Matrix B Col Size
 ) {
-#pragma HLS INTERFACE m_axi port = a offset = slave bundle = gmem0
-#pragma HLS INTERFACE m_axi port = b offset = slave bundle = gmem1
-#pragma HLS INTERFACE m_axi port = c offset = slave bundle = gmem2
-#pragma HLS INTERFACE s_axilite register port = a_row
-#pragma HLS INTERFACE s_axilite register port = a_col
-#pragma HLS INTERFACE s_axilite register port = b_col
-#pragma HLS INTERFACE s_axilite register port = return
   int b_row = a_col;
   int c_row = a_row;
   int c_col = b_col;
 
   // Local memory to store input and output matrices
-    ap_int<DATA_BIT_SIZE> localA[MAX_SIZE][MAX_SIZE];
-#pragma HLS ARRAY_PARTITION variable = localA dim = 1 factor = PARALLELISM_FACTOR cyclic
+  ap_int<DATA_BIT_SIZE> localA[MAX_SIZE][MAX_SIZE];
+#pragma HLS ARRAY_PARTITION variable = localA dim = 1 factor =                 \
+    PARALLELISM_FACTOR cyclic
 #pragma HLS BIND_STORAGE variable=localA type=ram_2p impl=lutram
 
-    ap_int<DATA_BIT_SIZE> localB[MAX_SIZE][MAX_SIZE];
-#pragma HLS ARRAY_PARTITION variable = localB dim = 2 factor = PARALLELISM_FACTOR cyclic
+  ap_int<DATA_BIT_SIZE> localB[MAX_SIZE][MAX_SIZE];
+#pragma HLS ARRAY_PARTITION variable = localB dim = 2 factor =                 \
+    PARALLELISM_FACTOR cyclic
 #pragma HLS BIND_STORAGE variable=localB type=ram_2p impl=lutram
 
-    ap_int<2*DATA_BIT_SIZE> localC[MAX_SIZE][MAX_SIZE];
-#pragma HLS ARRAY_PARTITION variable = localC dim = 1 factor = PARALLELISM_FACTOR cyclic
-#pragma HLS ARRAY_PARTITION variable = localC dim = 2 factor = PARALLELISM_FACTOR cyclic
-#pragma HLS BIND_STORAGE variable=localC type=ram_s2p impl=lutram
-
-#pragma HLS DATAFLOW
+  ap_int<2 * DATA_BIT_SIZE> localC[MAX_SIZE][MAX_SIZE];
+#pragma HLS ARRAY_PARTITION variable = localC dim = 1 factor =                 \
+    PARALLELISM_FACTOR cyclic
+#pragma HLS ARRAY_PARTITION variable = localC dim = 2 factor =                 \
+    PARALLELISM_FACTOR cyclic
 
 // Burst reads on input matrices from global memory
 // Read Input A
 // Auto-pipeline is going to apply pipeline to these loops
 readA:
-    for (int loc = 0, i = 0, j = 0; loc < a_row * a_col; loc++, j++) {
-#pragma HLS LOOP_TRIPCOUNT min = c_size* c_size max = c_size * c_size
-        if (j == a_col) {
-            i++;
-            j = 0;
-        }
-        localA[i][j] = a[loc];
+  for (int loc = 0, i = 0, j = 0; loc < a_row * a_col; loc++, j++) {
+#pragma HLS LOOP_TRIPCOUNT min = c_size *c_size max = c_size * c_size
+    if (j == a_col) {
+      i++;
+      j = 0;
     }
+    localA[i][j] = a[loc];
+  }
 
 // Read Input B
 readB:
@@ -231,8 +191,21 @@ readB:
     }
     localB[i][j] = b[loc];
   }
-  // Compute wrapper completely isolates the read-modify-write accumulator
-  compute_wrapper(localA, localB, localC, a_row, a_col, b_col, b_row);
+  // Initialize localC to 0
+  for (int i = 0; i < MAX_SIZE; i++) {
+    for (int j = 0; j < MAX_SIZE; j++) {
+#pragma HLS UNROLL factor = PARALLELISM_FACTOR
+      localC[i][j] = 0;
+    }
+  }
+// Tile process the input matrices and produce output matrix in local memory
+tile_processing:
+  for (int q = 0; q < TILE_FACTOR; q++) {
+    int start_k = q * TILE_SIZE;
+    int finish_k = (q + 1) * TILE_SIZE;
+    tile_process(localA, localB, localC, start_k, finish_k, a_row, a_col, b_col,
+                 b_row);
+  }
 
 // Burst write from output matrices to global memory
 // Burst write from matrix C
