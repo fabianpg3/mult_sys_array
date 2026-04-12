@@ -1,7 +1,7 @@
 # Setting relevant variables
 ROOT_DIR=$(realpath $(dir $(lastword $(MAKEFILE_LIST))))
 TARGET := hw
-PLATFORM := $(ROOT_DIR)/../platform/kv260_custom.xpfm
+PLATFORM := $(ROOT_DIR)/../platform/platform/kv260_custom.xpfm
 
 HLS_FILE_NAME = mmult
 
@@ -72,11 +72,11 @@ $(XCL_BIN): $(LINK_OUTPUT)
 	mkdir -p $(PACKAGE_OUT)
 	cp $< $@
 
-$(SHELL_JSON): $(ROOT_DIR)/../../shell.json
+$(SHELL_JSON): $(ROOT_DIR)/../platform/platform/shell.json
 	mkdir -p $(PACKAGE_OUT)
 	cp $< $@
 
-$(DTB_FILE): $(ROOT_DIR)/../../pl.dtbo
+$(DTB_FILE): $(ROOT_DIR)/../platform/platform/pl.dtbo
 	mkdir -p $(PACKAGE_OUT)
 	cp $< $@
 
