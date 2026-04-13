@@ -27,3 +27,8 @@ Type of use: Code adaptation
 Degree of dependence: Medium
 Justification and validation performed: It was employed to design and implement a PARALLELISM_FACTOR parameter that replaces the fixed complete array partitioning of the systolic array with a tunable factor-based partitioning across both dimensions of localC, localA, and localB. The suggested changes were manually reviewed to ensure correctness of the pragma syntax and consistency across all affected arrays and loop unroll directives. Functional equivalence was validated by running C-simulation manually and confirming matching results against the software reference implementation.
 
+AI was used in the following way (For C++ HLS testbench creation and general understanding of tiling for amtrix multiply):
+Tool: Copilot
+Type of use: Debugging and code adaptation
+Degree of dependence: Low
+Justification and validation performed: It was employed to speed up the creation of a simple C++ HLS testbench skeleton suitable for matrix multiplication. Also, related with tiling, it was used just as another reference for understand what is tiling and how it works in matrix multiplication tasks. It was also used to assist debug and understanding of the different syntax errors generated at testbench level, since, as expected, the compile of it didn't work at the first time. Finally, the generated testbench was only used as a initial point, then all changes like ap_int datatype, random initialization, parameterized values and dimensions, to cite a few examples, were manually placed and verified.
