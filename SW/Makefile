@@ -3,7 +3,7 @@ SOURCES := mmult.cpp
 EXECUTABLES := mmult
 
 # In mult_sys_array, OpenCL bindings are needed
-CFLAGS := -I/usr/include -I/opt/xilinx/xrt/include -Wall -std=c++17 -O0 -g -I. -I../HW
+CFLAGS := -I/usr/include/xrt -I/opt/xilinx/xrt/include -Wall -std=c++17 -O0 -g -I. -I../HW
 LDFLAGS := -L/opt/xilinx/xrt/lib -pthread -lxrt_core -lxrt_coreutil
 
 .PHONY: all clean
@@ -13,8 +13,8 @@ all: $(EXECUTABLES)
 
 # Rule to build each executable from its corresponding source file
 $(EXECUTABLES): %: %.cpp
-	$(CXX) -o $@ $< $(CFLAGS) $(LDFLAGS)
+        $(CXX) -o $@ $< $(CFLAGS) $(LDFLAGS)
 
 # Clean target to remove all executables
 clean:
-	$(RM) $(EXECUTABLES)
+        $(RM) $(EXECUTABLES)
