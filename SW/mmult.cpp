@@ -3,9 +3,9 @@
 #include <string>
 #include <vector>
 
-#include "/usr/include/xrt/xrt/xrt_bo.h"
-#include "/usr/include/xrt/xrt/xrt_device.h"
-#include "/usr/include/xrt/xrt/xrt_kernel.h"
+#include <experimental/xrt_bo.h>
+#include <experimental/xrt_device.h>
+#include <experimental/xrt_kernel.h>
 
 // Array Size to access
 #define DATA_SIZE 16
@@ -106,7 +106,6 @@ int main(int argc, char **argv) {
       break;
     }
   }
-
-  std::cout << "TEST " << (match ? "FAILED" : "PASSED") << std::endl;
+ std::cout << "TEST " << (match ? "FAILED" : "PASSED") << std::endl;
   return (match ? EXIT_FAILURE : EXIT_SUCCESS);
 }
