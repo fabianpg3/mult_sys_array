@@ -20,3 +20,7 @@ lib/
 *.swp
 src/hls_prj
 *.log
+HW/build.hw/ 
+HW/hls_prj/
+HW/tmp.hw/
+HW/*.log
