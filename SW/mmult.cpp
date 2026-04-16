@@ -98,11 +98,25 @@ int main(int argc, char **argv) {
   int match = 0;
   for (size_t i = 0; i < matrix_size; i++) {
     if (bo_c_map[i] != sw_out[i]) {
-      std::cout << "Error: Result mismatch" << std::endl;
-      std::cout << "i = " << i << " CPU result = " << sw_out[i]
-                << " Device result = " << bo_c_map[i] << std::endl;
+      std::cout << "Error: Result mismatch at index " << i << std::endl;
+      std::cout << "Row: " << (i / DATA_SIZE) << ", Col: " << (i % DATA_SIZE) << std::endl;
+      std::cout << "CPU result = " << (int)sw_out[i]
+                << " | Device result = " << (int)bo_c_map[i] << std::endl;
+      
+      // Print the inputs used to calculate this specific element
+      int row = i / DATA_SIZE;
+      int col = i % DATA_SIZE;
+      std::cout << "Inputs for CPU calc A(row " << row << ") * B(col " << col << "):" << std::endl;
+      std::cout << "A row: ";
+      for(int k=0; k<DATA_SIZE; k++) std::cout << (int)sw_in1[row * DATA_SIZE + k] << " ";
+      std::cout << "\nB col: ";
+      for(int k=0; k<DATA_SIZE; k++) std::cout << (int)sw_in2[k * DATA_SIZE + col] << " ";
+      std::cout << "\n-----------------------------------" << std::endl;
+      
       match = 1;
-      break;
+      // break; // Quitamos el break para ver mas de un error si los hay, limitado a los primeros 10
+      static int err_count = 0;
+      if (++err_count >= 10) break;
     }
   }
   std::cout << "TEST " << (match ? "FAILED" : "PASSED") << std::endl;
