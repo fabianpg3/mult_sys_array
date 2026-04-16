@@ -155,6 +155,9 @@ void mmult(ap_int<DATA_BIT_SIZE> a[MAX_SIZE * MAX_SIZE], // Read-Only Matrix A
 #pragma HLS INTERFACE m_axi port = b offset = slave bundle = gmem1
 #pragma HLS INTERFACE m_axi port = c offset = slave bundle = gmem2
 
+#pragma HLS INTERFACE s_axilite port = a bundle = control
+#pragma HLS INTERFACE s_axilite port = b bundle = control
+#pragma HLS INTERFACE s_axilite port = c bundle = control
 #pragma HLS INTERFACE s_axilite port = a_row bundle = control
 #pragma HLS INTERFACE s_axilite port = a_col bundle = control
 #pragma HLS INTERFACE s_axilite port = b_col bundle = control
