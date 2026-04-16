@@ -119,6 +119,24 @@ int main(int argc, char **argv) {
       if (++err_count >= 10) break;
     }
   }
+
+  // Si pasamos el test, imprimimos un caso de éxito para estudiarlo visualmente
+  if (match == 0 && matrix_size > 1) {
+    size_t sample_idx = 1; // Analizar celda [0][1]
+    int row = sample_idx / DATA_SIZE;
+    int col = sample_idx % DATA_SIZE;
+    std::cout << "\n--- EJEMPLO DE CALCULO MATRICIAL EXITOSO ---" << std::endl;
+    std::cout << "Celda en Indice " << sample_idx << " (Fila: " << row << ", Columna: " << col << ")" << std::endl;
+    std::cout << "Resultado CPU = " << (int)sw_out[sample_idx] 
+              << " | Resultado FPGA = " << (int)bo_c_map[sample_idx] << std::endl;
+    std::cout << "\nValores de entrada que se multiplicaron y sumaron:" << std::endl;
+    std::cout << "Matriz A (Fila " << row << "):    ";
+    for(int k=0; k<DATA_SIZE; k++) std::cout << (int)sw_in1[row * DATA_SIZE + k] << "\t";
+    std::cout << "\nMatriz B (Columna " << col << "): ";
+    for(int k=0; k<DATA_SIZE; k++) std::cout << (int)sw_in2[k * DATA_SIZE + col] << "\t";
+    std::cout << "\n--------------------------------------------\n" << std::endl;
+  }
+
   std::cout << "TEST " << (match ? "FAILED" : "PASSED") << std::endl;
   return (match ? EXIT_FAILURE : EXIT_SUCCESS);
 }
