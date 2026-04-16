@@ -151,16 +151,25 @@ void mmult(ap_int<DATA_BIT_SIZE> a[MAX_SIZE * MAX_SIZE], // Read-Only Matrix A
   int c_row = a_row;
   int c_col = b_col;
 
+#pragma HLS INTERFACE m_axi port = a offset = slave bundle = gmem0
+#pragma HLS INTERFACE m_axi port = b offset = slave bundle = gmem1
+#pragma HLS INTERFACE m_axi port = c offset = slave bundle = gmem2
+
+#pragma HLS INTERFACE s_axilite port = a_row bundle = control
+#pragma HLS INTERFACE s_axilite port = a_col bundle = control
+#pragma HLS INTERFACE s_axilite port = b_col bundle = control
+#pragma HLS INTERFACE s_axilite port = return bundle = control
+
   // Local memory to store input and output matrices
   ap_int<DATA_BIT_SIZE> localA[MAX_SIZE][MAX_SIZE];
 #pragma HLS ARRAY_PARTITION variable = localA dim = 1 factor =                 \
     PARALLELISM_FACTOR cyclic
-#pragma HLS BIND_STORAGE variable=localA type=ram_2p impl=lutram
+#pragma HLS BIND_STORAGE variable = localA type = ram_2p impl = lutram
 
   ap_int<DATA_BIT_SIZE> localB[MAX_SIZE][MAX_SIZE];
 #pragma HLS ARRAY_PARTITION variable = localB dim = 2 factor =                 \
     PARALLELISM_FACTOR cyclic
-#pragma HLS BIND_STORAGE variable=localB type=ram_2p impl=lutram
+#pragma HLS BIND_STORAGE variable = localB type = ram_2p impl = lutram
 
   ap_int<2 * DATA_BIT_SIZE> localC[MAX_SIZE][MAX_SIZE];
 #pragma HLS ARRAY_PARTITION variable = localC dim = 1 factor =                 \

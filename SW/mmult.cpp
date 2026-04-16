@@ -12,9 +12,8 @@
 
 // Software implementation of Matrix Multiplication
 // The inputs are of the size (DATA_SIZE x DATA_SIZE)
-void m_softwareGold(const std::vector<int32_t> &in1,
-                    const std::vector<int32_t> &in2,
-                    std::vector<int32_t> &out) {
+void m_softwareGold(const std::vector<int8_t> &in1,
+                    const std::vector<int8_t> &in2, std::vector<int8_t> &out) {
   // Perform Matrix multiply Out = In1 x In2
   for (int i = 0; i < DATA_SIZE; i++) {
     for (int j = 0; j < DATA_SIZE; j++) {
@@ -45,19 +44,19 @@ int main(int argc, char **argv) {
 
   // Reservo la memoria (Buffers mapping to the group ids defined in the HLS
   // core)
-  auto bo_a = xrt::bo(device, matrix_size * sizeof(int32_t), mmult.group_id(0));
-  auto bo_b = xrt::bo(device, matrix_size * sizeof(int32_t), mmult.group_id(1));
-  auto bo_c = xrt::bo(device, matrix_size * sizeof(int32_t), mmult.group_id(2));
+  auto bo_a = xrt::bo(device, matrix_size * sizeof(int8_t), mmult.group_id(0));
+  auto bo_b = xrt::bo(device, matrix_size * sizeof(int8_t), mmult.group_id(1));
+  auto bo_c = xrt::bo(device, matrix_size * sizeof(int8_t), mmult.group_id(2));
 
   // Para usarlos en el SW map a un puntero del entorno C++ tradicional
-  int32_t *bo_a_map = bo_a.map<int32_t *>();
-  int32_t *bo_b_map = bo_b.map<int32_t *>();
-  int32_t *bo_c_map = bo_c.map<int32_t *>();
+  int8_t *bo_a_map = bo_a.map<int8_t *>();
+  int8_t *bo_b_map = bo_b.map<int8_t *>();
+  int8_t *bo_c_map = bo_c.map<int8_t *>();
 
   // Inicializo arreglos en software para luego comparar
-  std::vector<int32_t> sw_in1(matrix_size);
-  std::vector<int32_t> sw_in2(matrix_size);
-  std::vector<int32_t> sw_out(matrix_size);
+  std::vector<int8_t> sw_in1(matrix_size);
+  std::vector<int8_t> sw_in2(matrix_size);
+  std::vector<int8_t> sw_out(matrix_size);
 
   // Lleno la memoria de la FPGA localmente y configuro mis arreglos de
   // verificacion
@@ -106,6 +105,6 @@ int main(int argc, char **argv) {
       break;
     }
   }
- std::cout << "TEST " << (match ? "FAILED" : "PASSED") << std::endl;
+  std::cout << "TEST " << (match ? "FAILED" : "PASSED") << std::endl;
   return (match ? EXIT_FAILURE : EXIT_SUCCESS);
 }
