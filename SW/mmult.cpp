@@ -120,21 +120,32 @@ int main(int argc, char **argv) {
     }
   }
 
-  // Si pasamos el test, imprimimos un caso de éxito para estudiarlo visualmente
-  if (match == 0 && matrix_size > 1) {
-    size_t sample_idx = 1; // Analizar celda [0][1]
-    int row = sample_idx / DATA_SIZE;
-    int col = sample_idx % DATA_SIZE;
-    std::cout << "\n--- EJEMPLO DE CALCULO MATRICIAL EXITOSO ---" << std::endl;
-    std::cout << "Celda en Indice " << sample_idx << " (Fila: " << row << ", Columna: " << col << ")" << std::endl;
-    std::cout << "Resultado CPU = " << (int)sw_out[sample_idx] 
-              << " | Resultado FPGA = " << (int)bo_c_map[sample_idx] << std::endl;
-    std::cout << "\nValores de entrada que se multiplicaron y sumaron:" << std::endl;
-    std::cout << "Matriz A (Fila " << row << "):    ";
-    for(int k=0; k<DATA_SIZE; k++) std::cout << (int)sw_in1[row * DATA_SIZE + k] << "\t";
-    std::cout << "\nMatriz B (Columna " << col << "): ";
-    for(int k=0; k<DATA_SIZE; k++) std::cout << (int)sw_in2[k * DATA_SIZE + col] << "\t";
-    std::cout << "\n--------------------------------------------\n" << std::endl;
+  // Si pasamos el test, imprimimos las matrices completas para estudiar el funcionamiento
+  if (match == 0) {
+    std::cout << "\n========== MATRIZ A ==========" << std::endl;
+    for (int i = 0; i < DATA_SIZE; i++) {
+      for (int j = 0; j < DATA_SIZE; j++) {
+        std::cout << (int)sw_in1[i * DATA_SIZE + j] << "\t";
+      }
+      std::cout << std::endl;
+    }
+
+    std::cout << "\n========== MATRIZ B ==========" << std::endl;
+    for (int i = 0; i < DATA_SIZE; i++) {
+      for (int j = 0; j < DATA_SIZE; j++) {
+        std::cout << (int)sw_in2[i * DATA_SIZE + j] << "\t";
+      }
+      std::cout << std::endl;
+    }
+
+    std::cout << "\n========== MATRIZ C (RESULTADO) ==========" << std::endl;
+    for (int i = 0; i < DATA_SIZE; i++) {
+      for (int j = 0; j < DATA_SIZE; j++) {
+        std::cout << (int)bo_c_map[i * DATA_SIZE + j] << "\t";
+      }
+      std::cout << std::endl;
+    }
+    std::cout << "==========================================\n" << std::endl;
   }
 
   std::cout << "TEST " << (match ? "FAILED" : "PASSED") << std::endl;
