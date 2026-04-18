@@ -1,8 +1,34 @@
-Instructions for compile and run
+## Instructions to Compile and Run
 
-```
+### 1. Compile the Hardware (Local Machine)
+Navigate to the `HW` folder and compile the hardware. Running `make` will automatically trigger the Vitis HLS/V++ flow and generate the required `.xclbin` deployment package.
+```bash
 cd HW/
-vitis_hls -f script.tcl 
+make
+```
+
+### 2. Deploy the Hardware to the FPGA (Target Board)
+Once the hardware finishes compiling, move to the target Kria board and deploy the bitstream using `xmutil`:
+```bash
+# Check available firmware slots
+sudo xmutil listapps
+
+# Unload the current active app to free up the slot
+sudo xmutil unloadapp
+
+# Copy the compiled hardware package into the Xilinx firmware directory
+sudo cp HW/package.hw/* /lib/firmware/xilinx/mult-sys-array/
+
+# Load our custom systolic array application into the FPGA
+sudo xmutil loadapp mult-sys-array
+```
+
+### 3. Compile and Run the Software (Target Board)
+Navigate to the `SW` folder, compile the C++ host application, and execute it:
+```bash
+cd SW/
+make
+./mmult
 ```
 
 Important!
