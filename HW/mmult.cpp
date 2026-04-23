@@ -48,7 +48,8 @@ Kernel Description :
         Tile Factor    --> 4
 
     Note :
-        Max sizes and PE dimensions are dependent on available DSP resources in the FPGA.
+        Max sizes and PE dimensions are dependent on available DSP resources in
+the FPGA.
 */
 
 #include "param.h"
@@ -74,9 +75,9 @@ void tile_process(
 #pragma HLS ARRAY_PARTITION variable = acc dim = 1 factor = PE_ROWS cyclic
 #pragma HLS ARRAY_PARTITION variable = acc dim = 2 factor = PE_COLS cyclic
 
-  // Initialize accumulator from prior tile results
-  // This enables accumulation across multiple tile iterations
-  init_acc:
+// Initialize accumulator from prior tile results
+// This enables accumulation across multiple tile iterations
+init_acc:
   for (int i = 0; i < MAX_SIZE; i++) {
     for (int j = 0; j < MAX_SIZE; j++) {
 #pragma HLS UNROLL factor = PE_ROWS
@@ -91,9 +92,9 @@ compute_pipeline:
 #pragma HLS LOOP_TRIPCOUNT min = c_size max = c_size
 #pragma HLS PIPELINE II = 1
 
-    // MAC computation
-    // Process all output positions (i,j) for this k-iteration
-    pe_array:
+  // MAC computation
+  // Process all output positions (i,j) for this k-iteration
+  pe_array:
     for (int i = 0; i < MAX_SIZE; i++) {
 #pragma HLS UNROLL factor = PE_ROWS
       for (int j = 0; j < MAX_SIZE; j++) {
@@ -103,20 +104,20 @@ compute_pipeline:
         if (i < a_row && k < a_col) {
           a_forwarded = a_row_major[i][k];
         }
-        
+
         ap_int<DATA_BIT_SIZE> b_forwarded = boundary_value;
         if (k < b_row && j < b_col) {
           b_forwarded = b_row_major[k][j];
         }
 
-        ap_int<2 * DATA_BIT_SIZE> product = a_forwarded * b_forwarded;
+        ap_int<2 *DATA_BIT_SIZE> product = a_forwarded * b_forwarded;
         acc[i][j] = acc[i][j] + product;
       }
     }
   }
 
-  // Drain results: Write accumulated values to output
-  drain_acc:
+// Drain results: Write accumulated values to output
+drain_acc:
   for (int i = 0; i < MAX_SIZE; i++) {
     for (int j = 0; j < MAX_SIZE; j++) {
 #pragma HLS UNROLL factor = PE_ROWS
@@ -150,11 +151,11 @@ void mmult(ap_int<DATA_BIT_SIZE> a[MAX_SIZE * MAX_SIZE], // Read-Only Matrix A
   // Local memory to store input and output matrices with PE-level partitioning
   ap_int<DATA_BIT_SIZE> localA[MAX_SIZE][MAX_SIZE];
 #pragma HLS ARRAY_PARTITION variable = localA dim = 1 factor = PE_ROWS cyclic
-#pragma HLS BIND_STORAGE variable = localA type = ram_2p impl = lutram
+  // #pragma HLS BIND_STORAGE variable = localA type = ram_2p impl = lutram
 
   ap_int<DATA_BIT_SIZE> localB[MAX_SIZE][MAX_SIZE];
 #pragma HLS ARRAY_PARTITION variable = localB dim = 2 factor = PE_COLS cyclic
-#pragma HLS BIND_STORAGE variable = localB type = ram_2p impl = lutram
+  // #pragma HLS BIND_STORAGE variable = localB type = ram_2p impl = lutram
 
   ap_int<2 * DATA_BIT_SIZE> localC[MAX_SIZE][MAX_SIZE];
 #pragma HLS ARRAY_PARTITION variable = localC dim = 1 factor = PE_ROWS cyclic
@@ -191,7 +192,8 @@ readB:
   }
 
   // Tile processing loop: apply PE array across TILE_FACTOR tiles
-  // Each tile processes TILE_SIZE k-iterations to fully utilize the 8x8 PE array
+  // Each tile processes TILE_SIZE k-iterations to fully utilize the 8x8 PE
+  // array
 tile_processing:
   for (int q = 0; q < TILE_FACTOR; q++) {
 #pragma HLS UNROLL factor = TILE_FACTOR
