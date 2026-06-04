@@ -1,0 +1,53 @@
+<pragmas>
+<pragma file="mmult.cpp" line="186" pragmaType="loop_tripcount" parentfunction="mmult" min="32" max="32" avg="32"/>
+<pragma file="mmult.cpp" line="189" pragmaType="pipeline" parentfunction="mmult" off="0" ii="1" rewind="0" style=""/>
+<pragma file="mmult.cpp" line="188" pragmaType="loop_tripcount" parentfunction="mmult" min="32" max="32" avg="32"/>
+<pragma file="mmult.cpp" line="168" pragmaType="unroll" parentfunction="mmult" factor="8" skip_exit_check="0"/>
+<pragma file="mmult.cpp" line="157" pragmaType="loop_tripcount" parentfunction="mmult" min="32" max="32" avg="32"/>
+<pragma file="mmult.cpp" line="160" pragmaType="pipeline" parentfunction="mmult" off="0" ii="1" rewind="0" style=""/>
+<pragma file="mmult.cpp" line="159" pragmaType="loop_tripcount" parentfunction="mmult" min="32" max="32" avg="32"/>
+<pragma file="mmult.cpp" line="146" pragmaType="loop_tripcount" parentfunction="mmult" min="32" max="32" avg="32"/>
+<pragma file="mmult.cpp" line="149" pragmaType="pipeline" parentfunction="mmult" off="0" ii="1" rewind="0" style=""/>
+<pragma file="mmult.cpp" line="148" pragmaType="loop_tripcount" parentfunction="mmult" min="32" max="32" avg="32"/>
+<pragma file="mmult.cpp" line="117" pragmaType="interface" parentfunction="mmult" mode="m_axi" port="a" bundle="gmem0" offset="slave" name="" depth="-1" num_read_outstanding="-1" num_write_outstanding="-1" max_burst_read_length="-1" max_burst_write_length="-1" latency="-1" max_widen_bitwidth="-1" channel=""/>
+<pragma file="mmult.cpp" line="118" pragmaType="interface" parentfunction="mmult" mode="m_axi" port="b" bundle="gmem1" offset="slave" name="" depth="-1" num_read_outstanding="-1" num_write_outstanding="-1" max_burst_read_length="-1" max_burst_write_length="-1" latency="-1" max_widen_bitwidth="-1" channel=""/>
+<pragma file="mmult.cpp" line="119" pragmaType="interface" parentfunction="mmult" mode="m_axi" port="c" bundle="gmem2" offset="slave" name="" depth="-1" num_read_outstanding="-1" num_write_outstanding="-1" max_burst_read_length="-1" max_burst_write_length="-1" latency="-1" max_widen_bitwidth="-1" channel=""/>
+<pragma file="mmult.cpp" line="121" pragmaType="interface" parentfunction="mmult" mode="s_axilite" port="a" bundle="control" offset="-1" name="" clock="" impl="" register="0"/>
+<pragma file="mmult.cpp" line="122" pragmaType="interface" parentfunction="mmult" mode="s_axilite" port="b" bundle="control" offset="-1" name="" clock="" impl="" register="0"/>
+<pragma file="mmult.cpp" line="123" pragmaType="interface" parentfunction="mmult" mode="s_axilite" port="c" bundle="control" offset="-1" name="" clock="" impl="" register="0"/>
+<pragma file="mmult.cpp" line="124" pragmaType="interface" parentfunction="mmult" mode="s_axilite" port="a_row" bundle="control" offset="-1" name="" clock="" impl="" register="0"/>
+<pragma file="mmult.cpp" line="125" pragmaType="interface" parentfunction="mmult" mode="s_axilite" port="a_col" bundle="control" offset="-1" name="" clock="" impl="" register="0"/>
+<pragma file="mmult.cpp" line="126" pragmaType="interface" parentfunction="mmult" mode="s_axilite" port="b_col" bundle="control" offset="-1" name="" clock="" impl="" register="0"/>
+<pragma file="mmult.cpp" line="127" pragmaType="interface" parentfunction="mmult" mode="s_axilite" port="" bundle="control" offset="-1" name="" clock="" impl="" register="0"/>
+<pragma file="mmult.cpp" line="131" pragmaType="array_partition" parentfunction="mmult" dim="1" factor="8" mode="cyclic" dynamic="0" variable="localA"/>
+<pragma file="mmult.cpp" line="132" pragmaType="bind_storage" parentfunction="mmult" op="666" impl="23" latency="-1" variable="localA"/>
+<pragma file="mmult.cpp" line="135" pragmaType="array_partition" parentfunction="mmult" dim="2" factor="8" mode="cyclic" dynamic="0" variable="localB"/>
+<pragma file="mmult.cpp" line="136" pragmaType="bind_storage" parentfunction="mmult" op="666" impl="23" latency="-1" variable="localB"/>
+<pragma file="mmult.cpp" line="139" pragmaType="array_partition" parentfunction="mmult" dim="1" factor="8" mode="cyclic" dynamic="0" variable="localC"/>
+<pragma file="mmult.cpp" line="140" pragmaType="array_partition" parentfunction="mmult" dim="2" factor="8" mode="cyclic" dynamic="0" variable="localC"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int<16>::ap_int(int)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int<16>::ap_int<16, true>(ap_int_base<16, true> const&)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<8, true>::ap_int_base(int)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="checkOverflowBaseC" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int<17>::ap_int<17, true>(ap_int_base<17, true> const&)" off="0" region="0" recursive="0"/>
+<pragma file="/tools/Xilinx-2023.2/Vitis_HLS/2023.2/common/technology/autopilot/etc/ap_common.h" line="515" pragmaType="inline" parentfunction="_ZN8ssdm_intILi17ELb1EEC2EDq17_i" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<16, true>::ap_int_base<8, true>(ap_int_base<8, true> const&)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<16, true>::ap_int_base(int)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<17, true>::ap_int_base<16, true>(ap_int_base<16, true> const&)" off="0" region="0" recursive="0"/>
+<pragma file="/tools/Xilinx-2023.2/Vitis_HLS/2023.2/common/technology/autopilot/etc/ap_common.h" line="515" pragmaType="inline" parentfunction="ssdm_int<8, true>::ssdm_int(signed char)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="checkOverflowBaseC" off="0" region="0" recursive="0"/>
+<pragma file="/tools/Xilinx-2023.2/Vitis_HLS/2023.2/common/technology/autopilot/etc/ap_common.h" line="515" pragmaType="inline" parentfunction="ssdm_int<16, true>::ssdm_int(short)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<17, true>::ap_int_base(int)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int<16>::ap_int<17>(ap_int<17> const&)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<16, true>::ap_int_base<17, true>(ap_int_base<17, true> const&)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int<8>::ap_int(int)" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<8, true>::RType<8, true>::mult operator*<8, true, 8, true>(ap_int_base<8, true> const&, ap_int_base<8, true> const&)" off="0" region="0" recursive="0"/>
+<pragma file="mmult.cpp" line="83" pragmaType="pipeline" parentfunction="tile_process" off="0" ii="1" rewind="0" style=""/>
+<pragma file="mmult.cpp" line="82" pragmaType="loop_tripcount" parentfunction="tile_process" min="32" max="32" avg="32"/>
+<pragma file="mmult.cpp" line="87" pragmaType="unroll" parentfunction="tile_process" factor="8" skip_exit_check="0"/>
+<pragma file="mmult.cpp" line="89" pragmaType="unroll" parentfunction="tile_process" factor="8" skip_exit_check="0"/>
+<pragma file="mmult.cpp" line="75" pragmaType="array_partition" parentfunction="tile_process" dim="1" factor="8" mode="cyclic" dynamic="0" variable="c_row_major"/>
+<pragma file="mmult.cpp" line="76" pragmaType="array_partition" parentfunction="tile_process" dim="2" factor="8" mode="cyclic" dynamic="0" variable="c_row_major"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="checkOverflowCsim" off="0" region="0" recursive="0"/>
+<pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<16, true>::RType<16, true>::plus operator+<16, true, 16, true>(ap_int_base<16, true> const&, ap_int_base<16, true> const&)" off="0" region="0" recursive="0"/>
+</pragmas>

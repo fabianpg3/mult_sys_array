@@ -1,0 +1,959 @@
+--- !Passed
+Pass:            reflow-infer-unroll
+Name:            ImplicitUnroll
+DebugLoc:        { File: mmult.cpp, Line: 86, Column: 5 }
+Function:        tile_process
+Args:            
+  - String:          'Loop '''
+  - LoopName:        pe_array
+  - String:          ''' is marked as complete unroll implied by the pipeline pragma'
+...
+--- !Passed
+Pass:            reflow-infer-unroll
+Name:            ImplicitUnroll
+DebugLoc:        { File: mmult.cpp, Line: 88, Column: 19 }
+Function:        tile_process
+Args:            
+  - String:          'Loop '''
+  - LoopName:        VITIS_LOOP_88_1
+  - String:          ''' is marked as complete unroll implied by the pipeline pragma'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaPartiallyUnroll
+DebugLoc:        { File: mmult.cpp, Line: 113, Column: 0 }
+Function:        mmult
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        VITIS_LOOP_167_4
+  - String:          ''' ('
+  - LoopLoc:         'mmult.cpp:167:23'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          mmult
+  - String:          ''' partially '
+  - String:          ''
+  - String:          'with a factor of '
+  - Factor:          '8'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: mmult.cpp, Line: 72, Column: 0 }
+Function:        tile_process
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        pe_array
+  - String:          ''' ('
+  - LoopLoc:         'mmult.cpp:86:5'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          tile_process
+  - String:          ''' completely with a factor of '
+  - Factor:          '32'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: mmult.cpp, Line: 72, Column: 0 }
+Function:        tile_process
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        VITIS_LOOP_88_1
+  - String:          ''' ('
+  - LoopLoc:         'mmult.cpp:88:19'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          tile_process
+  - String:          ''' completely with a factor of '
+  - Factor:          '32'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: mmult.cpp, Line: 72, Column: 0 }
+Function:        tile_process
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        VITIS_LOOP_88_1
+  - String:          ''' ('
+  - LoopLoc:         'mmult.cpp:88:19'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          tile_process
+  - String:          ''' completely with a factor of '
+  - Factor:          '32'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: mmult.cpp, Line: 72, Column: 0 }
+Function:        tile_process
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        VITIS_LOOP_88_1
+  - String:          ''' ('
+  - LoopLoc:         'mmult.cpp:88:19'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          tile_process
+  - String:          ''' completely with a factor of '
+  - Factor:          '32'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: mmult.cpp, Line: 72, Column: 0 }
+Function:        tile_process
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        VITIS_LOOP_88_1
+  - String:          ''' ('
+  - LoopLoc:         'mmult.cpp:88:19'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          tile_process
+  - String:          ''' completely with a factor of '
+  - Factor:          '32'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: mmult.cpp, Line: 72, Column: 0 }
+Function:        tile_process
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        VITIS_LOOP_88_1
+  - String:          ''' ('
+  - LoopLoc:         'mmult.cpp:88:19'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          tile_process
+  - String:          ''' completely with a factor of '
+  - Factor:          '32'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: mmult.cpp, Line: 72, Column: 0 }
+Function:        tile_process
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        VITIS_LOOP_88_1
+  - String:          ''' ('
+  - LoopLoc:         'mmult.cpp:88:19'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          tile_process
+  - String:          ''' completely with a factor of '
+  - Factor:          '32'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: mmult.cpp, Line: 72, Column: 0 }
+Function:        tile_process
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        VITIS_LOOP_88_1
+  - String:          ''' ('
+  - LoopLoc:         'mmult.cpp:88:19'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          tile_process
+  - String:          ''' completely with a factor of '
+  - Factor:          '32'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: mmult.cpp, Line: 72, Column: 0 }
+Function:        tile_process
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        VITIS_LOOP_88_1
+  - String:          ''' ('
+  - LoopLoc:         'mmult.cpp:88:19'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          tile_process
+  - String:          ''' completely with a factor of '
+  - Factor:          '32'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: mmult.cpp, Line: 72, Column: 0 }
+Function:        tile_process
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        VITIS_LOOP_88_1
+  - String:          ''' ('
+  - LoopLoc:         'mmult.cpp:88:19'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          tile_process
+  - String:          ''' completely with a factor of '
+  - Factor:          '32'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: mmult.cpp, Line: 72, Column: 0 }
+Function:        tile_process
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        VITIS_LOOP_88_1
+  - String:          ''' ('
+  - LoopLoc:         'mmult.cpp:88:19'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          tile_process
+  - String:          ''' completely with a factor of '
+  - Factor:          '32'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: mmult.cpp, Line: 72, Column: 0 }
+Function:        tile_process
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        VITIS_LOOP_88_1
+  - String:          ''' ('
+  - LoopLoc:         'mmult.cpp:88:19'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          tile_process
+  - String:          ''' completely with a factor of '
+  - Factor:          '32'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: mmult.cpp, Line: 72, Column: 0 }
+Function:        tile_process
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        VITIS_LOOP_88_1
+  - String:          ''' ('
+  - LoopLoc:         'mmult.cpp:88:19'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          tile_process
+  - String:          ''' completely with a factor of '
+  - Factor:          '32'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: mmult.cpp, Line: 72, Column: 0 }
+Function:        tile_process
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        VITIS_LOOP_88_1
+  - String:          ''' ('
+  - LoopLoc:         'mmult.cpp:88:19'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          tile_process
+  - String:          ''' completely with a factor of '
+  - Factor:          '32'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: mmult.cpp, Line: 72, Column: 0 }
+Function:        tile_process
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        VITIS_LOOP_88_1
+  - String:          ''' ('
+  - LoopLoc:         'mmult.cpp:88:19'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          tile_process
+  - String:          ''' completely with a factor of '
+  - Factor:          '32'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: mmult.cpp, Line: 72, Column: 0 }
+Function:        tile_process
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        VITIS_LOOP_88_1
+  - String:          ''' ('
+  - LoopLoc:         'mmult.cpp:88:19'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          tile_process
+  - String:          ''' completely with a factor of '
+  - Factor:          '32'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: mmult.cpp, Line: 72, Column: 0 }
+Function:        tile_process
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        VITIS_LOOP_88_1
+  - String:          ''' ('
+  - LoopLoc:         'mmult.cpp:88:19'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          tile_process
+  - String:          ''' completely with a factor of '
+  - Factor:          '32'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: mmult.cpp, Line: 72, Column: 0 }
+Function:        tile_process
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        VITIS_LOOP_88_1
+  - String:          ''' ('
+  - LoopLoc:         'mmult.cpp:88:19'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          tile_process
+  - String:          ''' completely with a factor of '
+  - Factor:          '32'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: mmult.cpp, Line: 72, Column: 0 }
+Function:        tile_process
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        VITIS_LOOP_88_1
+  - String:          ''' ('
+  - LoopLoc:         'mmult.cpp:88:19'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          tile_process
+  - String:          ''' completely with a factor of '
+  - Factor:          '32'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: mmult.cpp, Line: 72, Column: 0 }
+Function:        tile_process
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        VITIS_LOOP_88_1
+  - String:          ''' ('
+  - LoopLoc:         'mmult.cpp:88:19'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          tile_process
+  - String:          ''' completely with a factor of '
+  - Factor:          '32'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: mmult.cpp, Line: 72, Column: 0 }
+Function:        tile_process
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        VITIS_LOOP_88_1
+  - String:          ''' ('
+  - LoopLoc:         'mmult.cpp:88:19'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          tile_process
+  - String:          ''' completely with a factor of '
+  - Factor:          '32'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: mmult.cpp, Line: 72, Column: 0 }
+Function:        tile_process
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        VITIS_LOOP_88_1
+  - String:          ''' ('
+  - LoopLoc:         'mmult.cpp:88:19'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          tile_process
+  - String:          ''' completely with a factor of '
+  - Factor:          '32'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: mmult.cpp, Line: 72, Column: 0 }
+Function:        tile_process
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        VITIS_LOOP_88_1
+  - String:          ''' ('
+  - LoopLoc:         'mmult.cpp:88:19'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          tile_process
+  - String:          ''' completely with a factor of '
+  - Factor:          '32'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: mmult.cpp, Line: 72, Column: 0 }
+Function:        tile_process
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        VITIS_LOOP_88_1
+  - String:          ''' ('
+  - LoopLoc:         'mmult.cpp:88:19'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          tile_process
+  - String:          ''' completely with a factor of '
+  - Factor:          '32'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: mmult.cpp, Line: 72, Column: 0 }
+Function:        tile_process
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        VITIS_LOOP_88_1
+  - String:          ''' ('
+  - LoopLoc:         'mmult.cpp:88:19'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          tile_process
+  - String:          ''' completely with a factor of '
+  - Factor:          '32'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: mmult.cpp, Line: 72, Column: 0 }
+Function:        tile_process
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        VITIS_LOOP_88_1
+  - String:          ''' ('
+  - LoopLoc:         'mmult.cpp:88:19'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          tile_process
+  - String:          ''' completely with a factor of '
+  - Factor:          '32'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: mmult.cpp, Line: 72, Column: 0 }
+Function:        tile_process
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        VITIS_LOOP_88_1
+  - String:          ''' ('
+  - LoopLoc:         'mmult.cpp:88:19'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          tile_process
+  - String:          ''' completely with a factor of '
+  - Factor:          '32'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: mmult.cpp, Line: 72, Column: 0 }
+Function:        tile_process
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        VITIS_LOOP_88_1
+  - String:          ''' ('
+  - LoopLoc:         'mmult.cpp:88:19'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          tile_process
+  - String:          ''' completely with a factor of '
+  - Factor:          '32'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: mmult.cpp, Line: 72, Column: 0 }
+Function:        tile_process
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        VITIS_LOOP_88_1
+  - String:          ''' ('
+  - LoopLoc:         'mmult.cpp:88:19'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          tile_process
+  - String:          ''' completely with a factor of '
+  - Factor:          '32'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: mmult.cpp, Line: 72, Column: 0 }
+Function:        tile_process
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        VITIS_LOOP_88_1
+  - String:          ''' ('
+  - LoopLoc:         'mmult.cpp:88:19'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          tile_process
+  - String:          ''' completely with a factor of '
+  - Factor:          '32'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: mmult.cpp, Line: 72, Column: 0 }
+Function:        tile_process
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        VITIS_LOOP_88_1
+  - String:          ''' ('
+  - LoopLoc:         'mmult.cpp:88:19'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          tile_process
+  - String:          ''' completely with a factor of '
+  - Factor:          '32'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: mmult.cpp, Line: 72, Column: 0 }
+Function:        tile_process
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        VITIS_LOOP_88_1
+  - String:          ''' ('
+  - LoopLoc:         'mmult.cpp:88:19'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          tile_process
+  - String:          ''' completely with a factor of '
+  - Factor:          '32'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: mmult.cpp, Line: 72, Column: 0 }
+Function:        tile_process
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        VITIS_LOOP_88_1
+  - String:          ''' ('
+  - LoopLoc:         'mmult.cpp:88:19'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          tile_process
+  - String:          ''' completely with a factor of '
+  - Factor:          '32'
+...
+--- !Passed
+Pass:            reflow-array-partition
+Name:            ArrayXform
+DebugLoc:        { File: mmult.cpp, Line: 130, Column: 12 }
+Function:        mmult
+Args:            
+  - String:          'Applying '
+  - String:          array_partition
+  - String:          ' to '''
+  - UOName:          localA
+  - String:          ''':'
+  - String:          ' '
+  - Mode:            Cyclic
+  - String:          ' partitioning'
+  - String:          ' with factor '
+  - Factor:          '8'
+  - String:          ' on dimension '
+  - Dim:             '1'
+  - String:          .
+...
+--- !Passed
+Pass:            reflow-array-partition
+Name:            ArrayXform
+DebugLoc:        { File: mmult.cpp, Line: 134, Column: 12 }
+Function:        mmult
+Args:            
+  - String:          'Applying '
+  - String:          array_partition
+  - String:          ' to '''
+  - UOName:          localB
+  - String:          ''':'
+  - String:          ' '
+  - Mode:            Cyclic
+  - String:          ' partitioning'
+  - String:          ' with factor '
+  - Factor:          '8'
+  - String:          ' on dimension '
+  - Dim:             '2'
+  - String:          .
+...
+--- !Passed
+Pass:            reflow-array-partition
+Name:            ArrayXform
+DebugLoc:        { File: mmult.cpp, Line: 138, Column: 16 }
+Function:        mmult
+Args:            
+  - String:          'Applying '
+  - String:          array_partition
+  - String:          ' to '''
+  - UOName:          localC
+  - String:          ''':'
+  - String:          ' '
+  - Mode:            Cyclic
+  - String:          ' partitioning'
+  - String:          ' with factor '
+  - Factor:          '8'
+  - String:          ' on dimension '
+  - Dim:             '1'
+  - String:          .
+  - String:          ' '
+  - Mode:            Cyclic
+  - String:          ' partitioning'
+  - String:          ' with factor '
+  - Factor:          '8'
+  - String:          ' on dimension '
+  - Dim:             '2'
+  - String:          .
+...
+--- !Passed
+Pass:            reflow-burst-inference
+Name:            BurstInferred
+DebugLoc:        { File: mmult.cpp, Line: 145, Column: 3 }
+Function:        mmult
+Args:            
+  - String:          'Sequential '
+  - Direction:       read
+  - String:          ' of '
+  - Length:          variable
+  - String:          ' length'
+  - String:          ' has been inferred'
+  - String:          ' _XLX_SEP_ '
+  - AccessID:        a302seq
+  - ArrayName:       a
+  - String:          ' '
+  - BundleName:      gmem0
+  - String:          ' '
+  - LoopName:        readA
+  - String:          ' '
+  - LoopLoc:         'mmult.cpp:145:3'
+  - String:          ' '
+  - Function:        mmult
+    DebugLoc:        { File: mmult.cpp, Line: 113, Column: 0 }
+  - String:          ' '
+  - String:          ' _XLX_SEP_ '
+  - OrigAccess:      load
+    DebugLoc:        { File: mmult.cpp, Line: 150, Column: 15 }
+  - OrigDirection:   read
+  - OrigID:          for.inc.load.22
+...
+--- !Passed
+Pass:            reflow-burst-inference
+Name:            BurstInferred
+DebugLoc:        { File: mmult.cpp, Line: 156, Column: 3 }
+Function:        mmult
+Args:            
+  - String:          'Sequential '
+  - Direction:       read
+  - String:          ' of '
+  - Length:          variable
+  - String:          ' length'
+  - String:          ' has been inferred'
+  - String:          ' _XLX_SEP_ '
+  - AccessID:        b303seq
+  - ArrayName:       b
+  - String:          ' '
+  - BundleName:      gmem1
+  - String:          ' '
+  - LoopName:        readB
+  - String:          ' '
+  - LoopLoc:         'mmult.cpp:156:3'
+  - String:          ' '
+  - Function:        mmult
+    DebugLoc:        { File: mmult.cpp, Line: 113, Column: 0 }
+  - String:          ' '
+  - String:          ' _XLX_SEP_ '
+  - OrigAccess:      load
+    DebugLoc:        { File: mmult.cpp, Line: 161, Column: 15 }
+  - OrigDirection:   read
+  - OrigID:          for.inc30.load.24
+...
+--- !Passed
+Pass:            reflow-burst-inference
+Name:            BurstInferred
+DebugLoc:        { File: mmult.cpp, Line: 185, Column: 3 }
+Function:        mmult
+Args:            
+  - String:          'Sequential '
+  - Direction:       write
+  - String:          ' of '
+  - Length:          variable
+  - String:          ' length'
+  - String:          ' has been inferred'
+  - String:          ' _XLX_SEP_ '
+  - AccessID:        c304seq
+  - ArrayName:       c
+  - String:          ' '
+  - BundleName:      gmem2
+  - String:          ' '
+  - LoopName:        writeC
+  - String:          ' '
+  - LoopLoc:         'mmult.cpp:185:3'
+  - String:          ' '
+  - Function:        mmult
+    DebugLoc:        { File: mmult.cpp, Line: 113, Column: 0 }
+  - String:          ' '
+  - String:          ' _XLX_SEP_ '
+  - OrigAccess:      store
+    DebugLoc:        { File: mmult.cpp, Line: 190, Column: 19 }
+  - OrigDirection:   write
+  - OrigID:          for.inc86.store.147
+...
+--- !Missed
+Pass:            reflow-burst-widen
+Name:            GreaterOrEqualThreshold
+DebugLoc:        { File: mmult.cpp, Line: 185, Column: 3 }
+Function:        mmult
+Args:            
+  - String:          'Could not widen since type '
+  - Type:            i16
+  - String:          ' size is greater than or equal to the max_widen_bitwidth threshold of '
+  - Threshold:       '0'
+  - String:          ' _XLX_SEP_ '
+  - OrigAccess:      call
+    DebugLoc:        { File: mmult.cpp, Line: 185, Column: 3 }
+  - OrigDirection:   write
+  - OrigID:          c304seq
+  - ArrayName:       c
+  - String:          ' '
+  - BundleName:      gmem2
+  - String:          ' '
+  - LoopName:        VITIS_LOOP_187_5
+  - String:          ' '
+  - LoopLoc:         'mmult.cpp:187:20'
+  - String:          ' '
+  - Function:        mmult
+    DebugLoc:        { File: mmult.cpp, Line: 113, Column: 0 }
+  - String:          ' '
+...
+--- !Missed
+Pass:            reflow-burst-widen
+Name:            GreaterOrEqualThreshold
+DebugLoc:        { File: mmult.cpp, Line: 156, Column: 3 }
+Function:        mmult
+Args:            
+  - String:          'Could not widen since type '
+  - Type:            i8
+  - String:          ' size is greater than or equal to the max_widen_bitwidth threshold of '
+  - Threshold:       '0'
+  - String:          ' _XLX_SEP_ '
+  - OrigAccess:      call
+    DebugLoc:        { File: mmult.cpp, Line: 156, Column: 3 }
+  - OrigDirection:   read
+  - OrigID:          b303seq
+  - ArrayName:       b
+  - String:          ' '
+  - BundleName:      gmem1
+  - String:          ' '
+  - LoopName:        VITIS_LOOP_158_2
+  - String:          ' '
+  - LoopLoc:         'mmult.cpp:158:20'
+  - String:          ' '
+  - Function:        mmult
+    DebugLoc:        { File: mmult.cpp, Line: 113, Column: 0 }
+  - String:          ' '
+...
+--- !Missed
+Pass:            reflow-burst-widen
+Name:            GreaterOrEqualThreshold
+DebugLoc:        { File: mmult.cpp, Line: 145, Column: 3 }
+Function:        mmult
+Args:            
+  - String:          'Could not widen since type '
+  - Type:            i8
+  - String:          ' size is greater than or equal to the max_widen_bitwidth threshold of '
+  - Threshold:       '0'
+  - String:          ' _XLX_SEP_ '
+  - OrigAccess:      call
+    DebugLoc:        { File: mmult.cpp, Line: 145, Column: 3 }
+  - OrigDirection:   read
+  - OrigID:          a302seq
+  - ArrayName:       a
+  - String:          ' '
+  - BundleName:      gmem0
+  - String:          ' '
+  - LoopName:        VITIS_LOOP_147_1
+  - String:          ' '
+  - LoopLoc:         'mmult.cpp:147:20'
+  - String:          ' '
+  - Function:        mmult
+    DebugLoc:        { File: mmult.cpp, Line: 113, Column: 0 }
+  - String:          ' '
+...
+--- !HLSReportInfo
+Pass:            auto-loop-pipeline
+Name:            AutoLoopPipeline
+Args:            
+  - String:          'automatically set the pipeline for Loop< '
+  - LoopName:        VITIS_LOOP_167_4
+  - String:          '> at '
+  - LoopLoc:         'mmult.cpp:167:23'
+  - String:          ' '
+...
+--- !Passed
+Pass:            reflow-burst-summary
+Name:            BurstInferredVerboseSummary
+DebugLoc:        { File: mmult.cpp, Line: 145, Column: 3 }
+Function:        mmult
+Args:            
+  - String:          'Multiple burst '
+  - Direction:       reads
+  - String:          ' of '
+  - Length:          variable
+  - String:          ' length and bit width '
+  - Width:           '8'
+  - String:          ' has been inferred.'
+  - String:          ' These burst requests might be further partitioned into multiple requests during RTL generation, based on max_read_burst_length or max_write_burst_length settings.'
+  - String:          ' _XLX_SEP_ '
+  - AccessID:        seq
+  - ArrayName:       ''
+  - String:          ' '
+  - BundleName:      gmem0
+  - String:          ' '
+  - LoopName:        readA
+  - String:          ' '
+  - LoopLoc:         'mmult.cpp:145:3'
+  - String:          ' '
+  - Function:        mmult
+    DebugLoc:        { File: mmult.cpp, Line: 113, Column: 0 }
+  - String:          ' '
+...
+--- !Passed
+Pass:            reflow-burst-summary
+Name:            BurstInferredSummary
+DebugLoc:        { File: mmult.cpp, Line: 145, Column: 3 }
+Function:        mmult
+Args:            
+  - String:          'Multiple burst '
+  - Direction:       reads
+  - String:          ' of '
+  - Length:          variable
+  - String:          ' length and bit width '
+  - Width:           '8'
+  - String:          ' in loop '''
+  - LoopName:        readA
+  - String:          '''('
+  - LoopLoc:         'mmult.cpp:145:3'
+  - String:          ')'
+  - String:          ' has been inferred on bundle '''
+  - BundleName:      gmem0
+  - String:          '''.'
+  - String:          ' These burst requests might be further partitioned into multiple requests during RTL generation, based on max_read_burst_length or max_write_burst_length settings.'
+...
+--- !Passed
+Pass:            reflow-burst-summary
+Name:            BurstInferredVerboseSummary
+DebugLoc:        { File: mmult.cpp, Line: 156, Column: 3 }
+Function:        mmult
+Args:            
+  - String:          'Multiple burst '
+  - Direction:       reads
+  - String:          ' of '
+  - Length:          variable
+  - String:          ' length and bit width '
+  - Width:           '8'
+  - String:          ' has been inferred.'
+  - String:          ' These burst requests might be further partitioned into multiple requests during RTL generation, based on max_read_burst_length or max_write_burst_length settings.'
+  - String:          ' _XLX_SEP_ '
+  - AccessID:        seq1
+  - ArrayName:       ''
+  - String:          ' '
+  - BundleName:      gmem1
+  - String:          ' '
+  - LoopName:        readB
+  - String:          ' '
+  - LoopLoc:         'mmult.cpp:156:3'
+  - String:          ' '
+  - Function:        mmult
+    DebugLoc:        { File: mmult.cpp, Line: 113, Column: 0 }
+  - String:          ' '
+...
+--- !Passed
+Pass:            reflow-burst-summary
+Name:            BurstInferredSummary
+DebugLoc:        { File: mmult.cpp, Line: 156, Column: 3 }
+Function:        mmult
+Args:            
+  - String:          'Multiple burst '
+  - Direction:       reads
+  - String:          ' of '
+  - Length:          variable
+  - String:          ' length and bit width '
+  - Width:           '8'
+  - String:          ' in loop '''
+  - LoopName:        readB
+  - String:          '''('
+  - LoopLoc:         'mmult.cpp:156:3'
+  - String:          ')'
+  - String:          ' has been inferred on bundle '''
+  - BundleName:      gmem1
+  - String:          '''.'
+  - String:          ' These burst requests might be further partitioned into multiple requests during RTL generation, based on max_read_burst_length or max_write_burst_length settings.'
+...
+--- !Passed
+Pass:            reflow-burst-summary
+Name:            BurstInferredVerboseSummary
+DebugLoc:        { File: mmult.cpp, Line: 185, Column: 3 }
+Function:        mmult
+Args:            
+  - String:          'Multiple burst '
+  - Direction:       writes
+  - String:          ' of '
+  - Length:          variable
+  - String:          ' length and bit width '
+  - Width:           '16'
+  - String:          ' has been inferred.'
+  - String:          ' These burst requests might be further partitioned into multiple requests during RTL generation, based on max_read_burst_length or max_write_burst_length settings.'
+  - String:          ' _XLX_SEP_ '
+  - AccessID:        seq2
+  - ArrayName:       ''
+  - String:          ' '
+  - BundleName:      gmem2
+  - String:          ' '
+  - Function:        mmult
+    DebugLoc:        { File: mmult.cpp, Line: 113, Column: 0 }
+  - String:          ' '
+...
+--- !Passed
+Pass:            reflow-burst-summary
+Name:            BurstInferredSummary
+DebugLoc:        { File: mmult.cpp, Line: 185, Column: 3 }
+Function:        mmult
+Args:            
+  - String:          'Multiple burst '
+  - Direction:       writes
+  - String:          ' of '
+  - Length:          variable
+  - String:          ' length and bit width '
+  - Width:           '16'
+  - String:          ' has been inferred on bundle '''
+  - BundleName:      gmem2
+  - String:          '''.'
+  - String:          ' These burst requests might be further partitioned into multiple requests during RTL generation, based on max_read_burst_length or max_write_burst_length settings.'
+...
