@@ -70,20 +70,10 @@ void tile_process(
     int b_col, // Matrix B Col Size
     int b_row  // Matrix B Row Size
 ) {
-  // PE-local accumulator array (full matrix size with PE-level partitioning)
-  ap_int<2 * DATA_BIT_SIZE> acc[MAX_SIZE][MAX_SIZE];
-#pragma HLS ARRAY_PARTITION variable = acc dim = 1 factor = PE_ROWS cyclic
-#pragma HLS ARRAY_PARTITION variable = acc dim = 2 factor = PE_COLS cyclic
-
-// Initialize accumulator from prior tile results
-// This enables accumulation across multiple tile iterations
-init_acc:
-  for (int i = 0; i < MAX_SIZE; i++) {
-    for (int j = 0; j < MAX_SIZE; j++) {
-#pragma HLS UNROLL factor = PE_ROWS
-      acc[i][j] = c_row_major[i][j];
-    }
-  }
+  // Fix P4: eliminated acc buffer — accumulate directly into c_row_major,
+  // removing init_acc and drain_acc copy loops entirely (~2048 cycles saved)
+#pragma HLS ARRAY_PARTITION variable = c_row_major dim = 1 factor = PE_ROWS cyclic
+#pragma HLS ARRAY_PARTITION variable = c_row_major dim = 2 factor = PE_COLS cyclic
 
   ap_int<DATA_BIT_SIZE> boundary_value = 0;
 
@@ -92,14 +82,11 @@ compute_pipeline:
 #pragma HLS LOOP_TRIPCOUNT min = c_size max = c_size
 #pragma HLS PIPELINE II = 1
 
-  // MAC computation
-  // Process all output positions (i,j) for this k-iteration
   pe_array:
     for (int i = 0; i < MAX_SIZE; i++) {
 #pragma HLS UNROLL factor = PE_ROWS
       for (int j = 0; j < MAX_SIZE; j++) {
 #pragma HLS UNROLL factor = PE_COLS
-        // Fetch operands from matrix A and B
         ap_int<DATA_BIT_SIZE> a_forwarded = boundary_value;
         if (i < a_row && k < a_col) {
           a_forwarded = a_row_major[i][k];
@@ -110,18 +97,9 @@ compute_pipeline:
           b_forwarded = b_row_major[k][j];
         }
 
-        ap_int<2 *DATA_BIT_SIZE> product = a_forwarded * b_forwarded;
-        acc[i][j] = acc[i][j] + product;
+        ap_int<2 * DATA_BIT_SIZE> product = a_forwarded * b_forwarded;
+        c_row_major[i][j] = c_row_major[i][j] + product;
       }
-    }
-  }
-
-// Drain results: Write accumulated values to output
-drain_acc:
-  for (int i = 0; i < MAX_SIZE; i++) {
-    for (int j = 0; j < MAX_SIZE; j++) {
-#pragma HLS UNROLL factor = PE_ROWS
-      c_row_major[i][j] = acc[i][j];
     }
   }
 }
@@ -161,26 +139,27 @@ void mmult(ap_int<DATA_BIT_SIZE> a[MAX_SIZE * MAX_SIZE], // Read-Only Matrix A
 #pragma HLS ARRAY_PARTITION variable = localC dim = 1 factor = PE_ROWS cyclic
 #pragma HLS ARRAY_PARTITION variable = localC dim = 2 factor = PE_COLS cyclic
 
-// Read Input Matrix A from global memory
+// Fix P1: readA restructured as nested loops to enable PIPELINE II=1
+// (branch on j==a_col in the flat loop prevented pipelining)
 readA:
-  for (int loc = 0, i = 0, j = 0; loc < a_row * a_col; loc++, j++) {
-#pragma HLS LOOP_TRIPCOUNT min = c_size *c_size max = c_size * c_size
-    if (j == a_col) {
-      i++;
-      j = 0;
+  for (int i = 0; i < a_row; i++) {
+#pragma HLS LOOP_TRIPCOUNT min = c_size max = c_size
+    for (int j = 0; j < a_col; j++) {
+#pragma HLS LOOP_TRIPCOUNT min = c_size max = c_size
+#pragma HLS PIPELINE II = 1
+      localA[i][j] = a[i * a_col + j];
     }
-    localA[i][j] = a[loc];
   }
 
-// Read Input Matrix B from global memory
+// Fix P1: readB restructured as nested loops to enable PIPELINE II=1
 readB:
-  for (int loc = 0, i = 0, j = 0; loc < b_row * b_col; loc++, j++) {
-#pragma HLS LOOP_TRIPCOUNT min = c_size *c_size max = c_size * c_size
-    if (j == b_col) {
-      i++;
-      j = 0;
+  for (int i = 0; i < b_row; i++) {
+#pragma HLS LOOP_TRIPCOUNT min = c_size max = c_size
+    for (int j = 0; j < b_col; j++) {
+#pragma HLS LOOP_TRIPCOUNT min = c_size max = c_size
+#pragma HLS PIPELINE II = 1
+      localB[i][j] = b[i * b_col + j];
     }
-    localB[i][j] = b[loc];
   }
 
   // Initialize output matrix to 0
@@ -191,27 +170,25 @@ readB:
     }
   }
 
-  // Tile processing loop: apply PE array across TILE_FACTOR tiles
-  // Each tile processes TILE_SIZE k-iterations to fully utilize the 8x8 PE
-  // array
+  // Fix P3: removed cosmetic UNROLL — each tile_process depends on the previous
+  // localC result so HLS forces sequential execution regardless
 tile_processing:
   for (int q = 0; q < TILE_FACTOR; q++) {
-#pragma HLS UNROLL factor = TILE_FACTOR
     int start_k = q * TILE_SIZE;
     int finish_k = (q + 1) * TILE_SIZE;
     tile_process(localA, localB, localC, start_k, finish_k, a_row, a_col, b_col,
                  b_row);
   }
 
-// Write Output Matrix C to global memory
+// Fix P1: writeC restructured as nested loops to enable PIPELINE II=1
 writeC:
-  for (int loc = 0, i = 0, j = 0; loc < a_row * c_col; loc++, j++) {
-#pragma HLS LOOP_TRIPCOUNT min = c_size *c_size max = c_size * c_size
-    if (j == c_col) {
-      i++;
-      j = 0;
+  for (int i = 0; i < a_row; i++) {
+#pragma HLS LOOP_TRIPCOUNT min = c_size max = c_size
+    for (int j = 0; j < c_col; j++) {
+#pragma HLS LOOP_TRIPCOUNT min = c_size max = c_size
+#pragma HLS PIPELINE II = 1
+      c[i * c_col + j] = localC[i][j];
     }
-    c[loc] = localC[i][j];
   }
 }
 }
