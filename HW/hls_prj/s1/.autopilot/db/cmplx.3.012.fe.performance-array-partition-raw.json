@@ -1,10 +1,10 @@
 {
   "0": {
-    "basicblocks": 55,
+    "basicblocks": 44,
     "calls": "1",
     "file": "mmult.cpp",
     "fileloc": 107,
-    "instructions": 1186,
+    "instructions": 439,
     "loads": {
       "L": 64
     },
@@ -12,21 +12,21 @@
     "stores": {
       "L": 80
     },
-    "total_instructions": 28018
+    "total_instructions": 2103
   },
   "1": {
-    "basicblocks": 4101,
+    "basicblocks": 261,
     "calls": "",
     "file": "mmult.cpp",
     "fileloc": 63,
-    "instructions": 26832,
+    "instructions": 1664,
     "loads": {
-      "L": 3072
+      "L": 192
     },
     "name": "tile_process",
     "stores": {
-      "L": 1024
+      "L": 64
     },
-    "total_instructions": 26832
+    "total_instructions": 1664
   }
 }

@@ -18,7 +18,7 @@ eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
     dir O \
     corename localB \
     op interface \
-    ports { localB_address1 { O 7 vector } localB_ce1 { O 1 bit } localB_we1 { O 1 bit } localB_d1 { O 8 vector } } \
+    ports { localB_address1 { O 3 vector } localB_ce1 { O 1 bit } localB_we1 { O 1 bit } localB_d1 { O 8 vector } } \
 } "
 } else {
 puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'localB'"
@@ -37,7 +37,7 @@ eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
     dir O \
     corename localB_1 \
     op interface \
-    ports { localB_1_address1 { O 7 vector } localB_1_ce1 { O 1 bit } localB_1_we1 { O 1 bit } localB_1_d1 { O 8 vector } } \
+    ports { localB_1_address1 { O 3 vector } localB_1_ce1 { O 1 bit } localB_1_we1 { O 1 bit } localB_1_d1 { O 8 vector } } \
 } "
 } else {
 puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'localB_1'"
@@ -56,7 +56,7 @@ eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
     dir O \
     corename localB_2 \
     op interface \
-    ports { localB_2_address1 { O 7 vector } localB_2_ce1 { O 1 bit } localB_2_we1 { O 1 bit } localB_2_d1 { O 8 vector } } \
+    ports { localB_2_address1 { O 3 vector } localB_2_ce1 { O 1 bit } localB_2_we1 { O 1 bit } localB_2_d1 { O 8 vector } } \
 } "
 } else {
 puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'localB_2'"
@@ -75,7 +75,7 @@ eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
     dir O \
     corename localB_3 \
     op interface \
-    ports { localB_3_address1 { O 7 vector } localB_3_ce1 { O 1 bit } localB_3_we1 { O 1 bit } localB_3_d1 { O 8 vector } } \
+    ports { localB_3_address1 { O 3 vector } localB_3_ce1 { O 1 bit } localB_3_we1 { O 1 bit } localB_3_d1 { O 8 vector } } \
 } "
 } else {
 puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'localB_3'"
@@ -94,7 +94,7 @@ eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
     dir O \
     corename localB_4 \
     op interface \
-    ports { localB_4_address1 { O 7 vector } localB_4_ce1 { O 1 bit } localB_4_we1 { O 1 bit } localB_4_d1 { O 8 vector } } \
+    ports { localB_4_address1 { O 3 vector } localB_4_ce1 { O 1 bit } localB_4_we1 { O 1 bit } localB_4_d1 { O 8 vector } } \
 } "
 } else {
 puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'localB_4'"
@@ -113,7 +113,7 @@ eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
     dir O \
     corename localB_5 \
     op interface \
-    ports { localB_5_address1 { O 7 vector } localB_5_ce1 { O 1 bit } localB_5_we1 { O 1 bit } localB_5_d1 { O 8 vector } } \
+    ports { localB_5_address1 { O 3 vector } localB_5_ce1 { O 1 bit } localB_5_we1 { O 1 bit } localB_5_d1 { O 8 vector } } \
 } "
 } else {
 puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'localB_5'"
@@ -132,7 +132,7 @@ eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
     dir O \
     corename localB_6 \
     op interface \
-    ports { localB_6_address1 { O 7 vector } localB_6_ce1 { O 1 bit } localB_6_we1 { O 1 bit } localB_6_d1 { O 8 vector } } \
+    ports { localB_6_address1 { O 3 vector } localB_6_ce1 { O 1 bit } localB_6_we1 { O 1 bit } localB_6_d1 { O 8 vector } } \
 } "
 } else {
 puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'localB_6'"
@@ -151,7 +151,7 @@ eval "::AESL_LIB_XILADAPTER::xil_bram_gen { \
     dir O \
     corename localB_7 \
     op interface \
-    ports { localB_7_address1 { O 7 vector } localB_7_ce1 { O 1 bit } localB_7_we1 { O 1 bit } localB_7_d1 { O 8 vector } } \
+    ports { localB_7_address1 { O 3 vector } localB_7_ce1 { O 1 bit } localB_7_we1 { O 1 bit } localB_7_d1 { O 8 vector } } \
 } "
 } else {
 puts "@W \[IMPL-110\] Cannot find bus interface model in the library. Ignored generation of bus interface for 'localB_7'"

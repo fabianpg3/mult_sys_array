@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'mmult'" level="0">
-<item name = "Date">Fri Jun  5 01:38:51 2026
+<item name = "Date">Sat Jun  6 17:47:14 2026
 </item>
 <item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
 <item name = "Project">hls_prj</item>
@@ -24,23 +24,22 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="8">, min, max, min, max, min, max, Type</keys>
-<column name="">2091, 2943, 6.900 us, 9.712 us, 2092, 2944, no</column>
+<column name="">170, 226, 0.561 us, 0.746 us, 171, 227, no</column>
 </table>
 </item>
 <item name = "Detail">
 <section name = "" level="1">
 <item name = "Instance"><table name="" hasTotal="0">
 <keys size="9">Instance, Module, min, max, min, max, min, max, Type</keys>
-<column name="grp_mmult_Pipeline_readA_VITIS_LOOP_147_1_fu_497">mmult_Pipeline_readA_VITIS_LOOP_147_1, 1027, 1027, 3.389 us, 3.389 us, 1027, 1027, no</column>
-<column name="grp_mmult_Pipeline_readB_VITIS_LOOP_158_2_fu_514">mmult_Pipeline_readB_VITIS_LOOP_158_2, 1027, 1027, 3.389 us, 3.389 us, 1027, 1027, no</column>
-<column name="grp_mmult_Pipeline_VITIS_LOOP_166_3_VITIS_LOOP_167_4_fu_531">mmult_Pipeline_VITIS_LOOP_166_3_VITIS_LOOP_167_4, 130, 130, 0.429 us, 0.429 us, 130, 130, no</column>
-<column name="grp_tile_process_fu_599">tile_process, 1, 214, 3.300 ns, 0.706 us, 1, 214, no</column>
-<column name="grp_mmult_Pipeline_writeC_VITIS_LOOP_187_5_fu_688">mmult_Pipeline_writeC_VITIS_LOOP_187_5, 1028, 1028, 3.392 us, 3.392 us, 1028, 1028, no</column>
+<column name="grp_mmult_Pipeline_readA_VITIS_LOOP_147_1_fu_495">mmult_Pipeline_readA_VITIS_LOOP_147_1, 67, 67, 0.221 us, 0.221 us, 67, 67, no</column>
+<column name="grp_mmult_Pipeline_readB_VITIS_LOOP_158_2_fu_512">mmult_Pipeline_readB_VITIS_LOOP_158_2, 67, 67, 0.221 us, 0.221 us, 67, 67, no</column>
+<column name="grp_tile_process_fu_529">tile_process, 1, 15, 3.300 ns, 49.500 ns, 1, 15, no</column>
+<column name="grp_mmult_Pipeline_writeC_VITIS_LOOP_187_5_fu_618">mmult_Pipeline_writeC_VITIS_LOOP_187_5, 67, 67, 0.221 us, 0.221 us, 67, 67, no</column>
 </table>
 </item>
 <item name = "Loop"><table name="" hasTotal="0">
 <keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
-<column name="- tile_processing">12, 864, 3 ~ 216, -, -, 4, no</column>
+<column name="- tile_processing">12, 68, 3 ~ 17, -, -, 4, no</column>
 </table>
 </item>
 </section>

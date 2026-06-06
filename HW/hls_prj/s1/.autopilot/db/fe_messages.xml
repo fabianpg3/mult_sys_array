@@ -104,23 +104,26 @@
     <msg msg_groups="PRAGMA_UNROLL" msg_id="214-291" msg_severity="INFO" msg_loc="mmult.cpp:88:19" msg_body="Loop 'VITIS_LOOP_88_1' is marked as complete unroll implied by the pipeline pragma">
         <args LoopName="VITIS_LOOP_88_1"/>
     </msg>
-    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-188" msg_severity="INFO" msg_loc="mmult.cpp:113:0" msg_body="Unrolling loop 'VITIS_LOOP_167_4' (mmult.cpp:167:23) in function 'mmult' partially with a factor of 8">
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-359" msg_severity="INFO" msg_loc="mmult.cpp:113:0" msg_body="Unrolling loop 'VITIS_LOOP_167_4' (mmult.cpp:167:23) in function 'mmult': changing partial unrolling into complete unrolling since the unrolling factor (=8) is no less than the loop trip count (=8).">
+        <args Factor="8" LoopLoc="mmult.cpp:167:23" LoopName="VITIS_LOOP_167_4" TripCount="8"/>
+    </msg>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="mmult.cpp:113:0" msg_body="Unrolling loop 'VITIS_LOOP_167_4' (mmult.cpp:167:23) in function 'mmult' completely with a factor of 8">
         <args Factor="8" LoopLoc="mmult.cpp:167:23" LoopName="VITIS_LOOP_167_4"/>
     </msg>
-    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="mmult.cpp:72:0" msg_body="Unrolling loop 'pe_array' (mmult.cpp:86:5) in function 'tile_process' completely with a factor of 32">
-        <args Factor="32" LoopLoc="mmult.cpp:86:5" LoopName="pe_array"/>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="mmult.cpp:72:0" msg_body="Unrolling loop 'pe_array' (mmult.cpp:86:5) in function 'tile_process' completely with a factor of 8">
+        <args Factor="8" LoopLoc="mmult.cpp:86:5" LoopName="pe_array"/>
     </msg>
-    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="mmult.cpp:72:0" msg_body="Unrolling loop 'VITIS_LOOP_88_1' (mmult.cpp:88:19) in function 'tile_process' completely with a factor of 32">
-        <args Factor="32" LoopLoc="mmult.cpp:88:19" LoopName="VITIS_LOOP_88_1"/>
+    <msg msg_groups="PRAGMA_UNROLL" msg_id="214-186" msg_severity="INFO" msg_loc="mmult.cpp:72:0" msg_body="Unrolling loop 'VITIS_LOOP_88_1' (mmult.cpp:88:19) in function 'tile_process' completely with a factor of 8">
+        <args Factor="8" LoopLoc="mmult.cpp:88:19" LoopName="VITIS_LOOP_88_1"/>
     </msg>
-    <msg msg_groups="PRAGMA_MISC" msg_id="214-248" msg_severity="INFO" msg_loc="mmult.cpp:130:12" msg_body="Applying array_partition to 'localA': Cyclic partitioning with factor 8 on dimension 1.">
-        <args Dim="1" Factor="8" Mode="Cyclic" UOName="localA"/>
+    <msg msg_groups="PRAGMA_MISC" msg_id="214-248" msg_severity="INFO" msg_loc="mmult.cpp:130:12" msg_body="Applying array_partition to 'localA': Complete partitioning on dimension 1.">
+        <args Dim="1" Mode="Complete" UOName="localA"/>
     </msg>
-    <msg msg_groups="PRAGMA_MISC" msg_id="214-248" msg_severity="INFO" msg_loc="mmult.cpp:134:12" msg_body="Applying array_partition to 'localB': Cyclic partitioning with factor 8 on dimension 2.">
-        <args Dim="2" Factor="8" Mode="Cyclic" UOName="localB"/>
+    <msg msg_groups="PRAGMA_MISC" msg_id="214-248" msg_severity="INFO" msg_loc="mmult.cpp:134:12" msg_body="Applying array_partition to 'localB': Complete partitioning on dimension 2.">
+        <args Dim="2" Mode="Complete" UOName="localB"/>
     </msg>
-    <msg msg_groups="PRAGMA_MISC" msg_id="214-248" msg_severity="INFO" msg_loc="mmult.cpp:138:16" msg_body="Applying array_partition to 'localC': Cyclic partitioning with factor 8 on dimension 1. Cyclic partitioning with factor 8 on dimension 2.">
-        <args Dim="islist 1 2" Factor="islist 8 8" Mode="islist Cyclic Cyclic" UOName="localC"/>
+    <msg msg_groups="PRAGMA_MISC" msg_id="214-248" msg_severity="INFO" msg_loc="mmult.cpp:138:16" msg_body="Applying array_partition to 'localC': Complete partitioning on dimension 1. Complete partitioning on dimension 2.">
+        <args Dim="islist 1 2" Mode="islist Complete Complete" UOName="localC"/>
     </msg>
 </xilinx:hls_fe_msgs>
 

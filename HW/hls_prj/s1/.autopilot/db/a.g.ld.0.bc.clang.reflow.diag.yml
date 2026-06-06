@@ -20,7 +20,7 @@ Args:
 ...
 --- !Passed
 Pass:            reflow-pragma-loop-unroll
-Name:            PragmaPartiallyUnroll
+Name:            PragmaPartially2FullyUnroll
 DebugLoc:        { File: mmult.cpp, Line: 113, Column: 0 }
 Function:        mmult
 Args:            
@@ -31,9 +31,26 @@ Args:
   - String:          ') '
   - String:          'in function '''
   - String:          mmult
-  - String:          ''' partially '
-  - String:          ''
-  - String:          'with a factor of '
+  - String:          ''': changing partial unrolling into complete unrolling since the unrolling factor (='
+  - Factor:          '8'
+  - String:          ') is no less than the loop trip count (='
+  - TripCount:       '8'
+  - String:          ').'
+...
+--- !Passed
+Pass:            reflow-pragma-loop-unroll
+Name:            PragmaFullyUnroll
+DebugLoc:        { File: mmult.cpp, Line: 113, Column: 0 }
+Function:        mmult
+Args:            
+  - String:          'Unrolling loop '''
+  - LoopName:        VITIS_LOOP_167_4
+  - String:          ''' ('
+  - LoopLoc:         'mmult.cpp:167:23'
+  - String:          ') '
+  - String:          'in function '''
+  - String:          mmult
+  - String:          ''' completely with a factor of '
   - Factor:          '8'
 ...
 --- !Passed
@@ -50,7 +67,7 @@ Args:
   - String:          'in function '''
   - String:          tile_process
   - String:          ''' completely with a factor of '
-  - Factor:          '32'
+  - Factor:          '8'
 ...
 --- !Passed
 Pass:            reflow-pragma-loop-unroll
@@ -66,7 +83,7 @@ Args:
   - String:          'in function '''
   - String:          tile_process
   - String:          ''' completely with a factor of '
-  - Factor:          '32'
+  - Factor:          '8'
 ...
 --- !Passed
 Pass:            reflow-pragma-loop-unroll
@@ -82,7 +99,7 @@ Args:
   - String:          'in function '''
   - String:          tile_process
   - String:          ''' completely with a factor of '
-  - Factor:          '32'
+  - Factor:          '8'
 ...
 --- !Passed
 Pass:            reflow-pragma-loop-unroll
@@ -98,7 +115,7 @@ Args:
   - String:          'in function '''
   - String:          tile_process
   - String:          ''' completely with a factor of '
-  - Factor:          '32'
+  - Factor:          '8'
 ...
 --- !Passed
 Pass:            reflow-pragma-loop-unroll
@@ -114,7 +131,7 @@ Args:
   - String:          'in function '''
   - String:          tile_process
   - String:          ''' completely with a factor of '
-  - Factor:          '32'
+  - Factor:          '8'
 ...
 --- !Passed
 Pass:            reflow-pragma-loop-unroll
@@ -130,7 +147,7 @@ Args:
   - String:          'in function '''
   - String:          tile_process
   - String:          ''' completely with a factor of '
-  - Factor:          '32'
+  - Factor:          '8'
 ...
 --- !Passed
 Pass:            reflow-pragma-loop-unroll
@@ -146,7 +163,7 @@ Args:
   - String:          'in function '''
   - String:          tile_process
   - String:          ''' completely with a factor of '
-  - Factor:          '32'
+  - Factor:          '8'
 ...
 --- !Passed
 Pass:            reflow-pragma-loop-unroll
@@ -162,7 +179,7 @@ Args:
   - String:          'in function '''
   - String:          tile_process
   - String:          ''' completely with a factor of '
-  - Factor:          '32'
+  - Factor:          '8'
 ...
 --- !Passed
 Pass:            reflow-pragma-loop-unroll
@@ -178,391 +195,7 @@ Args:
   - String:          'in function '''
   - String:          tile_process
   - String:          ''' completely with a factor of '
-  - Factor:          '32'
-...
---- !Passed
-Pass:            reflow-pragma-loop-unroll
-Name:            PragmaFullyUnroll
-DebugLoc:        { File: mmult.cpp, Line: 72, Column: 0 }
-Function:        tile_process
-Args:            
-  - String:          'Unrolling loop '''
-  - LoopName:        VITIS_LOOP_88_1
-  - String:          ''' ('
-  - LoopLoc:         'mmult.cpp:88:19'
-  - String:          ') '
-  - String:          'in function '''
-  - String:          tile_process
-  - String:          ''' completely with a factor of '
-  - Factor:          '32'
-...
---- !Passed
-Pass:            reflow-pragma-loop-unroll
-Name:            PragmaFullyUnroll
-DebugLoc:        { File: mmult.cpp, Line: 72, Column: 0 }
-Function:        tile_process
-Args:            
-  - String:          'Unrolling loop '''
-  - LoopName:        VITIS_LOOP_88_1
-  - String:          ''' ('
-  - LoopLoc:         'mmult.cpp:88:19'
-  - String:          ') '
-  - String:          'in function '''
-  - String:          tile_process
-  - String:          ''' completely with a factor of '
-  - Factor:          '32'
-...
---- !Passed
-Pass:            reflow-pragma-loop-unroll
-Name:            PragmaFullyUnroll
-DebugLoc:        { File: mmult.cpp, Line: 72, Column: 0 }
-Function:        tile_process
-Args:            
-  - String:          'Unrolling loop '''
-  - LoopName:        VITIS_LOOP_88_1
-  - String:          ''' ('
-  - LoopLoc:         'mmult.cpp:88:19'
-  - String:          ') '
-  - String:          'in function '''
-  - String:          tile_process
-  - String:          ''' completely with a factor of '
-  - Factor:          '32'
-...
---- !Passed
-Pass:            reflow-pragma-loop-unroll
-Name:            PragmaFullyUnroll
-DebugLoc:        { File: mmult.cpp, Line: 72, Column: 0 }
-Function:        tile_process
-Args:            
-  - String:          'Unrolling loop '''
-  - LoopName:        VITIS_LOOP_88_1
-  - String:          ''' ('
-  - LoopLoc:         'mmult.cpp:88:19'
-  - String:          ') '
-  - String:          'in function '''
-  - String:          tile_process
-  - String:          ''' completely with a factor of '
-  - Factor:          '32'
-...
---- !Passed
-Pass:            reflow-pragma-loop-unroll
-Name:            PragmaFullyUnroll
-DebugLoc:        { File: mmult.cpp, Line: 72, Column: 0 }
-Function:        tile_process
-Args:            
-  - String:          'Unrolling loop '''
-  - LoopName:        VITIS_LOOP_88_1
-  - String:          ''' ('
-  - LoopLoc:         'mmult.cpp:88:19'
-  - String:          ') '
-  - String:          'in function '''
-  - String:          tile_process
-  - String:          ''' completely with a factor of '
-  - Factor:          '32'
-...
---- !Passed
-Pass:            reflow-pragma-loop-unroll
-Name:            PragmaFullyUnroll
-DebugLoc:        { File: mmult.cpp, Line: 72, Column: 0 }
-Function:        tile_process
-Args:            
-  - String:          'Unrolling loop '''
-  - LoopName:        VITIS_LOOP_88_1
-  - String:          ''' ('
-  - LoopLoc:         'mmult.cpp:88:19'
-  - String:          ') '
-  - String:          'in function '''
-  - String:          tile_process
-  - String:          ''' completely with a factor of '
-  - Factor:          '32'
-...
---- !Passed
-Pass:            reflow-pragma-loop-unroll
-Name:            PragmaFullyUnroll
-DebugLoc:        { File: mmult.cpp, Line: 72, Column: 0 }
-Function:        tile_process
-Args:            
-  - String:          'Unrolling loop '''
-  - LoopName:        VITIS_LOOP_88_1
-  - String:          ''' ('
-  - LoopLoc:         'mmult.cpp:88:19'
-  - String:          ') '
-  - String:          'in function '''
-  - String:          tile_process
-  - String:          ''' completely with a factor of '
-  - Factor:          '32'
-...
---- !Passed
-Pass:            reflow-pragma-loop-unroll
-Name:            PragmaFullyUnroll
-DebugLoc:        { File: mmult.cpp, Line: 72, Column: 0 }
-Function:        tile_process
-Args:            
-  - String:          'Unrolling loop '''
-  - LoopName:        VITIS_LOOP_88_1
-  - String:          ''' ('
-  - LoopLoc:         'mmult.cpp:88:19'
-  - String:          ') '
-  - String:          'in function '''
-  - String:          tile_process
-  - String:          ''' completely with a factor of '
-  - Factor:          '32'
-...
---- !Passed
-Pass:            reflow-pragma-loop-unroll
-Name:            PragmaFullyUnroll
-DebugLoc:        { File: mmult.cpp, Line: 72, Column: 0 }
-Function:        tile_process
-Args:            
-  - String:          'Unrolling loop '''
-  - LoopName:        VITIS_LOOP_88_1
-  - String:          ''' ('
-  - LoopLoc:         'mmult.cpp:88:19'
-  - String:          ') '
-  - String:          'in function '''
-  - String:          tile_process
-  - String:          ''' completely with a factor of '
-  - Factor:          '32'
-...
---- !Passed
-Pass:            reflow-pragma-loop-unroll
-Name:            PragmaFullyUnroll
-DebugLoc:        { File: mmult.cpp, Line: 72, Column: 0 }
-Function:        tile_process
-Args:            
-  - String:          'Unrolling loop '''
-  - LoopName:        VITIS_LOOP_88_1
-  - String:          ''' ('
-  - LoopLoc:         'mmult.cpp:88:19'
-  - String:          ') '
-  - String:          'in function '''
-  - String:          tile_process
-  - String:          ''' completely with a factor of '
-  - Factor:          '32'
-...
---- !Passed
-Pass:            reflow-pragma-loop-unroll
-Name:            PragmaFullyUnroll
-DebugLoc:        { File: mmult.cpp, Line: 72, Column: 0 }
-Function:        tile_process
-Args:            
-  - String:          'Unrolling loop '''
-  - LoopName:        VITIS_LOOP_88_1
-  - String:          ''' ('
-  - LoopLoc:         'mmult.cpp:88:19'
-  - String:          ') '
-  - String:          'in function '''
-  - String:          tile_process
-  - String:          ''' completely with a factor of '
-  - Factor:          '32'
-...
---- !Passed
-Pass:            reflow-pragma-loop-unroll
-Name:            PragmaFullyUnroll
-DebugLoc:        { File: mmult.cpp, Line: 72, Column: 0 }
-Function:        tile_process
-Args:            
-  - String:          'Unrolling loop '''
-  - LoopName:        VITIS_LOOP_88_1
-  - String:          ''' ('
-  - LoopLoc:         'mmult.cpp:88:19'
-  - String:          ') '
-  - String:          'in function '''
-  - String:          tile_process
-  - String:          ''' completely with a factor of '
-  - Factor:          '32'
-...
---- !Passed
-Pass:            reflow-pragma-loop-unroll
-Name:            PragmaFullyUnroll
-DebugLoc:        { File: mmult.cpp, Line: 72, Column: 0 }
-Function:        tile_process
-Args:            
-  - String:          'Unrolling loop '''
-  - LoopName:        VITIS_LOOP_88_1
-  - String:          ''' ('
-  - LoopLoc:         'mmult.cpp:88:19'
-  - String:          ') '
-  - String:          'in function '''
-  - String:          tile_process
-  - String:          ''' completely with a factor of '
-  - Factor:          '32'
-...
---- !Passed
-Pass:            reflow-pragma-loop-unroll
-Name:            PragmaFullyUnroll
-DebugLoc:        { File: mmult.cpp, Line: 72, Column: 0 }
-Function:        tile_process
-Args:            
-  - String:          'Unrolling loop '''
-  - LoopName:        VITIS_LOOP_88_1
-  - String:          ''' ('
-  - LoopLoc:         'mmult.cpp:88:19'
-  - String:          ') '
-  - String:          'in function '''
-  - String:          tile_process
-  - String:          ''' completely with a factor of '
-  - Factor:          '32'
-...
---- !Passed
-Pass:            reflow-pragma-loop-unroll
-Name:            PragmaFullyUnroll
-DebugLoc:        { File: mmult.cpp, Line: 72, Column: 0 }
-Function:        tile_process
-Args:            
-  - String:          'Unrolling loop '''
-  - LoopName:        VITIS_LOOP_88_1
-  - String:          ''' ('
-  - LoopLoc:         'mmult.cpp:88:19'
-  - String:          ') '
-  - String:          'in function '''
-  - String:          tile_process
-  - String:          ''' completely with a factor of '
-  - Factor:          '32'
-...
---- !Passed
-Pass:            reflow-pragma-loop-unroll
-Name:            PragmaFullyUnroll
-DebugLoc:        { File: mmult.cpp, Line: 72, Column: 0 }
-Function:        tile_process
-Args:            
-  - String:          'Unrolling loop '''
-  - LoopName:        VITIS_LOOP_88_1
-  - String:          ''' ('
-  - LoopLoc:         'mmult.cpp:88:19'
-  - String:          ') '
-  - String:          'in function '''
-  - String:          tile_process
-  - String:          ''' completely with a factor of '
-  - Factor:          '32'
-...
---- !Passed
-Pass:            reflow-pragma-loop-unroll
-Name:            PragmaFullyUnroll
-DebugLoc:        { File: mmult.cpp, Line: 72, Column: 0 }
-Function:        tile_process
-Args:            
-  - String:          'Unrolling loop '''
-  - LoopName:        VITIS_LOOP_88_1
-  - String:          ''' ('
-  - LoopLoc:         'mmult.cpp:88:19'
-  - String:          ') '
-  - String:          'in function '''
-  - String:          tile_process
-  - String:          ''' completely with a factor of '
-  - Factor:          '32'
-...
---- !Passed
-Pass:            reflow-pragma-loop-unroll
-Name:            PragmaFullyUnroll
-DebugLoc:        { File: mmult.cpp, Line: 72, Column: 0 }
-Function:        tile_process
-Args:            
-  - String:          'Unrolling loop '''
-  - LoopName:        VITIS_LOOP_88_1
-  - String:          ''' ('
-  - LoopLoc:         'mmult.cpp:88:19'
-  - String:          ') '
-  - String:          'in function '''
-  - String:          tile_process
-  - String:          ''' completely with a factor of '
-  - Factor:          '32'
-...
---- !Passed
-Pass:            reflow-pragma-loop-unroll
-Name:            PragmaFullyUnroll
-DebugLoc:        { File: mmult.cpp, Line: 72, Column: 0 }
-Function:        tile_process
-Args:            
-  - String:          'Unrolling loop '''
-  - LoopName:        VITIS_LOOP_88_1
-  - String:          ''' ('
-  - LoopLoc:         'mmult.cpp:88:19'
-  - String:          ') '
-  - String:          'in function '''
-  - String:          tile_process
-  - String:          ''' completely with a factor of '
-  - Factor:          '32'
-...
---- !Passed
-Pass:            reflow-pragma-loop-unroll
-Name:            PragmaFullyUnroll
-DebugLoc:        { File: mmult.cpp, Line: 72, Column: 0 }
-Function:        tile_process
-Args:            
-  - String:          'Unrolling loop '''
-  - LoopName:        VITIS_LOOP_88_1
-  - String:          ''' ('
-  - LoopLoc:         'mmult.cpp:88:19'
-  - String:          ') '
-  - String:          'in function '''
-  - String:          tile_process
-  - String:          ''' completely with a factor of '
-  - Factor:          '32'
-...
---- !Passed
-Pass:            reflow-pragma-loop-unroll
-Name:            PragmaFullyUnroll
-DebugLoc:        { File: mmult.cpp, Line: 72, Column: 0 }
-Function:        tile_process
-Args:            
-  - String:          'Unrolling loop '''
-  - LoopName:        VITIS_LOOP_88_1
-  - String:          ''' ('
-  - LoopLoc:         'mmult.cpp:88:19'
-  - String:          ') '
-  - String:          'in function '''
-  - String:          tile_process
-  - String:          ''' completely with a factor of '
-  - Factor:          '32'
-...
---- !Passed
-Pass:            reflow-pragma-loop-unroll
-Name:            PragmaFullyUnroll
-DebugLoc:        { File: mmult.cpp, Line: 72, Column: 0 }
-Function:        tile_process
-Args:            
-  - String:          'Unrolling loop '''
-  - LoopName:        VITIS_LOOP_88_1
-  - String:          ''' ('
-  - LoopLoc:         'mmult.cpp:88:19'
-  - String:          ') '
-  - String:          'in function '''
-  - String:          tile_process
-  - String:          ''' completely with a factor of '
-  - Factor:          '32'
-...
---- !Passed
-Pass:            reflow-pragma-loop-unroll
-Name:            PragmaFullyUnroll
-DebugLoc:        { File: mmult.cpp, Line: 72, Column: 0 }
-Function:        tile_process
-Args:            
-  - String:          'Unrolling loop '''
-  - LoopName:        VITIS_LOOP_88_1
-  - String:          ''' ('
-  - LoopLoc:         'mmult.cpp:88:19'
-  - String:          ') '
-  - String:          'in function '''
-  - String:          tile_process
-  - String:          ''' completely with a factor of '
-  - Factor:          '32'
-...
---- !Passed
-Pass:            reflow-pragma-loop-unroll
-Name:            PragmaFullyUnroll
-DebugLoc:        { File: mmult.cpp, Line: 72, Column: 0 }
-Function:        tile_process
-Args:            
-  - String:          'Unrolling loop '''
-  - LoopName:        VITIS_LOOP_88_1
-  - String:          ''' ('
-  - LoopLoc:         'mmult.cpp:88:19'
-  - String:          ') '
-  - String:          'in function '''
-  - String:          tile_process
-  - String:          ''' completely with a factor of '
-  - Factor:          '32'
+  - Factor:          '8'
 ...
 --- !Passed
 Pass:            reflow-array-partition
@@ -576,10 +209,8 @@ Args:
   - UOName:          localA
   - String:          ''':'
   - String:          ' '
-  - Mode:            Cyclic
+  - Mode:            Complete
   - String:          ' partitioning'
-  - String:          ' with factor '
-  - Factor:          '8'
   - String:          ' on dimension '
   - Dim:             '1'
   - String:          .
@@ -596,10 +227,8 @@ Args:
   - UOName:          localB
   - String:          ''':'
   - String:          ' '
-  - Mode:            Cyclic
+  - Mode:            Complete
   - String:          ' partitioning'
-  - String:          ' with factor '
-  - Factor:          '8'
   - String:          ' on dimension '
   - Dim:             '2'
   - String:          .
@@ -616,18 +245,14 @@ Args:
   - UOName:          localC
   - String:          ''':'
   - String:          ' '
-  - Mode:            Cyclic
+  - Mode:            Complete
   - String:          ' partitioning'
-  - String:          ' with factor '
-  - Factor:          '8'
   - String:          ' on dimension '
   - Dim:             '1'
   - String:          .
   - String:          ' '
-  - Mode:            Cyclic
+  - Mode:            Complete
   - String:          ' partitioning'
-  - String:          ' with factor '
-  - Factor:          '8'
   - String:          ' on dimension '
   - Dim:             '2'
   - String:          .
@@ -645,7 +270,7 @@ Args:
   - String:          ' length'
   - String:          ' has been inferred'
   - String:          ' _XLX_SEP_ '
-  - AccessID:        a302seq
+  - AccessID:        a110seq
   - ArrayName:       a
   - String:          ' '
   - BundleName:      gmem0
@@ -676,7 +301,7 @@ Args:
   - String:          ' length'
   - String:          ' has been inferred'
   - String:          ' _XLX_SEP_ '
-  - AccessID:        b303seq
+  - AccessID:        b111seq
   - ArrayName:       b
   - String:          ' '
   - BundleName:      gmem1
@@ -692,7 +317,7 @@ Args:
   - OrigAccess:      load
     DebugLoc:        { File: mmult.cpp, Line: 161, Column: 15 }
   - OrigDirection:   read
-  - OrigID:          for.inc30.load.24
+  - OrigID:          for.inc30.load.23
 ...
 --- !Passed
 Pass:            reflow-burst-inference
@@ -707,7 +332,7 @@ Args:
   - String:          ' length'
   - String:          ' has been inferred'
   - String:          ' _XLX_SEP_ '
-  - AccessID:        c304seq
+  - AccessID:        c112seq
   - ArrayName:       c
   - String:          ' '
   - BundleName:      gmem2
@@ -723,7 +348,7 @@ Args:
   - OrigAccess:      store
     DebugLoc:        { File: mmult.cpp, Line: 190, Column: 19 }
   - OrigDirection:   write
-  - OrigID:          for.inc86.store.147
+  - OrigID:          for.inc86.store.82
 ...
 --- !Missed
 Pass:            reflow-burst-widen
@@ -739,7 +364,7 @@ Args:
   - OrigAccess:      call
     DebugLoc:        { File: mmult.cpp, Line: 185, Column: 3 }
   - OrigDirection:   write
-  - OrigID:          c304seq
+  - OrigID:          c112seq
   - ArrayName:       c
   - String:          ' '
   - BundleName:      gmem2
@@ -766,7 +391,7 @@ Args:
   - OrigAccess:      call
     DebugLoc:        { File: mmult.cpp, Line: 156, Column: 3 }
   - OrigDirection:   read
-  - OrigID:          b303seq
+  - OrigID:          b111seq
   - ArrayName:       b
   - String:          ' '
   - BundleName:      gmem1
@@ -793,7 +418,7 @@ Args:
   - OrigAccess:      call
     DebugLoc:        { File: mmult.cpp, Line: 145, Column: 3 }
   - OrigDirection:   read
-  - OrigID:          a302seq
+  - OrigID:          a110seq
   - ArrayName:       a
   - String:          ' '
   - BundleName:      gmem0
@@ -811,9 +436,9 @@ Pass:            auto-loop-pipeline
 Name:            AutoLoopPipeline
 Args:            
   - String:          'automatically set the pipeline for Loop< '
-  - LoopName:        VITIS_LOOP_167_4
+  - LoopName:        VITIS_LOOP_166_3
   - String:          '> at '
-  - LoopLoc:         'mmult.cpp:167:23'
+  - LoopLoc:         'mmult.cpp:166:21'
   - String:          ' '
 ...
 --- !Passed

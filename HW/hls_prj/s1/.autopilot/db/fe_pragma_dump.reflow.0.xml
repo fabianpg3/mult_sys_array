@@ -1,14 +1,14 @@
 <pragmas>
-<pragma file="mmult.cpp" line="186" pragmaType="loop_tripcount" parentfunction="mmult" min="32" max="32" avg="32"/>
+<pragma file="mmult.cpp" line="186" pragmaType="loop_tripcount" parentfunction="mmult" min="8" max="8" avg="8"/>
 <pragma file="mmult.cpp" line="189" pragmaType="pipeline" parentfunction="mmult" off="0" ii="1" rewind="0" style=""/>
-<pragma file="mmult.cpp" line="188" pragmaType="loop_tripcount" parentfunction="mmult" min="32" max="32" avg="32"/>
+<pragma file="mmult.cpp" line="188" pragmaType="loop_tripcount" parentfunction="mmult" min="8" max="8" avg="8"/>
 <pragma file="mmult.cpp" line="168" pragmaType="unroll" parentfunction="mmult" factor="8" skip_exit_check="0"/>
-<pragma file="mmult.cpp" line="157" pragmaType="loop_tripcount" parentfunction="mmult" min="32" max="32" avg="32"/>
+<pragma file="mmult.cpp" line="157" pragmaType="loop_tripcount" parentfunction="mmult" min="8" max="8" avg="8"/>
 <pragma file="mmult.cpp" line="160" pragmaType="pipeline" parentfunction="mmult" off="0" ii="1" rewind="0" style=""/>
-<pragma file="mmult.cpp" line="159" pragmaType="loop_tripcount" parentfunction="mmult" min="32" max="32" avg="32"/>
-<pragma file="mmult.cpp" line="146" pragmaType="loop_tripcount" parentfunction="mmult" min="32" max="32" avg="32"/>
+<pragma file="mmult.cpp" line="159" pragmaType="loop_tripcount" parentfunction="mmult" min="8" max="8" avg="8"/>
+<pragma file="mmult.cpp" line="146" pragmaType="loop_tripcount" parentfunction="mmult" min="8" max="8" avg="8"/>
 <pragma file="mmult.cpp" line="149" pragmaType="pipeline" parentfunction="mmult" off="0" ii="1" rewind="0" style=""/>
-<pragma file="mmult.cpp" line="148" pragmaType="loop_tripcount" parentfunction="mmult" min="32" max="32" avg="32"/>
+<pragma file="mmult.cpp" line="148" pragmaType="loop_tripcount" parentfunction="mmult" min="8" max="8" avg="8"/>
 <pragma file="mmult.cpp" line="117" pragmaType="interface" parentfunction="mmult" mode="m_axi" port="a" bundle="gmem0" offset="slave" name="" depth="-1" num_read_outstanding="-1" num_write_outstanding="-1" max_burst_read_length="-1" max_burst_write_length="-1" latency="-1" max_widen_bitwidth="-1" channel=""/>
 <pragma file="mmult.cpp" line="118" pragmaType="interface" parentfunction="mmult" mode="m_axi" port="b" bundle="gmem1" offset="slave" name="" depth="-1" num_read_outstanding="-1" num_write_outstanding="-1" max_burst_read_length="-1" max_burst_write_length="-1" latency="-1" max_widen_bitwidth="-1" channel=""/>
 <pragma file="mmult.cpp" line="119" pragmaType="interface" parentfunction="mmult" mode="m_axi" port="c" bundle="gmem2" offset="slave" name="" depth="-1" num_read_outstanding="-1" num_write_outstanding="-1" max_burst_read_length="-1" max_burst_write_length="-1" latency="-1" max_widen_bitwidth="-1" channel=""/>
@@ -43,7 +43,7 @@
 <pragma file="" line="0" pragmaType="inline" parentfunction="ap_int<8>::ap_int(int)" off="0" region="0" recursive="0"/>
 <pragma file="" line="0" pragmaType="inline" parentfunction="ap_int_base<8, true>::RType<8, true>::mult operator*<8, true, 8, true>(ap_int_base<8, true> const&, ap_int_base<8, true> const&)" off="0" region="0" recursive="0"/>
 <pragma file="mmult.cpp" line="83" pragmaType="pipeline" parentfunction="tile_process" off="0" ii="1" rewind="0" style=""/>
-<pragma file="mmult.cpp" line="82" pragmaType="loop_tripcount" parentfunction="tile_process" min="32" max="32" avg="32"/>
+<pragma file="mmult.cpp" line="82" pragmaType="loop_tripcount" parentfunction="tile_process" min="8" max="8" avg="8"/>
 <pragma file="mmult.cpp" line="87" pragmaType="unroll" parentfunction="tile_process" factor="8" skip_exit_check="0"/>
 <pragma file="mmult.cpp" line="89" pragmaType="unroll" parentfunction="tile_process" factor="8" skip_exit_check="0"/>
 <pragma file="mmult.cpp" line="75" pragmaType="array_partition" parentfunction="tile_process" dim="1" factor="8" mode="cyclic" dynamic="0" variable="c_row_major"/>

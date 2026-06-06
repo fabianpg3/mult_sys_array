@@ -1,7 +1,7 @@
 <profile>
 
 <section name = "Vitis HLS Report for 'tile_process_Pipeline_compute_pipeline'" level="0">
-<item name = "Date">Fri Jun  5 01:38:26 2026
+<item name = "Date">Sat Jun  6 17:47:14 2026
 </item>
 <item name = "Version">2023.2 (Build 4023990 on Oct 11 2023)</item>
 <item name = "Project">hls_prj</item>
@@ -24,7 +24,7 @@
 <section name = "" level="1">
 <item name = "Summary"><table name="" hasTotal="0">
 <keys size="8">, min, max, min, max, min, max, Type</keys>
-<column name="">197, 197, 0.650 us, 0.650 us, 197, 197, no</column>
+<column name="">13, 13, 42.900 ns, 42.900 ns, 13, 13, no</column>
 </table>
 </item>
 <item name = "Detail">
@@ -35,7 +35,7 @@
 </item>
 <item name = "Loop"><table name="" hasTotal="0">
 <keys size="8">Loop Name, min, max, Latency, achieved, target, Count, Pipelined</keys>
-<column name="- compute_pipeline">195, 195, 10, 6, 1, 32, yes</column>
+<column name="- compute_pipeline">11, 11, 5, 1, 1, 8, yes</column>
 </table>
 </item>
 </section>

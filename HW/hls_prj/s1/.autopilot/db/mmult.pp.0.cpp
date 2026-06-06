@@ -5722,14 +5722,14 @@ inline __attribute__((nodebug)) bool operator!=(
 # 57 "mmult.cpp" 2
 
 
-const unsigned int c_size = 32;
+const unsigned int c_size = 8;
 
 extern "C" {
 
 void tile_process(
-    ap_int<8> a_row_major[32][32],
-    ap_int<8> b_row_major[32][32],
-    ap_int<2 * 8> c_row_major[32][32],
+    ap_int<8> a_row_major[8][8],
+    ap_int<8> b_row_major[8][8],
+    ap_int<2 * 8> c_row_major[8][8],
     int start_k, int finish_k,
     int a_row,
     int a_col,
@@ -5749,9 +5749,9 @@ compute_pipeline:
 #pragma HLS PIPELINE II = 1
 
  pe_array:
-    for (int i = 0; i < 32; i++) {
+    for (int i = 0; i < 8; i++) {
 #pragma HLS UNROLL factor = 8
- VITIS_LOOP_88_1: for (int j = 0; j < 32; j++) {
+ VITIS_LOOP_88_1: for (int j = 0; j < 8; j++) {
 #pragma HLS UNROLL factor = 8
  ap_int<8> a_forwarded = boundary_value;
         if (i < a_row && k < a_col) {
@@ -5770,9 +5770,9 @@ compute_pipeline:
   }
 }
 
-__attribute__((sdx_kernel("mmult", 0))) void mmult(ap_int<8> a[32 * 32],
-           ap_int<8> b[32 * 32],
-           ap_int<2 * 8> c[32 * 32],
+__attribute__((sdx_kernel("mmult", 0))) void mmult(ap_int<8> a[8 * 8],
+           ap_int<8> b[8 * 8],
+           ap_int<2 * 8> c[8 * 8],
            int a_row,
            int a_col,
            int b_col
@@ -5797,15 +5797,15 @@ __attribute__((sdx_kernel("mmult", 0))) void mmult(ap_int<8> a[32 * 32],
 #pragma HLS INTERFACE s_axilite port = return bundle = control
 
 
- ap_int<8> localA[32][32];
+ ap_int<8> localA[8][8];
 #pragma HLS ARRAY_PARTITION variable = localA dim = 1 factor = 8 cyclic
 #pragma HLS BIND_STORAGE variable = localA type = ram_2p impl = lutram
 
- ap_int<8> localB[32][32];
+ ap_int<8> localB[8][8];
 #pragma HLS ARRAY_PARTITION variable = localB dim = 2 factor = 8 cyclic
 #pragma HLS BIND_STORAGE variable = localB type = ram_2p impl = lutram
 
- ap_int<2 * 8> localC[32][32];
+ ap_int<2 * 8> localC[8][8];
 #pragma HLS ARRAY_PARTITION variable = localC dim = 1 factor = 8 cyclic
 #pragma HLS ARRAY_PARTITION variable = localC dim = 2 factor = 8 cyclic
 
@@ -5833,8 +5833,8 @@ readB:
   }
 
 
-  VITIS_LOOP_166_3: for (int i = 0; i < 32; i++) {
-    VITIS_LOOP_167_4: for (int j = 0; j < 32; j++) {
+  VITIS_LOOP_166_3: for (int i = 0; i < 8; i++) {
+    VITIS_LOOP_167_4: for (int j = 0; j < 8; j++) {
 #pragma HLS UNROLL factor = 8
  localC[i][j] = 0;
     }
@@ -5844,8 +5844,8 @@ readB:
 
 tile_processing:
   for (int q = 0; q < 4; q++) {
-    int start_k = q * (32 / 4);
-    int finish_k = (q + 1) * (32 / 4);
+    int start_k = q * (8 / 4);
+    int finish_k = (q + 1) * (8 / 4);
     tile_process(localA, localB, localC, start_k, finish_k, a_row, a_col, b_col,
                  b_row);
   }

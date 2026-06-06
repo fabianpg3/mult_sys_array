@@ -52,7 +52,7 @@ Diagnostics:
     FilePath:        mmult.cpp
     Replacements:    
       - FilePath:        /home/jgaitan/Documents/mult_sys_array/HW/hls_prj/s1/.autopilot/db/mmult.pp.0.cpp
-        Offset:          936463
+        Offset:          936455
         Length:          0
         ReplacementText: 'VITIS_LOOP_88_1: '
   - DiagnosticName:  clang-diagnostic-error
@@ -71,7 +71,7 @@ Diagnostics:
     FilePath:        mmult.cpp
     Replacements:    
       - FilePath:        /home/jgaitan/Documents/mult_sys_array/HW/hls_prj/s1/.autopilot/db/mmult.pp.0.cpp
-        Offset:          938552
+        Offset:          938531
         Length:          0
         ReplacementText: 'VITIS_LOOP_147_1: '
   - DiagnosticName:  xilinx-label-all-loops
@@ -80,7 +80,7 @@ Diagnostics:
     FilePath:        mmult.cpp
     Replacements:    
       - FilePath:        /home/jgaitan/Documents/mult_sys_array/HW/hls_prj/s1/.autopilot/db/mmult.pp.0.cpp
-        Offset:          938810
+        Offset:          938789
         Length:          0
         ReplacementText: 'VITIS_LOOP_158_2: '
   - DiagnosticName:  xilinx-label-all-loops
@@ -89,7 +89,7 @@ Diagnostics:
     FilePath:        mmult.cpp
     Replacements:    
       - FilePath:        /home/jgaitan/Documents/mult_sys_array/HW/hls_prj/s1/.autopilot/db/mmult.pp.0.cpp
-        Offset:          938973
+        Offset:          938952
         Length:          0
         ReplacementText: 'VITIS_LOOP_166_3: '
   - DiagnosticName:  xilinx-label-all-loops
@@ -98,7 +98,7 @@ Diagnostics:
     FilePath:        mmult.cpp
     Replacements:    
       - FilePath:        /home/jgaitan/Documents/mult_sys_array/HW/hls_prj/s1/.autopilot/db/mmult.pp.0.cpp
-        Offset:          939008
+        Offset:          938986
         Length:          0
         ReplacementText: 'VITIS_LOOP_167_4: '
   - DiagnosticName:  xilinx-label-all-loops
@@ -107,7 +107,7 @@ Diagnostics:
     FilePath:        mmult.cpp
     Replacements:    
       - FilePath:        /home/jgaitan/Documents/mult_sys_array/HW/hls_prj/s1/.autopilot/db/mmult.pp.0.cpp
-        Offset:          939431
+        Offset:          939406
         Length:          0
         ReplacementText: 'VITIS_LOOP_187_5: '
 ...
